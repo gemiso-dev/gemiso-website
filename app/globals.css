@@ -2195,3 +2195,202 @@ a:hover > .gem-arrow,
     align-items: flex-start;
   }
 }
+
+/* =========================================================================
+   인증 현황 (/certification) — GS 인증 + 특허
+   히어로/섹션 헤더/닫는 메모/CTA는 공통·연혁 클래스를 재사용한다.
+   ========================================================================= */
+.cert-section {
+  background: #fff;
+}
+/* GS 인증 섹션: 위는 표준 여백, 아래는 특허 섹션과 붙도록 줄인다 */
+.cert-section--top {
+  padding-block: var(--gem-sec-pad) clamp(40px, 5vw, 64px);
+}
+.cert-section--bottom {
+  padding-block: clamp(40px, 5vw, 64px) var(--gem-sec-pad);
+}
+
+/* 리드 문단 안의 강조(1등급 등) */
+.cert-lead__hl {
+  color: var(--gem-fg);
+  font-weight: 500;
+}
+
+/* ---------------------------------------------------------------- GS 인증 카드 */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(232px, 100%), 1fr));
+  gap: clamp(16px, 1.6vw, 22px);
+}
+.cert-card {
+  background: #fff;
+  border: 1px solid var(--gem-border);
+  display: flex;
+  flex-direction: column;
+}
+.cert-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 15px;
+  border-bottom: 1px solid var(--gem-border);
+}
+.cert-card__kind {
+  font-family: var(--gem-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--gem-accent);
+}
+.cert-card__grade {
+  font-family: var(--gem-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: #fff;
+  background: var(--gem-accent);
+  padding: 3px 8px;
+}
+/* 실제 인증서 스캔을 액자처럼 보여주는 영역 */
+.cert-card__shot {
+  position: relative;
+  background: #f7f8fa;
+  border-bottom: 1px solid var(--gem-border);
+  padding: 22px;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cert-card__shot img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(22, 22, 22, 0.12);
+}
+.cert-card__info {
+  padding: 18px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.cert-card__tag {
+  font-family: var(--gem-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--gem-accent);
+}
+.cert-card__name {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--gem-fg);
+}
+.cert-card__cat {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--gem-muted);
+}
+.cert-card__org {
+  margin-top: 2px;
+  font-family: var(--gem-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  color: var(--gem-subtle);
+}
+
+/* ------------------------------------------------------------------- 특허 카드 */
+.pat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+  gap: clamp(16px, 1.6vw, 22px);
+}
+.pat-card {
+  background: #fff;
+  border: 1px solid var(--gem-border);
+  display: flex;
+  min-height: 200px;
+}
+/* 실제 특허증 스캔(액자) — 카드 왼쪽 */
+.pat-shot {
+  position: relative;
+  flex: none;
+  width: 184px;
+  background: #f7f8fa;
+  border-right: 1px solid var(--gem-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+}
+.pat-shot img {
+  max-width: 100%;
+  max-height: 220px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(22, 22, 22, 0.12);
+}
+.pat-shot__label {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  font-family: var(--gem-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--gem-accent);
+}
+.pat-body {
+  flex: 1;
+  padding: 26px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+.pat-body__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pat-no {
+  font-family: var(--gem-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--gem-subtle);
+}
+.pat-status {
+  font-family: var(--gem-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--gem-muted);
+  background: var(--gem-surface);
+  border: 1px solid var(--gem-border);
+  padding: 3px 8px;
+}
+.pat-title {
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.42;
+  color: var(--gem-fg);
+}
+.pat-desc {
+  font-size: 14px;
+  line-height: 1.62;
+  color: var(--gem-muted);
+}
+
+/* 좁은 화면에서는 액자를 위로 쌓는다 */
+@media (max-width: 520px) {
+  .pat-card {
+    flex-direction: column;
+  }
+  .pat-shot {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--gem-border);
+  }
+}
