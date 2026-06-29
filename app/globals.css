@@ -1,10 +1,44 @@
+/* =========================================================================
+   Gemiso 디자인 시스템 — 공통 토큰 & 레이아웃
+   Carbon 계열(IBM Plex Mono + Pretendard, accent #0f62fe)의 미니멀 그리드.
+   페이지별 콘텐츠는 이 위에서 조합한다.
+   ========================================================================= */
+
 :root {
-  --bg: #0b0c10;
-  --fg: #f5f7fa;
-  --muted: #9aa4b2;
-  --accent: #4f8cff;
+  /* 색상 */
+  --gem-bg: #ffffff;
+  --gem-surface: #f4f4f4; /* 옅은 배경 블록 */
+  --gem-fg: #161616; /* 본문 텍스트 */
+  --gem-muted: #525252; /* 보조 텍스트 */
+  --gem-subtle: #8c8c8c; /* 캡션/메타 */
+  --gem-faint: #8d8d8d; /* 푸터 보조 */
+  --gem-border: #e0e0e0; /* 1px 구획선 */
+  --gem-border-strong: #161616;
+
+  --gem-accent: #0f62fe;
+  --gem-accent-strong: #0043ce;
+  --gem-on-accent: #ffffff;
+
+  --gem-ink: #161616; /* 다크 영역 배경(푸터) */
+
+  /* 타이포 */
+  --gem-font-sans: "Pretendard", "Pretendard Variable", -apple-system,
+    BlinkMacSystemFont, "Helvetica Neue", Arial, "Apple SD Gothic Neo",
+    "Malgun Gothic", sans-serif;
+  --gem-font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo,
+    Consolas, monospace;
+
+  /* 레이아웃 */
+  --gem-maxw: 1320px;
+  --gem-gutter: clamp(20px, 4vw, 32px);
+  --gem-sec-pad: 96px; /* 섹션 세로 여백(데스크탑) */
+  --gem-header-h: 56px;
+
+  /* 반응형 분기점 */
+  --gem-bp: 860px;
 }
 
+/* ------------------------------------------------------------------ reset */
 * {
   box-sizing: border-box;
 }
@@ -13,55 +47,1440 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
-  color: var(--fg);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
-    "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* sticky 헤더 높이만큼 앵커 위치 보정 */
+  scroll-padding-top: var(--gem-header-h);
+}
+
+body {
+  background: var(--gem-bg);
+  color: var(--gem-fg);
+  font-family: var(--gem-font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: normal;
+  word-break: keep-all; /* 한글 단어 단위 줄바꿈 */
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.hero {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 24px;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-.hero__inner {
-  max-width: 720px;
-  text-align: center;
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
 }
 
-.hero__eyebrow {
-  letter-spacing: 0.4em;
-  color: var(--accent);
-  font-weight: 600;
-  margin: 0 0 16px;
+img {
+  max-width: 100%;
 }
 
-.hero__title {
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  line-height: 1.1;
-  margin: 0 0 20px;
+::selection {
+  background: var(--gem-accent);
+  color: #fff;
 }
 
-.hero__desc {
-  color: var(--muted);
-  font-size: clamp(1rem, 2.4vw, 1.15rem);
-  line-height: 1.7;
-  margin: 0 0 28px;
+/* =========================================================================
+   레이아웃 프리미티브 — 모든 페이지에서 재사용
+   ========================================================================= */
+
+/* 콘텐츠 폭을 제한하고 가운데 정렬 + 좌우 거터 */
+.gem-container {
+  width: 100%;
+  max-width: var(--gem-maxw);
+  margin-inline: auto;
+  padding-inline: var(--gem-gutter);
 }
 
-.hero__env {
+/* 표준 세로 여백 섹션 */
+.gem-section {
+  padding-block: var(--gem-sec-pad);
+}
+
+.gem-section--alt {
+  background: var(--gem-surface);
+  border-top: 1px solid var(--gem-border);
+}
+
+/* 섹션 머리말: accent tick + 라벨 */
+.gem-eyebrow {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
 }
 
-.badge {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.85rem;
-  color: var(--muted);
-  border: 1px solid #2a2f3a;
-  border-radius: 999px;
-  padding: 6px 14px;
+.gem-eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: var(--gem-accent);
+  flex: none;
+}
+
+.gem-eyebrow > span {
+  font-size: 13px;
+  letter-spacing: 0.16px;
+  color: var(--gem-muted);
+}
+
+/* 제목 — 가볍고 큰 디스플레이 서체 */
+.gem-title {
+  font-weight: 300;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--gem-fg);
+  font-size: clamp(28px, 3.6vw, 44px);
+}
+
+.gem-title--sm {
+  font-size: clamp(24px, 2.8vw, 34px);
+  line-height: 1.2;
+}
+
+/* 도입 문단 */
+.gem-lead {
+  margin-top: 18px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--gem-muted);
+}
+
+/* 섹션 헤더 묶음(머리말 + 제목 + 리드) */
+.gem-section__head {
+  max-width: 760px;
+  margin-bottom: 48px;
+}
+
+/* 모노 캡션 (번호/태그 등) */
+.gem-mono {
+  font-family: var(--gem-font-mono);
+}
+
+/* --------------------------------------------------------------- 버튼 */
+.gem-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 22px;
+  font-size: 15px;
+  line-height: 1;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.gem-btn--primary {
+  background: var(--gem-accent);
+  color: var(--gem-on-accent);
+}
+.gem-btn--primary:hover {
+  background: var(--gem-accent-strong);
+}
+
+/* 텍스트 링크형 버튼 */
+.gem-btn--link {
+  min-height: 48px;
+  padding: 0 8px;
+  background: none;
+  color: var(--gem-accent);
+}
+.gem-btn--link:hover {
+  color: var(--gem-accent-strong);
+  text-decoration: underline;
+}
+
+/* accent 배경 위에서 쓰는 반전 버튼 */
+.gem-btn--invert {
+  background: #fff;
+  color: var(--gem-accent);
+}
+.gem-btn--invert:hover {
+  background: var(--gem-surface);
+}
+
+.gem-btn--underline-light {
+  padding: 0 8px;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+.gem-btn--underline-light:hover {
+  border-bottom-color: #fff;
+}
+
+/* 인라인 "자세히 →" 류 링크 */
+.gem-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gem-accent);
+  font-size: 14px;
+}
+a:hover > .gem-arrow,
+.gem-arrow:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================================
+   반응형 유틸 (디자인의 gem-hide-sm / gem-show-sm 규칙)
+   ========================================================================= */
+.gem-show-sm {
+  display: none !important;
+}
+
+@media (max-width: 860px) {
+  :root {
+    --gem-sec-pad: 64px;
+  }
+  .gem-hide-sm {
+    display: none !important;
+  }
+  .gem-show-sm {
+    display: flex !important;
+  }
+}
+
+/* =========================================================================
+   상단 유틸리티 바
+   ========================================================================= */
+.gem-utilbar {
+  background: var(--gem-surface);
+  border-bottom: 1px solid var(--gem-border);
+}
+
+.gem-utilbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-block: 7px;
+  font-size: 12px;
+  letter-spacing: 0.32px;
+  color: var(--gem-muted);
+}
+
+.gem-utilbar__group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.gem-utilbar__group--end {
+  gap: 20px;
+}
+
+.gem-utilbar a:hover {
+  color: var(--gem-fg);
+}
+
+.gem-sep {
+  color: #c6c6c6;
+}
+
+.gem-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.gem-lang__current {
+  color: var(--gem-fg);
+  font-weight: 600;
+}
+
+/* =========================================================================
+   사이트 헤더 (sticky 내비게이션)
+   ========================================================================= */
+.gem-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--gem-bg);
+  border-bottom: 1px solid var(--gem-border);
+}
+
+.gem-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: var(--gem-header-h);
+}
+
+.gem-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.gem-logo img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
+.gem-nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 14px;
+}
+
+.gem-nav__link {
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+.gem-nav__link:hover {
+  border-bottom-color: var(--gem-fg);
+}
+
+.gem-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.gem-header__cta-text {
+  font-size: 14px;
+}
+.gem-header__cta-text:hover {
+  color: var(--gem-accent);
+}
+
+.gem-header__cta {
+  display: inline-flex;
+  align-items: center;
+  background: var(--gem-accent);
+  color: #fff;
+  font-size: 14px;
+  padding: 9px 16px;
+  transition: background 0.2s ease;
+}
+.gem-header__cta:hover {
+  background: var(--gem-accent-strong);
+}
+
+/* 햄버거 버튼 */
+.gem-menu-btn {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 4px;
+}
+.gem-menu-btn span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--gem-fg);
+}
+
+/* 모바일 메뉴 패널 */
+.gem-mobile-menu {
+  flex-direction: column;
+  border-top: 1px solid var(--gem-border);
+  background: #fff;
+  padding: 8px var(--gem-gutter) 16px;
+}
+.gem-mobile-menu a {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--gem-border);
+  font-size: 16px;
+}
+.gem-mobile-menu a:last-child {
+  border-bottom: none;
+}
+.gem-mobile-menu__cta {
+  margin-top: 14px;
+  display: inline-flex;
+  justify-content: center;
+  background: var(--gem-accent);
+  color: #fff;
+  font-size: 15px;
+  padding: 13px 16px !important;
+}
+
+/* =========================================================================
+   사이트 푸터
+   ========================================================================= */
+.gem-footer {
+  background: var(--gem-ink);
+  color: #c6c6c6;
+  padding: clamp(56px, 7vw, 80px) var(--gem-gutter) 40px;
+}
+.gem-footer__inner {
+  max-width: var(--gem-maxw);
+  margin-inline: auto;
+}
+.gem-footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+}
+.gem-footer__brand {
+  flex: 1;
+  min-width: 240px;
+  max-width: 340px;
+}
+.gem-footer__brand img {
+  height: 28px;
+  width: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+.gem-footer__tagline {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gem-faint);
+  max-width: 34ch;
+}
+.gem-footer__cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 40px;
+  flex: 1.6;
+  min-width: 280px;
+}
+.gem-footer__heading {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.gem-footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  font-size: 14px;
+  color: #a8a8a8;
+  line-height: 1.6;
+}
+.gem-footer__links a:hover {
+  color: #fff;
+}
+.gem-footer__bottom {
+  margin-top: 48px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--gem-faint);
+  letter-spacing: 0.16px;
+}
+.gem-footer__legal {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.gem-footer__legal a:hover {
+  color: #fff;
+}
+.gem-footer .gem-lang__current {
+  color: #fff;
+}
+.gem-footer .gem-sep {
+  color: #525252;
+}
+
+/* =========================================================================
+   스크롤 인 리빌 (prefers-reduced-motion 존중)
+   ========================================================================= */
+.gem-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s cubic-bezier(0.2, 0.6, 0.2, 1),
+    transform 0.6s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.gem-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .gem-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* =========================================================================
+   홈 — 히어로
+   ========================================================================= */
+.gem-hero {
+  position: relative;
+  background: var(--gem-bg);
+  border-bottom: 1px solid var(--gem-border);
+  overflow: hidden;
+}
+.gem-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    80% 120% at 88% 0%,
+    rgba(15, 98, 254, 0.1),
+    rgba(15, 98, 254, 0) 55%
+  );
+  pointer-events: none;
+}
+.gem-hero__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(36px, 5vw, 64px);
+  align-items: center;
+  padding-block: clamp(48px, 7vw, 104px);
+}
+.gem-hero__title {
+  font-size: clamp(40px, 6vw, 76px);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--gem-fg);
+}
+.gem-hero__desc {
+  margin-top: 24px;
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.6;
+  color: var(--gem-muted);
+  max-width: 44ch;
+}
+.gem-hero__actions {
+  margin-top: 32px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.gem-hero__note {
+  margin-top: 26px;
+  font-size: 13px;
+  color: var(--gem-subtle);
+  letter-spacing: 0.16px;
+}
+
+@media (max-width: 860px) {
+  .gem-hero__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 히어로 제품 목업 (장식) */
+.gem-mock {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--gem-border);
+  box-shadow: 0 1px 0 rgba(22, 22, 22, 0.05);
+}
+.gem-mock__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 44px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--gem-border);
+}
+.gem-mock__app {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.gem-mock__dot {
+  width: 10px;
+  height: 10px;
+  background: var(--gem-accent);
+  display: block;
+}
+.gem-mock__app b {
+  font-size: 13px;
+  font-weight: 600;
+}
+.gem-mock__app span {
+  font-size: 13px;
+  color: var(--gem-subtle);
+}
+.gem-mock__controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.gem-mock__controls i {
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--gem-border);
+  display: block;
+}
+.gem-mock__body {
+  display: grid;
+  grid-template-columns: 148px 1fr;
+}
+.gem-mock__nav {
+  border-right: 1px solid var(--gem-border);
+  padding: 10px 0;
+  font-size: 12.5px;
+}
+.gem-mock__nav div {
+  padding: 9px 16px;
+  color: var(--gem-muted);
+}
+.gem-mock__nav div.is-active {
+  padding-left: 14px;
+  color: var(--gem-fg);
+  background: var(--gem-surface);
+  border-left: 2px solid var(--gem-accent);
+}
+.gem-mock__main {
+  padding: 12px;
+}
+.gem-mock__search {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.gem-mock__search > span:first-child {
+  flex: 1;
+  background: var(--gem-surface);
+  border-bottom: 1px solid #8d8d8d;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 12px;
+  color: var(--gem-subtle);
+}
+.gem-mock__search i {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--gem-border);
+  display: block;
+}
+.gem-mock__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.gem-mock__clip {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--gem-border);
+  background: repeating-linear-gradient(
+    135deg,
+    #eef1f6 0 7px,
+    #e4e9f1 7px 14px
+  );
+  overflow: hidden;
+}
+.gem-mock__clip .time {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(22, 22, 22, 0.78);
+  color: #fff;
+  font-family: var(--gem-font-mono);
+  font-size: 9px;
+  padding: 1px 4px;
+}
+.gem-mock__clip .name {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  font-family: var(--gem-font-mono);
+  font-size: 9px;
+  color: #3d4757;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 1px 4px;
+}
+.gem-mock__timeline {
+  margin-top: 12px;
+  border-top: 1px solid var(--gem-border);
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.gem-mock__tc {
+  font-family: var(--gem-font-mono);
+  font-size: 10px;
+  color: var(--gem-muted);
+}
+.gem-mock__track {
+  position: relative;
+  flex: 1;
+  height: 26px;
+  background: var(--gem-surface);
+  border: 1px solid var(--gem-border);
+  overflow: hidden;
+}
+.gem-mock__track i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: block;
+}
+
+/* =========================================================================
+   홈 — 솔루션 그리드 / 카드
+   ========================================================================= */
+.gem-grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  border-top: 1px solid var(--gem-border);
+  border-left: 1px solid var(--gem-border);
+}
+.gem-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 32px;
+  min-height: 236px;
+  background: #fff;
+  border-right: 1px solid var(--gem-border);
+  border-bottom: 1px solid var(--gem-border);
+  transition: background 0.2s ease;
+}
+.gem-card:hover {
+  background: var(--gem-surface);
+}
+.gem-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gem-card__num {
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  color: var(--gem-subtle);
+}
+.gem-card__tag {
+  font-family: var(--gem-font-mono);
+  font-size: 11px;
+  color: var(--gem-accent);
+  letter-spacing: 0.08em;
+}
+.gem-card__title {
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.gem-card__desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gem-muted);
+  flex: 1;
+}
+
+/* =========================================================================
+   홈 — 고객사 마키
+   ========================================================================= */
+@keyframes gemMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.gem-marquee {
+  padding-block: clamp(40px, 5vw, 64px);
+  background: var(--gem-surface);
+  border-top: 1px solid var(--gem-border);
+  border-bottom: 1px solid var(--gem-border);
+  overflow: hidden;
+}
+.gem-marquee__head {
+  max-width: var(--gem-maxw);
+  margin: 0 auto 30px;
+  padding-inline: var(--gem-gutter);
+}
+.gem-marquee__track {
+  display: flex;
+  align-items: stretch;
+  width: max-content;
+  animation: gemMarquee 44s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gem-marquee__track {
+    animation: none;
+  }
+}
+.gem-logo-cell {
+  width: 208px;
+  height: 84px;
+  border-right: 1px solid #d6dae1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--gem-muted);
+}
+
+/* =========================================================================
+   홈 — 선택 이유 + 통계
+   ========================================================================= */
+.gem-reasons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+}
+.gem-reason {
+  border-top: 2px solid var(--gem-border-strong);
+  padding-top: 22px;
+}
+.gem-reason h3 {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.gem-reason p {
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--gem-muted);
+}
+.gem-stats {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  border-top: 1px solid var(--gem-border);
+}
+.gem-stat {
+  padding: 28px 24px 8px;
+  border-right: 1px solid var(--gem-border);
+}
+.gem-stat:last-child {
+  border-right: none;
+}
+.gem-stat__num {
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--gem-fg);
+}
+.gem-stat__label {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--gem-muted);
+  letter-spacing: 0.16px;
+}
+
+/* =========================================================================
+   홈 — 기술 그리드 (1px 라인 그리드)
+   ========================================================================= */
+.gem-grid-lines {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--gem-border);
+  border-top: 1px solid var(--gem-border);
+  border-left: 1px solid var(--gem-border);
+}
+.gem-tech {
+  background: #fff;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 158px;
+}
+.gem-tech__num {
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  color: var(--gem-accent);
+}
+.gem-tech h3 {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--gem-fg);
+}
+.gem-tech p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gem-muted);
+}
+
+/* =========================================================================
+   홈 — 뉴스
+   ========================================================================= */
+.gem-news__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 44px;
+  flex-wrap: wrap;
+}
+.gem-news__head > div {
+  max-width: 640px;
+}
+.gem-news__more {
+  color: var(--gem-accent);
+  font-size: 14px;
+  white-space: nowrap;
+}
+.gem-news__more:hover {
+  text-decoration: underline;
+}
+.gem-news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1px;
+  background: var(--gem-border);
+  border: 1px solid var(--gem-border);
+}
+.gem-news-card {
+  background: #fff;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 240px;
+  transition: background 0.2s ease;
+}
+.gem-news-card:hover {
+  background: var(--gem-surface);
+}
+.gem-news-card__meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.gem-news-card__cat {
+  font-family: var(--gem-font-mono);
+  font-size: 11px;
+  color: var(--gem-accent);
+  letter-spacing: 0.08em;
+}
+.gem-news-card__date {
+  font-size: 12px;
+  color: var(--gem-subtle);
+}
+.gem-news-card__title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  flex: 1;
+}
+.gem-news-card__desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gem-muted);
+}
+
+/* =========================================================================
+   홈 — 컨택트 CTA (accent 배경)
+   ========================================================================= */
+.gem-contact {
+  background: var(--gem-accent);
+  color: #fff;
+}
+.gem-contact__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(36px, 5vw, 72px);
+  align-items: start;
+  padding-block: clamp(56px, 7vw, 96px);
+}
+@media (max-width: 860px) {
+  .gem-contact__grid {
+    grid-template-columns: 1fr;
+  }
+}
+.gem-contact__title {
+  font-size: clamp(30px, 3.8vw, 48px);
+  font-weight: 300;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+.gem-contact__desc {
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.86);
+  max-width: 40ch;
+}
+.gem-contact__actions {
+  margin-top: 32px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.gem-contact__info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+.gem-info-cell {
+  background: var(--gem-accent);
+  padding: 22px;
+}
+.gem-info-cell__label {
+  font-size: 11px;
+  letter-spacing: 0.32px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.gem-info-cell__value {
+  margin-top: 8px;
+  font-size: 16px;
+  color: #fff;
+}
+.gem-info-cell__value--sm {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =========================================================================
+   솔루션 상세 페이지 (/solutions/[slug])
+   ========================================================================= */
+
+/* 모노 캡션형 eyebrow (섹션 머리말 — 핵심 기능 / 작동 방식 등) */
+.gem-eyebrow--mono > span {
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+/* 솔루션 페이지 섹션 헤더(머리말 + 제목) */
+.sol-section__head {
+  max-width: 720px;
+  margin-bottom: 46px;
+}
+
+/* --------------------------------------------------------------- 브레드크럼 */
+.sol-breadcrumb {
+  background: #fff;
+  border-bottom: 1px solid var(--gem-border);
+}
+.sol-breadcrumb__inner {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding-block: 13px;
+  font-size: 13px;
+  color: var(--gem-subtle);
+}
+.sol-breadcrumb a:hover {
+  color: var(--gem-fg);
+}
+.sol-breadcrumb__current {
+  color: var(--gem-fg);
+}
+
+/* --------------------------------------------------------- 솔루션 탭 (sticky) */
+.sol-tabbar {
+  background: #fff;
+  border-bottom: 1px solid var(--gem-border);
+  position: sticky;
+  top: var(--gem-header-h);
+  z-index: 40;
+}
+.sol-tabs {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.sol-tabs::-webkit-scrollbar {
+  height: 0;
+}
+.sol-tab {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 13px 20px 12px;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+.sol-tab:hover {
+  background: var(--gem-surface);
+}
+.sol-tab__code {
+  font-family: var(--gem-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--gem-subtle);
+}
+.sol-tab__name {
+  font-size: 14px;
+  color: var(--gem-muted);
+}
+.sol-tab.is-active {
+  background: var(--gem-surface);
+  border-bottom-color: var(--gem-accent);
+}
+.sol-tab.is-active .sol-tab__code {
+  color: var(--gem-accent);
+}
+.sol-tab.is-active .sol-tab__name {
+  color: var(--gem-fg);
+}
+
+/* ------------------------------------------------------------------ 히어로 */
+.sol-hero {
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+}
+.sol-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    80% 120% at 90% 0%,
+    rgba(15, 98, 254, 0.09),
+    rgba(15, 98, 254, 0) 56%
+  );
+  pointer-events: none;
+}
+.sol-hero__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.02fr 1fr;
+  gap: clamp(36px, 5vw, 64px);
+  align-items: center;
+  padding-block: clamp(44px, 6vw, 92px);
+}
+.sol-hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.sol-hero__tick {
+  width: 28px;
+  height: 2px;
+  background: var(--gem-accent);
+  flex: none;
+}
+.sol-hero__code {
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--gem-accent);
+}
+.sol-hero__cat {
+  font-size: 13px;
+  color: var(--gem-muted);
+}
+.sol-hero__title {
+  font-size: clamp(36px, 5.4vw, 68px);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--gem-fg);
+}
+.sol-hero__desc {
+  margin-top: 22px;
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.62;
+  color: var(--gem-muted);
+  max-width: 46ch;
+}
+.sol-hero__actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.sol-hero__trust {
+  margin-top: 26px;
+  font-size: 13px;
+  color: var(--gem-subtle);
+  letter-spacing: 0.16px;
+}
+
+@media (max-width: 860px) {
+  .sol-hero__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 히어로 제품 목업 프레임 */
+.sol-mock {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--gem-border);
+  box-shadow: 0 1px 0 rgba(22, 22, 22, 0.05);
+}
+.sol-mock__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 44px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--gem-border);
+}
+.sol-mock__app {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sol-mock__dot {
+  width: 10px;
+  height: 10px;
+  background: var(--gem-accent);
+  display: block;
+}
+.sol-mock__app b {
+  font-size: 13px;
+  font-weight: 600;
+}
+.sol-mock__app span {
+  font-size: 13px;
+  color: var(--gem-subtle);
+}
+.sol-mock__controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sol-mock__controls span {
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--gem-border);
+  display: block;
+}
+
+/* ----------------------------------------------------------------- 핵심 기능 */
+.sol-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  border-top: 1px solid var(--gem-border);
+  border-left: 1px solid var(--gem-border);
+}
+.sol-feature {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 30px;
+  min-height: 182px;
+  background: #fff;
+  border-right: 1px solid var(--gem-border);
+  border-bottom: 1px solid var(--gem-border);
+}
+.sol-feature__tick {
+  width: 26px;
+  height: 2px;
+  background: var(--gem-accent);
+}
+.sol-feature h3 {
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--gem-fg);
+}
+.sol-feature p {
+  font-size: 14px;
+  line-height: 1.62;
+  color: var(--gem-muted);
+}
+
+/* ----------------------------------------------------------------- 작동 방식 */
+.sol-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  border-top: 1px solid var(--gem-border);
+  border-left: 1px solid var(--gem-border);
+}
+.sol-step {
+  position: relative;
+  border-right: 1px solid var(--gem-border);
+  border-bottom: 1px solid var(--gem-border);
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 128px;
+  background: #fff;
+}
+.sol-step__num {
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  color: var(--gem-accent);
+  letter-spacing: 0.08em;
+}
+.sol-step__label {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.32;
+  color: var(--gem-fg);
+}
+.sol-step__arrow {
+  position: absolute;
+  right: 14px;
+  bottom: 16px;
+  font-size: 16px;
+  color: #c6c6c6;
+}
+
+/* ---------------------------------------------------------------- 성과 · 사양 */
+.sol-perf {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 4vw, 64px);
+  align-items: start;
+}
+.sol-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid #d6dae1;
+}
+.sol-stat {
+  padding: 26px 24px 8px 0;
+}
+.sol-stat__num {
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--gem-fg);
+}
+.sol-stat__label {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--gem-muted);
+  letter-spacing: 0.12px;
+}
+.sol-spec {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px 0;
+  border-top: 1px solid #d6dae1;
+}
+.sol-spec__k {
+  flex: none;
+  font-family: var(--gem-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--gem-subtle);
+}
+.sol-spec__v {
+  text-align: right;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--gem-fg);
+}
+
+@media (max-width: 860px) {
+  .sol-perf {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------- 다른 솔루션 */
+.sol-others__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 44px;
+  flex-wrap: wrap;
+}
+.sol-others__head > div {
+  max-width: 640px;
+}
+.sol-others {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  border-top: 1px solid var(--gem-border);
+  border-left: 1px solid var(--gem-border);
+}
+.sol-other {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 30px;
+  min-height: 208px;
+  background: #fff;
+  border-right: 1px solid var(--gem-border);
+  border-bottom: 1px solid var(--gem-border);
+  transition: background 0.2s ease;
+}
+.sol-other:hover {
+  background: var(--gem-surface);
+}
+.sol-other__code {
+  font-family: var(--gem-font-mono);
+  font-size: 11px;
+  color: var(--gem-accent);
+  letter-spacing: 0.08em;
+}
+.sol-other__title {
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--gem-fg);
+}
+.sol-other__desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gem-muted);
+  flex: 1;
+}
+
+/* ------------------------------------------------------------- 솔루션 CTA */
+.sol-cta {
+  background: var(--gem-accent);
+  color: #fff;
+}
+.sol-cta__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(36px, 5vw, 72px);
+  align-items: center;
+  padding-block: clamp(52px, 7vw, 92px);
+}
+.sol-cta__title {
+  font-size: clamp(28px, 3.6vw, 46px);
+  font-weight: 300;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+.sol-cta__desc {
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.86);
+  max-width: 42ch;
+}
+.sol-cta__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 860px) {
+  .sol-cta__grid {
+    grid-template-columns: 1fr;
+  }
 }
