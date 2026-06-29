@@ -8,8 +8,9 @@ export type NavItem = { label: string; href: string; children?: NavItem[] };
 export const PRIMARY_NAV: NavItem[] = [
   {
     label: "회사소개",
-    href: "/history/",
+    href: "/mission/",
     children: [
+      { label: "미션", href: "/mission/" },
       { label: "연혁", href: "/history/" },
       { label: "인증 현황", href: "/certification/" },
       { label: "고객사", href: "/customers/" },
@@ -57,7 +58,7 @@ export const FOOTER_COLUMNS: { heading: string; links: NavItem[] }[] = [
   {
     heading: "회사",
     links: [
-      { label: "미션", href: "#" },
+      { label: "미션", href: "/mission/" },
       { label: "연혁", href: "/history/" },
       { label: "인증 현황", href: "/certification/" },
       { label: "고객사", href: "/customers/" },

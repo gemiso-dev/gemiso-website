@@ -3241,3 +3241,225 @@ a.sup-contact__cell:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================================
+   미션 (/mission)
+   ========================================================================= */
+
+/* 히어로 제목 강조 (People / Time / Places) */
+.mission-hero__hl {
+  font-weight: 500;
+  color: var(--gem-accent);
+}
+
+/* 히어로 하단 커넥터 (사람 · 시간 · 장소) */
+.mission-connector {
+  position: relative;
+  margin-top: clamp(40px, 5vw, 68px);
+  max-width: 760px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+/* 노드 중심을 잇는 가로선 */
+.mission-connector::before {
+  content: "";
+  position: absolute;
+  left: 16.66%;
+  right: 16.66%;
+  top: 12px;
+  height: 1px;
+  background: #c6c6c6;
+}
+.mission-connector__node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+}
+.mission-connector__dot {
+  width: 26px;
+  height: 26px;
+  background: var(--gem-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mission-connector__dot > span {
+  width: 11px;
+  height: 11px;
+  background: var(--gem-accent);
+  display: block;
+}
+.mission-connector__labels {
+  text-align: center;
+}
+.mission-connector__ko {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--gem-fg);
+}
+.mission-connector__en {
+  margin-top: 3px;
+  font-family: var(--gem-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--gem-subtle);
+}
+
+/* 세 기둥 섹션 */
+.mission-pillar-sec {
+  padding-block: var(--gem-sec-pad);
+  background: var(--gem-bg);
+}
+.mission-pillar-sec--surface {
+  background: var(--gem-surface);
+  border-top: 1px solid var(--gem-border);
+  border-bottom: 1px solid var(--gem-border);
+}
+.mission-pillar {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-top: 2px solid var(--gem-border-strong);
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: clamp(36px, 5vw, 76px);
+  align-items: start;
+}
+.mission-pillar__meta {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.mission-pillar__no {
+  font-family: var(--gem-font-mono);
+  font-size: 14px;
+  color: var(--gem-accent);
+}
+.mission-pillar__mono {
+  font-family: var(--gem-font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  color: var(--gem-subtle);
+}
+.mission-pillar__title {
+  margin-top: 16px;
+  font-size: clamp(30px, 4vw, 50px);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--gem-fg);
+}
+.mission-pillar__en {
+  margin-bottom: 20px;
+  font-family: var(--gem-font-mono);
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--gem-accent);
+}
+.mission-pillar__lead {
+  font-size: clamp(20px, 2.1vw, 25px);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--gem-fg);
+}
+.mission-pillar__text {
+  margin-top: 22px;
+  font-size: clamp(16px, 1.5vw, 18px);
+  line-height: 1.78;
+  color: var(--gem-muted);
+}
+
+/* 기둥 다이어그램 */
+.mission-diagram {
+  margin-top: 30px;
+  position: relative;
+  border: 1px solid var(--gem-border);
+  background-color: var(--gem-bg);
+  background-image: radial-gradient(#ededed 1px, transparent 1px);
+  background-size: 18px 18px;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+.mission-diagram__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.mission-diagram__caption {
+  position: absolute;
+  left: 12px;
+  bottom: 11px;
+  font-family: var(--gem-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--gem-subtle);
+  background: rgba(255, 255, 255, 0.82);
+  padding: 2px 6px;
+}
+.mission-diagram__link line {
+  stroke: #d6dae1;
+  stroke-width: 1;
+}
+.mission-diagram__tick {
+  stroke: #e3e3e3 !important;
+}
+.mission-diagram__arrow {
+  fill: #c6c6c6;
+}
+.mission-diagram__path {
+  stroke: var(--gem-accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+.mission-diagram__dot {
+  fill: #c6c6c6;
+}
+.mission-diagram__node {
+  fill: var(--gem-bg);
+  stroke: var(--gem-border-strong);
+  stroke-width: 1.5;
+}
+.mission-diagram__hub {
+  fill: var(--gem-accent);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: missionPulse 3.4s ease-in-out infinite;
+}
+.mission-diagram__label {
+  font-size: 12px;
+  fill: var(--gem-subtle);
+  text-anchor: middle;
+}
+.mission-diagram__label--accent {
+  font-weight: 600;
+  fill: var(--gem-accent);
+}
+
+@keyframes missionPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.32);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mission-diagram__hub {
+    animation: none;
+  }
+}
+
+/* 반응형 */
+@media (max-width: 860px) {
+  .mission-pillar {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
