@@ -278,6 +278,7 @@ a:hover > .gem-arrow,
 
 .gem-utilbar__group--end {
   gap: 20px;
+  margin-left: auto;
 }
 
 .gem-utilbar a:hover {
@@ -2556,8 +2557,10 @@ a:hover > .gem-arrow,
 .cust-cell:hover {
   background: var(--gem-surface);
 }
-/* 로고 이미지 — 셀 안에서 비율 유지, 흑백 톤으로 정리했다가 hover 시 컬러 */
+/* 로고 이미지 — 셀 안에서 비율 유지, 흑백 톤으로 정리했다가 hover 시 컬러.
+   로드 완료(is-loaded) 전에는 숨겨 회사명만 보이게 한다. */
 .cust-cell__logo {
+  display: none;
   max-width: 100%;
   max-height: 46px;
   width: auto;
@@ -2566,6 +2569,9 @@ a:hover > .gem-arrow,
   filter: grayscale(1);
   opacity: 0.72;
   transition: filter 0.18s ease, opacity 0.18s ease;
+}
+.cust-cell__logo.is-loaded {
+  display: block;
 }
 .cust-cell:hover .cust-cell__logo {
   filter: none;
@@ -2598,7 +2604,7 @@ a:hover > .gem-arrow,
 }
 
 /* =========================================================================
-   협력 업체 (/partners) — 파트너 그룹 + 카드
+   파트너 (/partners) — 파트너 그룹 + 카드
    히어로/브레드크럼/CTA는 공통·연혁 클래스를 재사용한다.
    ========================================================================= */
 .part-section {
@@ -2708,4 +2714,194 @@ a:hover > .gem-arrow,
 }
 .part-card:hover .part-card__link {
   text-decoration: underline;
+}
+
+/* =========================================================================
+   고객지원 (/support) — 연락처 밴드 + 오피스 그리드
+   히어로/브레드크럼/eyebrow/CTA는 공통·연혁 클래스를 재사용한다.
+   ========================================================================= */
+
+/* 히어로 하단 안내 칩 */
+.sup-tags {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.sup-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--gem-border);
+  padding: 9px 14px;
+  font-size: 13px;
+  color: var(--gem-muted);
+}
+.sup-tag__dot {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  background: var(--gem-accent);
+}
+
+/* 섹션 머리말 간격 보정 */
+.sup-section-eyebrow {
+  margin-bottom: 24px;
+}
+
+/* ----------------------------------------------------------- 연락처 밴드 */
+.sup-contact-section {
+  background: #fff;
+  padding-block: clamp(40px, 5vw, 64px) var(--gem-sec-pad);
+}
+.sup-contact {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--gem-border);
+  border-left: 1px solid var(--gem-border);
+}
+.sup-contact__cell {
+  display: block;
+  padding: 30px 26px 28px;
+  background: #fff;
+  border-right: 1px solid var(--gem-border);
+  border-bottom: 1px solid var(--gem-border);
+  transition: background 0.2s ease;
+}
+a.sup-contact__cell:hover {
+  background: var(--gem-surface);
+}
+.sup-contact__label {
+  font-family: var(--gem-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--gem-accent);
+}
+.sup-contact__value {
+  margin-top: 12px;
+  font-size: clamp(20px, 2vw, 27px);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--gem-fg);
+  word-break: break-word;
+}
+.sup-contact__note {
+  margin-top: 9px;
+  font-size: 13px;
+  color: var(--gem-muted);
+}
+
+/* --------------------------------------------------------------- 오피스 */
+.sup-offices {
+  background: var(--gem-surface);
+  border-top: 1px solid var(--gem-border);
+  padding-block: var(--gem-sec-pad);
+}
+.sup-offices__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.sup-offices__intro {
+  max-width: 640px;
+}
+.sup-offices__title {
+  margin-top: 16px;
+  font-size: clamp(26px, 3.2vw, 40px);
+  font-weight: 300;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--gem-fg);
+}
+.sup-offices__desc {
+  margin-top: 14px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--gem-muted);
+  max-width: 54ch;
+}
+.sup-offices__count {
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  color: #c6c6c6;
+}
+
+/* 오피스 카드 그리드 (1px 라인 + 상단 accent) */
+.sup-office-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-left: 1px solid var(--gem-border);
+  background: #fff;
+}
+.sup-office {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 236px;
+  padding: 30px 26px;
+  background: #fff;
+  border-top: 3px solid var(--gem-accent);
+  border-right: 1px solid var(--gem-border);
+  border-bottom: 1px solid var(--gem-border);
+}
+.sup-office__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.sup-office__tag {
+  font-family: var(--gem-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--gem-accent);
+}
+.sup-office__idx {
+  font-family: var(--gem-font-mono);
+  font-size: 11px;
+  color: #c6c6c6;
+}
+.sup-office__name {
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--gem-fg);
+}
+.sup-office__addr {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--gem-muted);
+}
+.sup-office__map {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  color: var(--gem-accent);
+  transition: gap 0.2s ease;
+}
+.sup-office__map:hover {
+  gap: 11px;
+  text-decoration: underline;
+}
+
+/* 반응형 */
+@media (max-width: 860px) {
+  .sup-contact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .sup-office-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .sup-contact {
+    grid-template-columns: 1fr;
+  }
 }

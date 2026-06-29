@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { COMPANY, PRIMARY_NAV, asset } from "@/components/site-config";
+import { PRIMARY_NAV, asset } from "@/components/site-config";
 
 /**
  * 공통 헤더 — 상단 유틸리티 바 + sticky 내비게이션 + 모바일 메뉴.
@@ -18,14 +18,9 @@ export default function SiteHeader() {
       {/* 상단 유틸리티 바 (데스크탑 전용) */}
       <div className="gem-utilbar gem-hide-sm">
         <div className="gem-container gem-utilbar__inner">
-          <div className="gem-utilbar__group">
-            <span>{COMPANY.name}</span>
-            <span className="gem-sep">·</span>
-            <span>{COMPANY.location}</span>
-          </div>
           <div className="gem-utilbar__group gem-utilbar__group--end">
-            <a href="#contact">고객지원</a>
-            <a href="#contact">파트너</a>
+            <Link href="/support/">고객지원</Link>
+            <Link href="/partners/">파트너</Link>
             <span className="gem-lang">
               <a href="#" className="gem-lang__current">
                 KR
@@ -59,11 +54,8 @@ export default function SiteHeader() {
           </nav>
 
           <div className="gem-header__actions">
-            <Link href="/#contact" className="gem-header__cta-text gem-hide-sm">
-              문의
-            </Link>
             <Link href="/#contact" className="gem-header__cta gem-hide-sm">
-              데모 신청
+              문의
             </Link>
             <button
               type="button"
@@ -92,7 +84,7 @@ export default function SiteHeader() {
               className="gem-mobile-menu__cta"
               onClick={closeMenu}
             >
-              데모 신청
+              문의
             </Link>
           </div>
         )}

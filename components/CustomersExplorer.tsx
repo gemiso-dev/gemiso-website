@@ -10,26 +10,23 @@ import {
 import { asset } from "@/components/site-config";
 
 /**
- * 고객사 셀 — 로고 파일이 있으면 로고를, 없거나 깨지면 회사명 텍스트를 보여준다.
- * onError 폴백을 위해 셀 단위 상태를 둔다.
+ * 고객사 셀 — 회사명을 기본으로 항상 깔아 두고, 로고가 실제로 로드되면 그 위로 교체한다.
+ * 로고 파일이 없거나 깨지면 onLoad가 발생하지 않아 회사명이 그대로 유지된다(깜빡임 없음).
  */
 function CustomerCell({ customer }: { customer: Customer }) {
-  const [logoFailed, setLogoFailed] = useState(false);
+  const [logoLoaded, setLogoLoaded] = useState(false);
 
   return (
     <div className="cust-cell">
-      {logoFailed ? (
-        <span className="cust-cell__name">{customer.name}</span>
-      ) : (
-        /* eslint-disable-next-line @next/next/no-img-element */
-        <img
-          className="cust-cell__logo"
-          src={asset(customerLogo(customer.slug))}
-          alt={customer.name}
-          loading="lazy"
-          onError={() => setLogoFailed(true)}
-        />
-      )}
+      {!logoLoaded && <span className="cust-cell__name">{customer.name}</span>}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        className={`cust-cell__logo${logoLoaded ? " is-loaded" : ""}`}
+        src={asset(customerLogo(customer.slug))}
+        alt={customer.name}
+        loading="lazy"
+        onLoad={() => setLogoLoaded(true)}
+      />
     </div>
   );
 }

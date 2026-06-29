@@ -89,7 +89,7 @@ export default async function SolutionPage({
             <p className="sol-hero__desc">{active.desc}</p>
             <div className="sol-hero__actions">
               <Link href="/#contact" className="gem-btn gem-btn--primary">
-                데모 신청
+                문의
               </Link>
               <a href="#features" className="gem-btn gem-btn--link">
                 핵심 기능 보기 →
@@ -218,12 +218,9 @@ export default async function SolutionPage({
             </p>
           </div>
           <div className="sol-cta__actions">
-            <Link href="/#contact" className="gem-btn gem-btn--invert">
-              데모 신청
-            </Link>
             <a
               href={`mailto:${COMPANY.email}`}
-              className="gem-btn gem-btn--underline-light"
+              className="gem-btn gem-btn--invert"
             >
               영업팀 문의 →
             </a>

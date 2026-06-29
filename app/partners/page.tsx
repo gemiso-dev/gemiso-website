@@ -5,7 +5,7 @@ import { COMPANY } from "@/components/site-config";
 import { PARTNER_STATS, PARTNER_GROUPS } from "@/components/partners-data";
 
 export const metadata: Metadata = {
-  title: "협력 업체 | GEMISO",
+  title: "파트너 | GEMISO",
   description:
     "Geminisoft는 세계적인 미디어 기술 기업, 국제 표준 얼라이언스, 그리고 대학과 협력하여 더 나은 방송 미디어 환경을 함께 만들어 갑니다.",
 };
@@ -18,9 +18,9 @@ export default function PartnersPage() {
         <div className="gem-container sol-breadcrumb__inner">
           <Link href="/">홈</Link>
           <span className="gem-sep">/</span>
-          <Link href="/#contact">고객지원</Link>
+          <Link href="/support/">고객지원</Link>
           <span className="gem-sep">/</span>
-          <span className="sol-breadcrumb__current">협력 업체</span>
+          <span className="sol-breadcrumb__current">파트너</span>
         </div>
       </nav>
 
@@ -30,7 +30,7 @@ export default function PartnersPage() {
           <Reveal className="hist-hero__intro">
             <div className="hist-eyebrow">
               <span className="hist-eyebrow__tick" />
-              <span className="hist-eyebrow__label">고객지원 · 협력 업체</span>
+              <span className="hist-eyebrow__label">고객지원 · 파트너</span>
             </div>
             <h1 className="hist-hero__title">함께 만드는 미디어 생태계.</h1>
             <p className="hist-hero__desc">

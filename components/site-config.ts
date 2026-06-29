@@ -9,7 +9,7 @@ export const PRIMARY_NAV: NavItem[] = [
   { label: "회사소개", href: "/#solutions" },
   { label: "솔루션", href: "/#solutions" },
   { label: "뉴스", href: "/news/" },
-  { label: "고객지원", href: "/#contact" },
+  { label: "고객지원", href: "/support/" },
 ];
 
 export const COMPANY = {
@@ -46,8 +46,8 @@ export const FOOTER_COLUMNS: { heading: string; links: NavItem[] }[] = [
   {
     heading: "고객지원",
     links: [
-      { label: "고객지원", href: "/#contact" },
-      { label: "협력 업체", href: "/partners/" },
+      { label: "고객지원", href: "/support/" },
+      { label: "파트너", href: "/partners/" },
       { label: "뉴스", href: "/news/" },
     ],
   },
