@@ -17,7 +17,7 @@ export default function SiteFooter() {
             />
             <p className="gem-footer__tagline">
               방송을 위한 디지털 미디어 관리 플랫폼. Geminisoft가 직접 개발하고
-              보유합니다.
+              기술 지원까지 책임집니다.
             </p>
           </div>
 
@@ -58,7 +58,7 @@ export default function SiteFooter() {
                 KR
               </a>
               <span className="gem-sep">/</span>
-              <a href="#">EN</a>
+              <a href="https://www.gemiso.com/">EN</a>
             </span>
           </div>
         </div>

@@ -46,7 +46,7 @@ export default function SiteHeader() {
                 KR
               </a>
               <span className="gem-sep">/</span>
-              <a href="#">EN</a>
+              <a href="https://www.gemiso.com/">EN</a>
             </span>
           </div>
         </div>
