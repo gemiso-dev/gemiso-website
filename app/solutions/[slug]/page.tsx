@@ -150,6 +150,42 @@ export default async function SolutionPage({
         </div>
       </section>
 
+      {/* 기능 상세 (있는 경우만) */}
+      {active.details && active.details.length > 0 && (
+        <section className="gem-section gem-section--alt">
+          <div className="gem-container">
+            <Reveal className="sol-section__head">
+              <div className="gem-eyebrow gem-eyebrow--mono">
+                <span>기능 상세</span>
+              </div>
+              <h2 className="gem-title">다섯 개의 엔진, 하나의 {active.name}.</h2>
+            </Reveal>
+
+            <div className="sol-details">
+              {active.details.map((d) => (
+                <Reveal as="div" key={d.code} className="sol-detail">
+                  <div className="sol-detail__media">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={asset(d.image)} alt={`${d.code} ${d.title} 화면`} loading="lazy" />
+                  </div>
+                  <div className="sol-detail__body">
+                    <span className="sol-detail__code">{d.code}</span>
+                    <h3 className="sol-detail__title">{d.title}</h3>
+                    <span className="sol-detail__sub">{d.sub}</span>
+                    <p className="sol-detail__desc">{d.desc}</p>
+                    <ul className="sol-detail__points">
+                      {d.points.map((p) => (
+                        <li key={p}>{p}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* 작동 방식 */}
       <section className="gem-section">
         <div className="gem-container">

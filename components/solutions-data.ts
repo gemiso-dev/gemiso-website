@@ -34,6 +34,21 @@ export type Solution = {
   specs: { k: string; v: string }[];
   /** 도입 고객 마키(있으면 가로 스크롤 섹션 표시). */
   clients?: string[];
+  /** 핵심 기능 상세 설명(있으면 이미지와 함께 모듈별 상세 섹션 표시). */
+  details?: {
+    /** 모듈 코드(모노 캡션) — 예: "MAIA Video" */
+    code: string;
+    /** 모듈 제목 */
+    title: string;
+    /** 영문 부제(모노) */
+    sub: string;
+    /** 한 문단 설명 */
+    desc: string;
+    /** 세부 기능 목록 */
+    points: string[];
+    /** 모듈 스크린샷 경로. asset()로 감싼다. */
+    image: string;
+  }[];
 };
 
 export const SOLUTIONS: Solution[] = [
@@ -162,29 +177,94 @@ export const SOLUTIONS: Solution[] = [
     code: "MAIA",
     name: "MAIA",
     ko: "AI 기술",
-    cat: "미디어 AI",
+    cat: "미디어 AI 엔진 · Media AI Agent",
     mock: "ai",
-    tagline: "미디어를 위한 AI.",
-    desc: "방송 데이터로 학습한 모델로 메타데이터, 자막, 동적 보정을 자동화합니다.",
-    trust: "아리랑 TV 이중언어 AI 앵커 프로젝트",
+    image: "/assets/solutions/maia/video.png",
+    tagline: "방송을 위한 AI 엔진 스위트.",
+    desc: "MAIA(Media AI Agent)는 영상 · 음성 · 얼굴 · 문자 · 프롬프터를 AI로 분석하는 통합 엔진입니다. 방대한 미디어 라이브러리를 검색 가능한 자산으로 바꿉니다.",
+    trust: "온프레미스 배포 — 콘텐츠가 시설 밖으로 나가지 않습니다",
     stats: [
-      { v: "98%", k: "자막 자동 생성 정확도" },
-      { v: "이중언어", k: "한국어 · 영어 동시" },
+      { v: "116종+", k: "객체 자동 감지 분류" },
+      { v: "온프레미스", k: "콘텐츠 시설 내 보관" },
     ],
     features: [
-      { t: "자동 자막", d: "방송 특화 음성 인식으로 실시간 자막을 98% 정확도로 생성합니다." },
-      { t: "메타데이터 생성", d: "영상에서 키워드 · 요약 · 태그를 자동으로 추출합니다." },
-      { t: "인물 · 장면 인식", d: "영상 내 인물과 장면을 인식해 검색을 돕습니다." },
-      { t: "이중언어", d: "한국어 · 영어 스크립트와 AI 앵커 영상을 생성합니다." },
-      { t: "검수 인터페이스", d: "자동 생성 결과를 편집자가 즉시 수정하고 확정합니다." },
-      { t: "동적 보정", d: "미디어 품질을 자동으로 분석하고 보정합니다." },
+      { t: "MAIA Video — 장면 인식", d: "프레임 → 샷 → 장면 단위로 영상을 분할하고 116종 이상 객체를 감지해 구조화된 메타데이터를 생성합니다.", ai: true },
+      { t: "MAIA Speech — 음성 인식(STT)", d: "Google · Amazon · Naver Clova · Whisper 등 다중 STT 엔진과 화자 분리로 모든 발화를 검색 가능한 텍스트로 변환합니다.", ai: true },
+      { t: "MAIA Face — 얼굴 인식", d: "영상 속 인물을 자동 추출 · 군집화하고, 사진 한 장으로 전체 아카이브에서 해당 인물의 모든 등장을 찾습니다.", ai: true },
+      { t: "MAIA Character — 문자 인식(OCR)", d: "자막 · 하단 자막 · CG 등 화면 속 모든 텍스트를 감지해 색인하고 검색합니다. 다국어 · 다중 폰트를 지원합니다.", ai: true },
+      { t: "MAIA Prompter — AI 프롬프터", d: "AI가 진행자의 음성을 실시간으로 스크립트와 매칭해 자동으로 스크롤합니다. 별도 오퍼레이터가 필요 없습니다.", ai: true },
+      { t: "자연어 통합 검색", d: "얼굴 · 객체 · STT · 장면 데이터를 통합해 일상 언어로 아카이브를 검색하고, 장면별 설명을 자동 생성합니다.", ai: true },
     ],
-    workflow: ["입력", "분석 (STT · 비전)", "메타데이터 · 자막", "검수", "적용"],
+    workflow: ["수집", "AI 분석 (영상 · 음성 · 얼굴 · 문자)", "메타데이터 · 색인", "자연어 검색", "활용 · 재사용"],
     specs: [
-      { k: "ASR", v: "방송 도메인 특화 음성 인식" },
-      { k: "LANGUAGE", v: "한국어 · 영어 (이중언어)" },
-      { k: "INTEGRATION", v: "Proxima · Zodiac" },
-      { k: "OUTPUT", v: "자막 · 메타데이터 · 보정" },
+      { k: "MODULES", v: "Video · Speech · Face · Character · Prompter" },
+      { k: "STT", v: "Google · Amazon · Naver Clova · Whisper · Daglo" },
+      { k: "VISION", v: "장면 분할 · 객체 116종+ · OCR · 얼굴 인식" },
+      { k: "SEARCH", v: "얼굴 · 객체 · STT · 장면 통합 자연어 검색" },
+      { k: "DEPLOY", v: "온프레미스 · 클라우드 SaaS · 하이브리드" },
+    ],
+    details: [
+      {
+        code: "MAIA Video",
+        title: "장면 인식",
+        sub: "Scene Change Detection",
+        desc: "AI가 영상을 프레임 → 샷 → 장면 단위로 자동 분할하고, 각 구간을 구조화된 메타데이터로 정리합니다. 온프레미스로 동작해 콘텐츠가 시설 밖으로 나가지 않습니다.",
+        points: [
+          "객체 감지 — 사람 · 차량 · 동물 · 배경 등 116종 이상을 파놉틱 세그멘테이션으로 분류하고 자동 태깅합니다.",
+          "영상 요약 · 장면 설명 — 생성형 AI가 장면마다 사람이 읽을 수 있는 설명을 자동으로 작성합니다.",
+          "자연어 검색 — 얼굴 · 객체 · STT · 장면 데이터를 통합해 일상 언어로 아카이브를 검색합니다.",
+        ],
+        image: "/assets/solutions/maia/video.png",
+      },
+      {
+        code: "MAIA Speech",
+        title: "음성 인식 (STT)",
+        sub: "Speech-to-Text",
+        desc: "방송에서 발화된 모든 말이 자동으로, 정확하게, 실시간으로 검색 가능한 텍스트가 됩니다.",
+        points: [
+          "다중 STT 엔진 허브 — Google · Amazon Transcribe · Naver Clova · OpenAI Whisper · Daglo를 선택해 적용합니다.",
+          "화자 분리(diarization) — 누가 언제 말했는지 타임코드와 함께 식별합니다.",
+          "자막 내 키워드 검색으로 편집 지점을 즉시 찾아가고, AI 자막 편집 · 자동 요약 · 자막 파일 다운로드를 지원합니다.",
+          "클라우드 SaaS(사용량 과금) 또는 Whisper 기반 완전 온프레미스로 배포합니다.",
+        ],
+        image: "/assets/solutions/maia/speech.png",
+      },
+      {
+        code: "MAIA Face",
+        title: "얼굴 인식",
+        sub: "Face Recognition",
+        desc: "출연자의 모든 등장 장면을 전체 아카이브에서 몇 시간이 아닌 몇 초 만에 찾습니다.",
+        points: [
+          "얼굴 자동 추출 — 랜드마크 분석으로 얼굴을 감지하고 동일 인물을 자동으로 군집화합니다.",
+          "이미지 기반 검색 — 사진 한 장을 올리면 일치하는 모든 등장 장면을 즉시 찾습니다.",
+          "인물 타임라인 — 인물별 등장 구간을 샷 단위 시각 타임라인으로 보여 줍니다.",
+        ],
+        image: "/assets/solutions/maia/face.png",
+      },
+      {
+        code: "MAIA Character",
+        title: "문자 인식 (OCR)",
+        sub: "OCR Detection",
+        desc: "하단 자막, 채널 로고(chyron), 화면 속 그래픽 텍스트까지 자동으로 감지 · 색인 · 검색합니다.",
+        points: [
+          "전체 분석 모드 — 화면 속 모든 텍스트 영역을 별도 설정 없이 자동으로 감지합니다.",
+          "영역 선택 모드 — 드래그로 관심 영역을 지정해 원하는 위치만 정밀하게 추출합니다.",
+          "한글 · 영문 · 중국어 · 일본어 등 다국어와 다양한 폰트를 지원합니다.",
+        ],
+        image: "/assets/solutions/maia/character.png",
+      },
+      {
+        code: "MAIA Prompter",
+        title: "AI 프롬프터",
+        sub: "AI-Powered Live Prompting",
+        desc: "진행자의 음성을 듣고 스크립트와 실시간으로 맞춰 자동으로 스크롤하는 프롬프터입니다.",
+        points: [
+          "실시간 음성 매칭 — 진행자의 발화를 분석해 스크립트 위치를 자동으로 따라갑니다.",
+          "오퍼레이터 불필요 — 전담 운영 인력 없이 완전 자동으로 스크롤합니다.",
+          "온프레미스 · 클라우드(Whisper Live 포함)로 배포합니다.",
+        ],
+        image: "/assets/solutions/maia/prompter.png",
+      },
     ],
   },
   {
