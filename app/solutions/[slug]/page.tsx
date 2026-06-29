@@ -158,7 +158,9 @@ export default async function SolutionPage({
               <div className="gem-eyebrow gem-eyebrow--mono">
                 <span>기능 상세</span>
               </div>
-              <h2 className="gem-title">다섯 개의 엔진, 하나의 {active.name}.</h2>
+              <h2 className="gem-title">
+                {active.detailsHeading ?? `다섯 개의 엔진, 하나의 ${active.name}.`}
+              </h2>
             </Reveal>
 
             <div className="sol-details">
