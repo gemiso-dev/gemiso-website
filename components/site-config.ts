@@ -47,7 +47,7 @@ export const FOOTER_COLUMNS: { heading: string; links: NavItem[] }[] = [
     heading: "고객지원",
     links: [
       { label: "고객지원", href: "/#contact" },
-      { label: "파트너", href: "/#contact" },
+      { label: "협력 업체", href: "/partners/" },
       { label: "뉴스", href: "/news/" },
     ],
   },

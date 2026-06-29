@@ -2596,3 +2596,116 @@ a:hover > .gem-arrow,
 .cust-grid__mark {
   color: var(--gem-accent);
 }
+
+/* =========================================================================
+   협력 업체 (/partners) — 파트너 그룹 + 카드
+   히어로/브레드크럼/CTA는 공통·연혁 클래스를 재사용한다.
+   ========================================================================= */
+.part-section {
+  background: #fff;
+  padding-block: var(--gem-sec-pad);
+}
+
+/* 그룹(섹션) — 기술 협력 / 얼라이언스 / 산학 */
+.part-group {
+  margin-top: clamp(56px, 7vw, 88px);
+}
+.part-group--first {
+  margin-top: 0;
+}
+
+/* 그룹 머리말 — 좌측 소개 + 우측 개수 */
+.part-group__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.part-group__intro {
+  max-width: 680px;
+}
+.part-group__title {
+  margin-top: 16px;
+  font-size: clamp(26px, 3.2vw, 40px);
+  font-weight: 300;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--gem-fg);
+}
+.part-group__desc {
+  margin-top: 14px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--gem-muted);
+  max-width: 60ch;
+}
+.part-group__count {
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  color: #c6c6c6;
+}
+
+/* 파트너 카드 그리드 (1px 라인) */
+.part-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
+  border-top: 1px solid var(--gem-border);
+  border-left: 1px solid var(--gem-border);
+}
+.part-card {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 28px 26px;
+  min-height: 196px;
+  background: #fff;
+  border-right: 1px solid var(--gem-border);
+  border-bottom: 1px solid var(--gem-border);
+  transition: background 0.2s ease;
+}
+.part-card:hover {
+  background: var(--gem-surface);
+}
+.part-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.part-card__idx {
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  color: var(--gem-subtle);
+}
+.part-card__kind {
+  font-family: var(--gem-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--gem-accent);
+}
+.part-card__name {
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.28;
+  color: var(--gem-fg);
+}
+.part-card__desc {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gem-muted);
+}
+.part-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--gem-accent);
+}
+.part-card:hover .part-card__link {
+  text-decoration: underline;
+}
