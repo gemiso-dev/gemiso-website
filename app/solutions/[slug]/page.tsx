@@ -166,9 +166,25 @@ export default async function SolutionPage({
             <div className="sol-details">
               {active.details.map((d) => (
                 <Reveal as="div" key={d.code} className="sol-detail">
-                  <div className="sol-detail__media">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={asset(d.image)} alt={`${d.code} ${d.title} 화면`} loading="lazy" />
+                  <div
+                    className={`sol-detail__media${
+                      d.image
+                        ? d.imageNarrow
+                          ? " sol-detail__media--narrow"
+                          : ""
+                        : " sol-detail__media--mock"
+                    }`}
+                  >
+                    {d.image ? (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img src={asset(d.image)} alt={`${d.code} ${d.title} 화면`} loading="lazy" />
+                    ) : (
+                      <SolutionMock
+                        type={d.mock ?? active.mock}
+                        name={active.name}
+                        ko={d.title}
+                      />
+                    )}
                   </div>
                   <div className="sol-detail__body">
                     <span className="sol-detail__code">{d.code}</span>

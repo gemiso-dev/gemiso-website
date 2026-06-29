@@ -1465,6 +1465,28 @@ a:hover > .gem-arrow,
   width: 100%;
   height: auto;
 }
+/* 스크린샷 대신 목업을 쓰는 경우 — 목업이 자체 테두리·그림자를 가지므로 래퍼 장식을 제거 */
+.sol-detail__media--mock {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  line-height: normal;
+}
+/* 세로형(모바일) 스크린샷 — 폭을 좁게 제한하고 가운데 정렬, 프레임은 이미지에만 적용 */
+.sol-detail__media--narrow {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+}
+.sol-detail__media--narrow img {
+  width: auto;
+  max-width: 280px;
+  max-height: 460px;
+  margin: 0 auto;
+  border: 1px solid var(--gem-border);
+  box-shadow: 0 14px 32px rgba(22, 22, 22, 0.1);
+}
 .sol-detail__body {
   display: flex;
   flex-direction: column;
