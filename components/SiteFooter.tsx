@@ -60,8 +60,6 @@ export default function SiteFooter() {
               <span className="gem-sep">/</span>
               <a href="#">EN</a>
             </span>
-            <a href="#">개인정보처리방침</a>
-            <a href="#">이용약관</a>
           </div>
         </div>
       </div>

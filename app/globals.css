@@ -345,6 +345,60 @@ a:hover > .gem-arrow,
   border-bottom-color: var(--gem-fg);
 }
 
+/* 드롭다운 메뉴 */
+.gem-nav__item {
+  position: relative;
+}
+/* 표시 여부는 JS 상태(.is-open) 하나로만 제어해 한 번에 하나만 열린다. */
+.gem-nav__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 12px;
+  min-width: 200px;
+  padding: 8px 0;
+  background: var(--gem-bg);
+  border: 1px solid var(--gem-border);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  z-index: 60;
+}
+/* 우측 끝 항목(고객지원)은 패널을 오른쪽 기준으로 펼쳐 뷰포트 밖으로 넘치지 않게 한다. */
+.gem-nav__item:last-of-type .gem-nav__dropdown {
+  left: auto;
+  right: 0;
+}
+/* 트리거와 드롭다운 사이 12px 간격에서도 마우스 이탈로 닫히지 않도록 다리 역할 */
+.gem-nav__dropdown::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
+}
+/* 열림만 애니메이션, 닫힘은 즉시 → 페이드아웃 잔상에 의한 동시 노출(겹침) 제거 */
+.gem-nav__dropdown.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.gem-nav__drop-link {
+  display: block;
+  padding: 9px 18px;
+  font-size: 14px;
+  color: var(--gem-muted);
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.gem-nav__drop-link:hover {
+  background: var(--gem-bg-alt, rgba(0, 0, 0, 0.04));
+  color: var(--gem-fg);
+}
+
 .gem-header__actions {
   display: flex;
   align-items: center;
@@ -401,6 +455,15 @@ a:hover > .gem-arrow,
 }
 .gem-mobile-menu a:last-child {
   border-bottom: none;
+}
+.gem-mobile-menu__group {
+  display: flex;
+  flex-direction: column;
+}
+.gem-mobile-menu__sub {
+  padding-left: 14px !important;
+  font-size: 14px !important;
+  color: var(--gem-muted);
 }
 .gem-mobile-menu__cta {
   margin-top: 14px;
@@ -824,6 +887,7 @@ a:hover > .gem-arrow,
   }
 }
 .gem-logo-cell {
+  position: relative;
   width: 208px;
   height: 84px;
   border-right: 1px solid #d6dae1;
@@ -834,6 +898,18 @@ a:hover > .gem-arrow,
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--gem-muted);
+}
+/* 로고 이미지 — 로드되면 회사명 위로 표시(없으면 텍스트 유지) */
+.gem-logo-cell__logo {
+  position: absolute;
+  max-width: 130px;
+  max-height: 44px;
+  object-fit: contain;
+  opacity: 0;
+}
+.gem-logo-cell__logo.is-loaded {
+  position: static;
+  opacity: 1;
 }
 
 /* =========================================================================
@@ -847,6 +923,15 @@ a:hover > .gem-arrow,
 .gem-reason {
   border-top: 2px solid var(--gem-border-strong);
   padding-top: 22px;
+}
+.gem-reason__icon {
+  display: inline-flex;
+  margin-bottom: 18px;
+  color: var(--gem-fg);
+}
+.gem-reason__icon svg {
+  width: 32px;
+  height: 32px;
 }
 .gem-reason h3 {
   font-size: 20px;

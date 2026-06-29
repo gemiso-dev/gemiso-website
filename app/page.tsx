@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import CustomerMarquee from "@/components/CustomerMarquee";
 import { COMPANY } from "@/components/site-config";
 import { NEWS_ARTICLES } from "@/components/news-data";
 
@@ -47,21 +48,37 @@ const SOLUTIONS = [
   },
 ];
 
-const CUSTOMER_LOGOS = [
-  "MBC", "YTN", "SBS", "EBS", "KTV", "TBS",
-  "아리랑 TV", "CPBC", "CJ ENM", "농촌진흥청", "한국도로공사", "안산시",
-];
-
 const REASONS = [
   {
+    icon: (
+      // 미디어 처리 기술의 진화 — 우상향 추이
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M4 24 L12 16 L18 21 L28 9" />
+        <path d="M21 9 L28 9 L28 16" />
+      </svg>
+    ),
     title: "미디어 처리 기술의 진화",
     desc: "빠르게 변하는 미디어 환경에 맞춰 처리 기술을 발전시켜, 고객이 플랫폼을 교체하지 않고도 변화에 발맞출 수 있습니다.",
   },
   {
+    icon: (
+      // 자체 보유한 핵심 기술 — 칩(코어)
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="10" y="10" width="12" height="12" rx="1" />
+        <path d="M13 4 V8 M19 4 V8 M13 24 V28 M19 24 V28 M4 13 H8 M4 19 H8 M24 13 H28 M24 19 H28" />
+      </svg>
+    ),
     title: "자체 보유한 핵심 기술",
     desc: "주도적인 엔지니어들이 핵심 원천 기술을 직접 개발하고 보유합니다 — 한국 방송 환경에 맞춰 미디어 관리를 토착화한 연구의 결과입니다.",
   },
   {
+    icon: (
+      // 상생하는 성장 — 맞물린 협력
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="12" cy="16" r="7" />
+        <circle cx="20" cy="16" r="7" />
+      </svg>
+    ),
     title: "상생하는 성장",
     desc: "고객 및 파트너와의 진정한 협력으로 사업을 키우고, 모든 구축의 성과를 함께 나눕니다.",
   },
@@ -228,18 +245,7 @@ export default function Home() {
             대한민국 방송 인프라에 자리잡았습니다.
           </h2>
         </Reveal>
-        <div className="gem-marquee__track">
-          {CUSTOMER_LOGOS.map((logo, i) => (
-            <div key={`a-${i}`} className="gem-logo-cell">
-              {logo}
-            </div>
-          ))}
-          {CUSTOMER_LOGOS.map((logo, i) => (
-            <div key={`b-${i}`} className="gem-logo-cell" aria-hidden="true">
-              {logo}
-            </div>
-          ))}
-        </div>
+        <CustomerMarquee />
       </section>
 
       {/* 선택 이유 + 통계 */}
@@ -255,6 +261,7 @@ export default function Home() {
           <Reveal as="div" className="gem-reasons">
             {REASONS.map((r, i) => (
               <div key={i} className="gem-reason">
+                <span className="gem-reason__icon">{r.icon}</span>
                 <h3>{r.title}</h3>
                 <p>{r.desc}</p>
               </div>

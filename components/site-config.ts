@@ -3,13 +3,39 @@
  * 헤더·푸터 등 공통 레이아웃이 이 데이터를 공유한다.
  */
 
-export type NavItem = { label: string; href: string };
+export type NavItem = { label: string; href: string; children?: NavItem[] };
 
 export const PRIMARY_NAV: NavItem[] = [
-  { label: "회사소개", href: "/#solutions" },
-  { label: "솔루션", href: "/#solutions" },
+  {
+    label: "회사소개",
+    href: "/history/",
+    children: [
+      { label: "연혁", href: "/history/" },
+      { label: "인증 현황", href: "/certification/" },
+      { label: "고객사", href: "/customers/" },
+    ],
+  },
+  {
+    label: "솔루션",
+    href: "/solutions/proxima/",
+    children: [
+      { label: "Proxima · 자산 관리", href: "/solutions/proxima/" },
+      { label: "Zodiac · 뉴스룸", href: "/solutions/zodiac/" },
+      { label: "TALOS · 송출", href: "/solutions/talos/" },
+      { label: "Emotion · 라디오", href: "/solutions/emotion/" },
+      { label: "MAIA · AI", href: "/solutions/maia/" },
+      { label: "MYMY · 아카이브", href: "/solutions/mymy/" },
+    ],
+  },
   { label: "뉴스", href: "/news/" },
-  { label: "고객지원", href: "/support/" },
+  {
+    label: "고객지원",
+    href: "/support/",
+    children: [
+      { label: "고객지원", href: "/support/" },
+      { label: "파트너", href: "/partners/" },
+    ],
+  },
 ];
 
 export const COMPANY = {
