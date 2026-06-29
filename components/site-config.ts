@@ -8,7 +8,7 @@ export type NavItem = { label: string; href: string };
 export const PRIMARY_NAV: NavItem[] = [
   { label: "회사소개", href: "/#solutions" },
   { label: "솔루션", href: "/#solutions" },
-  { label: "뉴스", href: "/#news" },
+  { label: "뉴스", href: "/news/" },
   { label: "고객지원", href: "/#contact" },
 ];
 
@@ -48,7 +48,7 @@ export const FOOTER_COLUMNS: { heading: string; links: NavItem[] }[] = [
     links: [
       { label: "고객지원", href: "/#contact" },
       { label: "파트너", href: "/#contact" },
-      { label: "뉴스", href: "/#news" },
+      { label: "뉴스", href: "/news/" },
     ],
   },
 ];

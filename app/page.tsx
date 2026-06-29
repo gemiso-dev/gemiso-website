@@ -1,6 +1,10 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { COMPANY } from "@/components/site-config";
+import { NEWS_ARTICLES } from "@/components/news-data";
+
+/** 홈 뉴스 섹션 — 뉴스룸 데이터의 최신 3건과 연동. */
+const LATEST_NEWS = NEWS_ARTICLES.slice(0, 3);
 
 /* ----------------------------------------------------------------- 데이터 */
 
@@ -80,27 +84,6 @@ const TECH_ITEMS = [
   { n: "07", t: "미디어 전송", d: "Transfer Manager를 통한 MOV–MXF, LXF–MXF 전송 관리." },
   { n: "08", t: "워크플로우 관리", d: "작업과 승인을 처음부터 끝까지 오케스트레이션." },
   { n: "09", t: "뉴스 워크플로우", d: "기획·취재·데스크·큐시트를 하나의 뉴스룸에서." },
-];
-
-const NEWS = [
-  {
-    cat: "PARTNERSHIP",
-    date: "2025",
-    title: "Geminisoft, AD소프트와 라디오·오디오 솔루션 이관 계약 체결.",
-    desc: "디지털 미디어 플랫폼 기업과 라디오 시스템 전문 기업이 제품과 기술을 이관·통합하기로 합의했습니다.",
-  },
-  {
-    cat: "AI",
-    date: "2025",
-    title: "아리랑 TV, 이중언어 AI 앵커 프로젝트 완료.",
-    desc: "Geminisoft, 딥브레인 AI, Xaynapse가 협력해 이중언어 뉴스 전달을 구현했습니다.",
-  },
-  {
-    cat: "CERTIFICATION",
-    date: "",
-    title: "Proxima v3.0, GS 인증 1등급 획득.",
-    desc: "당사의 대표 미디어 자산 관리 플랫폼이 국내 소프트웨어 품질 최고 등급을 충족했습니다.",
-  },
 ];
 
 const HERO_CLIPS = [
@@ -325,22 +308,28 @@ export default function Home() {
               </div>
               <h2 className="gem-title">Geminisoft의 최신 소식.</h2>
             </div>
-            <a href="#news" className="gem-news__more">
+            <Link href="/news/" className="gem-news__more">
               전체 뉴스 보기 →
-            </a>
+            </Link>
           </Reveal>
 
           <Reveal as="div" className="gem-news-grid">
-            {NEWS.map((n, i) => (
-              <a key={i} href="#news" className="gem-news-card">
+            {LATEST_NEWS.map((n) => (
+              <Link
+                key={n.id}
+                href={`/news/${n.id}/`}
+                className="gem-news-card"
+              >
                 <div className="gem-news-card__meta">
-                  <span className="gem-news-card__cat">{n.cat}</span>
+                  <span className="gem-news-card__cat">
+                    {n.outlet || "보도자료"}
+                  </span>
                   {n.date && <span className="gem-news-card__date">{n.date}</span>}
                 </div>
                 <h3 className="gem-news-card__title">{n.title}</h3>
-                <p className="gem-news-card__desc">{n.desc}</p>
+                <p className="gem-news-card__desc">{n.summary}</p>
                 <span className="gem-arrow">자세히 →</span>
-              </a>
+              </Link>
             ))}
           </Reveal>
         </div>
