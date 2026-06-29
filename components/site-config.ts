@@ -29,7 +29,7 @@ export const FOOTER_COLUMNS: { heading: string; links: NavItem[] }[] = [
       { label: "미션", href: "#" },
       { label: "연혁", href: "/history/" },
       { label: "인증 현황", href: "/certification/" },
-      { label: "고객사", href: "#" },
+      { label: "고객사", href: "/customers/" },
     ],
   },
   {

@@ -2394,3 +2394,205 @@ a:hover > .gem-arrow,
     border-bottom: 1px solid var(--gem-border);
   }
 }
+
+/* =========================================================================
+   고객사 (/customers) — 구축 사례 + 분야 필터 + 고객사 그리드
+   ========================================================================= */
+
+/* ------------------------------------------------------------- 구축 사례 */
+.cust-cases {
+  background: #fff;
+  padding-block: var(--gem-sec-pad) clamp(40px, 5vw, 64px);
+}
+.cust-cases__head {
+  max-width: 760px;
+  margin-bottom: 44px;
+}
+.cust-cases__head .gem-title {
+  margin-top: 18px;
+}
+/* 1px 라인으로 묶은 사례 카드 그리드 */
+.cust-cases__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+  border-top: 1px solid var(--gem-border);
+  border-left: 1px solid var(--gem-border);
+}
+.case-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 30px;
+  min-height: 228px;
+  background: #fff;
+  border-right: 1px solid var(--gem-border);
+  border-bottom: 1px solid var(--gem-border);
+  transition: background 0.2s ease;
+}
+.case-card:hover {
+  background: var(--gem-surface);
+}
+.case-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.case-card__client {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gem-fg);
+}
+.case-card__tag {
+  font-family: var(--gem-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--gem-accent);
+}
+.case-card__outcome {
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.32;
+  color: var(--gem-fg);
+}
+.case-card__desc {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gem-muted);
+}
+
+/* ------------------------------------------------------ 고객사 섹션 헤더 */
+.cust-intro {
+  padding-block: 0;
+}
+.cust-intro__title {
+  margin-top: 18px;
+}
+.cust-intro__lead {
+  margin-top: 16px;
+  max-width: 60ch;
+}
+
+/* ----------------------------------------------------------- 분야 필터 탭 */
+.cust-tabbar {
+  position: sticky;
+  top: var(--gem-header-h);
+  z-index: 40;
+  margin-top: clamp(28px, 3.5vw, 40px);
+  background: #fff;
+  border-top: 1px solid var(--gem-border);
+  border-bottom: 1px solid var(--gem-border);
+}
+.cust-tabs {
+  display: flex;
+  max-width: var(--gem-maxw);
+  margin-inline: auto;
+  padding-inline: var(--gem-gutter);
+  overflow-x: auto;
+}
+.cust-tabs::-webkit-scrollbar {
+  height: 0;
+}
+.cust-tab {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+.cust-tab:hover {
+  background: var(--gem-surface);
+}
+.cust-tab.is-active {
+  background: var(--gem-surface);
+  border-bottom-color: var(--gem-accent);
+}
+.cust-tab__label {
+  font-size: 14px;
+  color: var(--gem-muted);
+}
+.cust-tab.is-active .cust-tab__label {
+  color: var(--gem-fg);
+}
+.cust-tab__count {
+  font-family: var(--gem-font-mono);
+  font-size: 11px;
+  color: #c6c6c6;
+}
+.cust-tab.is-active .cust-tab__count {
+  color: var(--gem-accent);
+}
+
+/* --------------------------------------------------------- 고객사 그리드 */
+.cust-grid-section {
+  background: #fff;
+  padding-block: clamp(28px, 3.5vw, 40px) var(--gem-sec-pad);
+}
+.cust-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+  border-top: 1px solid var(--gem-border);
+  border-left: 1px solid var(--gem-border);
+}
+.cust-cell {
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 18px 16px;
+  border-right: 1px solid var(--gem-border);
+  border-bottom: 1px solid var(--gem-border);
+  background: #fff;
+  transition: background 0.18s ease;
+}
+.cust-cell:hover {
+  background: var(--gem-surface);
+}
+/* 로고 이미지 — 셀 안에서 비율 유지, 흑백 톤으로 정리했다가 hover 시 컬러 */
+.cust-cell__logo {
+  max-width: 100%;
+  max-height: 46px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.72;
+  transition: filter 0.18s ease, opacity 0.18s ease;
+}
+.cust-cell:hover .cust-cell__logo {
+  filter: none;
+  opacity: 1;
+}
+/* 로고 파일이 없을 때 텍스트 폴백 */
+.cust-cell__name {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.32;
+  letter-spacing: 0.01em;
+  color: #393939;
+  transition: color 0.18s ease;
+}
+.cust-cell:hover .cust-cell__name {
+  color: var(--gem-fg);
+}
+.cust-grid__foot {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--gem-subtle);
+}
+.cust-grid__mark {
+  color: var(--gem-accent);
+}
