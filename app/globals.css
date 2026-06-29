@@ -879,7 +879,11 @@ a:hover > .gem-arrow,
   display: flex;
   align-items: stretch;
   width: max-content;
-  animation: gemMarquee 44s linear infinite;
+  animation: gemMarquee 240s linear infinite;
+}
+/* 솔루션 도입 고객 마키 — 항목이 적어 더 짧은 주기로 흐른다(목록 4벌 → -50%는 2벌). */
+.sol-clients__track {
+  animation-duration: 55s;
 }
 @media (prefers-reduced-motion: reduce) {
   .gem-marquee__track {
@@ -1354,6 +1358,20 @@ a:hover > .gem-arrow,
   display: block;
 }
 
+/* 히어로 실제 제품 스크린샷 프레임 */
+.sol-shot {
+  border: 1px solid var(--gem-border);
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(22, 22, 22, 0.1);
+  overflow: hidden;
+  line-height: 0;
+}
+.sol-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* ----------------------------------------------------------------- 핵심 기능 */
 .sol-features {
   display: grid;
@@ -1375,6 +1393,34 @@ a:hover > .gem-arrow,
   width: 26px;
   height: 2px;
   background: var(--gem-accent);
+}
+/* AI 관련 기능 강조 — accent 틴트 배경 + 좌측 accent 바 + AI 뱃지 */
+.sol-feature--ai {
+  background:
+    linear-gradient(rgba(15, 98, 254, 0.05), rgba(15, 98, 254, 0.05)), #fff;
+  box-shadow: inset 3px 0 0 var(--gem-accent);
+}
+.sol-feature__badge {
+  align-self: flex-start;
+  font-family: var(--gem-font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #fff;
+  background: var(--gem-accent);
+  padding: 3px 9px;
+}
+.sol-feature--ai h3 {
+  color: var(--gem-accent-strong, var(--gem-accent));
+}
+/* 일반 강조(보안 등) — AI(파랑)와 구분되는 중립/다크 톤 */
+.sol-feature--mark {
+  background:
+    linear-gradient(rgba(22, 22, 22, 0.035), rgba(22, 22, 22, 0.035)), #fff;
+  box-shadow: inset 3px 0 0 var(--gem-fg);
+}
+.sol-feature__badge--mark {
+  background: var(--gem-fg);
 }
 .sol-feature h3 {
   font-size: 19px;

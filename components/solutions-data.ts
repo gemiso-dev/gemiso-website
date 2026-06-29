@@ -23,13 +23,17 @@ export type Solution = {
   /** 카테고리 라벨 */
   cat: string;
   mock: SolutionMockType;
+  /** 히어로에 쓸 실제 제품 스크린샷 경로(있으면 mock 대신 표시). asset()로 감싼다. */
+  image?: string;
   tagline: string;
   desc: string;
   trust: string;
   stats: { v: string; k: string }[];
-  features: { t: string; d: string }[];
+  features: { t: string; d: string; ai?: boolean; mark?: string }[];
   workflow: string[];
   specs: { k: string; v: string }[];
+  /** 도입 고객 마키(있으면 가로 스크롤 섹션 표시). */
+  clients?: string[];
 };
 
 export const SOLUTIONS: Solution[] = [
@@ -188,29 +192,50 @@ export const SOLUTIONS: Solution[] = [
     code: "MYMY",
     name: "MYMY",
     ko: "콘텐츠 아카이브",
-    cat: "콘텐츠 아카이브",
+    cat: "콘텐츠 관리 시스템 · CMS",
     mock: "grid",
-    tagline: "검색 가능한 장기 아카이브.",
-    desc: "풍부한 메타데이터와 인덱싱으로, 계속 늘어나는 미디어 라이브러리를 안정적으로 보관하고 즉시 찾습니다.",
-    trust: "EBS 콘텐츠 아카이브 고도화",
+    image: "/assets/solutions/mymy.png",
+    tagline: "콘텐츠를 한곳에서 관리하세요.",
+    desc: "영상·이미지·문서를 한곳에 체계적으로 보관하고, 메타데이터·AI 의미·STT 자막 등 다양한 방식으로 원하는 콘텐츠를 즉시 찾습니다.",
+    trust: "KBS 콘텐츠 아카이브 고도화",
     stats: [
-      { v: "70%", k: "검색 시간 단축 (YTN)" },
-      { v: "계층형", k: "장기 스토리지 관리" },
+      { v: "70%", k: "검색 시간 단축" },
+      { v: "다중 검색", k: "메타데이터 · AI · STT · 지도" },
     ],
     features: [
-      { t: "장기 디지털 아카이빙", d: "계속 늘어나는 라이브러리를 위한 안정적인 장기 보관." },
-      { t: "메타데이터 · 인덱싱", d: "풍부한 메타데이터로 모든 자산을 체계적으로 색인합니다." },
-      { t: "빠른 검색", d: "키워드 · 날짜 · 인물 등 다양한 조건으로 즉시 검색합니다." },
-      { t: "계층형 스토리지", d: "사용 빈도에 따라 저장 계층을 자동으로 관리합니다." },
-      { t: "AI 자동 분류", d: "MAIA와 연동해 자동 분류와 메타데이터를 보강합니다." },
-      { t: "마이그레이션", d: "기존 아카이브 자산을 그대로 이관합니다." },
+      { t: "통합 아카이브", d: "영상 · 오디오 · 이미지 · 문서(HWP · PPT · DOC · XLS) 등 모든 미디어를 하나의 공간에서 관리합니다." },
+      { t: "메타데이터 검색", d: "다양한 조건으로 원하는 콘텐츠를 즉시 탐색합니다." },
+      { t: "표준 메타데이터 관리", d: "KS X ISO 15836(Dublin Core) · DCMI Terms 기반 표준 메타 스키마와 코드 리스트(valueListCode)로 국가표준 메타데이터 정책에 대응합니다." },
+      { t: "AI 의미 검색", d: "자연어로 의미가 비슷한 콘텐츠를 찾습니다.", ai: true },
+      { t: "STT 자막 검색", d: "음성을 자동으로 자막화한 뒤 위치 단위로 검색합니다.", ai: true },
+      { t: "얼굴 인식 인물 관리", d: "얼굴 인식으로 콘텐츠 속 인물을 식별하고, 인물별 등장 빈도 · 유사도와 바이오 메타데이터를 관리합니다.", ai: true },
+      { t: "관계 그래프", d: "콘텐츠 간 연결을 시각화해 연관 자산을 따라가며 탐색합니다." },
+      { t: "협업 · 커뮤니케이션", d: "컬렉션으로 콘텐츠를 묶어 공유하고, 댓글로 의견을 주고받으며 팀이 함께 작업합니다." },
+      { t: "외부 인증 · SSO", d: "OIDC · SAML 기반 외부 IdP(Google Workspace · Microsoft Entra ID · Okta 등)와 연동해 로컬 로그인과 함께 쓰는 하이브리드 인증을 지원합니다." },
+      { t: "그룹 · 권한 관리", d: "사용자별 그룹을 관리하고, 카테고리별 접근 제한(ACL)으로 콘텐츠 권한을 세밀하게 통제합니다." },
+      { t: "감사 로그", d: "콘텐츠 조회 · 편집 · 다운로드와 도구 호출까지 모든 활동을 기록해 안전하게 추적하고 책임성을 보장합니다.", mark: "보안" },
+      { t: "REST API 연계", d: "OpenAPI(Swagger) 규격의 REST API로 외부 시스템과 콘텐츠 · 메타데이터를 연계하고 업무를 자동화합니다." },
+      { t: "AI 에이전트 협업", d: "MCP(Model Context Protocol)로 Claude 등 외부 AI 에이전트가 검색·조회·메타데이터 작업을 직접 수행합니다.", ai: true },
     ],
-    workflow: ["수집", "인덱싱", "계층형 저장", "검색", "복원 · 전송"],
+    workflow: ["등록 · 보관", "메타데이터 · 분류", "검색 · 탐색", "검수", "워크플로우 · 배포"],
     specs: [
-      { k: "STORAGE", v: "계층형 (온라인 · 니어라인 · 오프라인)" },
-      { k: "SEARCH", v: "메타데이터 · 전문 검색" },
-      { k: "INTEGRATION", v: "MAM · MAIA" },
-      { k: "SCALE", v: "무중단 확장" },
+      { k: "SEARCH", v: "메타데이터 · AI 의미 · STT 자막 · 지도" },
+      { k: "METADATA", v: "KS X ISO 15836(Dublin Core) · DCMI Terms" },
+      { k: "GRAPH", v: "콘텐츠 관계 그래프" },
+      { k: "STORAGE", v: "S3 · 로컬 등 다중 스토리지" },
+      { k: "DOCUMENT", v: "HWP · PPT · DOC · XLS 등 문서 지원" },
+      { k: "AUTOMATION", v: "워크플로우 · 웹훅 · API" },
+      { k: "AI AGENT", v: "MCP 연동 — Claude Code · Desktop 등" },
+    ],
+    clients: [
+      "KBS",
+      "예금보험공사",
+      "의성군청",
+      "방송AI데이터셋",
+      "한국장학재단",
+      "MBC충북",
+      "양주시청",
+      "영락교회",
     ],
   },
 ];

@@ -39,7 +39,7 @@ export const PRIMARY_NAV: NavItem[] = [
 ];
 
 export const COMPANY = {
-  name: "Geminisoft 주식회사",
+  name: "(주) 제머나이소프트",
   location: "대한민국 서울",
   tel: "+82‑2‑857‑1101",
   telHref: "tel:+82285711101",

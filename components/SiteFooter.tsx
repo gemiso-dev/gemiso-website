@@ -51,7 +51,7 @@ export default function SiteFooter() {
         </div>
 
         <div className="gem-footer__bottom">
-          <span>© 2026 {COMPANY.name}. 모든 권리 보유.</span>
+          <span>© 2026 {COMPANY.name}. All rights reserved.</span>
           <div className="gem-footer__legal">
             <span className="gem-lang">
               <a href="#" className="gem-lang__current">

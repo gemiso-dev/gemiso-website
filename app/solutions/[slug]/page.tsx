@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
 import SolutionMock from "@/components/SolutionMock";
-import { COMPANY } from "@/components/site-config";
+import { COMPANY, asset } from "@/components/site-config";
 import { SOLUTIONS, getSolution } from "@/components/solutions-data";
 
 type Params = { slug: string };
@@ -99,7 +99,18 @@ export default async function SolutionPage({
           </Reveal>
 
           <Reveal>
-            <SolutionMock type={active.mock} name={active.name} ko={active.ko} />
+            {active.image ? (
+              <div className="sol-shot">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={asset(active.image)}
+                  alt={`${active.name} ${active.ko} 화면`}
+                  loading="lazy"
+                />
+              </div>
+            ) : (
+              <SolutionMock type={active.mock} name={active.name} ko={active.ko} />
+            )}
           </Reveal>
         </div>
       </section>
@@ -116,8 +127,21 @@ export default async function SolutionPage({
 
           <Reveal as="div" className="sol-features">
             {active.features.map((f) => (
-              <div key={f.t} className="sol-feature">
-                <span className="sol-feature__tick" />
+              <div
+                key={f.t}
+                className={`sol-feature${
+                  f.ai ? " sol-feature--ai" : f.mark ? " sol-feature--mark" : ""
+                }`}
+              >
+                {f.ai ? (
+                  <span className="sol-feature__badge">AI</span>
+                ) : f.mark ? (
+                  <span className="sol-feature__badge sol-feature__badge--mark">
+                    {f.mark}
+                  </span>
+                ) : (
+                  <span className="sol-feature__tick" />
+                )}
                 <h3>{f.t}</h3>
                 <p>{f.d}</p>
               </div>
@@ -178,6 +202,33 @@ export default async function SolutionPage({
           </Reveal>
         </div>
       </section>
+
+      {/* 도입 고객 마키 */}
+      {active.clients && active.clients.length > 0 && (
+        <section className="gem-marquee" aria-label={`${active.name} 도입 고객`}>
+          <Reveal className="gem-marquee__head">
+            <div className="gem-eyebrow gem-eyebrow--mono">
+              <span>도입 고객</span>
+            </div>
+            <h2 className="gem-title gem-title--sm">
+              {active.name}를 선택한 고객.
+            </h2>
+          </Reveal>
+          <div className="gem-marquee__track sol-clients__track">
+            {[0, 1, 2, 3].flatMap((rep) =>
+              active.clients!.map((c, i) => (
+                <div
+                  key={`${rep}-${i}`}
+                  className="gem-logo-cell"
+                  aria-hidden={rep > 0 ? "true" : undefined}
+                >
+                  {c}
+                </div>
+              )),
+            )}
+          </div>
+        </section>
+      )}
 
       {/* 다른 솔루션 */}
       <section className="gem-section">
