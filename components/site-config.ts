@@ -25,6 +25,7 @@ export const PRIMARY_NAV: NavItem[] = [
       { label: "Emotion · 라디오", href: "/solutions/emotion/" },
       { label: "MAIA · AI", href: "/solutions/maia/" },
       { label: "MYMY · 아카이브", href: "/solutions/mymy/" },
+      { label: "G-SAM · 콘텐츠 배포", href: "/solutions/g-sam/" },
     ],
   },
   { label: "뉴스", href: "/news/" },
@@ -67,6 +68,7 @@ export const FOOTER_COLUMNS: { heading: string; links: NavItem[] }[] = [
       { label: "Emotion · 라디오", href: "/solutions/emotion/" },
       { label: "MAIA · AI", href: "/solutions/maia/" },
       { label: "MYMY · 아카이브", href: "/solutions/mymy/" },
+      { label: "G-SAM · 콘텐츠 배포", href: "/solutions/g-sam/" },
     ],
   },
   {

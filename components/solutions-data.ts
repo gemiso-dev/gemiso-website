@@ -603,6 +603,87 @@ export const SOLUTIONS: Solution[] = [
       "영락교회",
     ],
   },
+  {
+    id: "g-sam",
+    code: "G-SAM",
+    name: "G-SAM",
+    ko: "콘텐츠 배포",
+    cat: "SNS 플랫폼 콘텐츠 배포",
+    mock: "schedule",
+    image: "/assets/solutions/g-sam/overview.png",
+    tagline: "하나의 콘텐츠를 모든 채널로.",
+    desc: "G-SAM은 YouTube · Facebook · Instagram · X(Twitter) · TikTok까지, 하나의 콘텐츠를 여러 SNS 플랫폼에 배포하고 관리하는 분산형 배포 솔루션입니다. 예약 배포부터 재생목록 · 자막 관리, 통계 분석, 아카이브까지 멀티 채널 운영 전 과정을 하나로 잇습니다.",
+    trust: "1 Source Multi-Use — 한 번의 등록으로 모든 채널에 배포",
+    stats: [
+      { v: "1 Source", k: "Multi-Use 멀티 플랫폼 배포" },
+      { v: "멀티 채널", k: "YouTube · TikTok · Instagram · Facebook · X" },
+    ],
+    features: [
+      { t: "SNS 플랫폼 통합 배포", d: "YouTube · Facebook · Instagram · X(Twitter) · TikTok까지, 하나의 콘텐츠를 여러 SNS 플랫폼에 한 번에 배포합니다." },
+      { t: "예약 배포 · 현황 모니터링", d: "콘텐츠를 예약해 자동으로 배포하고, 배포 현황을 실시간으로 모니터링하며 메타 정보를 일괄 수정합니다." },
+      { t: "배포 일정 관리", d: "일간 · 주간 · 월간 단위로 배포 일정을 조회해 규칙적으로 콘텐츠를 내보냅니다." },
+      { t: "유튜브 재생목록 · 자막 관리", d: "재생목록을 조회 · 생성 · 수정하고, 제목 · 설명 등 메타정보와 자막을 다국어로 서비스합니다." },
+      { t: "통계 분석 대시보드", d: "채널 · 비디오 · 수익 통계를 대시보드로 모아 운영 현황과 실적을 한눈에 봅니다." },
+    ],
+    workflow: ["콘텐츠 수집", "메타 정보 구성", "예약 배포", "다중 플랫폼 송출", "통계 분석", "아카이브"],
+    specs: [
+      { k: "SNS", v: "YouTube · Facebook · Instagram · X(Twitter) · TikTok" },
+      { k: "SCHEDULE", v: "일간 · 주간 · 월간 예약 배포" },
+      { k: "ANALYTICS", v: "채널 · 비디오 · 수익 통계 대시보드" },
+      { k: "METADATA", v: "다국어 메타 · 자막 · 재생목록 관리" },
+    ],
+    detailsHeading: "네 개의 기능, 하나의 G-SAM.",
+    details: [
+      {
+        code: "G-SAM Deploy",
+        title: "멀티 플랫폼 배포",
+        sub: "Multi-Platform Distribution",
+        desc: "하나의 콘텐츠를 여러 SNS 플랫폼에 한 번에 배포하는 1 Source Multi-Use 방식입니다. 플랫폼마다 다른 규격과 기능을 G-SAM이 알아서 맞춥니다.",
+        points: [
+          "SNS 플랫폼 연계 — YouTube · Facebook · Instagram · X(Twitter) · TikTok에 콘텐츠를 배포합니다.",
+          "플랫폼별 특화 기능 — YouTube 자막 · 재생목록 관리, Instagram · X · TikTok 영상 분할 배포를 지원합니다.",
+          "메타 정보 일괄 수정 — 여러 콘텐츠의 제목 · 설명 등 메타 정보를 한 번에 수정합니다.",
+        ],
+        image: "/assets/solutions/g-sam/deploy.png",
+      },
+      {
+        code: "G-SAM Schedule",
+        title: "배포 일정 관리",
+        sub: "Distribution Schedule",
+        desc: "예약한 시점에 콘텐츠를 자동으로 배포하고, 일간 · 주간 · 월간 단위로 일정을 조회해 규칙적으로 운영합니다.",
+        points: [
+          "예약 배포 — 지정한 시각에 콘텐츠를 자동으로 배포합니다.",
+          "일정 조회 — 일간 · 주간 · 월간 단위로 배포 일정을 한눈에 확인합니다.",
+          "배포 현황 모니터링 — 진행 중인 배포 상태를 실시간으로 추적합니다.",
+        ],
+        image: "/assets/solutions/g-sam/schedule.png",
+      },
+      {
+        code: "G-SAM Analytics",
+        title: "통계 분석",
+        sub: "Analytics & Statistics",
+        desc: "채널 · 비디오 · 수익 통계를 한곳에 모아 대시보드로 보여 줍니다. 구독자 · 조회수 · 시청 시간 추이부터 수익 분석까지 운영에 필요한 지표를 제공합니다.",
+        points: [
+          "통합 대시보드 — 채널 운영 현황과 실적을 한 화면에서 조회합니다.",
+          "채널 · 비디오 통계 — 구독자 · 조회수 · 시청 시간 등 성장 지표와 영상별 반응을 분석합니다.",
+          "수익 분석 — 채널 수익을 분석하고 추이를 비교합니다.",
+        ],
+        image: "/assets/solutions/g-sam/analytics.png",
+      },
+      {
+        code: "G-SAM Archive",
+        title: "아카이브 관리",
+        sub: "Archive Management",
+        desc: "배포한 콘텐츠의 이력을 관리하고 내부에 보관해, 외부 플랫폼에 올린 콘텐츠까지 자체적으로 통제합니다.",
+        points: [
+          "배포 이력 조회 — 언제 어느 플랫폼에 배포했는지 이력을 추적합니다.",
+          "콘텐츠 보관 — 내부에 등록한 콘텐츠와 외부 배포 콘텐츠를 함께 관리합니다.",
+          "콘텐츠 소유권 관리 — 자신의 콘텐츠를 자체적으로 보관하고 통제합니다.",
+        ],
+        image: "/assets/solutions/g-sam/archive.png",
+      },
+    ],
+  },
 ];
 
 /** generateStaticParams / 링크에서 쓰는 슬러그 목록. */

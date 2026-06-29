@@ -46,6 +46,12 @@ const SOLUTIONS = [
     title: "콘텐츠 아카이브",
     desc: "검색이 자유롭고 계속 늘어나는 미디어 라이브러리를 위한 안정적인 장기 디지털·영상 아카이빙.",
   },
+  {
+    num: "07",
+    tag: "G-SAM",
+    title: "콘텐츠 배포",
+    desc: "하나의 콘텐츠를 YouTube·Instagram·X·TikTok 등 여러 SNS 플랫폼에 배포하고 통계로 관리합니다.",
+  },
 ];
 
 const REASONS = [

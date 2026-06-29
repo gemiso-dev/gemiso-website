@@ -8,7 +8,7 @@ import { SOLUTIONS, getSolution } from "@/components/solutions-data";
 
 type Params = { slug: string };
 
-/** 6개 솔루션을 정적 페이지로 생성(output: export). */
+/** 모든 솔루션을 정적 페이지로 생성(output: export). */
 export function generateStaticParams(): Params[] {
   return SOLUTIONS.map((s) => ({ slug: s.id }));
 }
