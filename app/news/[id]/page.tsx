@@ -8,6 +8,7 @@ import {
   relatedArticles,
 } from "@/components/news-data";
 import { asset } from "@/components/site-config";
+import { pageMetadata } from "@/components/seo";
 
 type Params = { id: string };
 
@@ -24,10 +25,12 @@ export async function generateMetadata({
   const { id } = await params;
   const a = getArticle(id);
   if (!a) return {};
-  return {
-    title: `${a.title} | GEMISO 뉴스룸`,
+  return pageMetadata({
+    title: a.title,
     description: a.summary,
-  };
+    path: `/news/${a.id}/`,
+    image: a.image ?? undefined,
+  });
 }
 
 export default async function NewsDetailPage({

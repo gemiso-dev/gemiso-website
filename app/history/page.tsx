@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { HISTORY_ERAS, HISTORY_STATS } from "@/components/history-data";
+import { pageMetadata } from "@/components/seo";
 
-export const metadata: Metadata = {
-  title: "연혁 | GEMISO",
+export const metadata = pageMetadata({
+  title: "연혁",
   description:
     "2002년 설립 이후 미디어 자산 관리부터 뉴스룸·아카이브·자동 송출, AI까지 — Geminisoft가 걸어온 길.",
-};
+  path: "/history/",
+});
 
 export default function HistoryPage() {
   // 데이터는 연대순(오래된 → 최신). 화면에는 최신순으로 뒤집어 보여준다.

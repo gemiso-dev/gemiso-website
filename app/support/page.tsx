@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { COMPANY } from "@/components/site-config";
@@ -7,12 +6,14 @@ import {
   CONTACT_METHODS,
   OFFICES,
 } from "@/components/support-data";
+import { pageMetadata } from "@/components/seo";
 
-export const metadata: Metadata = {
-  title: "고객지원 | GEMISO",
+export const metadata = pageMetadata({
+  title: "고객지원",
   description:
     "글로벌 미디어 기술 기업 Geminisoft의 솔루션 도입 상담과 기술 지원을 안내합니다. 전화·이메일 연락처와 서울·호치민 거점 정보를 확인하세요.",
-};
+  path: "/support/",
+});
 
 export default function SupportPage() {
   return (

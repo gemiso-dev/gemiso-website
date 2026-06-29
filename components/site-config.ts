@@ -39,6 +39,10 @@ export const PRIMARY_NAV: NavItem[] = [
   },
 ];
 
+/** 운영(Cloudflare) 절대 URL 기준. canonical·sitemap·OG 절대경로에 사용한다.
+ *  basePath와 무관하게 항상 운영 도메인을 가리킨다(미리보기에서도 canonical은 운영을 향함). */
+export const SITE_URL = "https://www.gemiso.co.kr";
+
 export const COMPANY = {
   name: "(주) 제머나이소프트",
   location: "대한민국 서울",

@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { COMPANY } from "@/components/site-config";
 import { PARTNER_STATS, PARTNER_GROUPS } from "@/components/partners-data";
+import { pageMetadata } from "@/components/seo";
 
-export const metadata: Metadata = {
-  title: "파트너 | GEMISO",
+export const metadata = pageMetadata({
+  title: "파트너",
   description:
     "Geminisoft는 세계적인 미디어 기술 기업, 국제 표준 얼라이언스, 그리고 대학과 협력하여 더 나은 방송 미디어 환경을 함께 만들어 갑니다.",
-};
+  path: "/partners/",
+});
 
 export default function PartnersPage() {
   return (

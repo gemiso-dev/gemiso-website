@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { COMPANY, asset } from "@/components/site-config";
 import { CERT_STATS, GS_CERTS, PATENTS } from "@/components/certification-data";
+import { pageMetadata } from "@/components/seo";
 
-export const metadata: Metadata = {
-  title: "인증 현황 | GEMISO",
+export const metadata = pageMetadata({
+  title: "인증 현황",
   description:
     "Geminisoft의 핵심 솔루션은 국가 공인 소프트웨어 품질 인증 GS 1등급과 원천 기술 특허로 완성도를 입증합니다.",
-};
+  path: "/certification/",
+});
 
 export default function CertificationPage() {
   return (

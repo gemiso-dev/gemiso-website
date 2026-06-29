@@ -5,6 +5,7 @@ import Reveal from "@/components/Reveal";
 import SolutionMock from "@/components/SolutionMock";
 import { COMPANY, asset } from "@/components/site-config";
 import { SOLUTIONS, getSolution } from "@/components/solutions-data";
+import { pageMetadata } from "@/components/seo";
 
 type Params = { slug: string };
 
@@ -21,10 +22,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const s = getSolution(slug);
   if (!s) return {};
-  return {
-    title: `${s.name} · ${s.ko} | GEMISO`,
+  return pageMetadata({
+    title: `${s.name} · ${s.ko}`,
     description: s.desc,
-  };
+    path: `/solutions/${s.id}/`,
+    image: s.image,
+  });
 }
 
 export default async function SolutionPage({

@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import CustomersExplorer from "@/components/CustomersExplorer";
 import { CASE_STUDIES, CUSTOMER_STATS } from "@/components/customers-data";
+import { pageMetadata } from "@/components/seo";
 
-export const metadata: Metadata = {
-  title: "고객사 | GEMISO",
+export const metadata = pageMetadata({
+  title: "고객사",
   description:
     "지상파와 보도 채널부터 공공·기업·교육·금융, 해외 방송사까지 — Geminisoft의 미디어 기술이 현장에서 매일 운영되고 있습니다.",
-};
+  path: "/customers/",
+});
 
 export default function CustomersPage() {
   return (

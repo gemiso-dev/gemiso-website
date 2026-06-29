@@ -2,11 +2,23 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import { SITE_URL } from "@/components/site-config";
 
 export const metadata: Metadata = {
-  title: "제미소 | GEMISO — 방송을 위한 디지털 미디어 관리 플랫폼",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "제미소 | GEMISO — 방송을 위한 디지털 미디어 관리 플랫폼",
+    template: "%s | GEMISO",
+  },
   description:
     "Geminisoft는 인제스트, 아카이브, 뉴스룸, 자동 송출까지 방송을 위한 미디어 솔루션을 직접 개발하고 보유합니다.",
+  openGraph: {
+    type: "website",
+    siteName: "GEMISO",
+    locale: "ko_KR",
+    images: [{ url: "/assets/geminisoft-logo.png" }],
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({

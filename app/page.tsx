@@ -3,6 +3,14 @@ import Reveal from "@/components/Reveal";
 import CustomerMarquee from "@/components/CustomerMarquee";
 import { COMPANY } from "@/components/site-config";
 import { NEWS_ARTICLES } from "@/components/news-data";
+import { pageMetadata } from "@/components/seo";
+
+export const metadata = pageMetadata({
+  title: "방송을 위한 디지털 미디어 관리 플랫폼",
+  description:
+    "Geminisoft는 인제스트, 아카이브, 뉴스룸, 자동 송출까지 방송을 위한 미디어 솔루션을 직접 개발하고 보유합니다.",
+  path: "/",
+});
 
 /** 홈 뉴스 섹션 — 뉴스룸 데이터의 최신 3건과 연동. */
 const LATEST_NEWS = NEWS_ARTICLES.slice(0, 3);

@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import NewsGrid from "@/components/NewsGrid";
 import { NEWS_ARTICLES } from "@/components/news-data";
 import { asset } from "@/components/site-config";
+import { pageMetadata } from "@/components/seo";
 
-export const metadata: Metadata = {
-  title: "뉴스룸 | GEMISO",
+export const metadata = pageMetadata({
+  title: "뉴스룸",
   description:
     "제머나이소프트의 언론보도와 보도자료, 제품 소식을 한곳에서 전해드립니다.",
-};
+  path: "/news/",
+});
 
 export default function NewsListPage() {
   const [featured, ...rest] = NEWS_ARTICLES;
