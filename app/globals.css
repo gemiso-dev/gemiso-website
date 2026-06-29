@@ -1928,3 +1928,270 @@ a:hover > .gem-arrow,
   display: flex;
   justify-content: center;
 }
+
+/* =========================================================================
+   연혁 (/history) — 히어로 + 타임라인
+   ========================================================================= */
+
+/* 모노 accent eyebrow (히어로 머리말) */
+.hist-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hist-eyebrow__tick {
+  width: 28px;
+  height: 2px;
+  background: var(--gem-accent);
+  flex: none;
+}
+.hist-eyebrow__label {
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--gem-accent);
+}
+.hist-eyebrow__label--muted {
+  letter-spacing: 0.08em;
+  color: var(--gem-muted);
+}
+
+/* ------------------------------------------------------------------ 히어로 */
+.hist-hero {
+  position: relative;
+  background: #fff;
+  border-bottom: 1px solid var(--gem-border);
+  overflow: hidden;
+}
+.hist-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    72% 120% at 92% 0%,
+    rgba(15, 98, 254, 0.08),
+    rgba(15, 98, 254, 0) 58%
+  );
+  pointer-events: none;
+}
+.hist-hero__inner {
+  position: relative;
+  padding-block: clamp(46px, 6vw, 96px) clamp(36px, 4.5vw, 56px);
+}
+.hist-hero__intro {
+  max-width: 860px;
+}
+.hist-hero__title {
+  margin-top: 20px;
+  font-size: clamp(38px, 5.4vw, 72px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--gem-fg);
+}
+.hist-hero__desc {
+  margin-top: 22px;
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.62;
+  color: var(--gem-muted);
+  max-width: 58ch;
+}
+
+/* 히어로 지표 그리드 (1px 라인) */
+.hist-stats {
+  margin-top: clamp(36px, 4.5vw, 56px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  border-top: 1px solid var(--gem-border);
+  border-left: 1px solid var(--gem-border);
+}
+.hist-stat {
+  padding: 26px 24px 22px;
+  border-right: 1px solid var(--gem-border);
+  border-bottom: 1px solid var(--gem-border);
+}
+.hist-stat__num {
+  font-size: clamp(30px, 3.6vw, 46px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--gem-fg);
+}
+.hist-stat__label {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--gem-muted);
+  letter-spacing: 0.12px;
+}
+
+/* ---------------------------------------------------------------- 타임라인 */
+.hist-timeline {
+  background: #fff;
+  padding-block: var(--gem-sec-pad) clamp(48px, 6vw, 72px);
+}
+.hist-timeline__inner {
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-inline: var(--gem-gutter);
+}
+
+/* 시대(era) 블록 */
+.hist-era {
+  margin-top: clamp(48px, 6vw, 80px);
+}
+.hist-era-head {
+  border-top: 2px solid var(--gem-border-strong);
+  padding-top: 22px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+}
+.hist-era-head__main {
+  max-width: 720px;
+}
+.hist-era__range {
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--gem-accent);
+  margin-bottom: 12px;
+}
+.hist-era__title {
+  font-size: clamp(25px, 3vw, 38px);
+  font-weight: 300;
+  line-height: 1.16;
+  letter-spacing: -0.01em;
+  color: var(--gem-fg);
+}
+.hist-era__desc {
+  margin-top: 13px;
+  font-size: 16px;
+  line-height: 1.62;
+  color: var(--gem-muted);
+  max-width: 62ch;
+}
+.hist-era__idx {
+  flex: none;
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  color: #c6c6c6;
+}
+
+/* 이정표 줄 */
+.hist-rows {
+  margin-top: 30px;
+}
+.tl-row {
+  display: grid;
+  grid-template-columns: 104px 44px 1fr;
+}
+.tl-year {
+  padding: 1px 16px 30px 0;
+  text-align: right;
+  font-family: var(--gem-font-mono);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  color: var(--gem-accent);
+}
+
+/* 연결선 + 점 레일 */
+.tl-rail {
+  position: relative;
+}
+.tl-rail__line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--gem-border);
+  transform: translateX(-50%);
+}
+/* 마지막 줄은 짧은 stub만 그린다 */
+.tl-rail__line--stub {
+  bottom: auto;
+  height: 13px;
+}
+.tl-dot {
+  position: absolute;
+  left: 50%;
+  top: 6px;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: block;
+}
+.tl-dot--major {
+  width: 11px;
+  height: 11px;
+  background: var(--gem-accent);
+}
+.tl-dot--minor {
+  width: 9px;
+  height: 9px;
+  background: #fff;
+  border: 1.5px solid #c6c6c6;
+}
+
+/* 이정표 본문 */
+.tl-body {
+  padding: 0 0 30px 18px;
+}
+.tl-body__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.tl-title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--gem-fg);
+}
+.tl-tag {
+  font-family: var(--gem-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--gem-subtle);
+  background: var(--gem-surface);
+  border: 1px solid var(--gem-border);
+  padding: 2px 7px;
+}
+.tl-desc {
+  margin-top: 7px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--gem-muted);
+  max-width: 62ch;
+}
+
+/* 닫는 메모 */
+.hist-foot {
+  margin-top: clamp(40px, 5vw, 64px);
+  border-top: 1px solid var(--gem-border);
+  padding-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--gem-subtle);
+}
+.hist-foot__mark {
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  color: var(--gem-accent);
+}
+
+@media (max-width: 720px) {
+  .tl-row {
+    grid-template-columns: 56px 30px 1fr;
+  }
+  .tl-year {
+    font-size: 11px;
+  }
+  .hist-era-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
