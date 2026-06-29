@@ -219,7 +219,7 @@ export const HISTORY_ERAS: HistoryEra[] = [
     ],
   },
   {
-    range: "2023 — 2025",
+    range: "2023 — 2026",
     title: "AI와 차세대 미디어",
     desc: "차세대 뉴스 제작과 자동 송출, AI 학습 데이터까지 — 방송 미디어 관리의 기준을 다시 그리고 있습니다.",
     items: [
@@ -261,6 +261,13 @@ export const HISTORY_ERAS: HistoryEra[] = [
         tag: "PRODUCT",
         title: "MYMY 콘텐츠 관리 솔루션 확산 · SBS 차세대 PDS 개발",
         desc: "KTV·한국장학재단·예금보험공사 등으로 MYMY를 넓혔습니다.",
+      },
+      {
+        year: "2026.04",
+        tag: "R&D",
+        major: true,
+        title: "방송미디어 R&D '마이미디어 플랫폼 핵심기술개발' 총괄",
+        desc: "KETI·ETRI와 함께 페르소나 AI 기반 개인 맞춤형 미디어 기술을 개발하는 국책과제를 이끕니다.",
       },
     ],
   },

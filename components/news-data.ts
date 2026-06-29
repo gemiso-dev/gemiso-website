@@ -29,6 +29,26 @@ export type NewsArticle = {
 /** 최신순으로 정렬된 보도 클리핑 목록. */
 export const NEWS_ARTICLES: NewsArticle[] = [
   {
+    id: 140,
+    outlet: "뉴시스",
+    date: "2026.04.30",
+    title: "제머나이소프트, 정부 방송미디어 R&D '마이미디어 플랫폼 핵심기술개발' 총괄",
+    summary:
+      "제머나이소프트가 방송미디어통신위원회·정보통신기획평가원(IITP)이 선정한 디지털미디어 혁신기술 개발 과제 중 '개인 맞춤형 미디어 서비스 구현을 위한 마이미디어 플랫폼 핵심기술개발'을 총괄한다. KETI·ETRI와 함께 페르소나 AI 모델과 메타데이터 기술을 결합해 이용자의 시청 흐름과 관심사를 반영, 콘텐츠를 재구성하고 장면을 자동 연결하는 개인화 기술을 개발한다. 정부는 2030년까지 5년간 727억여원을 방송미디어 R&D에 투입한다.",
+    href: "https://www.newsis.com/view/NISX20260430_0003613403",
+    image: "/assets/news/news-0140.jpg",
+  },
+  {
+    id: 141,
+    outlet: "",
+    date: "2026.04.18",
+    title: "제머나이소프트, 'NAB Show 2026' 참가 — 방송 콘텐츠 기반 AI 학습 데이터 선봬",
+    summary:
+      "제머나이소프트가 미국 라스베이거스에서 열리는 세계 최대 방송·미디어 전시회 'NAB Show 2026'(Central Hall, Futures Park C4449-G)에 참가한다. 'Better Data. Better AI.'를 슬로건으로, 방송 영상 콘텐츠에서 고품질 AI 학습 데이터셋을 구축하는 엔드-투-엔드 서비스를 선보인다. 데이터 전략 컨설팅부터 3단계 CoT 라벨링·품질보증, text-to-image·text-to-video 샘플 모델 개발까지 전 과정을 아우른다.",
+    href: "https://www.gemiso.com/ai-dataset",
+    image: null,
+  },
+  {
     id: 139,
     outlet: "IT조선",
     date: "2026.01.30",
