@@ -12,6 +12,12 @@ export const metadata: Metadata = {
 export default function HistoryPage() {
   // 데이터는 연대순(오래된 → 최신). 화면에는 최신순으로 뒤집어 보여준다.
   const count = String(HISTORY_ERAS.length).padStart(2, "0");
+  // 발자취 연도 범위는 데이터에서 직접 뽑아 라벨이 낡지 않게 한다.
+  const allYears = HISTORY_ERAS.flatMap((e) =>
+    e.items.map((it) => parseInt(it.year, 10)),
+  );
+  const latestYear = Math.max(...allYears);
+  const earliestYear = Math.min(...allYears);
   const eras = HISTORY_ERAS.slice()
     .reverse()
     .map((era, ei) => {
@@ -74,7 +80,7 @@ export default function HistoryPage() {
           <Reveal className="hist-eyebrow">
             <span className="hist-eyebrow__tick" />
             <span className="hist-eyebrow__label hist-eyebrow__label--muted">
-              주요 발자취 · 2025–2002
+              주요 발자취 · {latestYear}–{earliestYear}
             </span>
           </Reveal>
 
@@ -124,7 +130,10 @@ export default function HistoryPage() {
             <span className="hist-foot__mark">↳</span>
             <span>
               주요 이정표를 추렸습니다. 2002년부터 오늘까지 600여 건의
-              구축·개발 실적이 이어지고 있습니다.
+              구축·개발 실적이 이어지고 있습니다.{" "}
+              <Link href="/history/detail" className="hist-inline-link">
+                상세 연혁 전체 보기 →
+              </Link>
             </span>
           </Reveal>
         </div>

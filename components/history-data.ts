@@ -107,11 +107,23 @@ export const HISTORY_ERAS: HistoryEra[] = [
         desc: "대표 제품 브랜드 Ariel을 공식 상표로 등록했습니다.",
       },
       {
+        year: "2008.11",
+        tag: "R&D",
+        title: "ETRI 방통융합 Full 3D 인제스트 · 프리뷰 시작품 공급",
+        desc: "한국전자통신연구원과 차세대 3D 미디어 원천 기술 개발에 참여했습니다.",
+      },
+      {
         year: "2010.03",
         tag: "R&D",
         major: true,
         title: "기업부설연구소 설립",
         desc: "미디어 처리 기술을 지속 연구하는 전담 조직을 신설했습니다.",
+      },
+      {
+        year: "2010.06",
+        tag: "CLIENT",
+        title: "EBS 디지털 아카이브 · NPS 시스템 구축",
+        desc: "지상파 공영방송 EBS에 아카이브와 뉴스 제작 시스템을 구축했습니다.",
       },
       {
         year: "2010",
@@ -138,6 +150,12 @@ export const HISTORY_ERAS: HistoryEra[] = [
     title: "국산화와 인정",
     desc: "글로벌 표준과 손잡고 기술력을 공식 인정받으며, 국내 주요 방송사와 해외로 도입을 확대했습니다.",
     items: [
+      {
+        year: "2014.01",
+        tag: "CLIENT",
+        title: "채널A Proxima 아카이브 · 제작 NPS 구축",
+        desc: "종합편성채널 채널A에 아카이브와 뉴스 제작 시스템을 구축했습니다.",
+      },
       {
         year: "2014.11",
         tag: "PARTNER",
@@ -204,6 +222,12 @@ export const HISTORY_ERAS: HistoryEra[] = [
         desc: "엔터테인먼트 영역으로 미디어 관리 솔루션을 넓혔습니다.",
       },
       {
+        year: "2020",
+        tag: "CLIENT",
+        title: "CJ ENM 통합 CMS · 통합 아카이브 구축",
+        desc: "국내 최대 미디어 그룹 CJ ENM의 콘텐츠 관리·아카이브를 통합 구축했습니다.",
+      },
+      {
         year: "2021",
         tag: "CLIENT",
         title: "백남준아트센터 · MBC STT HUB · 국회방송 NRCS 구축",
@@ -261,6 +285,12 @@ export const HISTORY_ERAS: HistoryEra[] = [
         tag: "PRODUCT",
         title: "MYMY 콘텐츠 관리 솔루션 확산 · SBS 차세대 PDS 개발",
         desc: "KTV·한국장학재단·예금보험공사 등으로 MYMY를 넓혔습니다.",
+      },
+      {
+        year: "2026.01",
+        tag: "PARTNER",
+        title: "NAVER Cloud MSP 파트너십 체결",
+        desc: "네이버 클라우드 매니지드 서비스 파트너로, 클라우드 기반 미디어 사업의 기반을 마련했습니다.",
       },
       {
         year: "2026.04",

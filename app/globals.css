@@ -2449,6 +2449,65 @@ a:hover > .gem-arrow,
   }
 }
 
+/* 본문 안 인라인 링크 (연혁 ↔ 상세 연혁) */
+.hist-inline-link {
+  color: var(--gem-accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+  white-space: nowrap;
+}
+.hist-inline-link:hover {
+  border-bottom-color: currentColor;
+}
+
+/* =========================================================================
+   상세 연혁 (/history/detail) — 연도별·월별 전체 실적
+   히어로/타임라인 골격(.hist-*, .tl-*)은 연혁 클래스를 재사용한다.
+   ========================================================================= */
+.hist-detail__head {
+  margin-bottom: clamp(24px, 4vw, 40px);
+}
+/* 연도 한 줄에 그 해 실적 전체를 묶어 보여준다 */
+.hist-detail__row {
+  align-items: start;
+}
+.hist-detail__list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.hist-detail__item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 14px;
+  align-items: baseline;
+}
+.hist-detail__month {
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--gem-subtle);
+}
+.hist-detail__text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--gem-fg);
+}
+
+@media (max-width: 720px) {
+  .hist-detail__item {
+    grid-template-columns: 34px 1fr;
+    gap: 10px;
+  }
+  .hist-detail__text {
+    font-size: 14px;
+  }
+}
+
 /* =========================================================================
    인증 현황 (/certification) — GS 인증 + 특허
    히어로/섹션 헤더/닫는 메모/CTA는 공통·연혁 클래스를 재사용한다.
