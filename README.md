@@ -52,7 +52,7 @@ git branch -M main
 git branch develop
 
 # GitHub 저장소 생성 후 (예시)
-git remote add origin https://github.com/<OWNER>/gemiso-website.git
+git remote add origin https://github.com/gemiso-dev/gemiso-website.git
 git push -u origin main
 git push -u origin develop
 ```
@@ -65,7 +65,7 @@ git push -u origin develop
 이후 `develop` 에 푸시되면 `.github/workflows/deploy-github-pages.yml`
 이 자동 빌드·배포합니다.
 
-- 확인 URL: `https://<OWNER>.github.io/gemiso-website/`
+- 확인 URL: `https://gemiso-dev.github.io/gemiso-website/`
 
 ### 3. Cloudflare Pages (main → 운영)
 
