@@ -6,9 +6,9 @@ import { NEWS_ARTICLES } from "@/components/news-data";
 import { pageMetadata } from "@/components/seo";
 
 export const metadata = pageMetadata({
-  title: "방송을 위한 디지털 미디어 관리 플랫폼",
+  title: "레거시를 넘어 AX로, 방송의 미래를 여는 AI 미디어 플랫폼",
   description:
-    "Geminisoft는 인제스트, 아카이브, 뉴스룸, 자동 송출까지 방송을 위한 미디어 솔루션을 직접 개발하고 보유합니다.",
+    "Geminisoft는 AI 기반 플랫폼 어웨어(Platform-Aware) 방송을 위한 AX 기술을 제공합니다. 전 세계 방송사·글로벌 OTT와 어깨를 나란히 할 새로운 미디어 비즈니스 모델을 만듭니다.",
   path: "/",
 });
 
@@ -135,25 +135,26 @@ export default function Home() {
       <section className="gem-hero">
         <div className="gem-container gem-hero__grid">
           <Reveal>
-            <div className="gem-eyebrow">
-              <span>디지털 미디어 관리 플랫폼</span>
+            <div className="gem-eyebrow gem-eyebrow--badge">
+              <span>Broadcast AX Technology Partner</span>
             </div>
             <h1 className="gem-hero__title">
-              방송을 위해 만든
+              레거시를 넘어 AX로,
               <br />
-              미디어 관리.
+              방송의 미래를 켜다.
             </h1>
             <p className="gem-hero__desc">
-              Geminisoft는 인제스트, 아카이브, 뉴스룸, 자동 송출까지 고효율
-              미디어 솔루션을 자체 개발합니다. 방송사는 더 적은 운영 비용으로 더
-              많은 것을 방송에 담아냅니다.
+              이제 레거시 방송만으로는 경쟁할 수 없습니다. Geminisoft는 AI 기반
+              플랫폼 어웨어(Platform-Aware) 방송을 위한 AX 기술을 제공합니다. 전
+              세계 방송사·글로벌 OTT와 어깨를 나란히 할 새로운 미디어 비즈니스
+              모델을 지금 경험해 보세요.
             </p>
             <div className="gem-hero__actions">
-              <a href="#solutions" className="gem-btn gem-btn--primary">
-                솔루션 살펴보기
+              <a href="#contact" className="gem-btn gem-btn--primary">
+                AX 전략 상담하기
               </a>
-              <a href="#contact" className="gem-btn gem-btn--link">
-                팀과 상담하기 →
+              <a href="#solutions" className="gem-btn gem-btn--link">
+                솔루션 보기 →
               </a>
             </div>
             <p className="gem-hero__note">

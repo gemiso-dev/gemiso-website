@@ -614,6 +614,25 @@ a:hover > .gem-arrow,
   align-items: center;
   padding-block: clamp(48px, 7vw, 104px);
 }
+/* 히어로 라벨 강조 배지 — 옅은 파란 알약 위 진한 파란 볼드 텍스트 */
+.gem-eyebrow--badge {
+  display: inline-flex;
+  gap: 0;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(15, 98, 254, 0.1);
+  border: 1px solid rgba(15, 98, 254, 0.2);
+}
+.gem-eyebrow--badge::before {
+  display: none;
+}
+.gem-eyebrow--badge > span {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  color: var(--gem-accent-strong);
+}
+
 .gem-hero__title {
   font-size: clamp(40px, 6vw, 76px);
   font-weight: 300;
