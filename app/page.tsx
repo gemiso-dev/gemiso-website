@@ -139,7 +139,7 @@ export default function Home() {
               <span>Broadcast AX Technology Partner</span>
             </div>
             <h1 className="gem-hero__title">
-              레거시를 넘어 AX로,
+              레거시를 넘어 <span className="gem-hero__hl">AX</span>로,
               <br />
               방송의 미래를 켜다.
             </h1>

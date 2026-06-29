@@ -640,6 +640,12 @@ a:hover > .gem-arrow,
   letter-spacing: -0.02em;
   color: var(--gem-fg);
 }
+/* 히어로 제목 내 핵심어(AX) 강조 — 진한 파란 볼드 */
+.gem-hero__hl {
+  color: var(--gem-accent);
+  font-weight: 600;
+}
+
 .gem-hero__desc {
   margin-top: 24px;
   font-size: clamp(17px, 1.6vw, 20px);
