@@ -129,8 +129,9 @@ img {
 
 .gem-eyebrow > span {
   font-size: 13px;
-  letter-spacing: 0.16px;
-  color: var(--gem-muted);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--gem-accent);
 }
 
 /* 제목 — 가볍고 큰 디스플레이 서체 */
@@ -1260,9 +1261,9 @@ button.gem-copy__text:focus-visible,
 
 /* 모노 캡션형 eyebrow (섹션 머리말 — 핵심 기능 / 작동 방식 등) */
 .gem-eyebrow--mono > span {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-sans);
   font-size: 12px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 }
 
 /* 솔루션 페이지 섹션 헤더(머리말 + 제목) */
@@ -2341,8 +2342,8 @@ button.gem-copy__text:focus-visible,
   color: var(--gem-accent);
 }
 .hist-eyebrow__label--muted {
-  letter-spacing: 0.08em;
-  color: var(--gem-muted);
+  letter-spacing: 0.06em;
+  color: var(--gem-accent);
 }
 
 /* ------------------------------------------------------------------ 히어로 */
