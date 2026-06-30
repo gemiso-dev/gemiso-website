@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import CustomerMarquee from "@/components/CustomerMarquee";
+import CopyField from "@/components/CopyField";
 import { COMPANY } from "@/components/site-config";
 import { NEWS_ARTICLES } from "@/components/news-data";
 import { pageMetadata } from "@/components/seo";
@@ -395,7 +396,13 @@ export default function Home() {
             </div>
             <div className="gem-info-cell">
               <div className="gem-info-cell__label">이메일</div>
-              <div className="gem-info-cell__value">{COMPANY.email}</div>
+              <CopyField
+                text={COMPANY.email}
+                label="이메일"
+                href={`mailto:${COMPANY.email}`}
+              >
+                {COMPANY.email}
+              </CopyField>
             </div>
             <div className="gem-info-cell">
               <div className="gem-info-cell__label">팩스</div>
@@ -403,11 +410,15 @@ export default function Home() {
             </div>
             <div className="gem-info-cell">
               <div className="gem-info-cell__label">주소</div>
-              <div className="gem-info-cell__value gem-info-cell__value--sm">
+              <CopyField
+                text={COMPANY.addressLines.join(" ")}
+                label="주소"
+                small
+              >
                 {COMPANY.addressLines[0]}
                 <br />
                 {COMPANY.addressLines[1]}
-              </div>
+              </CopyField>
             </div>
           </div>
         </Reveal>

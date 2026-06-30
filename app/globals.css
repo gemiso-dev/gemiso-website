@@ -1167,6 +1167,88 @@ a:hover > .gem-arrow,
   font-size: 14px;
   line-height: 1.5;
 }
+/* 클릭 복사 값(이메일·주소) — 값 텍스트 + 아이콘 전용 복사 배지 */
+.gem-copy {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+.gem-copy__text {
+  min-width: 0;
+  color: inherit;
+}
+/* 이메일 등 mailto 링크 */
+a.gem-copy__text {
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+a.gem-copy__text:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* 주소 등 텍스트 영역 자체가 복사 버튼인 경우 */
+button.gem-copy__text {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+/* 아이콘 전용 복사 배지 */
+.gem-copy__badge {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+  appearance: none;
+  -webkit-appearance: none;
+  color: rgba(255, 255, 255, 0.75);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 3px;
+  padding: 4px;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.gem-copy__badge svg {
+  width: 14px;
+  height: 14px;
+}
+.gem-copy__badge:hover,
+.gem-copy__badge:focus-visible {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.12);
+}
+.gem-copy__badge.is-copied {
+  color: #fff;
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+}
+a.gem-copy__text:focus-visible,
+button.gem-copy__text:focus-visible,
+.gem-copy__badge:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 3px;
+}
+/* 스크린리더 전용(시각적으로 숨김) */
+.gem-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* =========================================================================
    솔루션 상세 페이지 (/solutions/[slug])
