@@ -2,6 +2,7 @@
  * 미션 히어로 네트워크 비주얼 (순수 SVG).
  * 사람·시간·장소 세 허브를 직선 삼각형으로 잇고(백본), 허브마다 길이·개수·방향이
  * 다른 불규칙한 가지를 뻗어 비대칭적이고 자연스러운 네트워크를 만든다.
+ * 밝은 노드는 부드러운 글로우를 갖고, 중심에서 멀어질수록 옅어진다.
  * 색·글로우는 globals.css의 .mission-net__* 를 따른다.
  */
 
@@ -37,23 +38,23 @@ const PT: Record<string, Pt> = {
   s10: { x: 36, y: 132 },
 };
 
-// [노드키, 색조]
+// [노드키, 색조] — near/mid 는 부드러운 글로우를 갖는다
 const DOTS: [string, "near" | "mid" | "far" | "ring"][] = [
-  ["pa", "mid"],
+  ["pa", "near"],
   ["pb", "ring"],
   ["pc", "far"],
   ["mp", "far"],
   ["ta", "ring"],
-  ["tb", "mid"],
+  ["tb", "near"],
   ["tc", "far"],
   ["td", "far"],
-  ["la", "mid"],
+  ["la", "near"],
   ["ld", "far"],
   ["lc", "ring"],
   ["s1", "far"],
   ["s2", "ring"],
   ["s3", "far"],
-  ["s4", "far"],
+  ["s4", "mid"],
   ["s5", "mid"],
   ["s6", "far"],
   ["s7", "ring"],
@@ -62,7 +63,7 @@ const DOTS: [string, "near" | "mid" | "far" | "ring"][] = [
   ["s10", "far"],
 ];
 
-const R: Record<string, number> = { near: 4.5, mid: 3.6, far: 2.6, ring: 4 };
+const R: Record<string, number> = { near: 4.6, mid: 3.6, far: 2.5, ring: 4 };
 
 // 삼각형 백본 + 비대칭 가지
 const LINKS: [string, string][] = [
@@ -91,11 +92,11 @@ const HUBS: { key: string; ko: string; en: string; delay: number }[] = [
   { key: "places", ko: "장소", en: "PLACES", delay: 2.2 },
 ];
 
-// 중심에서 멀어질수록 옅어지는 투명도
+// 중심에서 멀어질수록 옅어지는 투명도 (가장자리에서 더 강하게 사라짐)
 const CENTER: Pt = { x: 228, y: 206 };
 function fade(p: Pt): number {
   const d = Math.hypot(p.x - CENTER.x, p.y - CENTER.y);
-  return Math.max(0.12, Math.min(0.9, 0.92 - (d / 240) * 0.8));
+  return Math.max(0.06, Math.min(0.92, 1.02 - (d / 208) * 0.98));
 }
 
 const HUB_KEYS = new Set(["people", "time", "places"]);
@@ -114,6 +115,11 @@ export default function MissionNetwork() {
           <stop offset="55%" stopColor="#0f62fe" stopOpacity="0.12" />
           <stop offset="100%" stopColor="#0f62fe" stopOpacity="0" />
         </radialGradient>
+        <radialGradient id="netDotGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.4" />
+          <stop offset="65%" stopColor="#3b82f6" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
+        </radialGradient>
       </defs>
 
       {/* 삼각형 백본 + 가지 (가지는 바깥 끝이 옅어지도록 거리 페이드) */}
@@ -122,7 +128,7 @@ export default function MissionNetwork() {
           const a = PT[from];
           const b = PT[to];
           const isBackbone = HUB_KEYS.has(from) && HUB_KEYS.has(to);
-          const op = isBackbone ? 0.34 : Math.min(0.32, fade(b) * 0.5);
+          const op = isBackbone ? 0.34 : Math.min(0.3, fade(b) * 0.5);
           return (
             <line
               key={idx}
@@ -137,17 +143,32 @@ export default function MissionNetwork() {
         })}
       </g>
 
-      {/* 노드 (가장자리로 갈수록 사라짐) */}
-      {DOTS.map(([key, tier], idx) => (
-        <circle
-          key={idx}
-          cx={PT[key].x}
-          cy={PT[key].y}
-          r={R[tier]}
-          className={`mission-net__dot mission-net__dot--${tier}`}
-          style={{ opacity: fade(PT[key]) }}
-        />
-      ))}
+      {/* 노드 (밝은 노드는 부드러운 글로우, 가장자리로 갈수록 사라짐) */}
+      {DOTS.map(([key, tier], idx) => {
+        const { x, y } = PT[key];
+        const op = fade(PT[key]);
+        const glowy = tier === "near" || tier === "mid";
+        return (
+          <g key={idx}>
+            {glowy && (
+              <circle
+                cx={x}
+                cy={y}
+                r={R[tier] * 3.2}
+                fill="url(#netDotGlow)"
+                style={{ opacity: op * 0.9 }}
+              />
+            )}
+            <circle
+              cx={x}
+              cy={y}
+              r={R[tier]}
+              className={`mission-net__dot mission-net__dot--${tier}`}
+              style={{ opacity: op }}
+            />
+          </g>
+        );
+      })}
 
       {/* 허브 + 라벨 */}
       {HUBS.map((hub) => {
