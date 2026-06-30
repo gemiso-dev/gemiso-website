@@ -3494,10 +3494,7 @@ a.sup-contact__cell:hover {
   fill: #9bc0ff;
 }
 .mission-net__dot--ring {
-  fill: var(--gem-bg);
-  stroke: var(--gem-accent);
-  stroke-width: 1.4;
-  stroke-opacity: 0.7;
+  fill: #7ea8ff;
 }
 .mission-net__glow {
   transform-box: fill-box;
