@@ -3,6 +3,8 @@
  * 헤더·푸터 등 공통 레이아웃이 이 데이터를 공유한다.
  */
 
+import { TECHNOLOGY_NAV } from "@/components/technology-data";
+
 export type NavItem = { label: string; href: string; children?: NavItem[] };
 
 export const PRIMARY_NAV: NavItem[] = [
@@ -28,6 +30,11 @@ export const PRIMARY_NAV: NavItem[] = [
       { label: "MYMY · 아카이브", href: "/solutions/mymy/" },
       { label: "G-SAM · 콘텐츠 배포", href: "/solutions/g-sam/" },
     ],
+  },
+  {
+    label: "보유기술",
+    href: "/technology/",
+    children: TECHNOLOGY_NAV,
   },
   { label: "뉴스", href: "/news/" },
   {

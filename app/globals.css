@@ -3463,3 +3463,82 @@ a.sup-contact__cell:hover {
     gap: 32px;
   }
 }
+
+/* ──────────────────────────────────────────
+   보유기술 (/technology)
+   ────────────────────────────────────────── */
+
+/* 히어로 하단 기술 목차 (앵커 점프) */
+.tech-toc {
+  margin-top: clamp(32px, 4vw, 48px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+}
+.tech-toc__link {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border: 1px solid var(--gem-border);
+  border-radius: 999px;
+  font-size: 14px;
+  color: var(--gem-muted);
+  background: #fff;
+  transition: color 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+.tech-toc__link:hover {
+  color: var(--gem-accent);
+  border-color: var(--gem-accent);
+  background: rgba(15, 98, 254, 0.05);
+}
+
+/* 기술 섹션 목록 */
+.tech-list {
+  border-top: 1px solid var(--gem-border);
+}
+.tech-list .gem-container {
+  padding-block: clamp(8px, 1.5vw, 16px);
+}
+.tech-item {
+  padding-block: clamp(36px, 4.5vw, 64px);
+  border-bottom: 1px solid var(--gem-border);
+}
+.tech-item__head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.tech-item__no {
+  font-family: var(--gem-font-mono);
+  font-size: 14px;
+  color: var(--gem-accent);
+}
+.tech-item__code {
+  font-family: var(--gem-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--gem-muted);
+}
+.tech-item__title {
+  margin-top: 10px;
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--gem-fg);
+}
+.tech-item__lead {
+  margin-top: 16px;
+  max-width: 70ch;
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.66;
+  color: var(--gem-muted);
+}
+.tech-item__details {
+  margin-top: clamp(24px, 3vw, 36px);
+}
+.tech-item__placeholder {
+  margin-top: 14px;
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.62;
+  color: var(--gem-muted);
+}
