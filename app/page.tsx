@@ -94,6 +94,30 @@ const REASONS = [
   },
   {
     icon: (
+      // 한발 앞선 AX·AI 기술 지원 — 스파클(AI)
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M14 4 L16 11 L23 13 L16 15 L14 22 L12 15 L5 13 L12 11 Z" />
+        <path d="M23 20 L24 23 L27 24 L24 25 L23 28 L22 25 L19 24 L22 23 Z" />
+      </svg>
+    ),
+    title: "한발 앞선 AX·AI 기술 지원",
+    desc: "방송에 필요한 AX·AI 기술을 먼저 연구하고 현장에 적용해, 고객이 변화에 앞서 대응하도록 지원합니다.",
+  },
+  {
+    icon: (
+      // 방송 워크플로우에 대한 이해 — 흐름(파이프라인)
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="7" cy="9" r="3" />
+        <circle cx="7" cy="23" r="3" />
+        <circle cx="25" cy="16" r="3" />
+        <path d="M10 9 H16 a3 3 0 0 1 3 3 V15 M10 23 H16 a3 3 0 0 0 3 -3 V17 M19 16 H22" />
+      </svg>
+    ),
+    title: "방송 워크플로우에 대한 이해",
+    desc: "제작부터 송출까지 방송 서비스의 흐름을 깊이 이해하고, 현장에 맞는 시스템을 설계합니다.",
+  },
+  {
+    icon: (
       // 상생하는 성장 — 맞물린 협력
       <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="12" cy="16" r="7" />
@@ -264,7 +288,7 @@ export default function Home() {
             <span>고객사</span>
           </div>
           <h2 className="gem-title gem-title--sm">
-            대한민국 방송 인프라에 자리잡았습니다.
+            많은 고객이 보내준 신뢰, 흔들림 없는 기술 지원으로 답합니다.
           </h2>
         </Reveal>
         <CustomerMarquee />
