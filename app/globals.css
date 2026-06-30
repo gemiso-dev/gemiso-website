@@ -3453,6 +3453,70 @@ a.sup-contact__cell:hover {
   color: var(--gem-subtle);
 }
 
+/* 미션 히어로 — 좌(인트로) · 우(네트워크 비주얼) 2열 (미션 페이지 전용) */
+.mission-hero__inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+}
+.mission-hero__inner .hist-hero__intro {
+  max-width: 560px;
+}
+
+/* 사람·시간·장소 네트워크 비주얼 (SVG) */
+.mission-net {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin-inline: auto;
+}
+.mission-net__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+.mission-net__link {
+  stroke: #c9d3e0;
+  stroke-width: 1;
+}
+.mission-net__dot--solid {
+  fill: var(--gem-accent);
+}
+.mission-net__dot--soft {
+  fill: #9bc0ff;
+}
+.mission-net__dot--ring {
+  fill: var(--gem-bg);
+  stroke: var(--gem-accent);
+  stroke-width: 1.4;
+}
+.mission-net__hub {
+  fill: var(--gem-accent);
+}
+.mission-net__ko {
+  text-anchor: middle;
+  font-size: 14px;
+  font-weight: 600;
+  fill: var(--gem-fg);
+}
+.mission-net__en {
+  text-anchor: middle;
+  font-family: var(--gem-font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  fill: var(--gem-subtle);
+}
+@media (max-width: 860px) {
+  .mission-hero__inner {
+    grid-template-columns: 1fr;
+  }
+  .mission-net {
+    max-width: 420px;
+  }
+}
+
 /* 세 기둥 섹션 */
 .mission-pillar-sec {
   padding-block: var(--gem-sec-pad);
@@ -3472,21 +3536,15 @@ a.sup-contact__cell:hover {
   grid-template-columns: 0.82fr 1.18fr;
   grid-template-rows: auto auto;
   column-gap: clamp(36px, 5vw, 76px);
-  row-gap: 30px;
+  row-gap: clamp(28px, 3.5vw, 44px);
   align-items: start;
 }
-/* 상단 행: 좌(번호+제목) · 우(영문 제목) — 둘 다 하단 정렬해 밑선을 맞춘다 */
+/* 상단: 번호 + 제목(한 줄) + 영문 제목 — 가로 전체에 걸치는 블록 */
 .mission-pillar__header {
-  grid-column: 1;
+  grid-column: 1 / -1;
   grid-row: 1;
-  align-self: end;
 }
-.mission-pillar__en {
-  grid-column: 2;
-  grid-row: 1;
-  align-self: end;
-}
-/* 하단 행: 좌(다이어그램) · 우(리드+본문) — 둘 다 상단 정렬해 윗선을 맞춘다 */
+/* 하단: 좌(다이어그램) · 우(리드+본문) — 상단 정렬해 윗선을 맞춘다 */
 .mission-diagram {
   grid-column: 1;
   grid-row: 2;
@@ -3520,6 +3578,7 @@ a.sup-contact__cell:hover {
   color: var(--gem-fg);
 }
 .mission-pillar__en {
+  margin-top: 14px;
   font-family: var(--gem-font-mono);
   font-size: clamp(22px, 2.6vw, 32px);
   font-weight: 500;
@@ -3630,26 +3689,11 @@ a.sup-contact__cell:hover {
     column-gap: 0;
     row-gap: 32px;
   }
-  /* 2×2 배치를 풀고 기존 세로 순서(번호+제목 → 다이어그램 → 영문 제목 → 본문)로 복원 */
   .mission-pillar__header,
-  .mission-pillar__en,
   .mission-diagram,
   .mission-pillar__body {
     grid-column: 1;
     grid-row: auto;
-    align-self: auto;
-  }
-  .mission-pillar__header {
-    order: 1;
-  }
-  .mission-diagram {
-    order: 2;
-  }
-  .mission-pillar__en {
-    order: 3;
-  }
-  .mission-pillar__body {
-    order: 4;
   }
 }
 

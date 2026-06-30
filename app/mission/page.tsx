@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import MissionDiagram from "@/components/MissionDiagram";
+import MissionNetwork from "@/components/MissionNetwork";
 import { COMPANY } from "@/components/site-config";
-import { MISSION_NODES, MISSION_PILLARS } from "@/components/mission-data";
+import { MISSION_PILLARS } from "@/components/mission-data";
 import { pageMetadata } from "@/components/seo";
 
 export const metadata = pageMetadata({
@@ -26,9 +27,9 @@ export default function MissionPage() {
         </div>
       </nav>
 
-      {/* 히어로 */}
+      {/* 히어로 — 좌: 인트로, 우: 네트워크 비주얼 */}
       <section className="hist-hero">
-        <div className="gem-container hist-hero__inner">
+        <div className="gem-container hist-hero__inner mission-hero__inner">
           <Reveal className="hist-hero__intro">
             <div className="hist-eyebrow">
               <span className="hist-eyebrow__tick" />
@@ -41,23 +42,14 @@ export default function MissionPage() {
               <span className="mission-hero__hl">Places</span>
             </h1>
             <p className="hist-hero__desc">
-              ‘사람, 시간, 장소를 연결하는 미디어’라는 미션 아래, 제머나이소프트는
-              미디어 기술을 개발합니다.
+              ‘사람, 시간, 장소를 연결하는 미디어’라는 미션 아래,
+              <br />
+              제머나이소프트는 미디어 기술을 개발합니다.
             </p>
           </Reveal>
 
-          <Reveal as="div" className="mission-connector">
-            {MISSION_NODES.map((n) => (
-              <div className="mission-connector__node" key={n.en}>
-                <span className="mission-connector__dot">
-                  <span />
-                </span>
-                <div className="mission-connector__labels">
-                  <div className="mission-connector__ko">{n.ko}</div>
-                  <div className="mission-connector__en">{n.en}</div>
-                </div>
-              </div>
-            ))}
+          <Reveal as="div" className="mission-net">
+            <MissionNetwork />
           </Reveal>
         </div>
       </section>
@@ -72,26 +64,23 @@ export default function MissionPage() {
         >
           <div className="gem-container">
             <Reveal as="div" className="mission-pillar">
-              {/* 상단 행 좌: 번호 + 제목 */}
+              {/* 상단: 번호 + 제목(한 줄) + 영문 제목 — 가로 전체 블록 */}
               <div className="mission-pillar__header">
                 <div className="mission-pillar__meta">
                   <span className="mission-pillar__no">{p.no}</span>
                   <span className="mission-pillar__mono">{p.mono}</span>
                 </div>
                 <h2 className="mission-pillar__title">
-                  {p.title[0]}
-                  <br />
-                  {p.title[1]}
+                  {p.title[0]} {p.title[1]}
                 </h2>
+                <p className="mission-pillar__en">‘{p.en}’</p>
               </div>
-              {/* 상단 행 우: 영문 제목 (좌측 제목과 하단 정렬) */}
-              <p className="mission-pillar__en">‘{p.en}’</p>
-              {/* 하단 행 좌: 다이어그램 (우측 리드와 상단 정렬) */}
+              {/* 하단 좌: 다이어그램 */}
               <div className="mission-diagram">
                 <MissionDiagram kind={p.diagram} />
                 <span className="mission-diagram__caption">{p.caption}</span>
               </div>
-              {/* 하단 행 우: 리드 + 본문 */}
+              {/* 하단 우: 리드 + 본문 */}
               <div className="mission-pillar__body">
                 <p className="mission-pillar__lead">{p.lead}</p>
                 <p className="mission-pillar__text">{p.body}</p>
