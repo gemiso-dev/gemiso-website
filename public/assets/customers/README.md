@@ -50,6 +50,7 @@
 - `rokn.png` — 해군본부
 - `rokaf-history.png` — 공군역사기록관리단
 - `seoul-council.png` — 서울시의회
+- `kosaf.png` — 한국장학재단
 
 ### 기업
 - `samsung-electronics.png` — 삼성전자
@@ -68,8 +69,7 @@
 - `scu.png` — 서울사이버대학교
 - `dima.png` — 동아방송예술대학
 - `karts.png` — 한국예술종합학교
-- `kosaf.png` — 한국장학재단
-- `dbc.png` — 동아방송대학교
+- `honam.png` — 호남대학교
 
 ### 금융
 - `shinhan.png` — 신한은행

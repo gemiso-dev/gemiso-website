@@ -132,6 +132,7 @@ export const CUSTOMERS: Customer[] = [
     ["해군본부", "rokn"],
     ["공군역사기록관리단", "rokaf-history"],
     ["서울시의회", "seoul-council"],
+    ["한국장학재단", "kosaf"],
   ]),
   ...group("enterprise", [
     ["삼성전자", "samsung-electronics"],
@@ -150,8 +151,7 @@ export const CUSTOMERS: Customer[] = [
     ["서울사이버대학교", "scu"],
     ["동아방송예술대학", "dima"],
     ["한국예술종합학교", "karts"],
-    ["한국장학재단", "kosaf"],
-    ["동아방송대학교", "dbc"],
+    ["호남대학교", "honam"],
   ]),
   ...group("finance", [
     ["신한은행", "shinhan"],
