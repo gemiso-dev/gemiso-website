@@ -64,7 +64,7 @@ export default function MissionPage() {
         >
           <div className="gem-container">
             <Reveal as="div" className="mission-pillar">
-              {/* 상단: 번호 + 제목(한 줄) + 영문 제목 — 가로 전체 블록 */}
+              {/* 좌측 상단: 번호 + 제목(한 줄) */}
               <div className="mission-pillar__header">
                 <div className="mission-pillar__meta">
                   <span className="mission-pillar__no">{p.no}</span>
@@ -73,15 +73,15 @@ export default function MissionPage() {
                 <h2 className="mission-pillar__title">
                   {p.title[0]} {p.title[1]}
                 </h2>
-                <p className="mission-pillar__en">‘{p.en}’</p>
               </div>
-              {/* 하단 좌: 다이어그램 */}
+              {/* 좌측 하단: 다이어그램 */}
               <div className="mission-diagram">
                 <MissionDiagram kind={p.diagram} />
                 <span className="mission-diagram__caption">{p.caption}</span>
               </div>
-              {/* 하단 우: 리드 + 본문 */}
+              {/* 우측: 영문 제목 + 리드 + 본문 */}
               <div className="mission-pillar__body">
+                <p className="mission-pillar__en">‘{p.en}’</p>
                 <p className="mission-pillar__lead">{p.lead}</p>
                 <p className="mission-pillar__text">{p.body}</p>
               </div>
