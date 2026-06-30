@@ -940,10 +940,10 @@ a:hover > .gem-arrow,
 .gem-logo-cell__logo.is-loaded {
   display: block;
 }
-/* 회사명 — 항상 표시. 로고가 없으면 단독, 있으면 로고 아래 캡션. */
+/* 로고가 있는 셀에서는 회사명 캡션을 숨기고 로고만 보여 준다.
+   (로고가 없는 셀은 has-logo가 없어 회사명이 폴백으로 그대로 노출된다.) */
 .gem-logo-cell.has-logo .gem-logo-cell__name {
-  font-size: 12.5px;
-  font-weight: 500;
+  display: none;
 }
 
 /* =========================================================================
