@@ -3470,8 +3470,30 @@ a.sup-contact__cell:hover {
   padding-top: 30px;
   display: grid;
   grid-template-columns: 0.82fr 1.18fr;
-  gap: clamp(36px, 5vw, 76px);
+  grid-template-rows: auto auto;
+  column-gap: clamp(36px, 5vw, 76px);
+  row-gap: 30px;
   align-items: start;
+}
+/* 상단 행: 좌(번호+제목) · 우(영문 제목) — 둘 다 하단 정렬해 밑선을 맞춘다 */
+.mission-pillar__header {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: end;
+}
+.mission-pillar__en {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: end;
+}
+/* 하단 행: 좌(다이어그램) · 우(리드+본문) — 둘 다 상단 정렬해 윗선을 맞춘다 */
+.mission-diagram {
+  grid-column: 1;
+  grid-row: 2;
+}
+.mission-pillar__body {
+  grid-column: 2;
+  grid-row: 2;
 }
 .mission-pillar__meta {
   display: flex;
@@ -3498,7 +3520,6 @@ a.sup-contact__cell:hover {
   color: var(--gem-fg);
 }
 .mission-pillar__en {
-  margin-bottom: 20px;
   font-family: var(--gem-font-mono);
   font-size: clamp(22px, 2.6vw, 32px);
   font-weight: 500;
@@ -3522,7 +3543,6 @@ a.sup-contact__cell:hover {
 
 /* 기둥 다이어그램 */
 .mission-diagram {
-  margin-top: 30px;
   position: relative;
   border: 1px solid var(--gem-border);
   background-color: var(--gem-bg);
@@ -3606,7 +3626,30 @@ a.sup-contact__cell:hover {
 @media (max-width: 860px) {
   .mission-pillar {
     grid-template-columns: 1fr;
-    gap: 32px;
+    grid-template-rows: none;
+    column-gap: 0;
+    row-gap: 32px;
+  }
+  /* 2×2 배치를 풀고 기존 세로 순서(번호+제목 → 다이어그램 → 영문 제목 → 본문)로 복원 */
+  .mission-pillar__header,
+  .mission-pillar__en,
+  .mission-diagram,
+  .mission-pillar__body {
+    grid-column: 1;
+    grid-row: auto;
+    align-self: auto;
+  }
+  .mission-pillar__header {
+    order: 1;
+  }
+  .mission-diagram {
+    order: 2;
+  }
+  .mission-pillar__en {
+    order: 3;
+  }
+  .mission-pillar__body {
+    order: 4;
   }
 }
 
