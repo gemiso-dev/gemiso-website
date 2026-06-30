@@ -3564,21 +3564,25 @@ a.sup-contact__cell:hover {
   row-gap: clamp(28px, 3.5vw, 44px);
   align-items: start;
 }
-/* 좌측 상단: 번호 + 제목(한 줄) */
+/* 상단 행: 좌(번호+제목) · 우(영문 제목) — 둘 다 하단 정렬해 밑선을 맞춘다 */
 .mission-pillar__header {
   grid-column: 1;
   grid-row: 1;
+  align-self: end;
 }
-/* 좌측 하단: 다이어그램 */
+.mission-pillar__en {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: end;
+}
+/* 하단 행: 좌(다이어그램) · 우(리드+본문) — 둘 다 상단 정렬해 윗선을 맞춘다 */
 .mission-diagram {
   grid-column: 1;
   grid-row: 2;
 }
-/* 우측: 영문 제목 + 리드 + 본문 (두 행에 걸쳐 상단 정렬) */
 .mission-pillar__body {
   grid-column: 2;
-  grid-row: 1 / span 2;
-  align-self: start;
+  grid-row: 2;
 }
 .mission-pillar__meta {
   display: flex;
@@ -3605,7 +3609,6 @@ a.sup-contact__cell:hover {
   color: var(--gem-fg);
 }
 .mission-pillar__en {
-  margin-bottom: 18px;
   font-family: var(--gem-font-mono);
   font-size: clamp(22px, 2.6vw, 32px);
   font-weight: 500;
@@ -3717,10 +3720,12 @@ a.sup-contact__cell:hover {
     row-gap: 32px;
   }
   .mission-pillar__header,
+  .mission-pillar__en,
   .mission-diagram,
   .mission-pillar__body {
     grid-column: 1;
     grid-row: auto;
+    align-self: auto;
   }
 }
 
