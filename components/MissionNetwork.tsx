@@ -1,53 +1,34 @@
 /**
  * 미션 히어로 네트워크 비주얼 (순수 SVG).
- * 사람·시간·장소 세 허브를 중심으로 한 미니멀 네트워크.
- * 중심에서 멀어질수록 점이 옅어지고, 가장자리 입자는 서로 잇지 않는다.
+ * 사람·시간·장소 세 허브를 직선 삼각형으로 깔끔하게 연결하고,
+ * 주변에는 중심에서 멀어질수록 사라지는 입자만 흩어 둔다.
  * 색·글로우는 globals.css의 .mission-net__* 를 따른다.
  */
 
 type Pt = { x: number; y: number };
 
 const PT: Record<string, Pt> = {
-  // 허브 (라벨 노드)
-  people: { x: 132, y: 150 },
-  time: { x: 322, y: 130 },
-  places: { x: 234, y: 312 },
-  // 허브를 잇는 중간 노드 (연결됨)
-  m1: { x: 198, y: 108 },
-  m2: { x: 256, y: 104 },
-  m3: { x: 172, y: 130 },
-  m4: { x: 332, y: 196 },
-  m5: { x: 300, y: 238 },
-  m6: { x: 282, y: 274 },
-  m7: { x: 178, y: 250 },
-  m8: { x: 158, y: 206 },
-  m9: { x: 198, y: 288 },
-  c0: { x: 232, y: 196 },
+  // 허브 (삼각형 꼭짓점)
+  people: { x: 132, y: 148 },
+  time: { x: 330, y: 142 },
+  places: { x: 228, y: 320 },
   // 떠다니는 입자 (서로 연결 안 함, 가장자리로 갈수록 사라짐)
-  s1: { x: 64, y: 104 },
-  s2: { x: 70, y: 196 },
-  s3: { x: 96, y: 286 },
-  s4: { x: 258, y: 56 },
-  s5: { x: 372, y: 80 },
-  s6: { x: 398, y: 168 },
-  s7: { x: 380, y: 262 },
-  s8: { x: 330, y: 330 },
-  s9: { x: 168, y: 352 },
-  s10: { x: 108, y: 344 },
+  s1: { x: 66, y: 108 },
+  s2: { x: 56, y: 200 },
+  s3: { x: 92, y: 288 },
+  s4: { x: 152, y: 70 },
+  s5: { x: 256, y: 60 },
+  s6: { x: 382, y: 94 },
+  s7: { x: 404, y: 184 },
+  s8: { x: 386, y: 268 },
+  s9: { x: 318, y: 344 },
+  s10: { x: 160, y: 360 },
+  s11: { x: 100, y: 348 },
+  s12: { x: 300, y: 230 },
 };
 
 // [노드키, 색조] — near=accent, mid=중간 블루, far=옅은 블루, ring=테두리
 const DOTS: [string, "near" | "mid" | "far" | "ring"][] = [
-  ["m1", "mid"],
-  ["m2", "near"],
-  ["m3", "near"],
-  ["m4", "mid"],
-  ["m5", "far"],
-  ["m6", "mid"],
-  ["m7", "mid"],
-  ["m8", "far"],
-  ["m9", "far"],
-  ["c0", "ring"],
   ["s1", "ring"],
   ["s2", "far"],
   ["s3", "mid"],
@@ -56,33 +37,19 @@ const DOTS: [string, "near" | "mid" | "far" | "ring"][] = [
   ["s6", "far"],
   ["s7", "mid"],
   ["s8", "far"],
-  ["s9", "far"],
-  ["s10", "ring"],
+  ["s9", "ring"],
+  ["s10", "far"],
+  ["s11", "mid"],
+  ["s12", "far"],
 ];
 
 const R: Record<string, number> = { near: 4.5, mid: 3.4, far: 2.6, ring: 4 };
 
-// 연결선 — 허브와 중간 노드만 잇는다 (가장자리 입자는 제외)
-const LINKS: [string, string, boolean?][] = [
-  ["people", "m3"],
-  ["m3", "m1"],
-  ["m1", "m2"],
-  ["m2", "time"],
-  ["time", "m4"],
-  ["m4", "m5"],
-  ["m5", "m6"],
-  ["m6", "places"],
-  ["places", "m7"],
-  ["m7", "m8"],
-  ["m8", "people"],
-  ["m7", "m9"],
-  ["m9", "places"],
-  ["c0", "m1", true],
-  ["c0", "m7", true],
-  ["c0", "m4", true],
-  ["people", "time", true],
-  ["time", "places", true],
-  ["places", "people", true],
+// 세 허브를 잇는 직선 삼각형
+const LINKS: [string, string][] = [
+  ["people", "time"],
+  ["time", "places"],
+  ["places", "people"],
 ];
 
 const HUBS: { key: string; ko: string; en: string; delay: number }[] = [
@@ -92,10 +59,10 @@ const HUBS: { key: string; ko: string; en: string; delay: number }[] = [
 ];
 
 // 중심에서 멀어질수록 옅어지는 투명도
-const CENTER: Pt = { x: 224, y: 208 };
+const CENTER: Pt = { x: 230, y: 204 };
 function fade(p: Pt): number {
   const d = Math.hypot(p.x - CENTER.x, p.y - CENTER.y);
-  return Math.max(0.1, Math.min(0.92, 0.95 - (d / 230) * 0.85));
+  return Math.max(0.1, Math.min(0.88, 0.9 - (d / 230) * 0.85));
 }
 
 export default function MissionNetwork() {
@@ -114,21 +81,21 @@ export default function MissionNetwork() {
         </radialGradient>
       </defs>
 
-      {/* 연결선 (허브·중간 노드만) */}
+      {/* 삼각형 연결선 */}
       <g className="mission-net__links">
-        {LINKS.map(([from, to, soft], idx) => (
+        {LINKS.map(([from, to], idx) => (
           <line
             key={idx}
             x1={PT[from].x}
             y1={PT[from].y}
             x2={PT[to].x}
             y2={PT[to].y}
-            className={`mission-net__link${soft ? " mission-net__link--soft" : ""}`}
+            className="mission-net__link"
           />
         ))}
       </g>
 
-      {/* 노드 (가장자리로 갈수록 사라짐) */}
+      {/* 떠다니는 입자 (가장자리로 갈수록 사라짐) */}
       {DOTS.map(([key, tier], idx) => (
         <circle
           key={idx}
