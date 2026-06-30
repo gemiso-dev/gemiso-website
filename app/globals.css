@@ -3035,11 +3035,10 @@ button.gem-copy__text:focus-visible,
   color: #393939;
   transition: color 0.18s ease;
 }
-/* 로고가 있는 셀에서는 회사명을 작은 캡션 톤으로 낮춘다. */
+/* 로고가 있는 셀에서는 회사명 캡션을 숨기고 로고만 보여 준다.
+   (로고가 없는 셀은 has-logo가 없어 회사명이 폴백으로 그대로 노출된다.) */
 .cust-cell.has-logo .cust-cell__name {
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--gem-muted);
+  display: none;
 }
 .cust-cell:hover .cust-cell__name {
   color: var(--gem-fg);
