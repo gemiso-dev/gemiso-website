@@ -1,46 +1,45 @@
 /**
  * 미션 히어로 네트워크 비주얼 (순수 SVG).
- * 사람·시간·장소 세 허브를 중심으로, 깊이감 있는 노드 메시와 흐르는 연결선으로
- * '연결하는 미디어'를 표현한다. 색·글로우는 globals.css의 .mission-net__* 를 따른다.
+ * 사람·시간·장소 세 허브를 중심으로 한 미니멀 네트워크.
+ * 중심에서 멀어질수록 점이 옅어지고, 가장자리 입자는 서로 잇지 않는다.
+ * 색·글로우는 globals.css의 .mission-net__* 를 따른다.
  */
 
 type Pt = { x: number; y: number };
 
 const PT: Record<string, Pt> = {
   // 허브 (라벨 노드)
-  people: { x: 122, y: 140 },
-  time: { x: 322, y: 116 },
-  places: { x: 238, y: 308 },
-  // 흐름을 잇는 중간 노드
-  m1: { x: 192, y: 100 },
-  m2: { x: 252, y: 92 },
-  m3: { x: 162, y: 120 },
-  m4: { x: 340, y: 182 },
-  m5: { x: 312, y: 232 },
-  m6: { x: 296, y: 272 },
-  m7: { x: 172, y: 248 },
-  m8: { x: 150, y: 202 },
-  m9: { x: 196, y: 286 },
-  c0: { x: 226, y: 188 },
-  // 헤일로 (주변 장식)
-  s1: { x: 60, y: 92 },
-  s2: { x: 52, y: 172 },
-  s3: { x: 92, y: 232 },
-  s4: { x: 74, y: 300 },
-  s5: { x: 250, y: 58 },
-  s6: { x: 362, y: 70 },
-  s7: { x: 402, y: 144 },
-  s8: { x: 392, y: 246 },
-  s9: { x: 356, y: 322 },
-  s10: { x: 286, y: 352 },
-  s11: { x: 176, y: 350 },
-  s12: { x: 108, y: 332 },
+  people: { x: 132, y: 150 },
+  time: { x: 322, y: 130 },
+  places: { x: 234, y: 312 },
+  // 허브를 잇는 중간 노드 (연결됨)
+  m1: { x: 198, y: 108 },
+  m2: { x: 256, y: 104 },
+  m3: { x: 172, y: 130 },
+  m4: { x: 332, y: 196 },
+  m5: { x: 300, y: 238 },
+  m6: { x: 282, y: 274 },
+  m7: { x: 178, y: 250 },
+  m8: { x: 158, y: 206 },
+  m9: { x: 198, y: 288 },
+  c0: { x: 232, y: 196 },
+  // 떠다니는 입자 (서로 연결 안 함, 가장자리로 갈수록 사라짐)
+  s1: { x: 64, y: 104 },
+  s2: { x: 70, y: 196 },
+  s3: { x: 96, y: 286 },
+  s4: { x: 258, y: 56 },
+  s5: { x: 372, y: 80 },
+  s6: { x: 398, y: 168 },
+  s7: { x: 380, y: 262 },
+  s8: { x: 330, y: 330 },
+  s9: { x: 168, y: 352 },
+  s10: { x: 108, y: 344 },
 };
 
-// [노드키, 깊이] — near=선명/큼, mid=중간, far=옅음/작음, ring=테두리
+// [노드키, 색조] — near=accent, mid=중간 블루, far=옅은 블루, ring=테두리
 const DOTS: [string, "near" | "mid" | "far" | "ring"][] = [
   ["m1", "mid"],
-  ["m2", "far"],
+  ["m2", "near"],
   ["m3", "near"],
   ["m4", "mid"],
   ["m5", "far"],
@@ -49,62 +48,41 @@ const DOTS: [string, "near" | "mid" | "far" | "ring"][] = [
   ["m8", "far"],
   ["m9", "far"],
   ["c0", "ring"],
-  ["s1", "far"],
-  ["s2", "ring"],
-  ["s3", "far"],
-  ["s4", "mid"],
-  ["s5", "far"],
-  ["s6", "ring"],
-  ["s7", "far"],
-  ["s8", "mid"],
+  ["s1", "ring"],
+  ["s2", "far"],
+  ["s3", "mid"],
+  ["s4", "far"],
+  ["s5", "ring"],
+  ["s6", "far"],
+  ["s7", "mid"],
+  ["s8", "far"],
   ["s9", "far"],
   ["s10", "ring"],
-  ["s11", "far"],
-  ["s12", "far"],
 ];
 
-const R: Record<string, number> = { near: 5, mid: 3.6, far: 2.6, ring: 4.4 };
+const R: Record<string, number> = { near: 4.5, mid: 3.4, far: 2.6, ring: 4 };
 
-// [from, to, 옅게?]
+// 연결선 — 허브와 중간 노드만 잇는다 (가장자리 입자는 제외)
 const LINKS: [string, string, boolean?][] = [
-  // 위쪽 흐름 (사람 → 시간)
   ["people", "m3"],
   ["m3", "m1"],
   ["m1", "m2"],
   ["m2", "time"],
-  // 오른쪽 흐름 (시간 → 장소)
   ["time", "m4"],
   ["m4", "m5"],
   ["m5", "m6"],
   ["m6", "places"],
-  // 왼쪽 흐름 (장소 → 사람)
   ["places", "m7"],
   ["m7", "m8"],
   ["m8", "people"],
   ["m7", "m9"],
   ["m9", "places"],
-  // 중심 연결
   ["c0", "m1", true],
   ["c0", "m7", true],
   ["c0", "m4", true],
-  // 은은한 삼각 구조
   ["people", "time", true],
   ["time", "places", true],
   ["places", "people", true],
-  // 헤일로
-  ["s1", "people", true],
-  ["s2", "people", true],
-  ["s1", "s2", true],
-  ["s3", "s4", true],
-  ["s4", "places", true],
-  ["s5", "time", true],
-  ["s6", "time", true],
-  ["s7", "time", true],
-  ["s8", "m4", true],
-  ["s9", "places", true],
-  ["s10", "places", true],
-  ["s11", "places", true],
-  ["s12", "s4", true],
 ];
 
 const HUBS: { key: string; ko: string; en: string; delay: number }[] = [
@@ -112,6 +90,13 @@ const HUBS: { key: string; ko: string; en: string; delay: number }[] = [
   { key: "time", ko: "시간", en: "TIME", delay: 1.1 },
   { key: "places", ko: "장소", en: "PLACES", delay: 2.2 },
 ];
+
+// 중심에서 멀어질수록 옅어지는 투명도
+const CENTER: Pt = { x: 224, y: 208 };
+function fade(p: Pt): number {
+  const d = Math.hypot(p.x - CENTER.x, p.y - CENTER.y);
+  return Math.max(0.1, Math.min(0.92, 0.95 - (d / 230) * 0.85));
+}
 
 export default function MissionNetwork() {
   return (
@@ -123,20 +108,13 @@ export default function MissionNetwork() {
     >
       <defs>
         <radialGradient id="netGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#0f62fe" stopOpacity="0.5" />
-          <stop offset="55%" stopColor="#0f62fe" stopOpacity="0.14" />
-          <stop offset="100%" stopColor="#0f62fe" stopOpacity="0" />
-        </radialGradient>
-        <radialGradient id="netHaze" cx="50%" cy="42%" r="62%">
-          <stop offset="0%" stopColor="#0f62fe" stopOpacity="0.1" />
+          <stop offset="0%" stopColor="#0f62fe" stopOpacity="0.42" />
+          <stop offset="55%" stopColor="#0f62fe" stopOpacity="0.12" />
           <stop offset="100%" stopColor="#0f62fe" stopOpacity="0" />
         </radialGradient>
       </defs>
 
-      {/* 은은한 배경 헤이즈 */}
-      <rect x="0" y="0" width="440" height="420" fill="url(#netHaze)" />
-
-      {/* 연결선 */}
+      {/* 연결선 (허브·중간 노드만) */}
       <g className="mission-net__links">
         {LINKS.map(([from, to, soft], idx) => (
           <line
@@ -150,7 +128,7 @@ export default function MissionNetwork() {
         ))}
       </g>
 
-      {/* 장식 노드 */}
+      {/* 노드 (가장자리로 갈수록 사라짐) */}
       {DOTS.map(([key, tier], idx) => (
         <circle
           key={idx}
@@ -158,6 +136,7 @@ export default function MissionNetwork() {
           cy={PT[key].y}
           r={R[tier]}
           className={`mission-net__dot mission-net__dot--${tier}`}
+          style={{ opacity: fade(PT[key]) }}
         />
       ))}
 
@@ -169,17 +148,16 @@ export default function MissionNetwork() {
             <circle
               cx={x}
               cy={y}
-              r={28}
+              r={24}
               fill="url(#netGlow)"
               className="mission-net__glow"
               style={{ animationDelay: `${hub.delay}s` }}
             />
-            <circle cx={x} cy={y} r={13} className="mission-net__ring" />
-            <circle cx={x} cy={y} r={6.5} className="mission-net__core" />
-            <text x={x} y={y + 34} className="mission-net__ko">
+            <circle cx={x} cy={y} r={6} className="mission-net__core" />
+            <text x={x} y={y + 30} className="mission-net__ko">
               {hub.ko}
             </text>
-            <text x={x} y={y + 48} className="mission-net__en">
+            <text x={x} y={y + 44} className="mission-net__en">
               {hub.en}
             </text>
           </g>
