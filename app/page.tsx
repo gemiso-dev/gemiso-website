@@ -374,12 +374,12 @@ export default function Home() {
               찾아드립니다.
             </p>
             <div className="gem-contact__actions">
-              <a
-                href={`mailto:${COMPANY.email}`}
+              <Link
+                href="/support/"
                 className="gem-btn gem-btn--invert"
               >
                 영업팀 문의
-              </a>
+              </Link>
               <a
                 href="#solutions"
                 className="gem-btn gem-btn--underline-light"

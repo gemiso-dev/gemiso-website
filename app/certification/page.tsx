@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import { COMPANY, asset } from "@/components/site-config";
+import { asset } from "@/components/site-config";
 import { CERT_STATS, GS_CERTS, PATENTS } from "@/components/certification-data";
 import { pageMetadata } from "@/components/seo";
 
@@ -150,9 +150,9 @@ export default function CertificationPage() {
             </p>
           </div>
           <div className="sol-cta__actions">
-            <a href={`mailto:${COMPANY.email}`} className="gem-btn gem-btn--invert">
+            <Link href="/support/" className="gem-btn gem-btn--invert">
               영업팀 문의
-            </a>
+            </Link>
             <Link
               href="/#solutions"
               className="gem-btn gem-btn--underline-light"

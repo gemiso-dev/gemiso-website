@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
 import SolutionMock from "@/components/SolutionMock";
-import { COMPANY, asset } from "@/components/site-config";
+import { asset } from "@/components/site-config";
 import { SOLUTIONS, getSolution } from "@/components/solutions-data";
 import { pageMetadata } from "@/components/seo";
 
@@ -331,12 +331,12 @@ export default async function SolutionPage({
             </p>
           </div>
           <div className="sol-cta__actions">
-            <a
-              href={`mailto:${COMPANY.email}`}
+            <Link
+              href="/support/"
               className="gem-btn gem-btn--invert"
             >
               영업팀 문의 →
-            </a>
+            </Link>
           </div>
         </Reveal>
       </section>
