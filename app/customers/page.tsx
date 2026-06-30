@@ -66,7 +66,13 @@ export default function CustomersPage() {
 
           <Reveal as="div" className="cust-cases__grid">
             {CASE_STUDIES.map((c) => (
-              <Link href="/news/" key={c.client} className="case-card">
+              <a
+                href={c.href}
+                key={c.client}
+                className="case-card"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div className="case-card__top">
                   <span className="case-card__client">{c.client}</span>
                   <span className="case-card__tag">{c.tag}</span>
@@ -74,7 +80,7 @@ export default function CustomersPage() {
                 <h3 className="case-card__outcome">{c.outcome}</h3>
                 <p className="case-card__desc">{c.desc}</p>
                 <span className="gem-arrow case-card__more">구축 사례 →</span>
-              </Link>
+              </a>
             ))}
           </Reveal>
         </div>

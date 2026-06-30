@@ -23,38 +23,44 @@ export const CUSTOMER_STATS: { v: string; k: string }[] = [
 export type CaseStudy = {
   /** 고객사명 */
   client: string;
-  /** 모노 태그 (예: CASE STUDY, AI) */
+  /** 모노 태그 (예: MAM, NCS) */
   tag: string;
   /** 핵심 성과 한 줄 */
   outcome: string;
   /** 한 줄 설명 */
   desc: string;
+  /** 구축 사례 자료 링크 (외부 PDF) */
+  href: string;
 };
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
-    client: "YTN",
-    tag: "CASE STUDY",
-    outcome: "소재 검색 시간 70% 단축",
-    desc: "MAM과 아카이브를 단일 카탈로그로 통합해 검색 속도를 크게 높였습니다.",
-  },
-  {
-    client: "MBC",
-    tag: "CASE STUDY",
-    outcome: "뉴스룸 Zodiac 전면 전환",
-    desc: "취재부터 송출까지 하나의 뉴스룸으로 통합했습니다.",
-  },
-  {
     client: "EBS",
-    tag: "PARTNERSHIP",
-    outcome: "콘텐츠 아카이브 고도화",
-    desc: "방대한 교육 콘텐츠를 검색 가능한 장기 아카이브로 전환합니다.",
+    tag: "MAM",
+    outcome: "파일 기반 방송 시스템 완성",
+    desc: "에어리얼 MAM으로 제작·송출·아카이빙을 유기적으로 통합한 디지털 제작 환경을 구축했습니다.",
+    href: "https://ba0baf98-1b92-4a3e-8ed6-db31fc82621c.filesusr.com/ugd/1df771_674f0380433449bcb7ca12bfdccf6934.pdf",
   },
   {
-    client: "아리랑 TV",
-    tag: "AI",
-    outcome: "이중언어 AI 앵커 구현",
-    desc: "한국어·영어를 동시에 전달하는 AI 앵커를 구축했습니다.",
+    client: "tbs 교통방송",
+    tag: "NCS",
+    outcome: "서비스 중단 없는 상암 이전",
+    desc: "청사 이전과 함께 NPS·아카이빙을 고도화하고 조디악 보도정보 시스템을 새로 구축했습니다.",
+    href: "https://ba0baf98-1b92-4a3e-8ed6-db31fc82621c.filesusr.com/ugd/1df771_739d3e037d944adc8bf218f40bfb0656.pdf",
+  },
+  {
+    client: "채널A",
+    tag: "NPS",
+    outcome: "광화문–상암 제작센터 연계",
+    desc: "에어리얼 MAM 기반 NPS로 두 제작센터 간 소재 전송을 원활하게 하고 아카이브를 통합했습니다.",
+    href: "https://ba0baf98-1b92-4a3e-8ed6-db31fc82621c.filesusr.com/ugd/1df771_b7affa19a1a6445ebc0121a94254a8f5.pdf",
+  },
+  {
+    client: "SBS 미디어넷",
+    tag: "MAM",
+    outcome: "7개 채널 통합 MAM 구축",
+    desc: "7개 전문 채널을 아우르는 엔터프라이즈급 MAM을 보도·송출 시스템과 연계해 구축했습니다.",
+    href: "https://ba0baf98-1b92-4a3e-8ed6-db31fc82621c.filesusr.com/ugd/1df771_6014c22fea0440299d04f16587019182.pdf",
   },
 ];
 
