@@ -32,7 +32,7 @@ export default function TechnologyPage() {
               <span className="hist-eyebrow__label">보유기술</span>
             </div>
             <h1 className="hist-hero__title">
-              수집부터 송출까지, 고객의 워크플로우를 함께 만드는 기술.
+              수집부터 송출까지, 고객의 워크플로우를 함께 만드는 기술
             </h1>
             <p className="hist-hero__desc">
               인제스트·인코딩부터 미디어 처리, NLE 연동, 아카이브, 전송,
@@ -112,7 +112,7 @@ export default function TechnologyPage() {
       <section className="sol-cta">
         <Reveal className="gem-container sol-cta__grid">
           <div>
-            <h2 className="sol-cta__title">필요한 기술을 함께 설계해요.</h2>
+            <h2 className="sol-cta__title">필요한 기술을 함께 설계해요</h2>
             <p className="sol-cta__desc">
               방송 워크플로우를 알려주시면, 저희 팀이 가장 알맞은 기술과 솔루션을
               함께 찾아드립니다.

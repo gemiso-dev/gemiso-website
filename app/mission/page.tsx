@@ -38,7 +38,7 @@ export default function MissionPage() {
               Media connecting{" "}
               <span className="mission-hero__hl">People</span>,{" "}
               <span className="mission-hero__hl">Time</span>, and{" "}
-              <span className="mission-hero__hl">Places</span>.
+              <span className="mission-hero__hl">Places</span>
             </h1>
             <p className="hist-hero__desc">
               ‘사람, 시간, 장소를 연결하는 미디어’라는 미션 아래, 제머나이소프트는
@@ -101,7 +101,7 @@ export default function MissionPage() {
       <section className="sol-cta">
         <Reveal className="gem-container sol-cta__grid">
           <div>
-            <h2 className="sol-cta__title">미디어로 더 가깝게, 함께 연결해요.</h2>
+            <h2 className="sol-cta__title">미디어로 더 가깝게, 함께 연결해요</h2>
             <p className="sol-cta__desc">
               방송 워크플로우를 알려주시면, 저희 팀이 가장 알맞은 솔루션을 함께
               찾아드립니다.

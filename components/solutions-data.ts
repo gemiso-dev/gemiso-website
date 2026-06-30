@@ -70,7 +70,7 @@ export const SOLUTIONS: Solution[] = [
     cat: "미디어 자산 관리 · MAM",
     short: "자산 관리",
     mock: "grid",
-    tagline: "수집에서 배포까지, 미디어 자산의 전 과정.",
+    tagline: "수집에서 배포까지, 미디어 자산의 전 과정",
     desc: "미디어가 들어오는 순간 워크플로우가 시작됩니다. 수집 · 변환 · 보관 · 분석 · 배포에 이르는 전 과정을 Proxima 하나로 제어하고 관리합니다. 모든 기능을 자체 연구개발로 구현했습니다.",
     trust: "국내외 다수 방송사 · 관공서에서 운영 중",
     stats: [
@@ -97,7 +97,7 @@ export const SOLUTIONS: Solution[] = [
       { k: "AI", v: "Vision AI · STT(Naver · Google · Amazon) · 자동 번역" },
       { k: "DEPLOY", v: "온프레미스 · 하이브리드 클라우드" },
     ],
-    detailsHeading: "여섯 개의 단계, 하나의 Proxima.",
+    detailsHeading: "여섯 개의 단계, 하나의 Proxima",
     details: [
       {
         code: "PROXIMA Ingest",
@@ -181,7 +181,7 @@ export const SOLUTIONS: Solution[] = [
     cat: "뉴스룸 · NRCS",
     short: "뉴스룸",
     mock: "rundown",
-    tagline: "기획에서 송출까지, 하나의 뉴스룸.",
+    tagline: "기획에서 송출까지, 하나의 뉴스룸",
     desc: "Zodiac은 TV 뉴스를 만드는 보도 정보 시스템입니다. 기사의 배정 · 작성 · 송고 같은 기사 관리부터 뉴스 큐시트, 큐시트 기반 송출 자동화까지 — 기획에서 온에어로 이어지는 뉴스룸 전 과정을 PC와 모바일에서 하나로 잇습니다.",
     trust: "MBC · YTN · KTV · TBS · cpbc · 아리랑국제방송 등 도입",
     stats: [
@@ -204,7 +204,7 @@ export const SOLUTIONS: Solution[] = [
       { k: "CLIENT", v: "데스크톱 · 모바일(Android · iOS) · 웹" },
       { k: "DEPLOY", v: "온프레미스 · 클라우드" },
     ],
-    detailsHeading: "다섯 개의 단계, 하나의 Zodiac.",
+    detailsHeading: "다섯 개의 단계, 하나의 Zodiac",
     details: [
       {
         code: "ZODIAC Planning",
@@ -278,7 +278,7 @@ export const SOLUTIONS: Solution[] = [
     short: "송출",
     mock: "schedule",
     image: "/assets/solutions/talos/sec.png",
-    tagline: "멈추지 않는 자동 송출.",
+    tagline: "멈추지 않는 자동 송출",
     desc: "편성 스케줄을 받거나 직접 구성하고 비디오 서버 등 송출 장비를 제어해 순서대로 영상을 내보냅니다. 방송사부터 송출 대행, 사내 방송, 유튜브 라이브까지 무중단으로 자동화합니다.",
     trust: "국내 주요 채널 온에어 운영",
     stats: [
@@ -302,7 +302,7 @@ export const SOLUTIONS: Solution[] = [
       { k: "CONFIG", v: "올인원(CIAB) · 분리형(Traditional)" },
       { k: "INTEGRATION", v: "편성 · 비디오 서버 · 라우터 · 그래픽" },
     ],
-    detailsHeading: "네 개의 모듈, 하나의 TALOS.",
+    detailsHeading: "네 개의 모듈, 하나의 TALOS",
     details: [
       {
         code: "TALOS PCS",
@@ -363,7 +363,7 @@ export const SOLUTIONS: Solution[] = [
     short: "라디오",
     mock: "waveform",
     image: "/assets/solutions/emotion/track.png",
-    tagline: "하드웨어에 종속되지 않는 라디오.",
+    tagline: "하드웨어에 종속되지 않는 라디오",
     desc: "Emotion은 현장 라디오 PD와 기술감독의 요구를 충족하는 통합 라디오 방송 솔루션입니다. 녹음 · 제작부터 생방송, 자동 송출, 관제, 품질 관리까지 여섯 개의 모듈로 하나로 잇습니다.",
     trust: "40년 이상의 라디오 운영 노하우를 담은 통합 솔루션",
     stats: [
@@ -386,7 +386,7 @@ export const SOLUTIONS: Solution[] = [
       { k: "REDUNDANCY", v: "주 · 예비 이중화 · 3중 서버 정합성" },
       { k: "PLATFORM", v: "소프트웨어 (HW 비종속) · 네트워크 확장" },
     ],
-    detailsHeading: "여섯 개의 모듈, 하나의 Emotion.",
+    detailsHeading: "여섯 개의 모듈, 하나의 Emotion",
     details: [
       {
         code: "Emotion Track",
@@ -474,7 +474,7 @@ export const SOLUTIONS: Solution[] = [
     short: "오디오 파일 시스템",
     mock: "waveform",
     image: "/assets/solutions/winner-s/chain.png",
-    tagline: "디지털 환경에 최적화된 오디오 파일 시스템.",
+    tagline: "디지털 환경에 최적화된 오디오 파일 시스템",
     desc: "Winner S는 네트워크와 대용량 데이터베이스를 기반으로 디지털 환경에 최적화한 오디오 파일 시스템입니다. 일반 프로그램과 방송 소재 · 광고 · 음원을 데이터베이스로 체계화하고, 제작부터 편성 · 광고 · 생방송 · 자동 송출 · 관제까지 오디오 방송의 전 과정을 아홉 개의 단말로 하나로 잇습니다.",
     trust: "네트워크 · 대용량 데이터베이스 기반 디지털 오디오 파일 시스템",
     stats: [
@@ -501,7 +501,7 @@ export const SOLUTIONS: Solution[] = [
       { k: "REDUNDANCY", v: "주 · 예비 이중화(High Availability)" },
       { k: "MONITORING", v: "통합 경보(Winner Watch) · 로그 분석" },
     ],
-    detailsHeading: "아홉 개의 단말, 하나의 Winner S.",
+    detailsHeading: "아홉 개의 단말, 하나의 Winner S",
     details: [
       {
         code: "WINNER S Launcher",
@@ -623,7 +623,7 @@ export const SOLUTIONS: Solution[] = [
     badge: "AI",
     mock: "ai",
     image: "/assets/solutions/maia/video.png",
-    tagline: "방송을 위한 AI 엔진 스위트.",
+    tagline: "방송을 위한 AI 엔진 스위트",
     desc: "MAIA(Media AI Agent)는 영상 · 음성 · 얼굴 · 문자 · 프롬프터를 AI로 분석하는 통합 엔진입니다. 방대한 미디어 라이브러리를 검색 가능한 자산으로 바꿉니다.",
     trust: "온프레미스 배포 — 콘텐츠가 시설 밖으로 나가지 않습니다",
     stats: [
@@ -719,7 +719,7 @@ export const SOLUTIONS: Solution[] = [
     short: "아카이브",
     mock: "grid",
     image: "/assets/solutions/mymy.png",
-    tagline: "콘텐츠를 한곳에서 관리하세요.",
+    tagline: "콘텐츠를 한곳에서 관리하세요",
     desc: "영상·이미지·문서를 한곳에 체계적으로 보관하고, 메타데이터·AI 의미·STT 자막 등 다양한 방식으로 원하는 콘텐츠를 즉시 찾습니다.",
     trust: "KBS 콘텐츠 아카이브 고도화",
     stats: [
@@ -771,7 +771,7 @@ export const SOLUTIONS: Solution[] = [
     short: "콘텐츠 배포",
     mock: "schedule",
     image: "/assets/solutions/g-sam/overview.png",
-    tagline: "하나의 콘텐츠를 모든 채널로.",
+    tagline: "하나의 콘텐츠를 모든 채널로",
     desc: "G-SAM은 YouTube · Facebook · Instagram · X(Twitter) · TikTok까지, 하나의 콘텐츠를 여러 SNS 플랫폼에 배포하고 관리하는 분산형 배포 솔루션입니다. 예약 배포부터 재생목록 · 자막 관리, 통계 분석, 아카이브까지 멀티 채널 운영 전 과정을 하나로 잇습니다.",
     trust: "1 Source Multi-Use — 한 번의 등록으로 모든 채널에 배포",
     stats: [
@@ -792,7 +792,7 @@ export const SOLUTIONS: Solution[] = [
       { k: "ANALYTICS", v: "채널 · 비디오 · 수익 통계 대시보드" },
       { k: "METADATA", v: "다국어 메타 · 자막 · 재생목록 관리" },
     ],
-    detailsHeading: "네 개의 기능, 하나의 G-SAM.",
+    detailsHeading: "네 개의 기능, 하나의 G-SAM",
     details: [
       {
         code: "G-SAM Deploy",

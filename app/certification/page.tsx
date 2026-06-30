@@ -33,7 +33,7 @@ export default function CertificationPage() {
               <span className="hist-eyebrow__tick" />
               <span className="hist-eyebrow__label">회사소개 · 인증 현황</span>
             </div>
-            <h1 className="hist-hero__title">검증된 기술, 공인된 품질.</h1>
+            <h1 className="hist-hero__title">검증된 기술, 공인된 품질</h1>
             <p className="hist-hero__desc">
               Geminisoft의 핵심 솔루션은 국가 공인 소프트웨어 품질 인증 GS
               1등급과 원천 기술 특허로 그 완성도를 입증합니다.
@@ -58,7 +58,7 @@ export default function CertificationPage() {
             <div className="gem-eyebrow gem-eyebrow--mono">
               <span>GS 인증 · GOOD SOFTWARE</span>
             </div>
-            <h2 className="gem-title">국가 공인 소프트웨어 품질, 최고 등급.</h2>
+            <h2 className="gem-title">국가 공인 소프트웨어 품질, 최고 등급</h2>
             <p className="gem-lead">
               한국정보통신기술협회(TTA)가 기능성 · 신뢰성 · 사용성을 평가해
               부여하는 GS 인증에서, 핵심 솔루션이 최고 등급인{" "}
@@ -102,7 +102,7 @@ export default function CertificationPage() {
             <div className="gem-eyebrow gem-eyebrow--mono">
               <span>특허 · PATENTS</span>
             </div>
-            <h2 className="gem-title">원천 기술을 특허로.</h2>
+            <h2 className="gem-title">원천 기술을 특허로</h2>
             <p className="gem-lead">
               미디어 데이터 처리의 핵심 기술을 특허로 확보해, 외산에 의존하지
               않는 독자적인 경쟁력을 갖췄습니다.

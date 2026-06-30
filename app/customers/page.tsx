@@ -33,7 +33,7 @@ export default function CustomersPage() {
               <span className="hist-eyebrow__tick" />
               <span className="hist-eyebrow__label">회사소개 · 고객사</span>
             </div>
-            <h1 className="hist-hero__title">방송이 신뢰하는 미디어 파트너.</h1>
+            <h1 className="hist-hero__title">방송이 신뢰하는 미디어 파트너</h1>
             <p className="hist-hero__desc">
               지상파와 보도 채널부터 공공·기업·교육·금융, 그리고 해외 방송사까지
               — Geminisoft의 미디어 기술이 현장에서 매일 운영되고 있습니다.
@@ -61,7 +61,7 @@ export default function CustomersPage() {
                 구축 사례 · CASE STUDIES
               </span>
             </div>
-            <h2 className="gem-title">도입의 결과로 증명합니다.</h2>
+            <h2 className="gem-title">도입의 결과로 증명합니다</h2>
           </Reveal>
 
           <Reveal as="div" className="cust-cases__grid">
@@ -95,7 +95,7 @@ export default function CustomersPage() {
               고객사 · CUSTOMERS
             </span>
           </div>
-          <h2 className="gem-title cust-intro__title">함께하는 고객들.</h2>
+          <h2 className="gem-title cust-intro__title">함께하는 고객들</h2>
           <p className="gem-lead cust-intro__lead">
             분야별로 살펴보세요. 도입처는 계속 늘어나고 있습니다.
           </p>
@@ -109,7 +109,7 @@ export default function CustomersPage() {
       <section className="sol-cta">
         <Reveal className="gem-container sol-cta__grid">
           <div>
-            <h2 className="sol-cta__title">다음 도입처를 함께 만들어요.</h2>
+            <h2 className="sol-cta__title">다음 도입처를 함께 만들어요</h2>
             <p className="sol-cta__desc">
               방송 워크플로우를 알려주시면, 저희 팀이 가장 알맞은 솔루션을 함께
               설계해 드립니다.

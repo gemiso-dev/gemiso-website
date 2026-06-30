@@ -35,7 +35,7 @@ export default function SupportPage() {
               <span className="hist-eyebrow__tick" />
               <span className="hist-eyebrow__label">고객지원 · CONTACT</span>
             </div>
-            <h1 className="hist-hero__title">기술지원 · 문의.</h1>
+            <h1 className="hist-hero__title">기술지원 · 문의</h1>
             <p className="hist-hero__desc">
               글로벌 미디어 기술 기업 Geminisoft의 솔루션 도입 상담과 기술 지원을
               안내합니다. 방송 워크플로우에 대한 어떤 문의든 환영합니다.
@@ -95,7 +95,7 @@ export default function SupportPage() {
                   오피스 · OFFICES
                 </span>
               </div>
-              <h2 className="sup-offices__title">서울과 호치민, 3개 거점.</h2>
+              <h2 className="sup-offices__title">서울과 호치민, 3개 거점</h2>
               <p className="sup-offices__desc">
                 본사와 미디어 컨트롤 센터, 베트남 대표 사무소가 방송 고객을
                 가까이에서 지원합니다.

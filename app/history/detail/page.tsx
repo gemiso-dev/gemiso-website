@@ -41,7 +41,7 @@ export default function HistoryDetailPage() {
               <span className="hist-eyebrow__tick" />
               <span className="hist-eyebrow__label">회사소개 · 상세 연혁</span>
             </div>
-            <h1 className="hist-hero__title">걸어온 길, 빠짐없이.</h1>
+            <h1 className="hist-hero__title">걸어온 길, 빠짐없이</h1>
             <p className="hist-hero__desc">
               2002년 설립 이후 이어온 구축·개발·계약 실적을 연도별·월별로 모두
               모았습니다. 주요 이정표만 보려면{" "}

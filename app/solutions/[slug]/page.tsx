@@ -130,7 +130,7 @@ export default async function SolutionPage({
             <div className="gem-eyebrow gem-eyebrow--mono">
               <span>핵심 기능</span>
             </div>
-            <h2 className="gem-title">{active.ko}에 필요한 모든 것.</h2>
+            <h2 className="gem-title">{active.ko}에 필요한 모든 것</h2>
           </Reveal>
 
           <Reveal as="div" className="sol-features">
@@ -167,7 +167,7 @@ export default async function SolutionPage({
                 <span>기능 상세</span>
               </div>
               <h2 className="gem-title">
-                {active.detailsHeading ?? `다섯 개의 엔진, 하나의 ${active.name}.`}
+                {active.detailsHeading ?? `다섯 개의 엔진, 하나의 ${active.name}`}
               </h2>
             </Reveal>
 
@@ -219,7 +219,7 @@ export default async function SolutionPage({
             <div className="gem-eyebrow gem-eyebrow--mono">
               <span>작동 방식</span>
             </div>
-            <h2 className="gem-title">한 흐름으로 이어지는 워크플로우.</h2>
+            <h2 className="gem-title">한 흐름으로 이어지는 워크플로우</h2>
           </Reveal>
 
           <Reveal as="div" className="sol-steps">
@@ -241,7 +241,7 @@ export default async function SolutionPage({
             <div className="gem-eyebrow gem-eyebrow--mono">
               <span>성과 · 사양</span>
             </div>
-            <h2 className="gem-title">검증된 기술, 측정된 성과.</h2>
+            <h2 className="gem-title">검증된 기술, 측정된 성과</h2>
           </Reveal>
 
           <Reveal as="div" className="sol-perf">
@@ -273,7 +273,7 @@ export default async function SolutionPage({
               <span>도입 고객</span>
             </div>
             <h2 className="gem-title gem-title--sm">
-              {active.name}를 선택한 고객.
+              {active.name}를 선택한 고객
             </h2>
           </Reveal>
           <div className="gem-marquee__track sol-clients__track">
@@ -300,7 +300,7 @@ export default async function SolutionPage({
               <div className="gem-eyebrow gem-eyebrow--mono">
                 <span>다른 솔루션</span>
               </div>
-              <h2 className="gem-title gem-title--sm">미디어 생애주기 전체를 하나로.</h2>
+              <h2 className="gem-title gem-title--sm">미디어 생애주기 전체를 하나로</h2>
             </div>
             <Link href="/#solutions" className="gem-news__more">
               솔루션 전체 보기 →

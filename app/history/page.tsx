@@ -56,7 +56,7 @@ export default function HistoryPage() {
               <span className="hist-eyebrow__tick" />
               <span className="hist-eyebrow__label">회사소개 · 연혁</span>
             </div>
-            <h1 className="hist-hero__title">Geminisoft가 걸어온 길.</h1>
+            <h1 className="hist-hero__title">Geminisoft가 걸어온 길</h1>
             <p className="hist-hero__desc">
               2002년 설립 이후, 미디어 자산 관리부터 뉴스룸·아카이브·자동 송출,
               그리고 AI까지 — 방송 미디어 기술을 직접 개발하며 고객과 함께 성장해

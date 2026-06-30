@@ -33,7 +33,7 @@ export default function PartnersPage() {
               <span className="hist-eyebrow__tick" />
               <span className="hist-eyebrow__label">고객지원 · 파트너</span>
             </div>
-            <h1 className="hist-hero__title">함께 만드는 미디어 생태계.</h1>
+            <h1 className="hist-hero__title">함께 만드는 미디어 생태계</h1>
             <p className="hist-hero__desc">
               Geminisoft는 세계적인 미디어 기술 기업, 국제 표준 얼라이언스, 그리고
               대학과 협력하여 더 나은 방송 미디어 환경을 함께 만들어 갑니다.

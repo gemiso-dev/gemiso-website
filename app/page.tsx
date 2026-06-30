@@ -172,7 +172,7 @@ export default function Home() {
             <h1 className="gem-hero__title">
               레거시를 넘어 <span className="gem-hero__hl">AX</span>로,
               <br />
-              방송의 미래를 켜다.
+              방송의 미래를 켜다
             </h1>
             <p className="gem-hero__desc">
               이제 레거시 방송만으로는 경쟁할 수 없습니다. Geminisoft는 AI 기반
@@ -254,7 +254,7 @@ export default function Home() {
             <div className="gem-eyebrow">
               <span>솔루션</span>
             </div>
-            <h2 className="gem-title">미디어 생애주기 전체를 하나의 플랫폼으로.</h2>
+            <h2 className="gem-title">미디어 생애주기 전체를 하나의 플랫폼으로</h2>
             <p className="gem-lead">
               카메라에서 송출, 그리고 아카이브까지 — 모든 단계가 Geminisoft가
               직접 개발하고 보유한 솔루션 위에서 작동합니다.
@@ -288,7 +288,7 @@ export default function Home() {
             <span>고객사</span>
           </div>
           <h2 className="gem-title gem-title--sm">
-            많은 고객이 보내준 신뢰, 흔들림 없는 기술 지원으로 답합니다.
+            많은 고객이 보내준 신뢰, 흔들림 없는 기술 지원으로 답합니다
           </h2>
         </Reveal>
         <CustomerMarquee />
@@ -301,7 +301,7 @@ export default function Home() {
             <div className="gem-eyebrow">
               <span>Geminisoft를 선택하는 이유</span>
             </div>
-            <h2 className="gem-title">방송사가 Geminisoft를 선택하는 이유.</h2>
+            <h2 className="gem-title">방송사가 Geminisoft를 선택하는 이유</h2>
           </Reveal>
 
           <Reveal as="div" className="gem-reasons">
@@ -332,7 +332,7 @@ export default function Home() {
             <div className="gem-eyebrow">
               <span>기술</span>
             </div>
-            <h2 className="gem-title">직접 개발한 핵심 미디어 기술.</h2>
+            <h2 className="gem-title">직접 개발한 핵심 미디어 기술</h2>
             <p className="gem-lead">
               Geminisoft는 미디어 자산 관리, 아카이빙, 뉴스룸 컴퓨팅 전반에 걸쳐
               전문 역량을 보유하고 있습니다.
@@ -359,7 +359,7 @@ export default function Home() {
               <div className="gem-eyebrow">
                 <span>소식</span>
               </div>
-              <h2 className="gem-title">Geminisoft의 최신 소식.</h2>
+              <h2 className="gem-title">Geminisoft의 최신 소식</h2>
             </div>
             <Link href="/news/" className="gem-news__more">
               전체 뉴스 보기 →
