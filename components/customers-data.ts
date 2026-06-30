@@ -163,6 +163,7 @@ export const CUSTOMERS: Customer[] = [
   ]),
   ...group("global", [
     ["태국 TPBS", "tpbs"],
+    ["태국 TNN24", "tnn"],
     ["베트남 VNA", "vna"],
     ["베트남 VOV", "vov"],
     ["홍콩 TVB", "tvb"],

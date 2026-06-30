@@ -13,7 +13,7 @@
 > SVG로 제공하고 싶으면 알려주세요. `components/customers-data.ts`의
 > `customerLogo()` 확장자만 바꾸면 됩니다.
 
-## 파일명 목록 (총 63곳)
+## 파일명 목록 (총 64곳)
 
 ### 미디어
 - `mbc.png` — MBC
@@ -81,6 +81,7 @@
 
 ### 해외
 - `tpbs.png` — 태국 TPBS
+- `tnn.png` — 태국 TNN24
 - `vna.png` — 베트남 VNA
 - `vov.png` — 베트남 VOV
 - `tvb.png` — 홍콩 TVB

@@ -10,23 +10,32 @@ import {
 import { asset } from "@/components/site-config";
 
 /**
- * 고객사 셀 — 회사명을 기본으로 항상 깔아 두고, 로고가 실제로 로드되면 그 위로 교체한다.
- * 로고 파일이 없거나 깨지면 onLoad가 발생하지 않아 회사명이 그대로 유지된다(깜빡임 없음).
+ * 고객사 셀 — 회사명은 항상 표시하고, 로고 파일이 있으면 그 위에 얹는다.
+ *  - 로고 있음: 로고(위) + 회사명(아래) 세로 배치
+ *  - 로고 없음/깨짐: onLoad가 안 일어나 로고는 숨고 회사명만 가운데 표시
  */
 function CustomerCell({ customer }: { customer: Customer }) {
   const [logoLoaded, setLogoLoaded] = useState(false);
 
   return (
-    <div className="cust-cell">
-      {!logoLoaded && <span className="cust-cell__name">{customer.name}</span>}
+    <div className={`cust-cell${logoLoaded ? " has-logo" : ""}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
+      {/* loading="lazy"는 쓰지 않는다: 로고는 .cust-cell__logo가 onLoad 전까지
+          display:none이라 레이아웃 박스가 없는데, lazy 이미지는 박스가 없으면
+          영영 로드되지 않아 onLoad가 안 일어나고(→ is-loaded 미부여) 계속 숨는다.
+          eager 이미지는 display:none이어도 로드되므로 onLoad가 정상 발생한다.
+          또한 ref로 마운트 시점에 이미 로드된 경우(캐시 히트로 hydration 전에
+          onLoad가 지나가 버린 경우)도 잡아 준다. */}
       <img
+        ref={(img) => {
+          if (img?.complete && img.naturalWidth > 0) setLogoLoaded(true);
+        }}
         className={`cust-cell__logo${logoLoaded ? " is-loaded" : ""}`}
         src={asset(customerLogo(customer.slug))}
         alt={customer.name}
-        loading="lazy"
         onLoad={() => setLogoLoaded(true)}
       />
+      <span className="cust-cell__name">{customer.name}</span>
     </div>
   );
 }
