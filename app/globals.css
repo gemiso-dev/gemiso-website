@@ -3480,7 +3480,6 @@ a.sup-contact__cell:hover {
 .mission-net__link {
   stroke: var(--gem-accent);
   stroke-width: 1;
-  stroke-opacity: 0.32;
 }
 .mission-net__link--soft {
   stroke-opacity: 0.1;

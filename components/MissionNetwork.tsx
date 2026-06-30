@@ -1,7 +1,7 @@
 /**
  * 미션 히어로 네트워크 비주얼 (순수 SVG).
- * 사람·시간·장소 세 허브를 직선 삼각형으로 깔끔하게 연결하고,
- * 주변에는 중심에서 멀어질수록 사라지는 입자만 흩어 둔다.
+ * 사람·시간·장소 세 허브를 직선 삼각형으로 잇고(백본), 각 허브에서 위성 노드로
+ * 짧은 스포크를 뻗어 네트워크 느낌을 준다. 바깥엔 멀어질수록 사라지는 입자만 둔다.
  * 색·글로우는 globals.css의 .mission-net__* 를 따른다.
  */
 
@@ -9,47 +9,58 @@ type Pt = { x: number; y: number };
 
 const PT: Record<string, Pt> = {
   // 허브 (삼각형 꼭짓점)
-  people: { x: 132, y: 148 },
-  time: { x: 330, y: 142 },
-  places: { x: 228, y: 320 },
-  // 떠다니는 입자 (서로 연결 안 함, 가장자리로 갈수록 사라짐)
-  s1: { x: 66, y: 108 },
-  s2: { x: 56, y: 200 },
-  s3: { x: 92, y: 288 },
-  s4: { x: 152, y: 70 },
-  s5: { x: 256, y: 60 },
-  s6: { x: 382, y: 94 },
-  s7: { x: 404, y: 184 },
-  s8: { x: 386, y: 268 },
-  s9: { x: 318, y: 344 },
-  s10: { x: 160, y: 360 },
-  s11: { x: 100, y: 348 },
-  s12: { x: 300, y: 230 },
+  people: { x: 132, y: 152 },
+  time: { x: 328, y: 146 },
+  places: { x: 230, y: 320 },
+  // 허브에서 뻗는 위성 노드 (스포크로 연결)
+  pa: { x: 56, y: 116 },
+  pb: { x: 74, y: 214 },
+  pc: { x: 150, y: 74 },
+  ta: { x: 404, y: 116 },
+  tb: { x: 406, y: 206 },
+  tc: { x: 296, y: 68 },
+  la: { x: 156, y: 366 },
+  lb: { x: 308, y: 358 },
+  // 떠다니는 입자 (연결 안 함, 가장자리로 갈수록 사라짐)
+  s1: { x: 254, y: 58 },
+  s2: { x: 388, y: 272 },
+  s3: { x: 96, y: 300 },
+  s4: { x: 236, y: 382 },
+  s5: { x: 40, y: 168 },
 };
 
-// [노드키, 색조] — near=accent, mid=중간 블루, far=옅은 블루, ring=테두리
+// [노드키, 색조]
 const DOTS: [string, "near" | "mid" | "far" | "ring"][] = [
-  ["s1", "ring"],
-  ["s2", "far"],
-  ["s3", "mid"],
+  ["pa", "ring"],
+  ["pb", "mid"],
+  ["pc", "far"],
+  ["ta", "mid"],
+  ["tb", "ring"],
+  ["tc", "far"],
+  ["la", "mid"],
+  ["lb", "far"],
+  ["s1", "far"],
+  ["s2", "ring"],
+  ["s3", "far"],
   ["s4", "far"],
   ["s5", "ring"],
-  ["s6", "far"],
-  ["s7", "mid"],
-  ["s8", "far"],
-  ["s9", "ring"],
-  ["s10", "far"],
-  ["s11", "mid"],
-  ["s12", "far"],
 ];
 
-const R: Record<string, number> = { near: 4.5, mid: 3.4, far: 2.6, ring: 4 };
+const R: Record<string, number> = { near: 4.5, mid: 3.6, far: 2.6, ring: 4 };
 
-// 세 허브를 잇는 직선 삼각형
+// 삼각형 백본 + 허브별 스포크
 const LINKS: [string, string][] = [
   ["people", "time"],
   ["time", "places"],
   ["places", "people"],
+  ["people", "pa"],
+  ["people", "pb"],
+  ["people", "pc"],
+  ["time", "ta"],
+  ["time", "tb"],
+  ["time", "tc"],
+  ["places", "la"],
+  ["places", "lb"],
 ];
 
 const HUBS: { key: string; ko: string; en: string; delay: number }[] = [
@@ -58,12 +69,14 @@ const HUBS: { key: string; ko: string; en: string; delay: number }[] = [
   { key: "places", ko: "장소", en: "PLACES", delay: 2.2 },
 ];
 
-// 중심에서 멀어질수록 옅어지는 투명도
-const CENTER: Pt = { x: 230, y: 204 };
+// 중심에서 멀어질수록 옅어지는 투명도 (노드/스포크 공통)
+const CENTER: Pt = { x: 230, y: 206 };
 function fade(p: Pt): number {
   const d = Math.hypot(p.x - CENTER.x, p.y - CENTER.y);
-  return Math.max(0.1, Math.min(0.88, 0.9 - (d / 230) * 0.85));
+  return Math.max(0.12, Math.min(0.9, 0.92 - (d / 235) * 0.82));
 }
+
+const HUB_KEYS = new Set(["people", "time", "places"]);
 
 export default function MissionNetwork() {
   return (
@@ -81,21 +94,29 @@ export default function MissionNetwork() {
         </radialGradient>
       </defs>
 
-      {/* 삼각형 연결선 */}
+      {/* 삼각형 백본 + 스포크 (스포크는 바깥 끝이 옅어지도록 거리 페이드) */}
       <g className="mission-net__links">
-        {LINKS.map(([from, to], idx) => (
-          <line
-            key={idx}
-            x1={PT[from].x}
-            y1={PT[from].y}
-            x2={PT[to].x}
-            y2={PT[to].y}
-            className="mission-net__link"
-          />
-        ))}
+        {LINKS.map(([from, to], idx) => {
+          const a = PT[from];
+          const b = PT[to];
+          // 허브-허브(삼각형)는 또렷하게, 허브-위성(스포크)은 끝점 거리만큼 옅게
+          const isBackbone = HUB_KEYS.has(from) && HUB_KEYS.has(to);
+          const op = isBackbone ? 0.34 : Math.min(0.34, fade(b) * 0.5);
+          return (
+            <line
+              key={idx}
+              x1={a.x}
+              y1={a.y}
+              x2={b.x}
+              y2={b.y}
+              className="mission-net__link"
+              style={{ opacity: op }}
+            />
+          );
+        })}
       </g>
 
-      {/* 떠다니는 입자 (가장자리로 갈수록 사라짐) */}
+      {/* 노드 (가장자리로 갈수록 사라짐) */}
       {DOTS.map(([key, tier], idx) => (
         <circle
           key={idx}
