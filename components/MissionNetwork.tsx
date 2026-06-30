@@ -13,33 +13,53 @@ const PT: Record<string, Pt> = {
   time: { x: 336, y: 124 },
   places: { x: 222, y: 320 },
   // 가지 노드 (허브마다 다른 형태로 연결)
-  pa: { x: 64, y: 110 }, // people 위쪽
-  pb: { x: 42, y: 192 }, // pa 에서 한 단계 더 (왼쪽 체인)
-  ta: { x: 400, y: 90 }, // time 위쪽 단독
-  tb: { x: 408, y: 200 }, // time 오른쪽
-  tc: { x: 372, y: 272 }, // tb 에서 한 단계 더 (오른쪽 체인)
-  la: { x: 306, y: 356 }, // places 오른쪽 단독
+  pa: { x: 64, y: 108 }, // people 위쪽 (분기점)
+  pb: { x: 40, y: 188 }, // pa → 아래로
+  pc: { x: 100, y: 58 }, // pa → 위로 (분기)
+  mp: { x: 66, y: 256 }, // pb → 더 아래 (왼쪽 긴 체인)
+  ta: { x: 402, y: 88 }, // time 위쪽
+  tb: { x: 410, y: 200 }, // time 오른쪽
+  tc: { x: 374, y: 272 }, // tb → 아래 (오른쪽 체인)
+  td: { x: 296, y: 58 }, // time → 위 단독
+  la: { x: 308, y: 356 }, // places 오른쪽
+  ld: { x: 272, y: 380 }, // la → 더 아래
+  lc: { x: 168, y: 358 }, // places 왼쪽
   // 떠다니는 입자 (연결 안 함, 불규칙 분포, 가장자리로 갈수록 사라짐)
-  s1: { x: 92, y: 286 },
-  s2: { x: 250, y: 52 },
-  s3: { x: 158, y: 374 },
-  s4: { x: 158, y: 244 },
-  s5: { x: 296, y: 206 },
+  s1: { x: 96, y: 292 },
+  s2: { x: 250, y: 50 },
+  s3: { x: 160, y: 380 },
+  s4: { x: 160, y: 242 },
+  s5: { x: 300, y: 206 },
+  s6: { x: 372, y: 168 },
+  s7: { x: 202, y: 96 },
+  s8: { x: 120, y: 322 },
+  s9: { x: 346, y: 322 },
+  s10: { x: 36, y: 132 },
 };
 
 // [노드키, 색조]
 const DOTS: [string, "near" | "mid" | "far" | "ring"][] = [
   ["pa", "mid"],
   ["pb", "ring"],
+  ["pc", "far"],
+  ["mp", "far"],
   ["ta", "ring"],
   ["tb", "mid"],
   ["tc", "far"],
+  ["td", "far"],
   ["la", "mid"],
+  ["ld", "far"],
+  ["lc", "ring"],
   ["s1", "far"],
   ["s2", "ring"],
   ["s3", "far"],
   ["s4", "far"],
-  ["s5", "far"],
+  ["s5", "mid"],
+  ["s6", "far"],
+  ["s7", "ring"],
+  ["s8", "far"],
+  ["s9", "far"],
+  ["s10", "far"],
 ];
 
 const R: Record<string, number> = { near: 4.5, mid: 3.6, far: 2.6, ring: 4 };
@@ -49,15 +69,20 @@ const LINKS: [string, string][] = [
   ["people", "time"],
   ["time", "places"],
   ["places", "people"],
-  // people: 왼쪽으로 2단 체인
+  // people: 왼쪽 분기 + 긴 체인
   ["people", "pa"],
   ["pa", "pb"],
-  // time: 위로 하나 + 오른쪽으로 2단 체인 (오른쪽이 더 빽빽)
+  ["pa", "pc"],
+  ["pb", "mp"],
+  // time: 위 둘 + 오른쪽 2단 체인
   ["time", "ta"],
+  ["time", "td"],
   ["time", "tb"],
   ["tb", "tc"],
-  // places: 오른쪽으로 하나만
+  // places: 양옆 + 아래 체인
   ["places", "la"],
+  ["la", "ld"],
+  ["places", "lc"],
 ];
 
 const HUBS: { key: string; ko: string; en: string; delay: number }[] = [
@@ -70,7 +95,7 @@ const HUBS: { key: string; ko: string; en: string; delay: number }[] = [
 const CENTER: Pt = { x: 228, y: 206 };
 function fade(p: Pt): number {
   const d = Math.hypot(p.x - CENTER.x, p.y - CENTER.y);
-  return Math.max(0.12, Math.min(0.9, 0.92 - (d / 235) * 0.82));
+  return Math.max(0.12, Math.min(0.9, 0.92 - (d / 240) * 0.8));
 }
 
 const HUB_KEYS = new Set(["people", "time", "places"]);
