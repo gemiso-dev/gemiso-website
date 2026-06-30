@@ -22,9 +22,11 @@ const PT: Record<string, Pt> = {
   tb: { x: 410, y: 200 }, // time 오른쪽
   tc: { x: 374, y: 272 }, // tb → 아래 (오른쪽 체인)
   td: { x: 296, y: 58 }, // time → 위 단독
-  la: { x: 308, y: 356 }, // places 오른쪽
+  la: { x: 308, y: 356 }, // places 오른쪽-아래
   ld: { x: 272, y: 380 }, // la → 더 아래
   lc: { x: 168, y: 358 }, // places 왼쪽
+  le: { x: 340, y: 312 }, // places → 오른쪽
+  lf: { x: 404, y: 298 }, // le → 더 오른쪽 (체인)
   // 떠다니는 입자 (연결 안 함, 불규칙 분포, 가장자리로 갈수록 사라짐)
   s1: { x: 96, y: 292 },
   s2: { x: 250, y: 50 },
@@ -49,6 +51,8 @@ const DOTS: [string, "near" | "mid" | "far" | "ring"][] = [
   ["la", "near"],
   ["ld", "far"],
   ["lc", "ring"],
+  ["le", "mid"],
+  ["lf", "far"],
   ["s1", "far"],
   ["s2", "ring"],
   ["s3", "far"],
@@ -80,6 +84,8 @@ const LINKS: [string, string][] = [
   ["places", "la"],
   ["la", "ld"],
   ["places", "lc"],
+  ["places", "le"],
+  ["le", "lf"],
 ];
 
 const HUBS: { key: string; ko: string; en: string; delay: number }[] = [
