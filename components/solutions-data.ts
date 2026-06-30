@@ -22,6 +22,10 @@ export type Solution = {
   ko: string;
   /** 카테고리 라벨 */
   cat: string;
+  /** 메뉴·푸터 내비게이션용 짧은 분류 라벨(예: "자산 관리"). */
+  short: string;
+  /** 솔루션 탭에서 강조할 때 코드 옆에 붙는 배지(예: "AI"). 있으면 탭이 강조 스타일이 된다. */
+  badge?: string;
   mock: SolutionMockType;
   /** 히어로에 쓸 실제 제품 스크린샷 경로(있으면 mock 대신 표시). asset()로 감싼다. */
   image?: string;
@@ -64,6 +68,7 @@ export const SOLUTIONS: Solution[] = [
     name: "Proxima",
     ko: "미디어 자산 관리",
     cat: "미디어 자산 관리 · MAM",
+    short: "자산 관리",
     mock: "grid",
     tagline: "수집에서 배포까지, 미디어 자산의 전 과정.",
     desc: "미디어가 들어오는 순간 워크플로우가 시작됩니다. 수집 · 변환 · 보관 · 분석 · 배포에 이르는 전 과정을 Proxima 하나로 제어하고 관리합니다. 모든 기능을 자체 연구개발로 구현했습니다.",
@@ -174,6 +179,7 @@ export const SOLUTIONS: Solution[] = [
     name: "Zodiac",
     ko: "뉴스룸",
     cat: "뉴스룸 · NRCS",
+    short: "뉴스룸",
     mock: "rundown",
     tagline: "기획에서 송출까지, 하나의 뉴스룸.",
     desc: "Zodiac은 TV 뉴스를 만드는 보도 정보 시스템입니다. 기사의 배정 · 작성 · 송고 같은 기사 관리부터 뉴스 큐시트, 큐시트 기반 송출 자동화까지 — 기획에서 온에어로 이어지는 뉴스룸 전 과정을 PC와 모바일에서 하나로 잇습니다.",
@@ -269,6 +275,7 @@ export const SOLUTIONS: Solution[] = [
     name: "TALOS",
     ko: "자동 송출",
     cat: "자동 송출 · APC (Automation Playout Controller)",
+    short: "송출",
     mock: "schedule",
     image: "/assets/solutions/talos/sec.png",
     tagline: "멈추지 않는 자동 송출.",
@@ -353,6 +360,7 @@ export const SOLUTIONS: Solution[] = [
     name: "Emotion",
     ko: "라디오",
     cat: "라디오 제작 · 송출",
+    short: "라디오",
     mock: "waveform",
     image: "/assets/solutions/emotion/track.png",
     tagline: "하드웨어에 종속되지 않는 라디오.",
@@ -458,11 +466,161 @@ export const SOLUTIONS: Solution[] = [
     ],
   },
   {
+    id: "winner-s",
+    code: "WINNER S",
+    name: "Winner S",
+    ko: "오디오 파일 시스템",
+    cat: "오디오 파일 시스템 · Audio File System",
+    short: "오디오 파일 시스템",
+    mock: "waveform",
+    image: "/assets/solutions/winner-s/chain.png",
+    tagline: "디지털 환경에 최적화된 오디오 파일 시스템.",
+    desc: "Winner S는 네트워크와 대용량 데이터베이스를 기반으로 디지털 환경에 최적화한 오디오 파일 시스템입니다. 일반 프로그램과 방송 소재 · 광고 · 음원을 데이터베이스로 체계화하고, 제작부터 편성 · 광고 · 생방송 · 자동 송출 · 관제까지 오디오 방송의 전 과정을 아홉 개의 단말로 하나로 잇습니다.",
+    trust: "네트워크 · 대용량 데이터베이스 기반 디지털 오디오 파일 시스템",
+    stats: [
+      { v: "최대 32채널", k: "멀티채널 오디오 편집" },
+      { v: "주 · 예비", k: "이중화 무중단 송출" },
+    ],
+    features: [
+      { t: "Launcher — 통합 단말", d: "오디오 파일 시스템을 빠르게 실행하는 통합 단말입니다. 권한 기반 사용자 로그인과 접근 제어, 공지 기능을 제공합니다." },
+      { t: "Winner Chain — 자동 송출(APC)", d: "일일 편성표를 받아 방송을 자동으로 송출합니다. 오디오 라우터 연동으로 채널을 자동 절체하고, 주 · 예비 이중화로 안정성을 높입니다." },
+      { t: "Winner Live — 생방송 진행", d: "큐시트 기반 생방송 진행 단말입니다. 예약 광고 자동 로딩과 비상 방송, 소재 · 음원 빠른 검색, 드래그 앤 드롭을 지원합니다." },
+      { t: "Winner Recording — 제작", d: "녹음과 편집을 통합한 제작 단말입니다. 최대 32채널 멀티채널과 무제한 Undo, 듀얼 모니터, 방송 편집 잔여 시간 자동 계산을 지원합니다." },
+      { t: "Winner Manager — 편성", d: "주간 · 일일 편성을 작성 · 관리합니다. 광고 데이터 등록과 프로그램별 큐시트 작성, 녹음 파일 유무 확인, 사용자별 편집 권한을 제공합니다." },
+      { t: "Winnerwave — NLE 편집", d: "WAV · MP3 · MP2 · WMA · ASF · FLAC 등 다양한 포맷을 다루는 비선형 오디오 편집기입니다. 영상 음원 추출과 32채널 이상 편집을 지원합니다." },
+      { t: "Winner CF — 광고", d: "광고를 직관적 UI로 체계적으로 관리합니다. 광고주 · 광고명 기준 빠른 소재 검색, 일일 광고 편성 검색 · 출력, 송출 프로그램과의 동기화를 제공합니다." },
+      { t: "Winner Music Bank — 뮤직 뱅크", d: "가볍고 단순한 오디오 아카이브입니다. CD 음원 추출과 앨범 · 아티스트 · 장르별 체계적 관리, 간단한 오디오 편집을 지원합니다." },
+      { t: "Winner Watch — 통합 경보", d: "모든 단말과 APC의 방송 상태를 한 화면에서 감시합니다. 시스템 장애 시 경보를 울리고 로그 분석으로 실시간 관리합니다.", mark: "관제" },
+    ],
+    workflow: ["제작 · 녹음", "편성", "광고 등록", "생방송 진행", "자동 송출", "통합 관제"],
+    specs: [
+      { k: "MODULES", v: "Launcher · Chain · Live · Recording · Manager · Winnerwave · CF · Music Bank · Watch" },
+      { k: "PLAYOUT", v: "APC 자동 송출 · 오디오 라우터 채널 자동 절체" },
+      { k: "EDITING", v: "멀티채널(최대 32) · 무제한 Undo · 사운드카드 비종속" },
+      { k: "FORMAT", v: "WAV · MP3 · MP2 · WMA · ASF · FLAC 등" },
+      { k: "REDUNDANCY", v: "주 · 예비 이중화(High Availability)" },
+      { k: "MONITORING", v: "통합 경보(Winner Watch) · 로그 분석" },
+    ],
+    detailsHeading: "아홉 개의 단말, 하나의 Winner S.",
+    details: [
+      {
+        code: "WINNER S Launcher",
+        title: "통합 단말",
+        sub: "Integrated Terminal",
+        desc: "오디오 파일 시스템의 모든 단말을 한곳에서 실행하는 통합 진입점입니다. 권한에 따라 접근을 통제하고 공지를 전달합니다.",
+        points: [
+          "빠른 실행 — 오디오 파일 시스템 프로그램을 쉽고 빠르게 실행합니다.",
+          "권한 기반 로그인 — 사용자 로그인과 권한 레벨에 따른 접근 제어를 제공합니다.",
+          "공지 기능 — 운영 공지를 단말에 전달합니다.",
+        ],
+        image: "/assets/solutions/winner-s/launcher.png",
+      },
+      {
+        code: "WINNER S Chain",
+        title: "자동 송출 (APC)",
+        sub: "Automatic Program Control",
+        desc: "일일 편성표를 받아 방송을 자동으로 내보내는 송출 단말입니다. 오디오 라우터와 연동해 채널을 절체하고, 주 · 예비 이중화로 무중단을 지킵니다.",
+        points: [
+          "일일 편성 자동 송출 — 편성표 기반으로 방송을 자동으로 송출하고, 편성 변경 시 사용자에게 알리고 자동으로 갱신합니다.",
+          "오디오 라우터 연동 — 채널을 자동으로 절체하고 모니터링합니다.",
+          "이중화 · 송출 감시 — 주 · 예비 구성으로 High Availability를 확보하고, 송출 전 소재를 감시 · 경보하며 파형으로 확인합니다.",
+        ],
+        image: "/assets/solutions/winner-s/chain.png",
+      },
+      {
+        code: "WINNER S Live",
+        title: "생방송 진행",
+        sub: "Live On-Air",
+        desc: "큐시트를 따라 생방송을 진행하는 단말입니다. 예약 광고를 자동으로 불러오고, 비상 방송과 빠른 소재 검색을 지원합니다.",
+        points: [
+          "큐시트 진행 — 큐시트를 불러올 때 예약 광고를 자동으로 로딩합니다.",
+          "비상 방송 — 돌발 상황에 대비한 비상 방송 기능을 제공합니다.",
+          "빠른 검색 · 드래그 앤 드롭 — 소재와 음원을 빠르게 찾고, 마우스 드래그 앤 드롭과 고품질 오디오 자동 변환을 지원합니다.",
+        ],
+        image: "/assets/solutions/winner-s/live.png",
+      },
+      {
+        code: "WINNER S Recording",
+        title: "제작",
+        sub: "Recording & Production",
+        desc: "녹음과 편집을 통합한 제작 단말입니다. 멀티채널 오디오를 다루며, 강력한 복구 기능으로 안정적으로 제작합니다.",
+        points: [
+          "멀티채널 제작 — 오디오 에디터로 녹음 · 편집하고 편성 소재로 저장합니다(최대 32채널, 권장 6채널).",
+          "생방송 연동 · 듀얼 모니터 — 생방송 프로그램과 연동하고, 듀얼 모니터 환경을 지원합니다.",
+          "잔여 시간 자동 계산 · 무제한 Undo — 방송 편집 중 잔여 시간을 자동으로 계산하고, 무제한 Undo로 강력하게 복구합니다.",
+        ],
+        image: "/assets/solutions/winner-s/recording.png",
+      },
+      {
+        code: "WINNER S Manager",
+        title: "편성",
+        sub: "Scheduling",
+        desc: "주간 · 일일 방송 편성을 작성하고 관리하는 단말입니다. 광고 데이터를 등록하고 프로그램별 큐시트를 구성합니다.",
+        points: [
+          "주간 · 일일 편성 — 편성을 작성 · 관리하고, 광고 데이터를 등록해 프로그램별로 편성합니다.",
+          "큐시트 · 녹음 파일 확인 — 프로그램별 큐시트를 작성 · 조회하고, 녹음 파일 유무를 확인해 표시합니다.",
+          "편성 오류 표시 · 권한 — 편성 오류를 표시하고, 사용자별 편집 권한을 설정합니다.",
+        ],
+        image: "/assets/solutions/winner-s/manager.png",
+      },
+      {
+        code: "WINNER S Winnerwave",
+        title: "오디오 편집 (NLE)",
+        sub: "Non-Linear Editor",
+        desc: "오디오 제작을 위한 비선형 편집기입니다. 다양한 포맷을 다루고 멀티채널을 편집하며, 사운드카드에 종속되지 않습니다.",
+        points: [
+          "다양한 포맷 — WAV · MP3 · MP2 · WMA · ASF · FLAC 등을 지원하고, 영상에서 음원을 추출합니다.",
+          "멀티채널 편집 · 공유 — 32채널 이상을 편집하고 편집 내용을 공유합니다.",
+          "사운드카드 비종속 · 복구 — 사운드카드와 무관하게 동작하고, 예기치 못한 오류에도 강력하게 복구합니다.",
+        ],
+        image: "/assets/solutions/winner-s/recording.png",
+      },
+      {
+        code: "WINNER S CF",
+        title: "광고",
+        sub: "Commercial Management",
+        desc: "광고를 체계적으로 관리하는 단말입니다. 직관적인 UI로 소재를 빠르게 찾고, 송출 프로그램과 동기화합니다.",
+        points: [
+          "빠른 소재 검색 — 광고주 · 광고명 기준으로 소재를 신속하게 검색합니다.",
+          "일일 광고 편성 — 일일 광고 편성을 검색 · 출력하고, 편성 변경 시 담당자에게 알립니다.",
+          "송출 동기화 · 광고료 — 송출 프로그램과 동기화하고, 광고료 산정 기능을 강화했습니다.",
+        ],
+        image: "/assets/solutions/winner-s/manager.png",
+      },
+      {
+        code: "WINNER S Music Bank",
+        title: "뮤직 뱅크",
+        sub: "Audio Archive",
+        desc: "가볍고 단순한 오디오 아카이브 프로그램입니다. CD 음원을 추출해 체계적으로 보관합니다.",
+        points: [
+          "CD 음원 추출 — CD에서 오디오를 추출해 라이브러리에 담습니다.",
+          "체계적 관리 — 앨범 · 아티스트 · 장르별로 음원을 정리합니다.",
+          "간단한 환경 · 편집 — 단순한 사용 환경에서 기본 오디오 편집을 지원합니다.",
+        ],
+        image: "/assets/solutions/winner-s/musicbank.png",
+      },
+      {
+        code: "WINNER S Watch",
+        title: "통합 경보",
+        sub: "Integrated Monitoring",
+        desc: "모든 단말과 APC의 방송 상태를 한 화면에서 감시하는 관제 단말입니다. 장애를 감지해 경보를 울리고 로그를 분석합니다.",
+        points: [
+          "통합 모니터링 — 모든 단말과 APC의 방송 상태를 단일 화면에서 감시합니다.",
+          "장애 경보 — 시스템 장애 발생 시 경보를 울립니다.",
+          "로그 분석 — 로그를 분석해 실시간으로 상태를 관리합니다.",
+        ],
+        image: "/assets/solutions/winner-s/watch.png",
+      },
+    ],
+  },
+  {
     id: "maia",
     code: "MAIA",
     name: "MAIA",
     ko: "AI 기술",
     cat: "미디어 AI 엔진 · Media AI Agent",
+    short: "AI",
+    badge: "AI",
     mock: "ai",
     image: "/assets/solutions/maia/video.png",
     tagline: "방송을 위한 AI 엔진 스위트.",
@@ -558,6 +716,7 @@ export const SOLUTIONS: Solution[] = [
     name: "MYMY",
     ko: "콘텐츠 아카이브",
     cat: "콘텐츠 관리 시스템 · CMS",
+    short: "아카이브",
     mock: "grid",
     image: "/assets/solutions/mymy.png",
     tagline: "콘텐츠를 한곳에서 관리하세요.",
@@ -609,6 +768,7 @@ export const SOLUTIONS: Solution[] = [
     name: "G-SAM",
     ko: "콘텐츠 배포",
     cat: "SNS 플랫폼 콘텐츠 배포",
+    short: "콘텐츠 배포",
     mock: "schedule",
     image: "/assets/solutions/g-sam/overview.png",
     tagline: "하나의 콘텐츠를 모든 채널로.",
@@ -688,6 +848,12 @@ export const SOLUTIONS: Solution[] = [
 
 /** generateStaticParams / 링크에서 쓰는 슬러그 목록. */
 export const SOLUTION_SLUGS = SOLUTIONS.map((s) => s.id);
+
+/** 헤더/푸터 내비게이션에서 쓰는 솔루션 드롭다운 링크 목록(순서는 SOLUTIONS 기준). */
+export const SOLUTION_NAV = SOLUTIONS.map((s) => ({
+  label: `${s.name} · ${s.short}`,
+  href: `/solutions/${s.id}/`,
+}));
 
 /** 슬러그로 솔루션 하나를 찾는다(없으면 undefined). */
 export function getSolution(id: string): Solution | undefined {

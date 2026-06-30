@@ -3,6 +3,7 @@
  * 헤더·푸터 등 공통 레이아웃이 이 데이터를 공유한다.
  */
 
+import { SOLUTION_NAV } from "@/components/solutions-data";
 import { TECHNOLOGY_NAV } from "@/components/technology-data";
 
 export type NavItem = { label: string; href: string; children?: NavItem[] };
@@ -20,16 +21,8 @@ export const PRIMARY_NAV: NavItem[] = [
   },
   {
     label: "솔루션",
-    href: "/solutions/proxima/",
-    children: [
-      { label: "Proxima · 자산 관리", href: "/solutions/proxima/" },
-      { label: "Zodiac · 뉴스룸", href: "/solutions/zodiac/" },
-      { label: "TALOS · 송출", href: "/solutions/talos/" },
-      { label: "Emotion · 라디오", href: "/solutions/emotion/" },
-      { label: "MAIA · AI", href: "/solutions/maia/" },
-      { label: "MYMY · 아카이브", href: "/solutions/mymy/" },
-      { label: "G-SAM · 콘텐츠 배포", href: "/solutions/g-sam/" },
-    ],
+    href: SOLUTION_NAV[0].href,
+    children: SOLUTION_NAV,
   },
   {
     label: "보유기술",
@@ -73,15 +66,7 @@ export const FOOTER_COLUMNS: { heading: string; links: NavItem[] }[] = [
   },
   {
     heading: "솔루션",
-    links: [
-      { label: "Proxima · 자산 관리", href: "/solutions/proxima/" },
-      { label: "Zodiac · 뉴스룸", href: "/solutions/zodiac/" },
-      { label: "TALOS · 송출", href: "/solutions/talos/" },
-      { label: "Emotion · 라디오", href: "/solutions/emotion/" },
-      { label: "MAIA · AI", href: "/solutions/maia/" },
-      { label: "MYMY · 아카이브", href: "/solutions/mymy/" },
-      { label: "G-SAM · 콘텐츠 배포", href: "/solutions/g-sam/" },
-    ],
+    links: SOLUTION_NAV,
   },
   {
     heading: "고객지원",

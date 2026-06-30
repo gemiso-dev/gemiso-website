@@ -1254,6 +1254,30 @@ a:hover > .gem-arrow,
 .sol-tab.is-active .sol-tab__name {
   color: var(--gem-fg);
 }
+/* 강조 탭 — 비활성 상태에서도 도드라지는 AI 솔루션(MAIA 등) */
+.sol-tab--featured {
+  background:
+    linear-gradient(rgba(15, 98, 254, 0.05), rgba(15, 98, 254, 0.05)), #fff;
+}
+.sol-tab--featured .sol-tab__code {
+  color: var(--gem-accent);
+}
+.sol-tab--featured .sol-tab__name {
+  color: var(--gem-fg);
+  font-weight: 500;
+}
+.sol-tab__badge {
+  display: inline-block;
+  margin-left: 6px;
+  font-family: var(--gem-font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #fff;
+  background: var(--gem-accent);
+  padding: 1px 5px;
+  vertical-align: middle;
+}
 
 /* ------------------------------------------------------------------ 히어로 */
 .sol-hero {

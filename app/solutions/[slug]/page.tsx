@@ -68,10 +68,15 @@ export default async function SolutionPage({
               <Link
                 key={s.id}
                 href={`/solutions/${s.id}/`}
-                className={`sol-tab${on ? " is-active" : ""}`}
+                className={`sol-tab${on ? " is-active" : ""}${
+                  s.badge ? " sol-tab--featured" : ""
+                }`}
                 aria-current={on ? "page" : undefined}
               >
-                <span className="sol-tab__code">{s.code}</span>
+                <span className="sol-tab__code">
+                  {s.code}
+                  {s.badge && <span className="sol-tab__badge">{s.badge}</span>}
+                </span>
                 <span className="sol-tab__name">{s.ko}</span>
               </Link>
             );

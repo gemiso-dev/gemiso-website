@@ -44,18 +44,24 @@ const SOLUTIONS = [
   },
   {
     num: "05",
+    tag: "WINNER-S",
+    title: "오디오 파일 시스템",
+    desc: "제작·편성·광고·생방송·자동 송출·관제까지 — 아홉 개의 단말로 잇는 디지털 오디오 파일 시스템.",
+  },
+  {
+    num: "06",
     tag: "MAIA",
     title: "AI 기술",
     desc: "미디어를 위한 AI — 방송 데이터로 학습한 메타데이터, 자막, 동적 보정 기술.",
   },
   {
-    num: "06",
+    num: "07",
     tag: "MYMY",
     title: "콘텐츠 아카이브",
     desc: "검색이 자유롭고 계속 늘어나는 미디어 라이브러리를 위한 안정적인 장기 디지털·영상 아카이빙.",
   },
   {
-    num: "07",
+    num: "08",
     tag: "G-SAM",
     title: "콘텐츠 배포",
     desc: "하나의 콘텐츠를 YouTube·Instagram·X·TikTok 등 여러 SNS 플랫폼에 배포하고 통계로 관리합니다.",
