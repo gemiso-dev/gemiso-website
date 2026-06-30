@@ -3478,21 +3478,42 @@ a.sup-contact__cell:hover {
   overflow: visible;
 }
 .mission-net__link {
-  stroke: #c9d3e0;
+  stroke: var(--gem-accent);
   stroke-width: 1;
+  stroke-opacity: 0.3;
 }
-.mission-net__dot--solid {
+.mission-net__link--soft {
+  stroke-opacity: 0.13;
+}
+.mission-net__dot--near {
   fill: var(--gem-accent);
 }
-.mission-net__dot--soft {
+.mission-net__dot--mid {
+  fill: #4d8bff;
+  opacity: 0.85;
+}
+.mission-net__dot--far {
   fill: #9bc0ff;
+  opacity: 0.6;
 }
 .mission-net__dot--ring {
   fill: var(--gem-bg);
   stroke: var(--gem-accent);
   stroke-width: 1.4;
+  stroke-opacity: 0.7;
 }
-.mission-net__hub {
+.mission-net__glow {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: netPulse 4.6s ease-in-out infinite;
+}
+.mission-net__ring {
+  fill: none;
+  stroke: var(--gem-accent);
+  stroke-width: 1.4;
+  stroke-opacity: 0.5;
+}
+.mission-net__core {
   fill: var(--gem-accent);
 }
 .mission-net__ko {
@@ -3507,6 +3528,22 @@ a.sup-contact__cell:hover {
   font-size: 9.5px;
   letter-spacing: 0.08em;
   fill: var(--gem-subtle);
+}
+@keyframes netPulse {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mission-net__glow {
+    animation: none;
+  }
 }
 @media (max-width: 860px) {
   .mission-hero__inner {
