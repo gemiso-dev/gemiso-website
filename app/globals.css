@@ -2996,7 +2996,7 @@ button.gem-copy__text:focus-visible,
   justify-content: center;
   gap: 10px;
   text-align: center;
-  padding: 18px 16px;
+  padding: 18px 32px;
   border-right: 1px solid var(--gem-border);
   border-bottom: 1px solid var(--gem-border);
   background: #fff;
