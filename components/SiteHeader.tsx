@@ -2,14 +2,32 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
-import { PRIMARY_NAV, asset } from "@/components/site-config";
+import { PRIMARY_NAV, asset, type NavItem } from "@/components/site-config";
+
+/** 경로 정규화: 끝 슬래시 제거(루트 "/"는 유지). */
+const stripSlash = (s: string) => (s !== "/" && s.endsWith("/") ? s.slice(0, -1) : s);
+
+/**
+ * 현재 경로가 해당 탭(또는 그 하위 페이지)에 속하면 true.
+ * 탭 자신의 href와 children href들을 후보로 모아 prefix 매칭한다.
+ */
+function isNavActive(item: NavItem, pathname: string): boolean {
+  const path = stripSlash(pathname || "/");
+  const hrefs = [item.href, ...(item.children?.map((c) => c.href) ?? [])];
+  return hrefs.some((h) => {
+    const base = stripSlash(h);
+    return base !== "/" && (path === base || path.startsWith(base + "/"));
+  });
+}
 
 /**
  * 공통 헤더 — 상단 유틸리티 바 + sticky 내비게이션 + 모바일 메뉴.
  * 모바일 메뉴 토글 + 데스크탑 드롭다운 상태 때문에 클라이언트 컴포넌트.
  */
 export default function SiteHeader() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
 
@@ -66,8 +84,9 @@ export default function SiteHeader() {
           </Link>
 
           <nav className="gem-nav gem-hide-sm" aria-label="주요 메뉴">
-            {PRIMARY_NAV.map((item, i) =>
-              item.children ? (
+            {PRIMARY_NAV.map((item, i) => {
+              const active = isNavActive(item, pathname);
+              return item.children ? (
                 <div
                   key={i}
                   className="gem-nav__item"
@@ -85,9 +104,10 @@ export default function SiteHeader() {
                 >
                   <Link
                     href={item.href}
-                    className="gem-nav__link"
+                    className={`gem-nav__link${active ? " is-active" : ""}`}
                     aria-haspopup="true"
                     aria-expanded={openIndex === i}
+                    aria-current={active ? "page" : undefined}
                   >
                     {item.label}
                   </Link>
@@ -112,11 +132,16 @@ export default function SiteHeader() {
                   </div>
                 </div>
               ) : (
-                <Link key={i} href={item.href} className="gem-nav__link">
+                <Link
+                  key={i}
+                  href={item.href}
+                  className={`gem-nav__link${active ? " is-active" : ""}`}
+                  aria-current={active ? "page" : undefined}
+                >
                   {item.label}
                 </Link>
-              )
-            )}
+              );
+            })}
           </nav>
 
           <div className="gem-header__actions">
@@ -142,7 +167,12 @@ export default function SiteHeader() {
           <div className="gem-mobile-menu" style={{ display: "flex" }}>
             {PRIMARY_NAV.map((item, i) => (
               <div key={i} className="gem-mobile-menu__group">
-                <Link href={item.href} onClick={closeMenu}>
+                <Link
+                  href={item.href}
+                  onClick={closeMenu}
+                  className={isNavActive(item, pathname) ? "is-active" : undefined}
+                  aria-current={isNavActive(item, pathname) ? "page" : undefined}
+                >
                   {item.label}
                 </Link>
                 {item.children?.map((child, j) => (

@@ -345,6 +345,12 @@ a:hover > .gem-arrow,
 .gem-nav__link:hover {
   border-bottom-color: var(--gem-fg);
 }
+/* 현재 조회 중인 탭 — primary 색 밑줄로 선택 상태 표시 (hover보다 우선) */
+.gem-nav__link.is-active {
+  color: var(--gem-accent);
+  border-bottom-color: var(--gem-accent);
+  font-weight: 600;
+}
 
 /* 드롭다운 메뉴 */
 .gem-nav__item {
@@ -460,6 +466,11 @@ a:hover > .gem-arrow,
 .gem-mobile-menu__group {
   display: flex;
   flex-direction: column;
+}
+/* 현재 조회 중인 탭 (모바일) */
+.gem-mobile-menu__group > a.is-active {
+  color: var(--gem-accent);
+  font-weight: 600;
 }
 .gem-mobile-menu__sub {
   padding-left: 14px !important;
