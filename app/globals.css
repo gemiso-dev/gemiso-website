@@ -2334,9 +2334,10 @@ button.gem-copy__text:focus-visible,
   flex: none;
 }
 .hist-eyebrow__label {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-sans);
   font-size: 12px;
-  letter-spacing: 0.1em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   color: var(--gem-accent);
 }
 .hist-eyebrow__label--muted {
