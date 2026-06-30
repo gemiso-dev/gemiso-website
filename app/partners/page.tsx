@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import { COMPANY } from "@/components/site-config";
+import { COMPANY, asset } from "@/components/site-config";
 import { PARTNER_STATS, PARTNER_GROUPS } from "@/components/partners-data";
 import { pageMetadata } from "@/components/seo";
 
@@ -91,6 +91,15 @@ export default function PartnersPage() {
                       </span>
                       <span className="part-card__kind">{p.kind}</span>
                     </div>
+                    {p.logo && (
+                      <div className="part-card__logo">
+                        <img
+                          src={asset(p.logo)}
+                          alt={`${p.name} 로고`}
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
                     <h3 className="part-card__name">{p.name}</h3>
                     <p className="part-card__desc">{p.desc}</p>
                     <span className="part-card__link">{p.disp} ↗</span>

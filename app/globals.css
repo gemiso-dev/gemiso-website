@@ -3133,6 +3133,19 @@ button.gem-copy__text:focus-visible,
   letter-spacing: 0.06em;
   color: var(--gem-accent);
 }
+/* 로고: 높이를 고정해 통일하고 가로는 비율대로 가변. 카드보다 넓으면 줄인다. */
+.part-card__logo {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+.part-card__logo img {
+  height: 40px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
 .part-card__name {
   font-size: 21px;
   font-weight: 500;
