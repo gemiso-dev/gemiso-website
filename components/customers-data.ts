@@ -136,7 +136,7 @@ export const CUSTOMERS: Customer[] = [
   ]),
   ...group("enterprise", [
     ["삼성전자", "samsung-electronics"],
-    ["삼성화재", "samsung-fire"],
+    ["삼성엔지니어링", "samsung-engineering"],
     ["현대자동차", "hyundai-motor"],
     ["현대중공업", "hhi"],
     ["SK하이닉스", "sk-hynix"],
@@ -154,6 +154,7 @@ export const CUSTOMERS: Customer[] = [
     ["호남대학교", "honam"],
   ]),
   ...group("finance", [
+    ["삼성화재", "samsung-fire"],
     ["신한은행", "shinhan"],
     ["우리은행", "woori"],
     ["국민은행", "kb"],

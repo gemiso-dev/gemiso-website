@@ -13,7 +13,7 @@
 > SVG로 제공하고 싶으면 알려주세요. `components/customers-data.ts`의
 > `customerLogo()` 확장자만 바꾸면 됩니다.
 
-## 파일명 목록 (총 64곳)
+## 파일명 목록 (총 65곳)
 
 ### 미디어
 - `mbc.png` — MBC
@@ -54,7 +54,7 @@
 
 ### 기업
 - `samsung-electronics.png` — 삼성전자
-- `samsung-fire.png` — 삼성화재
+- `samsung-engineering.png` — 삼성엔지니어링
 - `hyundai-motor.png` — 현대자동차
 - `hhi.png` — 현대중공업
 - `sk-hynix.png` — SK하이닉스
@@ -72,6 +72,7 @@
 - `honam.png` — 호남대학교
 
 ### 금융
+- `samsung-fire.png` — 삼성화재
 - `shinhan.png` — 신한은행
 - `woori.png` — 우리은행
 - `kb.png` — 국민은행
