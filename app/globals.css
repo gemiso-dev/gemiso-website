@@ -136,7 +136,7 @@ img {
 
 /* 제목 — 가볍고 큰 디스플레이 서체 */
 .gem-title {
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.18;
   letter-spacing: -0.01em;
   color: var(--gem-fg);
@@ -630,24 +630,20 @@ a:hover > .gem-arrow,
 .gem-eyebrow--badge {
   display: inline-flex;
   gap: 0;
-  padding: 8px 16px;
-  border-radius: 999px;
-  background: rgba(15, 98, 254, 0.1);
-  border: 1px solid rgba(15, 98, 254, 0.2);
 }
 .gem-eyebrow--badge::before {
   display: none;
 }
 .gem-eyebrow--badge > span {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 18px;
   letter-spacing: 0.01em;
-  color: var(--gem-accent-strong);
+  color: var(--gem-accent);
 }
 
 .gem-hero__title {
-  font-size: clamp(40px, 6vw, 76px);
-  font-weight: 300;
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 400;
   line-height: 1.12;
   letter-spacing: -0.02em;
   color: var(--gem-fg);
@@ -1427,7 +1423,7 @@ button.gem-copy__text:focus-visible,
 }
 .sol-hero__title {
   font-size: clamp(36px, 5.4vw, 68px);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.12;
   letter-spacing: -0.02em;
   color: var(--gem-fg);
@@ -2387,7 +2383,7 @@ button.gem-copy__text:focus-visible,
 .hist-hero__title {
   margin-top: 20px;
   font-size: clamp(38px, 5.4vw, 72px);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--gem-fg);
@@ -3603,7 +3599,7 @@ a.sup-contact__cell:hover {
 .mission-pillar__title {
   margin-top: 16px;
   font-size: clamp(30px, 4vw, 50px);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.08;
   letter-spacing: -0.02em;
   color: var(--gem-fg);
@@ -3622,7 +3618,6 @@ a.sup-contact__cell:hover {
   line-height: 1.5;
   letter-spacing: -0.01em;
   color: var(--gem-fg);
-  white-space: pre-line;
 }
 .mission-pillar__text {
   margin-top: 22px;

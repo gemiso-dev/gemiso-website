@@ -42,9 +42,8 @@ export default function MissionPage() {
               <span className="mission-hero__hl">Places</span>
             </h1>
             <p className="hist-hero__desc">
-              ‘사람, 시간, 장소를 연결하는 미디어’라는 미션 아래,
-              <br />
-              제머나이소프트는 미디어 기술을 개발합니다.
+              ‘사람, 시간, 장소를 연결하는 미디어’라는 미션 아래, 제머나이소프트는
+              미디어 기술을 개발합니다.
             </p>
           </Reveal>
 
