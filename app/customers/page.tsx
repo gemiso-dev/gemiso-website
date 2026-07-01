@@ -18,9 +18,9 @@ export default function CustomersPage() {
       <nav className="sol-breadcrumb" aria-label="위치">
         <div className="gem-container sol-breadcrumb__inner">
           <Link href="/">홈</Link>
-          <span className="gem-sep">/</span>
+          <span className="gem-sep">|</span>
           <Link href="/#solutions">회사소개</Link>
-          <span className="gem-sep">/</span>
+          <span className="gem-sep">|</span>
           <span className="sol-breadcrumb__current">고객사</span>
         </div>
       </nav>

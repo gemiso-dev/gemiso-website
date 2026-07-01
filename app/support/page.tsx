@@ -22,7 +22,7 @@ export default function SupportPage() {
       <nav className="sol-breadcrumb" aria-label="위치">
         <div className="gem-container sol-breadcrumb__inner">
           <Link href="/">홈</Link>
-          <span className="gem-sep">/</span>
+          <span className="gem-sep">|</span>
           <span className="sol-breadcrumb__current">고객지원</span>
         </div>
       </nav>

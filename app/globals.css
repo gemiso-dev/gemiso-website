@@ -34,7 +34,7 @@
   --gem-maxw: 1320px;
   --gem-gutter: clamp(20px, 4vw, 32px);
   --gem-sec-pad: 96px; /* 섹션 세로 여백(데스크탑) */
-  --gem-header-h: 56px;
+  --gem-header-h: 60px;
 
   /* 반응형 분기점 */
   --gem-bp: 860px;
@@ -107,10 +107,13 @@ img {
 .gem-section {
   padding-block: var(--gem-sec-pad);
 }
+/* 솔루션 영역: 스트로크 대신 연한 회색 배경으로 구분 */
+#solutions {
+  background: #fcfcfc;
+}
 
 .gem-section--alt {
-  background: var(--gem-surface);
-  border-top: 1px solid var(--gem-border);
+  background: #fcfcfc;
 }
 
 /* 섹션 머리말: accent tick + 라벨 */
@@ -144,6 +147,12 @@ img {
 .gem-title--sm {
   font-size: clamp(24px, 2.8vw, 34px);
   line-height: 1.2;
+}
+/* 넓은 화면에서 한 줄로 유지(좁은 화면에선 자연 줄바꿈) */
+@media (min-width: 768px) {
+  .gem-title--nowrap {
+    white-space: nowrap;
+  }
 }
 
 /* 도입 문단 */
@@ -291,11 +300,18 @@ a:hover > .gem-arrow,
 .gem-lang {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  font-size: 13px;
+}
+.gem-lang a:not(.gem-lang__current) {
+  color: #c6c6c6;
+  transition: color 0.15s ease;
+}
+.gem-lang a:not(.gem-lang__current):hover {
+  color: var(--gem-fg);
 }
 .gem-lang__current {
   color: var(--gem-fg);
-  font-weight: 600;
 }
 
 /* =========================================================================
@@ -305,8 +321,11 @@ a:hover > .gem-arrow,
   position: sticky;
   top: 0;
   z-index: 50;
+  background: transparent;
+  transition: background 0.25s ease;
+}
+.gem-header.is-scrolled {
   background: var(--gem-bg);
-  border-bottom: 1px solid var(--gem-border);
 }
 
 .gem-header__inner {
@@ -407,7 +426,7 @@ a:hover > .gem-arrow,
 .gem-header__actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 24px;
 }
 
 .gem-header__cta-text {
@@ -602,8 +621,51 @@ a:hover > .gem-arrow,
 .gem-hero {
   position: relative;
   background: var(--gem-bg);
-  border-bottom: 1px solid var(--gem-border);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* 히어로 2열 레이아웃(≥861px)에서만 화면을 꽉 채우도록 (스택되면 콘텐츠 높이 유지) */
+@media (min-width: 861px) {
+  .gem-hero {
+    min-height: calc(100vh - var(--gem-header-h));
+  }
+}
+/* 스크롤 다운 유도 화살표 (히어로 하단 중앙) */
+.gem-hero__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 44px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  color: var(--gem-subtle);
+  animation: heroScrollHint 1.8s ease-in-out infinite;
+}
+.gem-hero__scroll:hover {
+  color: var(--gem-fg);
+}
+@keyframes heroScrollHint {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(-50%) translateY(6px);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gem-hero__scroll {
+    animation: none;
+  }
+}
+/* 목업이 아래로 스택되는 860px 이하에선 화살표 숨김 (2열일 때만 노출) */
+@media (max-width: 860px) {
+  .gem-hero__scroll {
+    display: none;
+  }
 }
 .gem-hero::before {
   content: "";
@@ -622,12 +684,14 @@ a:hover > .gem-arrow,
   grid-template-columns: 1.05fr 1fr;
   gap: clamp(36px, 5vw, 64px);
   align-items: center;
-  padding-block: clamp(48px, 7vw, 104px);
+  padding-top: 78px;
+  padding-bottom: clamp(48px, 7vw, 84px);
 }
 /* 히어로 라벨 강조 배지 — 옅은 파란 알약 위 진한 파란 볼드 텍스트 */
 .gem-eyebrow--badge {
   display: inline-flex;
   gap: 0;
+  margin-bottom: 28px;
 }
 .gem-eyebrow--badge::before {
   display: none;
@@ -640,9 +704,9 @@ a:hover > .gem-arrow,
 }
 
 .gem-hero__title {
-  font-size: clamp(40px, 6vw, 68px);
+  font-size: clamp(40px, 6vw, 64px);
   font-weight: 400;
-  line-height: 1.12;
+  line-height: 1.3;
   letter-spacing: -0.02em;
   color: var(--gem-fg);
 }
@@ -653,7 +717,7 @@ a:hover > .gem-arrow,
 }
 
 .gem-hero__desc {
-  margin-top: 24px;
+  margin-top: 32px;
   font-size: clamp(17px, 1.6vw, 20px);
   line-height: 1.6;
   color: var(--gem-muted);
@@ -897,13 +961,11 @@ a:hover > .gem-arrow,
 .gem-marquee {
   padding-block: clamp(40px, 5vw, 64px);
   background: #fff;
-  border-top: 1px solid var(--gem-border);
-  border-bottom: 1px solid var(--gem-border);
   overflow: hidden;
 }
 .gem-marquee__head {
   max-width: var(--gem-maxw);
-  margin: 0 auto 30px;
+  margin: 0 auto 44px;
   padding-inline: var(--gem-gutter);
 }
 .gem-marquee__track {
@@ -924,7 +986,6 @@ a:hover > .gem-arrow,
 .gem-logo-cell {
   width: 208px;
   height: 84px;
-  border-right: 1px solid #d6dae1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2350,7 +2411,6 @@ button.gem-copy__text:focus-visible,
 .hist-hero {
   position: relative;
   background: #fff;
-  border-bottom: 1px solid var(--gem-border);
   overflow: hidden;
 }
 .hist-hero::before {
@@ -3535,9 +3595,7 @@ a.sup-contact__cell:hover {
   background: var(--gem-bg);
 }
 .mission-pillar-sec--surface {
-  background: var(--gem-surface);
-  border-top: 1px solid var(--gem-border);
-  border-bottom: 1px solid var(--gem-border);
+  background: #fcfcfc;
 }
 .mission-pillar {
   max-width: 1200px;

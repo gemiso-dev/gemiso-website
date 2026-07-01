@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PRIMARY_NAV, asset, type NavItem } from "@/components/site-config";
 
 /** 경로 정규화: 끝 슬래시 제거(루트 "/"는 유지). */
@@ -31,6 +31,15 @@ export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
 
+  // 최상단에서는 투명, 스크롤하면 흰 배경 표시
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 4);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   // 데스크탑 드롭다운: 한 번에 하나만 열리도록 인덱스 하나로 관리한다.
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -53,25 +62,11 @@ export default function SiteHeader() {
 
   return (
     <>
-      {/* 상단 유틸리티 바 (데스크탑 전용) */}
-      <div className="gem-utilbar gem-hide-sm">
-        <div className="gem-container gem-utilbar__inner">
-          <div className="gem-utilbar__group gem-utilbar__group--end">
-            <Link href="/support/">고객지원</Link>
-            <Link href="/partners/">파트너</Link>
-            <span className="gem-lang">
-              <a href="#" className="gem-lang__current">
-                KR
-              </a>
-              <span className="gem-sep">/</span>
-              <a href="https://www.gemiso.com/">EN</a>
-            </span>
-          </div>
-        </div>
-      </div>
-
       {/* sticky 헤더 */}
-      <header className="gem-header" id="top">
+      <header
+        className={`gem-header${scrolled ? " is-scrolled" : ""}`}
+        id="top"
+      >
         <div className="gem-container gem-header__inner">
           <Link href="/" className="gem-logo" aria-label="Geminisoft 홈">
             <Image
@@ -145,6 +140,13 @@ export default function SiteHeader() {
           </nav>
 
           <div className="gem-header__actions">
+            <span className="gem-lang gem-hide-sm">
+              <a href="#" className="gem-lang__current">
+                KR
+              </a>
+              <span className="gem-sep">|</span>
+              <a href="https://www.gemiso.com/">EN</a>
+            </span>
             <Link href="/#contact" className="gem-header__cta gem-hide-sm">
               문의
             </Link>

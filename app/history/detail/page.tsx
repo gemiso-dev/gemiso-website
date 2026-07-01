@@ -24,11 +24,11 @@ export default function HistoryDetailPage() {
       <nav className="sol-breadcrumb" aria-label="위치">
         <div className="gem-container sol-breadcrumb__inner">
           <Link href="/">홈</Link>
-          <span className="gem-sep">/</span>
+          <span className="gem-sep">|</span>
           <Link href="/#solutions">회사소개</Link>
-          <span className="gem-sep">/</span>
+          <span className="gem-sep">|</span>
           <Link href="/history">연혁</Link>
-          <span className="gem-sep">/</span>
+          <span className="gem-sep">|</span>
           <span className="sol-breadcrumb__current">상세 연혁</span>
         </div>
       </nav>

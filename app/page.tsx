@@ -184,9 +184,6 @@ export default function Home() {
               <a href="#contact" className="gem-btn gem-btn--primary">
                 AX 전략 상담하기
               </a>
-              <a href="#solutions" className="gem-btn gem-btn--link">
-                솔루션 보기 →
-              </a>
             </div>
             <p className="gem-hero__note">
               MBC, YTN, SBS, EBS, KTV, TBS, 아리랑 TV가 신뢰합니다.
@@ -245,6 +242,21 @@ export default function Home() {
             </div>
           </Reveal>
         </div>
+        <a
+          href="#solutions"
+          className="gem-hero__scroll"
+          aria-label="아래로 스크롤"
+        >
+          <svg width="28" height="15" viewBox="0 0 28 15" fill="none" aria-hidden="true">
+            <path
+              d="M2 2 14 13 26 2"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </a>
       </section>
 
       {/* 솔루션 */}
@@ -254,7 +266,9 @@ export default function Home() {
             <div className="gem-eyebrow">
               <span>솔루션</span>
             </div>
-            <h2 className="gem-title">미디어 생애주기 전체를 하나의 플랫폼으로</h2>
+            <h2 className="gem-title gem-title--nowrap">
+              미디어 라이프사이클 전체를 하나의 플랫폼으로
+            </h2>
             <p className="gem-lead">
               카메라에서 송출, 그리고 아카이브까지 — 모든 단계가 Geminisoft가
               직접 개발하고 보유한 솔루션 위에서 작동합니다.
