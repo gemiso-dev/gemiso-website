@@ -31,6 +31,26 @@ export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
 
+  // 데스크탑 폭(≥861px)으로 넓어지면 열려 있던 모바일 메뉴를 자동으로 닫는다.
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 861px)");
+    const onChange = (e: MediaQueryListEvent) => {
+      if (e.matches) setMenuOpen(false);
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  // 모바일 메뉴가 열려 있는 동안 뒤 페이지 스크롤을 잠근다(스크롤바 이중 노출 방지).
+  useEffect(() => {
+    if (!menuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [menuOpen]);
+
   // 최상단에서는 투명, 스크롤하면 흰 배경 표시
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -68,7 +88,12 @@ export default function SiteHeader() {
         id="top"
       >
         <div className="gem-container gem-header__inner">
-          <Link href="/" className="gem-logo" aria-label="Geminisoft 홈">
+          <Link
+            href="/"
+            className="gem-logo"
+            aria-label="Geminisoft 홈"
+            onClick={closeMenu}
+          >
             <Image
               src={asset("/assets/geminisoft-logo.png")}
               alt="Geminisoft"

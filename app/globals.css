@@ -467,10 +467,24 @@ a:hover > .gem-arrow,
 
 /* 모바일 메뉴 패널 */
 .gem-mobile-menu {
+  /* 헤더 아래에 고정 오버레이로 띄우고, 남은 화면을 채운다 */
+  position: fixed;
+  top: var(--gem-header-h);
+  left: 0;
+  right: 0;
+  max-height: calc(100dvh - var(--gem-header-h));
   flex-direction: column;
   border-top: 1px solid var(--gem-border);
   background: #fff;
   padding: 8px var(--gem-gutter) 16px;
+  /* 길면 안에서만 스크롤하되, 스크롤바는 숨긴다(스크롤 기능은 유지) */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.gem-mobile-menu::-webkit-scrollbar {
+  display: none;
 }
 .gem-mobile-menu a {
   padding: 13px 0;
