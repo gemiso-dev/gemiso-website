@@ -181,6 +181,7 @@ export const SOLUTIONS: Solution[] = [
     cat: "뉴스룸 · NRCS",
     short: "뉴스룸",
     mock: "rundown",
+    image: "/assets/solutions/zodiac/main.png",
     tagline: "기획에서 송출까지, 하나의 뉴스룸",
     desc: "Zodiac은 TV 뉴스를 만드는 보도 정보 시스템입니다. 기사의 배정 · 작성 · 송고 같은 기사 관리부터 뉴스 큐시트, 큐시트 기반 송출 자동화까지 — 기획에서 온에어로 이어지는 뉴스룸 전 과정을 PC와 모바일에서 하나로 잇습니다.",
     trust: "MBC · YTN · KTV · TBS · cpbc · 아리랑국제방송 등 도입",
