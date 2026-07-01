@@ -2,7 +2,7 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import CustomerMarquee from "@/components/CustomerMarquee";
 import CopyField from "@/components/CopyField";
-import { COMPANY } from "@/components/site-config";
+import { COMPANY, asset } from "@/components/site-config";
 import { NEWS_ARTICLES } from "@/components/news-data";
 import { pageMetadata } from "@/components/seo";
 
@@ -137,24 +137,15 @@ const STATS = [
 ];
 
 const TECH_ITEMS = [
-  { n: "01", t: "인제스트 & 비디오 인코딩", d: "방송 현장에서 실제로 쓰는 포맷으로의 소프트웨어 코덱 인코딩." },
-  { n: "02", t: "NLE 연동", d: "편집 시스템 및 파일 기반 워크플로우와의 네이티브 연동." },
-  { n: "03", t: "미디어 프로세싱", d: "대규모 미디어의 트랜스코딩·변환·정규화." },
-  { n: "04", t: "컷 편집", d: "프레임 단위로 정확한 빠른 트리밍과 클립 구성." },
-  { n: "05", t: "아카이브 시스템", d: "계속 늘어나는 라이브러리를 위한 안정적이고 검색 가능한 장기 저장." },
-  { n: "06", t: "카탈로그", d: "모든 자산을 찾을 수 있게 하는 풍부한 메타데이터와 인덱싱." },
-  { n: "07", t: "미디어 전송", d: "Transfer Manager를 통한 MOV–MXF, LXF–MXF 전송 관리." },
-  { n: "08", t: "워크플로우 관리", d: "작업과 승인을 처음부터 끝까지 오케스트레이션." },
-  { n: "09", t: "뉴스 워크플로우", d: "기획·취재·데스크·큐시트를 하나의 뉴스룸에서." },
-];
-
-const HERO_CLIPS = [
-  { time: "00:32", name: "CLIP_014" },
-  { time: "01:08", name: "CLIP_021" },
-  { time: "00:14", name: "CLIP_022" },
-  { time: "02:45", name: "CLIP_030" },
-  { time: "00:51", name: "CLIP_031" },
-  { time: "03:20", name: "CLIP_037" },
+  { n: "01", t: "인제스트 & 비디오 인코딩", d: "방송 현장에서 실제로 쓰는 포맷으로의 소프트웨어 코덱 인코딩" },
+  { n: "02", t: "NLE 연동", d: "편집 시스템 및 파일 기반 워크플로우와의 네이티브 연동" },
+  { n: "03", t: "미디어 프로세싱", d: "대규모 미디어의 트랜스코딩·변환·정규화" },
+  { n: "04", t: "컷 편집", d: "프레임 단위로 정확한 빠른 트리밍과 클립 구성" },
+  { n: "05", t: "아카이브 시스템", d: "계속 늘어나는 라이브러리를 위한 안정적이고 검색 가능한 장기 저장" },
+  { n: "06", t: "카탈로그", d: "모든 자산을 찾을 수 있게 하는 풍부한 메타데이터와 인덱싱" },
+  { n: "07", t: "미디어 전송", d: "Transfer Manager를 통한 MOV–MXF, LXF–MXF 전송 관리" },
+  { n: "08", t: "워크플로우 관리", d: "작업과 승인을 처음부터 끝까지 오케스트레이션" },
+  { n: "09", t: "뉴스 워크플로우", d: "기획·취재·데스크·큐시트를 하나의 뉴스룸에서" },
 ];
 
 /* ------------------------------------------------------------------ 페이지 */
@@ -163,8 +154,15 @@ export default function Home() {
   return (
     <>
       {/* 히어로 */}
-      <section className="gem-hero">
-        <div className="gem-container gem-hero__grid">
+      <section
+        className="gem-hero gem-hero--center"
+        style={{
+          backgroundImage: `radial-gradient(ellipse 72% 85% at 50% 50%, rgba(255,255,255,0.5) 16%, rgba(255,255,255,0.85) 52%, rgba(255,255,255,1) 84%), url(${asset(
+            "/assets/hero/hero-bg5.png",
+          )})`,
+        }}
+      >
+        <div className="gem-container gem-hero__grid gem-hero__grid--center">
           <Reveal>
             <div className="gem-eyebrow gem-eyebrow--badge">
               <span>Broadcast AX Technology Partner</span>
@@ -188,58 +186,6 @@ export default function Home() {
             <p className="gem-hero__note">
               MBC, YTN, SBS, EBS, KTV, TBS, 아리랑 TV가 신뢰합니다.
             </p>
-          </Reveal>
-
-          {/* 제품 목업 (장식) */}
-          <Reveal aria-hidden="true">
-            <div className="gem-mock">
-              <div className="gem-mock__bar">
-                <div className="gem-mock__app">
-                  <span className="gem-mock__dot" />
-                  <b>Proxima</b>
-                  <span>자산 관리</span>
-                </div>
-                <div className="gem-mock__controls">
-                  <i />
-                  <i />
-                  <i />
-                </div>
-              </div>
-              <div className="gem-mock__body">
-                <div className="gem-mock__nav">
-                  <div className="is-active">전체 자산</div>
-                  <div>인제스트</div>
-                  <div>카탈로그</div>
-                  <div>아카이브</div>
-                  <div>전송</div>
-                  <div>워크플로우</div>
-                </div>
-                <div className="gem-mock__main">
-                  <div className="gem-mock__search">
-                    <span>자산 검색</span>
-                    <i />
-                    <i />
-                  </div>
-                  <div className="gem-mock__grid">
-                    {HERO_CLIPS.map((clip, i) => (
-                      <div key={i} className="gem-mock__clip">
-                        <span className="time">{clip.time}</span>
-                        <span className="name">{clip.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="gem-mock__timeline">
-                    <span className="gem-mock__tc">00:00:12:04</span>
-                    <div className="gem-mock__track">
-                      <i style={{ left: "6%", width: "22%", background: "#d7e0f2" }} />
-                      <i style={{ left: "34%", width: "14%", background: "#cdd6e6" }} />
-                      <i style={{ left: "54%", width: "30%", background: "#d7e0f2" }} />
-                      <i style={{ left: "42%", width: "2px", background: "var(--gem-accent)" }} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </Reveal>
         </div>
         <a
@@ -387,15 +333,27 @@ export default function Home() {
                 href={`/news/${n.id}/`}
                 className="gem-news-card"
               >
-                <div className="gem-news-card__meta">
-                  <span className="gem-news-card__cat">
-                    {n.outlet || "보도자료"}
-                  </span>
-                  {n.date && <span className="gem-news-card__date">{n.date}</span>}
+                <div className="gem-news-card__thumb">
+                  {n.image ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img src={asset(n.image)} alt={n.title} loading="lazy" />
+                  ) : (
+                    <span className="news-thumb__ph">GEMISO NEWS</span>
+                  )}
                 </div>
-                <h3 className="gem-news-card__title">{n.title}</h3>
-                <p className="gem-news-card__desc">{n.summary}</p>
-                <span className="gem-arrow">자세히 →</span>
+                <div className="gem-news-card__body">
+                  <div className="gem-news-card__meta">
+                    <span className="gem-news-card__cat">
+                      {n.outlet || "보도자료"}
+                    </span>
+                    {n.date && (
+                      <span className="gem-news-card__date">{n.date}</span>
+                    )}
+                  </div>
+                  <h3 className="gem-news-card__title">{n.title}</h3>
+                  <p className="gem-news-card__desc">{n.summary}</p>
+                  <span className="gem-arrow">자세히 →</span>
+                </div>
               </Link>
             ))}
           </Reveal>

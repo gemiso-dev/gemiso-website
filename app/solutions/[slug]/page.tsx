@@ -99,11 +99,8 @@ export default async function SolutionPage({
               <Link href="/#contact" className="gem-btn gem-btn--primary">
                 문의
               </Link>
-              <a href="#features" className="gem-btn gem-btn--link">
-                핵심 기능 보기 →
-              </a>
+              <p className="sol-hero__trust">{active.trust}</p>
             </div>
-            <p className="sol-hero__trust">{active.trust}</p>
           </Reveal>
 
           <Reveal>
