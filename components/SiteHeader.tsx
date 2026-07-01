@@ -127,14 +127,15 @@ export default function SiteHeader() {
                   </div>
                 </div>
               ) : (
-                <Link
-                  key={i}
-                  href={item.href}
-                  className={`gem-nav__link${active ? " is-active" : ""}`}
-                  aria-current={active ? "page" : undefined}
-                >
-                  {item.label}
-                </Link>
+                <div key={i} className="gem-nav__item">
+                  <Link
+                    href={item.href}
+                    className={`gem-nav__link${active ? " is-active" : ""}`}
+                    aria-current={active ? "page" : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                </div>
               );
             })}
           </nav>
