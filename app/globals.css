@@ -1795,6 +1795,7 @@ button.gem-copy__text:focus-visible,
 }
 .sol-detail__media {
   border: 1px solid var(--gem-border);
+  border-radius: 12px;
   background: var(--gem-surface);
   box-shadow: 0 14px 32px rgba(22, 22, 22, 0.1);
   overflow: hidden;
@@ -1825,6 +1826,7 @@ button.gem-copy__text:focus-visible,
   max-height: 460px;
   margin: 0 auto;
   border: 1px solid var(--gem-border);
+  border-radius: 12px;
   box-shadow: 0 14px 32px rgba(22, 22, 22, 0.1);
 }
 .sol-detail__body {
