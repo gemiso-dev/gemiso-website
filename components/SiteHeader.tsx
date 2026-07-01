@@ -77,8 +77,8 @@ export default function SiteHeader() {
             <Image
               src={asset("/assets/geminisoft-logo.png")}
               alt="Geminisoft"
-              width={126}
-              height={26}
+              width={136}
+              height={28}
               priority
             />
           </Link>

@@ -27,6 +27,8 @@
     "Malgun Gothic", sans-serif;
   --gem-font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo,
     Consolas, monospace;
+  /* 영문 디스플레이: 라틴은 Roboto, 한글은 Pretendard로 자동 폴백 */
+  --gem-font-display: "Roboto", var(--gem-font-sans);
 
   /* 레이아웃 */
   --gem-maxw: 1320px;
@@ -120,15 +122,11 @@ img {
 }
 
 .gem-eyebrow::before {
-  content: "";
-  width: 28px;
-  height: 2px;
-  background: var(--gem-accent);
-  flex: none;
+  display: none;
 }
 
 .gem-eyebrow > span {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--gem-accent);
@@ -325,7 +323,7 @@ a:hover > .gem-arrow,
   gap: 10px;
 }
 .gem-logo img {
-  height: 26px;
+  height: 28px;
   width: auto;
   display: block;
 }
@@ -863,15 +861,15 @@ a:hover > .gem-arrow,
   justify-content: space-between;
 }
 .gem-card__num {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 12px;
   color: var(--gem-subtle);
 }
 .gem-card__tag {
-  font-family: var(--gem-font-mono);
-  font-size: 11px;
+  font-family: var(--gem-font-display);
+  font-size: 12px;
   color: var(--gem-accent);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 }
 .gem-card__title {
   font-size: 23px;
@@ -1031,7 +1029,7 @@ a:hover > .gem-arrow,
   min-height: 158px;
 }
 .gem-tech__num {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 12px;
   color: var(--gem-accent);
 }
@@ -1094,7 +1092,7 @@ a:hover > .gem-arrow,
   align-items: center;
 }
 .gem-news-card__cat {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 11px;
   color: var(--gem-accent);
   letter-spacing: 0.08em;
@@ -1269,7 +1267,7 @@ button.gem-copy__text:focus-visible,
 /* 모노 캡션형 eyebrow (섹션 머리말 — 핵심 기능 / 작동 방식 등) */
 .gem-eyebrow--mono > span {
   font-family: var(--gem-font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.06em;
 }
 
@@ -1329,7 +1327,7 @@ button.gem-copy__text:focus-visible,
   background: var(--gem-surface);
 }
 .sol-tab__code {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--gem-subtle);
@@ -1363,7 +1361,7 @@ button.gem-copy__text:focus-visible,
 .sol-tab__badge {
   display: inline-block;
   margin-left: 6px;
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -1406,19 +1404,17 @@ button.gem-copy__text:focus-visible,
   flex-wrap: wrap;
 }
 .sol-hero__tick {
-  width: 28px;
-  height: 2px;
-  background: var(--gem-accent);
-  flex: none;
+  display: none;
 }
 .sol-hero__code {
-  font-family: var(--gem-font-mono);
-  font-size: 12px;
-  letter-spacing: 0.1em;
+  font-family: var(--gem-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   color: var(--gem-accent);
 }
 .sol-hero__cat {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--gem-muted);
 }
 .sol-hero__title {
@@ -1533,9 +1529,7 @@ button.gem-copy__text:focus-visible,
   border-bottom: 1px solid var(--gem-border);
 }
 .sol-feature__tick {
-  width: 26px;
-  height: 2px;
-  background: var(--gem-accent);
+  display: none;
 }
 /* AI 관련 기능 강조 — accent 틴트 배경 + 좌측 accent 바 + AI 뱃지 */
 .sol-feature--ai {
@@ -1545,7 +1539,7 @@ button.gem-copy__text:focus-visible,
 }
 .sol-feature__badge {
   align-self: flex-start;
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -1637,7 +1631,7 @@ button.gem-copy__text:focus-visible,
 }
 .sol-detail__code {
   align-self: flex-start;
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -1653,7 +1647,7 @@ button.gem-copy__text:focus-visible,
   margin-top: 4px;
 }
 .sol-detail__sub {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 12px;
   letter-spacing: 0.04em;
   color: var(--gem-subtle);
@@ -1719,7 +1713,7 @@ button.gem-copy__text:focus-visible,
   background: #fff;
 }
 .sol-step__num {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 12px;
   color: var(--gem-accent);
   letter-spacing: 0.08em;
@@ -1827,7 +1821,7 @@ button.gem-copy__text:focus-visible,
   background: var(--gem-surface);
 }
 .sol-other__code {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 11px;
   color: var(--gem-accent);
   letter-spacing: 0.08em;
@@ -1941,7 +1935,7 @@ button.gem-copy__text:focus-visible,
   left: 14px;
   background: var(--gem-accent);
   color: #fff;
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 11px;
   letter-spacing: 0.1em;
   padding: 5px 10px;
@@ -2054,7 +2048,7 @@ button.gem-copy__text:focus-visible,
   gap: 10px;
 }
 .news-card__code {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 11px;
   color: var(--gem-accent);
   letter-spacing: 0.08em;
@@ -2112,7 +2106,7 @@ button.gem-copy__text:focus-visible,
   color: #fff;
 }
 .news-more__count {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 12px;
   color: var(--gem-subtle);
   letter-spacing: 0.04em;
@@ -2150,7 +2144,7 @@ button.gem-copy__text:focus-visible,
   margin-inline: auto;
 }
 .news-detail__code {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 11px;
   color: #fff;
   background: var(--gem-accent);
@@ -2338,14 +2332,11 @@ button.gem-copy__text:focus-visible,
   gap: 12px;
 }
 .hist-eyebrow__tick {
-  width: 28px;
-  height: 2px;
-  background: var(--gem-accent);
-  flex: none;
+  display: none;
 }
 .hist-eyebrow__label {
   font-family: var(--gem-font-sans);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--gem-accent);
@@ -2450,7 +2441,7 @@ button.gem-copy__text:focus-visible,
   max-width: 720px;
 }
 .hist-era__range {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 12px;
   letter-spacing: 0.08em;
   color: var(--gem-accent);
@@ -2472,7 +2463,7 @@ button.gem-copy__text:focus-visible,
 }
 .hist-era__idx {
   flex: none;
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 12px;
   color: #c6c6c6;
 }
@@ -2488,7 +2479,7 @@ button.gem-copy__text:focus-visible,
 .tl-year {
   padding: 1px 16px 30px 0;
   text-align: right;
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 13px;
   letter-spacing: 0.03em;
   color: var(--gem-accent);
@@ -2549,7 +2540,7 @@ button.gem-copy__text:focus-visible,
   color: var(--gem-fg);
 }
 .tl-tag {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 10px;
   letter-spacing: 0.06em;
   color: var(--gem-subtle);
@@ -2577,7 +2568,7 @@ button.gem-copy__text:focus-visible,
   color: var(--gem-subtle);
 }
 .hist-foot__mark {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 12px;
   color: var(--gem-accent);
 }
@@ -2633,7 +2624,7 @@ button.gem-copy__text:focus-visible,
   align-items: baseline;
 }
 .hist-detail__month {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 12px;
   letter-spacing: 0.04em;
   color: var(--gem-subtle);
@@ -2695,13 +2686,13 @@ button.gem-copy__text:focus-visible,
   border-bottom: 1px solid var(--gem-border);
 }
 .cert-card__kind {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--gem-accent);
 }
 .cert-card__grade {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 10px;
   letter-spacing: 0.06em;
   color: #fff;
@@ -2735,7 +2726,7 @@ button.gem-copy__text:focus-visible,
   gap: 7px;
 }
 .cert-card__tag {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 10px;
   letter-spacing: 0.12em;
   color: var(--gem-accent);
@@ -2753,7 +2744,7 @@ button.gem-copy__text:focus-visible,
 }
 .cert-card__org {
   margin-top: 2px;
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 10px;
   letter-spacing: 0.03em;
   color: var(--gem-subtle);
@@ -2796,7 +2787,7 @@ button.gem-copy__text:focus-visible,
   position: absolute;
   left: 12px;
   bottom: 12px;
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 10px;
   letter-spacing: 0.12em;
   color: var(--gem-accent);
@@ -2815,13 +2806,13 @@ button.gem-copy__text:focus-visible,
   gap: 10px;
 }
 .pat-no {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--gem-subtle);
 }
 .pat-status {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 10px;
   letter-spacing: 0.06em;
   color: var(--gem-muted);
@@ -2902,7 +2893,7 @@ button.gem-copy__text:focus-visible,
   color: var(--gem-fg);
 }
 .case-card__tag {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 10px;
   letter-spacing: 0.06em;
   color: var(--gem-accent);
@@ -2980,7 +2971,7 @@ button.gem-copy__text:focus-visible,
   color: var(--gem-fg);
 }
 .cust-tab__count {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 11px;
   color: #c6c6c6;
 }
@@ -3059,7 +3050,7 @@ button.gem-copy__text:focus-visible,
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 12px;
   letter-spacing: 0.04em;
   color: var(--gem-subtle);
@@ -3113,7 +3104,7 @@ button.gem-copy__text:focus-visible,
   max-width: 60ch;
 }
 .part-group__count {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 12px;
   color: #c6c6c6;
 }
@@ -3146,12 +3137,12 @@ button.gem-copy__text:focus-visible,
   gap: 10px;
 }
 .part-card__idx {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 12px;
   color: var(--gem-subtle);
 }
 .part-card__kind {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 10px;
   letter-spacing: 0.06em;
   color: var(--gem-accent);
@@ -3250,7 +3241,7 @@ a.sup-contact__cell:hover {
   background: var(--gem-surface);
 }
 .sup-contact__label {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 11px;
   letter-spacing: 0.12em;
   color: var(--gem-accent);
@@ -3303,7 +3294,7 @@ a.sup-contact__cell:hover {
   max-width: 54ch;
 }
 .sup-offices__count {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 12px;
   color: #c6c6c6;
 }
@@ -3333,13 +3324,13 @@ a.sup-contact__cell:hover {
   gap: 10px;
 }
 .sup-office__tag {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--gem-accent);
 }
 .sup-office__idx {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 11px;
   color: #c6c6c6;
 }
@@ -3443,7 +3434,7 @@ a.sup-contact__cell:hover {
 }
 .mission-connector__en {
   margin-top: 3px;
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 10.5px;
   letter-spacing: 0.08em;
   color: var(--gem-subtle);
@@ -3508,7 +3499,7 @@ a.sup-contact__cell:hover {
 }
 .mission-net__en {
   text-anchor: middle;
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 9.5px;
   letter-spacing: 0.08em;
   fill: var(--gem-subtle);
@@ -3586,12 +3577,12 @@ a.sup-contact__cell:hover {
   gap: 14px;
 }
 .mission-pillar__no {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 14px;
   color: var(--gem-accent);
 }
 .mission-pillar__mono {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 11.5px;
   letter-spacing: 0.12em;
   color: var(--gem-subtle);
@@ -3605,7 +3596,7 @@ a.sup-contact__cell:hover {
   color: var(--gem-fg);
 }
 .mission-pillar__en {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: clamp(22px, 2.6vw, 32px);
   font-weight: 500;
   line-height: 1.2;
@@ -3646,7 +3637,7 @@ a.sup-contact__cell:hover {
   position: absolute;
   left: 12px;
   bottom: 11px;
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 10px;
   letter-spacing: 0.06em;
   color: var(--gem-subtle);
@@ -3770,12 +3761,12 @@ a.sup-contact__cell:hover {
   gap: 14px;
 }
 .tech-item__no {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 14px;
   color: var(--gem-accent);
 }
 .tech-item__code {
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 12px;
   letter-spacing: 0.04em;
   color: var(--gem-muted);
@@ -3802,4 +3793,15 @@ a.sup-contact__cell:hover {
   font-size: clamp(15px, 1.5vw, 17px);
   line-height: 1.62;
   color: var(--gem-muted);
+}
+
+/* =========================================================================
+   영문 디스플레이 폰트 — eyebrow/코드 라벨의 라틴 문자에만 적용.
+   (헤드라인은 Pretendard 유지) 한글은 var(--gem-font-sans)=Pretendard로 폴백.
+   ========================================================================= */
+.gem-eyebrow > span,
+.gem-eyebrow--mono > span,
+.hist-eyebrow__label,
+.sol-hero__code {
+  font-family: var(--gem-font-display);
 }

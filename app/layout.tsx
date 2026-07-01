@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        {/* 폰트: Pretendard(본문) + IBM Plex Mono(모노 캡션) */}
+        {/* 폰트: Pretendard(본문 한글) + Montserrat(영문 디스플레이) + IBM Plex Mono(모노 캡션) */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -38,7 +38,7 @@ export default function RootLayout({
         />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
         />
         <link
           rel="stylesheet"
