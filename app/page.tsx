@@ -158,7 +158,7 @@ export default function Home() {
         className="gem-hero gem-hero--center"
         style={{
           backgroundImage: `radial-gradient(ellipse 72% 85% at 50% 50%, rgba(255,255,255,0.5) 16%, rgba(255,255,255,0.85) 52%, rgba(255,255,255,1) 84%), url(${asset(
-            "/assets/hero/hero-bg5.png",
+            "/assets/hero/hero-bg5.webp",
           )})`,
         }}
       >
