@@ -29,4 +29,7 @@ pnpm-debug.log*
 .vscode/*
 !.vscode/extensions.json
 
+# claude code local settings
+.claude/settings.local.json
+
 temp/
