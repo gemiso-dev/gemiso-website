@@ -1,10 +1,17 @@
+"use client";
+
 /**
- * 미션 히어로 네트워크 비주얼 (순수 SVG).
+ * 미션 히어로 네트워크 비주얼 (SVG + 경량 rAF 애니메이션).
  * 사람·시간·장소 세 허브를 직선 삼각형으로 잇고(백본), 허브마다 방향이 다른
  * 불규칙한 가지를 뻗어 비대칭적이고 자연스러운 네트워크를 만든다.
  * 밝은 노드는 부드러운 글로우를 갖고, 중심에서 멀어질수록 옅어진다.
+ *
+ * 모든 노드는 키별로 결정된 사인 오프셋으로 각자 살랑거리고, 선의 양 끝점도
+ * 연결된 두 노드의 같은 오프셋을 따라가 그물망이 통째로 살아 움직인다.
  * 색·글로우는 globals.css의 .mission-net__* 를 따른다.
  */
+
+import { useEffect, useRef } from "react";
 
 type Pt = { x: number; y: number };
 
@@ -105,9 +112,68 @@ function fade(p: Pt): number {
 
 const HUB_KEYS = new Set(["people", "time", "places"]);
 
+// 키별로 결정되는 살랑 오프셋 — 노드와 선 끝점이 같은 값을 공유해 함께 움직인다.
+function hashKey(s: string): number {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+  return h;
+}
+function nodeOffset(key: string, t: number): Pt {
+  const h = hashKey(key);
+  const ampX = 2.4 + (h % 5) * 0.6; // 진폭 2.4~4.8px
+  const ampY = 2.4 + ((h >> 3) % 5) * 0.6;
+  const wX = 0.45 + (h % 6) * 0.05; // 각속도 0.45~0.70 rad/s
+  const wY = 0.45 + ((h >> 4) % 6) * 0.05;
+  const phX = (h % 628) / 100; // 위상 0~2π
+  const phY = ((h >> 5) % 628) / 100;
+  return { x: ampX * Math.sin(t * wX + phX), y: ampY * Math.sin(t * wY + phY) };
+}
+
 export default function MissionNetwork() {
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+    // 동작 줄이기 사용자는 정적으로 둔다.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const nodeEls = Array.from(
+      svg.querySelectorAll<SVGGElement>("[data-node]"),
+    );
+    const lineEls = Array.from(
+      svg.querySelectorAll<SVGLineElement>("[data-link]"),
+    );
+    const start = performance.now();
+    let raf = 0;
+
+    const tick = (now: number) => {
+      const t = (now - start) / 1000;
+      for (const el of nodeEls) {
+        const o = nodeOffset(el.dataset.node as string, t);
+        el.setAttribute("transform", `translate(${o.x} ${o.y})`);
+      }
+      for (const el of lineEls) {
+        const from = el.dataset.from as string;
+        const to = el.dataset.to as string;
+        const a = PT[from];
+        const b = PT[to];
+        const oa = nodeOffset(from, t);
+        const ob = nodeOffset(to, t);
+        el.setAttribute("x1", String(a.x + oa.x));
+        el.setAttribute("y1", String(a.y + oa.y));
+        el.setAttribute("x2", String(b.x + ob.x));
+        el.setAttribute("y2", String(b.y + ob.y));
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
   return (
     <svg
+      ref={svgRef}
       className="mission-net__svg"
       viewBox="0 0 440 420"
       role="img"
@@ -126,7 +192,7 @@ export default function MissionNetwork() {
         </radialGradient>
       </defs>
 
-      {/* 삼각형 백본 + 가지 (가지는 바깥 끝이 옅어지도록 거리 페이드) */}
+      {/* 삼각형 백본 + 가지 (끝점은 연결된 노드를 따라 움직인다) */}
       <g className="mission-net__links">
         {LINKS.map(([from, to], idx) => {
           const a = PT[from];
@@ -136,6 +202,9 @@ export default function MissionNetwork() {
           return (
             <line
               key={idx}
+              data-link=""
+              data-from={from}
+              data-to={to}
               x1={a.x}
               y1={a.y}
               x2={b.x}
@@ -153,7 +222,7 @@ export default function MissionNetwork() {
         const op = fade(PT[key]);
         const glowy = tier === "near" || tier === "mid";
         return (
-          <g key={idx}>
+          <g key={idx} className="mission-net__node" data-node={key}>
             {glowy && (
               <circle
                 cx={x}
@@ -174,26 +243,29 @@ export default function MissionNetwork() {
         );
       })}
 
-      {/* 허브 + 라벨 */}
+      {/* 허브 + 라벨 (노드를 따라 살랑, 호버 시 확대) */}
       {HUBS.map((hub) => {
         const { x, y } = PT[hub.key];
         return (
-          <g key={hub.key}>
-            <circle
-              cx={x}
-              cy={y}
-              r={24}
-              fill="url(#netGlow)"
-              className="mission-net__glow"
-              style={{ animationDelay: `${hub.delay}s` }}
-            />
-            <rect
-              x={x - 6}
-              y={y - 6}
-              width={12}
-              height={12}
-              className="mission-net__core"
-            />
+          <g key={hub.key} className="mission-net__hub" data-node={hub.key}>
+            {/* 글로우+코어를 묶어 호버 시 함께 확대 (라벨은 제외) */}
+            <g className="mission-net__hub-node">
+              <circle
+                cx={x}
+                cy={y}
+                r={24}
+                fill="url(#netGlow)"
+                className="mission-net__glow"
+                style={{ animationDelay: `${hub.delay}s` }}
+              />
+              <rect
+                x={x - 6}
+                y={y - 6}
+                width={12}
+                height={12}
+                className="mission-net__core"
+              />
+            </g>
             <text x={x} y={y + 30} className="mission-net__ko">
               {hub.ko}
             </text>

@@ -17,6 +17,15 @@ export default function NewsListPage() {
 
   return (
     <>
+      {/* 브레드크럼 */}
+      <nav className="sol-breadcrumb" aria-label="위치">
+        <div className="gem-container sol-breadcrumb__inner">
+          <Link href="/">홈</Link>
+          <span className="gem-sep">|</span>
+          <span className="sol-breadcrumb__current">뉴스</span>
+        </div>
+      </nav>
+
       {/* 히어로 */}
       <section className="news-hero">
         <div className="gem-container">
@@ -33,14 +42,13 @@ export default function NewsListPage() {
         </div>
       </section>
 
-      {/* 주요 소식 + 전체 소식 */}
-      <section className="news-list">
+      {/* 주요 소식 (featured) — 연한 그레이 섹션 */}
+      <section className="news-featured-sec">
         <div className="gem-container">
           <Reveal className="gem-eyebrow gem-eyebrow--mono news-list__eyebrow">
             <span>주요 소식</span>
           </Reveal>
 
-          {/* 주요 소식 (featured) */}
           <Reveal as="div">
             <Link href={`/news/${featured.id}/`} className="news-featured">
               <div className="news-featured__img">
@@ -65,8 +73,12 @@ export default function NewsListPage() {
               </div>
             </Link>
           </Reveal>
+        </div>
+      </section>
 
-          {/* 전체 소식 */}
+      {/* 전체 소식 — 흰색 섹션 */}
+      <section className="news-list">
+        <div className="gem-container">
           <div className="news-list__head">
             <div className="gem-eyebrow gem-eyebrow--mono">
               <span>전체 소식</span>

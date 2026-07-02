@@ -20,6 +20,10 @@ export type TechBlock = {
   image?: string;
   /** 작은 아이콘/세로형 이미지 — 확대하지 않고 자연 크기로 가운데 표시한다. */
   imageNarrow?: boolean;
+  /** 평면(미디어 처리) 이미지의 렌더 폭(px). 원본이 너무 작거나 커서 크기를 맞출 때 사용. */
+  imageWidth?: number;
+  /** 평면 이미지를 레이아웃(카드 높이) 변화 없이 시각적으로만 확대하는 배율(예: 1.1). */
+  imageScale?: number;
 };
 
 export type Technology = {
@@ -92,6 +96,7 @@ export const TECHNOLOGIES: Technology[] = [
         ],
         image: "/assets/technology/media/ariel-transcoder.png",
         imageNarrow: true,
+        imageWidth: 260,
       },
       {
         code: "Rewrapper",
@@ -105,6 +110,7 @@ export const TECHNOLOGIES: Technology[] = [
         ],
         image: "/assets/technology/media/rewrapper.png",
         imageNarrow: true,
+        imageWidth: 260,
       },
       {
         code: "Cutting & Merge",
@@ -129,6 +135,7 @@ export const TECHNOLOGIES: Technology[] = [
           "MAM 연동 — 재생 시 참조할 그리드 이미지 판을 구성해 MAM에서 바로 확인합니다.",
         ],
         image: "/assets/technology/media/ariel-catalog.png",
+        imageWidth: 380,
       },
       {
         code: "Loudness Detection",
@@ -290,6 +297,7 @@ export const TECHNOLOGIES: Technology[] = [
           "방송 표준 출력 — 방송 표준 29.97fps로 출력해 방송 환경에 바로 활용합니다.",
         ],
         image: "/assets/technology/ai/pipeline.png",
+        imageScale: 1.12,
       },
     ],
   },
