@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
 import SolutionMock from "@/components/SolutionMock";
+import ZoomableImage from "@/components/ZoomableImage";
 import { asset } from "@/components/site-config";
 import { SOLUTIONS, getSolution } from "@/components/solutions-data";
 import { pageMetadata } from "@/components/seo";
@@ -106,11 +107,9 @@ export default async function SolutionPage({
           <Reveal>
             {active.image ? (
               <div className="sol-shot">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <ZoomableImage
                   src={asset(active.image)}
                   alt={`${active.name} ${active.ko} 화면`}
-                  loading="lazy"
                 />
               </div>
             ) : (
@@ -181,8 +180,7 @@ export default async function SolutionPage({
                     }`}
                   >
                     {d.image ? (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img src={asset(d.image)} alt={`${d.code} ${d.title} 화면`} loading="lazy" />
+                      <ZoomableImage src={asset(d.image)} alt={`${d.code} ${d.title} 화면`} />
                     ) : (
                       <SolutionMock
                         type={d.mock ?? active.mock}
