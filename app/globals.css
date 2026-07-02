@@ -137,7 +137,7 @@ img {
 
 /* 제목 — 가볍고 큰 디스플레이 서체 */
 .gem-title {
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.18;
   letter-spacing: -0.01em;
   color: var(--gem-fg);
@@ -334,10 +334,14 @@ a:hover > .gem-arrow,
   transition: background 0.25s ease;
 }
 .gem-header.is-scrolled {
+  /* 스크롤 시엔 순백 고정 */
   background: var(--gem-bg);
 }
 
 .gem-header__inner {
+  /* 스크림(::before, z-index:-1) 위로 로고·nav를 확실히 올림 */
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -651,13 +655,14 @@ a:hover > .gem-arrow,
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* 모바일에서도 화면을 넉넉히 채우도록 최소 높이 확보(데스크탑은 아래 미디어쿼리로 재설정) */
-  min-height: calc(100dvh - var(--gem-header-h));
+  /* 헤더(sticky) 아래로 히어로를 끌어올려 겹치게 → 일러스트가 헤더 뒤까지 이어짐 */
+  margin-top: calc(-1 * var(--gem-header-h));
+  min-height: 100dvh;
 }
 /* 히어로 2열 레이아웃(≥861px)에서만 화면을 꽉 채우도록 (스택되면 콘텐츠 높이 유지) */
 @media (min-width: 861px) {
   .gem-hero {
-    min-height: calc(100vh - var(--gem-header-h));
+    min-height: 100vh;
     justify-content: flex-start;
   }
 }
@@ -694,11 +699,20 @@ a:hover > .gem-arrow,
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    80% 120% at 88% 0%,
-    rgba(15, 98, 254, 0.1),
-    rgba(15, 98, 254, 0) 55%
-  );
+  /* 상단 흰색 페이드(헤더 뒤 가독성 + 일러스트로 자연스럽게 이어짐) + 우상단 accent 틴트 */
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1) 0,
+      rgba(255, 255, 255, 0.97) 52px,
+      rgba(255, 255, 255, 0.55) 93px,
+      rgba(255, 255, 255, 0) 150px
+    ),
+    radial-gradient(
+      80% 120% at 88% 0%,
+      rgba(15, 98, 254, 0.1),
+      rgba(15, 98, 254, 0) 55%
+    );
   pointer-events: none;
 }
 .gem-hero__grid {
@@ -707,12 +721,13 @@ a:hover > .gem-arrow,
   grid-template-columns: 1.05fr 1fr;
   gap: clamp(36px, 5vw, 64px);
   align-items: center;
-  padding-top: 48px;
+  /* 헤더 겹침 보정: 헤더 높이 + 여백 */
+  padding-top: calc(48px + var(--gem-header-h));
   padding-bottom: clamp(48px, 7vw, 84px);
 }
 @media (min-width: 861px) {
   .gem-hero__grid {
-    padding-top: 56px;
+    padding-top: calc(56px + var(--gem-header-h));
   }
 }
 /* 히어로 라벨 강조 배지 — 옅은 파란 알약 위 진한 파란 볼드 텍스트 */
@@ -1627,6 +1642,8 @@ button.gem-copy__text:focus-visible,
   line-height: 1.3;
   letter-spacing: -0.02em;
   color: var(--gem-fg);
+  /* 줄을 고르게 나눠 어색한 3줄 방지 */
+  text-wrap: balance;
 }
 .sol-hero__desc {
   margin-top: 22px;
@@ -1810,6 +1827,7 @@ button.gem-copy__text:focus-visible,
   border-left: 1px solid var(--gem-border);
 }
 .sol-feature {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -1829,7 +1847,10 @@ button.gem-copy__text:focus-visible,
   box-shadow: inset 3px 0 0 var(--gem-accent);
 }
 .sol-feature__badge {
-  align-self: flex-start;
+  /* 카드 우측 상단 — 제목 상단(패딩 30px)과 정렬 */
+  position: absolute;
+  top: 30px;
+  right: 30px;
   font-family: var(--gem-font-display);
   font-size: 11px;
   font-weight: 600;
@@ -1857,6 +1878,11 @@ button.gem-copy__text:focus-visible,
   color: var(--gem-fg);
   /* 제목을 2줄 높이로 고정해 설명 시작 위치를 정렬한다 */
   min-height: 2.7em;
+}
+/* 배지가 있는 카드는 제목이 배지 아래로 겹치지 않도록 우측 여백 확보 */
+.sol-feature--ai h3,
+.sol-feature--mark h3 {
+  padding-right: 44px;
 }
 .sol-feature p {
   font-size: 14px;
@@ -2015,7 +2041,7 @@ button.gem-copy__text:focus-visible,
 }
 .sol-detail__point-num {
   flex: none;
-  font-family: var(--gem-font-mono);
+  font-family: var(--gem-font-display);
   font-size: 13px;
   font-weight: 500;
   color: var(--gem-accent);
@@ -2074,8 +2100,8 @@ button.gem-copy__text:focus-visible,
 }
 .sol-step__arrow {
   position: absolute;
-  right: 14px;
-  bottom: 16px;
+  right: 22px;
+  top: 24px;
   font-size: 16px;
   color: #c6c6c6;
 }
@@ -2097,7 +2123,7 @@ button.gem-copy__text:focus-visible,
 }
 .sol-stat__num {
   font-size: clamp(34px, 4vw, 52px);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.02em;
   color: var(--gem-fg);
 }
@@ -2195,8 +2221,9 @@ button.gem-copy__text:focus-visible,
 .sol-cta__grid {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
-  gap: clamp(36px, 5vw, 72px);
-  align-items: center;
+  gap: clamp(36px, 5vw, 48px);
+  /* 버튼을 제목(헤더 텍스트)과 나란히 — 설명까지 포함한 블록이 아닌 제목 기준 정렬 */
+  align-items: start;
   padding-block: clamp(52px, 7vw, 92px);
 }
 .sol-cta__title {

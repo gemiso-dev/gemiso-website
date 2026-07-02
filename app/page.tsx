@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import ScrollHighlightText from "@/components/ScrollHighlightText";
+import HeroScrollButton from "@/components/HeroScrollButton";
 import CustomerMarquee from "@/components/CustomerMarquee";
 import CopyField from "@/components/CopyField";
 import { COMPANY, asset } from "@/components/site-config";
@@ -182,35 +184,21 @@ export default function Home() {
             </p>
           </Reveal>
         </div>
-        <a
-          href="#statement"
-          className="gem-hero__scroll"
-          aria-label="아래로 스크롤"
-        >
-          <svg width="28" height="15" viewBox="0 0 28 15" fill="none" aria-hidden="true">
-            <path
-              d="M2 2 14 13 26 2"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </a>
+        <HeroScrollButton />
       </section>
 
       {/* 브랜드 스테이트먼트 (토스 스타일 대형 문장) */}
       <section id="statement" className="gem-statement">
         <div className="gem-container">
           <Reveal>
-            <p className="gem-statement__text">
-              AI 기반 플랫폼 어웨어(Platform-Aware) AX 기술로 혁신을
-              주도하세요.{" "}
-              <br className="br-pc" />
-              전 세계 방송사·글로벌 OTT와 어깨를 나란히 할 새로운 비즈니스 모델,{" "}
-              <br className="br-pc" />
-              Geminisoft와 함께 시작하세요.
-            </p>
+            <ScrollHighlightText
+              className="gem-statement__text"
+              lines={[
+                "AI 기반 플랫폼 어웨어(Platform-Aware) AX 기술로 미디어 혁신을 주도합니다.",
+                "전 세계 방송사·글로벌 OTT와 어깨를 나란히 할 새로운 비즈니스 모델,",
+                "Geminisoft와 함께 시작하세요.",
+              ]}
+            />
             <div className="gem-statement__actions">
               <a href="#solutions" className="gem-btn gem-btn--link">
                 솔루션 살펴보기 →
@@ -389,7 +377,7 @@ export default function Home() {
                 href="/support/"
                 className="gem-btn gem-btn--invert"
               >
-                영업팀 문의
+                영업팀에 문의하기
               </Link>
               <a
                 href="#solutions"

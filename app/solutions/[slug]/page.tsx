@@ -98,7 +98,7 @@ export default async function SolutionPage({
             <p className="sol-hero__desc">{active.desc}</p>
             <div className="sol-hero__actions">
               <Link href="/#contact" className="gem-btn gem-btn--primary">
-                문의
+                문의하기
               </Link>
               <p className="sol-hero__trust">{active.trust}</p>
             </div>
@@ -137,16 +137,14 @@ export default async function SolutionPage({
                   f.ai ? " sol-feature--ai" : f.mark ? " sol-feature--mark" : ""
                 }`}
               >
+                <h3>{f.t}</h3>
                 {f.ai ? (
                   <span className="sol-feature__badge">AI</span>
                 ) : f.mark ? (
                   <span className="sol-feature__badge sol-feature__badge--mark">
                     {f.mark}
                   </span>
-                ) : (
-                  <span className="sol-feature__tick" />
-                )}
-                <h3>{f.t}</h3>
+                ) : null}
                 <p>{f.d}</p>
               </div>
             ))}
@@ -351,7 +349,7 @@ export default async function SolutionPage({
               href="/support/"
               className="gem-btn gem-btn--invert"
             >
-              영업팀 문의 →
+              영업팀에 문의하기
             </Link>
           </div>
         </Reveal>

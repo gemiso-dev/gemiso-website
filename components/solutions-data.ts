@@ -481,7 +481,7 @@ export const SOLUTIONS: Solution[] = [
     short: "오디오 파일 시스템",
     mock: "waveform",
     image: "/assets/solutions/winner-s/chain.png",
-    tagline: "디지털 환경에 최적화된 오디오 파일 시스템",
+    tagline: "디지털 환경 최적화 오디오 파일 시스템",
     desc: "Winner S는 네트워크와 대용량 데이터베이스를 기반으로 디지털 환경에 최적화한 오디오 파일 시스템입니다. 일반 프로그램과 방송 소재 · 광고 · 음원을 데이터베이스로 체계화하고, 제작부터 편성 · 광고 · 생방송 · 자동 송출 · 관제까지 오디오 방송의 전 과정을 아홉 개의 단말로 하나로 잇습니다.",
     trust: "네트워크 · 대용량 데이터베이스 기반 디지털 오디오 파일 시스템",
     stats: [
@@ -727,9 +727,9 @@ export const SOLUTIONS: Solution[] = [
     short: "아카이브",
     mock: "grid",
     image: "/assets/solutions/mymy.png",
-    tagline: "콘텐츠를 한곳에서 관리하세요",
+    tagline: "필요한 순간, 바로 찾는 콘텐츠",
     desc: "영상·이미지·문서를 한곳에 체계적으로 보관하고, 메타데이터·AI 의미·STT 자막 등 다양한 방식으로 원하는 콘텐츠를 즉시 찾습니다.",
-    trust: "KBS 콘텐츠 아카이브 고도화",
+    trust: "KBS 콘텐츠 아카이브 고도화에 적용",
     stats: [
       { v: "70%", k: "검색 시간 단축" },
       { v: "다중 검색", k: "메타데이터 · AI · STT · 지도" },
