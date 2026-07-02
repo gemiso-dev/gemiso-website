@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
+import SolutionClientsMarquee from "@/components/SolutionClientsMarquee";
 import SolutionMock from "@/components/SolutionMock";
 import ZoomableImage from "@/components/ZoomableImage";
 import { asset } from "@/components/site-config";
@@ -290,19 +291,7 @@ export default async function SolutionPage({
               {active.name}를 선택한 고객
             </h2>
           </Reveal>
-          <div className="gem-marquee__track sol-clients__track">
-            {[0, 1, 2, 3].flatMap((rep) =>
-              active.clients!.map((c, i) => (
-                <div
-                  key={`${rep}-${i}`}
-                  className="gem-logo-cell"
-                  aria-hidden={rep > 0 ? "true" : undefined}
-                >
-                  {c}
-                </div>
-              )),
-            )}
-          </div>
+          <SolutionClientsMarquee clients={active.clients} />
         </section>
       )}
 
@@ -314,7 +303,7 @@ export default async function SolutionPage({
               <div className="gem-eyebrow gem-eyebrow--mono">
                 <span>다른 솔루션</span>
               </div>
-              <h2 className="gem-title gem-title--sm">미디어 생애주기 전체를 하나로</h2>
+              <h2 className="gem-title gem-title--sm">미디어 라이프사이클 전체를 하나로</h2>
             </div>
             <Link href="/#solutions" className="gem-news__more">
               솔루션 전체 보기 →

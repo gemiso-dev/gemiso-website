@@ -1783,6 +1783,10 @@ button.gem-copy__text:focus-visible,
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+  /* 투명 PNG가 어두운 오버레이 위에서 깨져 보이지 않도록 흰 배경 매트를 깐다 */
+  background: #fff;
+  padding: clamp(12px, 2vw, 24px);
+  box-sizing: border-box;
   border-radius: 8px;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
 }
@@ -2257,7 +2261,6 @@ button.gem-copy__text:focus-visible,
    ========================================================================= */
 .news-hero {
   background: #fff;
-  border-bottom: 1px solid var(--gem-border);
 }
 .news-hero .gem-container {
   padding-block: clamp(44px, 6vw, 80px) clamp(32px, 4vw, 44px);
@@ -2277,9 +2280,15 @@ button.gem-copy__text:focus-visible,
   max-width: 54ch;
 }
 
+/* 주요 소식 섹션 — 연한 그레이 배경(내부 카드는 흰색) */
+.news-featured-sec {
+  background: #fcfcfc;
+  padding-block: clamp(36px, 4.5vw, 64px) clamp(40px, 5vw, 64px);
+}
+/* 전체 소식 섹션 — 흰색 배경 */
 .news-list {
   background: #fff;
-  padding-block: clamp(36px, 4.5vw, 64px) clamp(56px, 7vw, 88px);
+  padding-block: clamp(40px, 5vw, 64px) clamp(56px, 7vw, 88px);
 }
 .news-list__eyebrow {
   margin-bottom: 18px;
@@ -2288,10 +2297,9 @@ button.gem-copy__text:focus-visible,
 /* 주요 소식 (featured) */
 .news-featured {
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
+  grid-template-columns: 1fr 1.2fr;
   border: 1px solid var(--gem-border);
   background: #fff;
-  margin-bottom: clamp(48px, 6vw, 72px);
 }
 .news-featured__img {
   position: relative;
@@ -2315,16 +2323,16 @@ button.gem-copy__text:focus-visible,
   padding: 5px 10px;
 }
 .news-featured__body {
-  padding: clamp(28px, 3vw, 52px);
+  padding: clamp(22px, 2.4vw, 38px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 18px;
+  gap: 14px;
 }
 .news-featured__title {
-  font-size: clamp(26px, 2.9vw, 42px);
-  font-weight: 300;
-  line-height: 1.18;
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 400;
+  line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--gem-fg);
 }
@@ -3870,6 +3878,26 @@ a.sup-contact__cell:hover {
 .mission-net__core {
   fill: var(--gem-accent);
 }
+/* 입자 노드: 살랑 이동은 JS(rAF)가 그룹 transform으로, 점 자체는 호버 시 확대 */
+.mission-net__dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+.mission-net__dot:hover {
+  transform: scale(2.4);
+}
+/* 허브(사람·시간·장소): 호버 시 노드 확대 (살랑 이동은 JS가 담당) */
+.mission-net__hub-node {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.25s ease;
+  cursor: pointer;
+}
+.mission-net__hub:hover .mission-net__hub-node {
+  transform: scale(1.25);
+}
 .mission-net__ko {
   text-anchor: middle;
   font-size: 14px;
@@ -4121,16 +4149,12 @@ a.sup-contact__cell:hover {
   background: rgba(15, 98, 254, 0.05);
 }
 
-/* 기술 섹션 목록 */
-.tech-list {
-  border-top: 1px solid var(--gem-border);
-}
-.tech-list .gem-container {
-  padding-block: clamp(8px, 1.5vw, 16px);
-}
+/* 기술 섹션 목록: 스트로크 대신 연한 회색↔화이트 배경 교차로 구분 */
 .tech-item {
   padding-block: clamp(36px, 4.5vw, 64px);
-  border-bottom: 1px solid var(--gem-border);
+}
+.tech-item:nth-child(odd) {
+  background: #fcfcfc;
 }
 .tech-item__head {
   display: flex;
@@ -4151,7 +4175,7 @@ a.sup-contact__cell:hover {
 .tech-item__title {
   margin-top: 10px;
   font-size: clamp(24px, 2.6vw, 34px);
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -0.02em;
   color: var(--gem-fg);
 }
@@ -4164,6 +4188,41 @@ a.sup-contact__cell:hover {
 }
 .tech-item__details {
   margin-top: clamp(24px, 3vw, 36px);
+}
+/* 투명 PNG가 회색 배경 위에서 티나지 않도록 미디어 박스를 흰색으로 */
+.tech-item__details .sol-detail__media {
+  background: #fff;
+}
+/* "미디어 처리" 꼭지에서만(.tech-item__details--flat): 겉 카드 테두리는 유지하고,
+   이미지(미디어) 테두리·그림자·radius·호버만 제거해 평면적으로.
+   이미지는 상하 여백을 잘라내며 가로를 꽉 채운다(object-fit: cover).
+   나머지 꼭지는 원래대로 확대(ZoomableImage)+호버 인터랙션 유지. */
+.tech-item__details--flat .sol-detail__media {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  transition: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* imageScale로 시각적 확대 시 잘리지 않도록(레이아웃 높이는 유지) */
+  overflow: visible;
+}
+.tech-item__details--flat .sol-detail__media img {
+  /* 원본 크기 그대로 — 늘려서 화질 깨지지 않게, 잘리지도 않게 가운데 정렬 */
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  cursor: default;
+  transition: none;
+}
+.tech-item__details--flat .sol-detail__media:hover,
+.tech-item__details--flat .sol-detail__media:hover img {
+  transform: none;
+  box-shadow: none;
 }
 .tech-item__placeholder {
   margin-top: 14px;

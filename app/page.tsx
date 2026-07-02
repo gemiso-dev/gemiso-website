@@ -262,7 +262,7 @@ export default function Home() {
         <div className="gem-container">
           <Reveal className="gem-section__head">
             <div className="gem-eyebrow">
-              <span>Geminisoft를 선택하는 이유</span>
+              <span>Geminisoft의 강점</span>
             </div>
             <h2 className="gem-title">방송사가 Geminisoft를 선택하는 이유</h2>
           </Reveal>

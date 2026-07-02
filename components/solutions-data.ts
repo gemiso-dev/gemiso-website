@@ -85,7 +85,7 @@ export const SOLUTIONS: Solution[] = [
       { t: "웹 기반 통합 검색", d: "검색 엔진처럼 직관적인 웹 화면에서 자산을 찾고, 더블클릭으로 바로 재생 · 편집합니다. 별도 설치가 필요 없습니다." },
       { t: "동적 메타데이터 스키마", d: "사이트 특성에 맞춰 콘텐츠 유형과 메타데이터를 관리자가 직접 정의하고, 추가 즉시 검색에 반영합니다." },
       { t: "NLE 네이티브 연동", d: "Adobe Premiere · Final Cut Pro · EDIUS용 플러그인으로 편집 결과물을 바로 MAM에 올립니다." },
-      { t: "AI 분석 연동", d: "Google · Amazon Vision AI로 영상을 분석하고, STT · 자동 번역으로 자막과 메타데이터를 생성합니다.", ai: true },
+      { t: "AI 분석 연동", d: "Geminisoft의 MAIA AI를 연동해 영상을 분석하고, STT·객체 인식 기반의 자막과 메타데이터를 생성합니다.", ai: true },
       { t: "안전한 보관 · 아카이브", d: "LTFS 기반 IMArchive로 LTO · ODA에 아카이브하고, 오브젝트 스토리지로 랜섬웨어 위험을 줄입니다." },
     ],
     workflow: ["수집", "프록시 · 변환", "카탈로깅", "검색 · 메타데이터", "제작 연동", "아카이브 · 배포"],
@@ -124,7 +124,7 @@ export const SOLUTIONS: Solution[] = [
           "포맷 변환 — 다양한 원본 포맷을 방송 · 배포용 포맷으로 변환합니다.",
         ],
         mock: "grid",
-        image: "/assets/solutions/proxima/transcode.png",
+        image: "/assets/solutions/proxima/proxy.png",
       },
       {
         code: "PROXIMA Catalog",
@@ -163,6 +163,7 @@ export const SOLUTIONS: Solution[] = [
           "파일 기반 워크플로우 — 편집 시스템과 파일 단위로 매끄럽게 주고받습니다.",
         ],
         mock: "grid",
+        image: "/assets/solutions/proxima/integration.jpg",
       },
       {
         code: "PROXIMA Archive",
@@ -175,7 +176,7 @@ export const SOLUTIONS: Solution[] = [
           "자동 백업 · 접근 제어 — 워크플로우로 백업을 자동화하고 Active Directory · Open Directory로 접근을 통제합니다.",
         ],
         mock: "rundown",
-        image: "/assets/solutions/proxima/archive.png",
+        image: "/assets/solutions/proxima/archive.avif",
       },
     ],
   },
@@ -202,6 +203,7 @@ export const SOLUTIONS: Solution[] = [
       { t: "영상 · 그래픽 연동", d: "MAM에 등록된 영상 · 그래픽을 검색 · 미리보기하고, 편집을 의뢰해 완료분을 기사에 매핑합니다." },
       { t: "송출 자동화", d: "비디오 서버 · CG · 프롬프터를 제어해 큐시트를 그대로 온에어로 내보내고, 큐시트 변경을 실시간 반영합니다." },
       { t: "모바일 보도 정보 시스템", d: "현장 기자가 모바일에서 기사를 작성 · 관리하고 영상을 검색하며 큐시트를 확인합니다." },
+      { t: "AI 분석 연동", d: "Geminisoft의 MAIA AI를 연동해 영상을 분석하고, STT·객체 인식 기반의 자막과 메타데이터를 생성합니다.", ai: true },
     ],
     workflow: ["기획", "취재", "기사 작성", "데스크 승인", "큐시트", "송출"],
     specs: [

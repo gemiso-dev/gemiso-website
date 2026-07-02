@@ -55,9 +55,13 @@ export default function TechnologyPage() {
 
       {/* 기술 섹션 목록 */}
       <section className="tech-list">
-        <div className="gem-container">
-          {TECHNOLOGIES.map((t, i) => (
-            <Reveal as="article" key={t.id} id={t.id} className="tech-item">
+        {TECHNOLOGIES.map((t, i) => {
+          // 평면 이미지(확대·인터랙션·프레임 없음) 처리를 적용하는 꼭지들
+          const flatImages =
+            t.id === "processing" || t.id === "ai-compensation";
+          return (
+          <Reveal as="article" key={t.id} id={t.id} className="tech-item">
+            <div className="gem-container">
               <header className="tech-item__head">
                 <span className="tech-item__no">
                   {String(i + 1).padStart(2, "0")}
@@ -69,19 +73,40 @@ export default function TechnologyPage() {
               {t.blocks && t.blocks.length > 0 ? (
                 <>
                   {t.intro && <p className="tech-item__lead">{t.intro}</p>}
-                  <div className="sol-details tech-item__details">
+                  <div
+                    className={`sol-details tech-item__details${
+                      flatImages ? " tech-item__details--flat" : ""
+                    }`}
+                  >
                     {t.blocks.map((b) => (
                       <div key={b.code} className="sol-detail">
                         {b.image && (
                           <div
                             className={`sol-detail__media${
-                              b.imageNarrow ? " sol-detail__media--narrow" : ""
+                              b.imageNarrow && !flatImages
+                                ? " sol-detail__media--narrow"
+                                : ""
                             }`}
                           >
-                            <ZoomableImage
-                              src={asset(b.image)}
-                              alt={`${b.code} ${b.title} 다이어그램`}
-                            />
+                            {flatImages ? (
+                              // 평면 이미지(확대·인터랙션 없음)
+                              // eslint-disable-next-line @next/next/no-img-element
+                              <img
+                                src={asset(b.image)}
+                                alt={`${b.code} ${b.title} 다이어그램`}
+                                style={{
+                                  width: b.imageWidth,
+                                  transform: b.imageScale
+                                    ? `scale(${b.imageScale})`
+                                    : undefined,
+                                }}
+                              />
+                            ) : (
+                              <ZoomableImage
+                                src={asset(b.image)}
+                                alt={`${b.code} ${b.title} 다이어그램`}
+                              />
+                            )}
                           </div>
                         )}
                         <div className="sol-detail__body">
@@ -123,9 +148,10 @@ export default function TechnologyPage() {
               ) : (
                 <p className="tech-item__placeholder">{t.summary}</p>
               )}
-            </Reveal>
-          ))}
-        </div>
+            </div>
+          </Reveal>
+          );
+        })}
       </section>
 
       {/* CTA (accent 배경) — 솔루션 페이지와 동일한 스타일 */}
