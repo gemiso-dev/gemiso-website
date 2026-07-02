@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import ZoomableImage from "@/components/ZoomableImage";
 import { COMPANY, asset } from "@/components/site-config";
 import { TECHNOLOGIES } from "@/components/technology-data";
 import { pageMetadata } from "@/components/seo";
@@ -77,23 +78,42 @@ export default function TechnologyPage() {
                               b.imageNarrow ? " sol-detail__media--narrow" : ""
                             }`}
                           >
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
+                            <ZoomableImage
                               src={asset(b.image)}
                               alt={`${b.code} ${b.title} 다이어그램`}
-                              loading="lazy"
                             />
                           </div>
                         )}
                         <div className="sol-detail__body">
-                          <span className="sol-detail__code">{b.code}</span>
-                          <h3 className="sol-detail__title">{b.title}</h3>
-                          <span className="sol-detail__sub">{b.sub}</span>
+                          <div className="sol-detail__heading">
+                            <h3 className="sol-detail__title">{b.title}</h3>
+                            <span className="sol-detail__sub">{b.sub}</span>
+                          </div>
                           <p className="sol-detail__desc">{b.desc}</p>
                           <ul className="sol-detail__points">
-                            {b.points.map((p) => (
-                              <li key={p}>{p}</li>
-                            ))}
+                            {b.points.map((p, pi) => {
+                              const i = p.indexOf(" — ");
+                              return (
+                                <li key={p} className="sol-detail__point">
+                                  <span className="sol-detail__point-num">
+                                    {String(pi + 1).padStart(2, "0")}
+                                  </span>
+                                  <span className="sol-detail__point-body">
+                                    {i === -1 ? (
+                                      p
+                                    ) : (
+                                      <>
+                                        <strong className="sol-detail__point-label">
+                                          {p.slice(0, i)}
+                                        </strong>
+                                        <br />
+                                        {p.slice(i + 3)}
+                                      </>
+                                    )}
+                                  </span>
+                                </li>
+                              );
+                            })}
                           </ul>
                         </div>
                       </div>

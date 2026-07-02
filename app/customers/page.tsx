@@ -117,7 +117,7 @@ export default function CustomersPage() {
           </div>
           <div className="sol-cta__actions">
             <Link href="/#contact" className="gem-btn gem-btn--invert">
-              문의
+              문의하기
             </Link>
             <Link
               href="/#solutions"
