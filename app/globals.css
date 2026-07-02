@@ -221,10 +221,9 @@ img {
 .gem-btn--underline-light {
   padding: 0 8px;
   color: #fff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 .gem-btn--underline-light:hover {
-  border-bottom-color: #fff;
+  text-decoration: underline;
 }
 
 /* 인라인 "자세히 →" 류 링크 */
@@ -245,6 +244,16 @@ a:hover > .gem-arrow,
    ========================================================================= */
 .gem-show-sm {
   display: none !important;
+}
+
+/* PC(>=861px)에서만 강제 개행하는 <br>. 모바일에선 무시되어 자연 줄바꿈. */
+.br-pc {
+  display: none;
+}
+@media (min-width: 861px) {
+  .br-pc {
+    display: inline;
+  }
 }
 
 @media (max-width: 860px) {
@@ -642,6 +651,8 @@ a:hover > .gem-arrow,
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* 모바일에서도 화면을 넉넉히 채우도록 최소 높이 확보(데스크탑은 아래 미디어쿼리로 재설정) */
+  min-height: calc(100dvh - var(--gem-header-h));
 }
 /* 히어로 2열 레이아웃(≥861px)에서만 화면을 꽉 채우도록 (스택되면 콘텐츠 높이 유지) */
 @media (min-width: 861px) {
@@ -679,12 +690,6 @@ a:hover > .gem-arrow,
     animation: none;
   }
 }
-/* 목업이 아래로 스택되는 860px 이하에선 화살표 숨김 (2열일 때만 노출) */
-@media (max-width: 860px) {
-  .gem-hero__scroll {
-    display: none;
-  }
-}
 .gem-hero::before {
   content: "";
   position: absolute;
@@ -702,19 +707,19 @@ a:hover > .gem-arrow,
   grid-template-columns: 1.05fr 1fr;
   gap: clamp(36px, 5vw, 64px);
   align-items: center;
-  padding-top: 72px;
+  padding-top: 48px;
   padding-bottom: clamp(48px, 7vw, 84px);
 }
 @media (min-width: 861px) {
   .gem-hero__grid {
-    padding-top: 84px;
+    padding-top: 56px;
   }
 }
 /* 히어로 라벨 강조 배지 — 옅은 파란 알약 위 진한 파란 볼드 텍스트 */
 .gem-eyebrow--badge {
   display: inline-flex;
   gap: 0;
-  margin-bottom: 20px;
+  margin-bottom: 28px;
 }
 .gem-eyebrow--badge::before {
   display: none;
@@ -727,15 +732,15 @@ a:hover > .gem-arrow,
 }
 
 .gem-hero__title {
-  font-size: clamp(40px, 6vw, 64px);
-  font-weight: 400;
+  font-size: clamp(40px, 6vw, 60px);
+  font-weight: 600;
   line-height: 1.3;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   color: var(--gem-fg);
 }
-/* 히어로 제목 내 핵심어(AX) 강조 — 진한 파란 볼드 */
+/* 히어로 제목 내 핵심어(AX) 강조 — 그레이스케일 볼드 */
 .gem-hero__hl {
-  color: var(--gem-accent);
+  color: var(--gem-fg);
   font-weight: 600;
 }
 
@@ -753,9 +758,15 @@ a:hover > .gem-arrow,
   flex-wrap: wrap;
   align-items: center;
 }
+/* 히어로 CTA는 좀 더 크게 */
+.gem-hero__actions .gem-btn {
+  min-height: 60px;
+  padding: 0 34px;
+  font-size: 18px;
+}
 .gem-hero__note {
-  margin: 22px 0 0;
-  font-size: 13px;
+  margin: 32px 0 0;
+  font-size: 14px;
   color: var(--gem-subtle);
   letter-spacing: 0.16px;
 }
@@ -800,6 +811,32 @@ a:hover > .gem-arrow,
   .gem-hero__grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* =========================================================================
+   브랜드 스테이트먼트 (토스 스타일 대형 문장 섹션)
+   ========================================================================= */
+.gem-statement {
+  background: var(--gem-bg);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding-block: clamp(96px, 16vh, 200px);
+}
+.gem-statement__text {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(26px, 3.6vw, 32px);
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: -0.02em;
+  color: var(--gem-fg);
+  text-wrap: balance;
+}
+.gem-statement__actions {
+  margin-top: 44px;
+  display: flex;
+  justify-content: center;
 }
 
 /* 히어로 제품 목업 (장식) */
@@ -1585,8 +1622,8 @@ button.gem-copy__text:focus-visible,
   color: var(--gem-muted);
 }
 .sol-hero__title {
-  font-size: clamp(40px, 6vw, 64px);
-  font-weight: 400;
+  font-size: clamp(40px, 6vw, 56px);
+  font-weight: 500;
   line-height: 1.3;
   letter-spacing: -0.02em;
   color: var(--gem-fg);
@@ -1712,6 +1749,59 @@ button.gem-copy__text:focus-visible,
   height: auto;
 }
 
+/* 이미지 클릭 확대(라이트박스) */
+.gem-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 56px);
+  background: rgba(0, 0, 0, 0.82);
+  cursor: zoom-out;
+  animation: gemLightboxIn 0.18s ease;
+}
+.gem-lightbox__img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+}
+.gem-lightbox__close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: none;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.gem-lightbox__close:hover {
+  color: #fff;
+}
+@keyframes gemLightboxIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gem-lightbox {
+    animation: none;
+  }
+}
+
 /* ----------------------------------------------------------------- 핵심 기능 */
 .sol-features {
   display: grid;
@@ -1787,7 +1877,7 @@ button.gem-copy__text:focus-visible,
   gap: 44px;
   background: #fff;
   border: 1px solid var(--gem-border);
-  padding: 30px;
+  padding: 40px;
 }
 /* 짝수 행은 이미지·텍스트 좌우 반전 */
 .sol-detail:nth-child(even) .sol-detail__media {
@@ -1800,11 +1890,45 @@ button.gem-copy__text:focus-visible,
   box-shadow: 0 14px 32px rgba(22, 22, 22, 0.1);
   overflow: hidden;
   line-height: 0;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 .sol-detail__media img {
   display: block;
   width: 100%;
   height: auto;
+  /* 이미지 비율에 컴포넌트가 끌려가지 않도록 높이 상한을 두고 초과분은 크롭 */
+  max-height: 300px;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+/* 호버: 카드 살짝 떠오르고 이미지 은은하게 줌인 */
+.sol-detail__media:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 46px rgba(22, 22, 22, 0.16);
+}
+.sol-detail__media:hover img {
+  transform: scale(1.045);
+}
+/* 목업·세로형 변형은 호버 효과 제외 */
+.sol-detail__media--mock:hover,
+.sol-detail__media--narrow:hover {
+  transform: none;
+  box-shadow: none;
+}
+.sol-detail__media--narrow:hover img {
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sol-detail__media,
+  .sol-detail__media img {
+    transition: none;
+  }
+  .sol-detail__media:hover {
+    transform: none;
+  }
+  .sol-detail__media:hover img {
+    transform: none;
+  }
 }
 /* 스크린샷 대신 목업을 쓰는 경우 — 목업이 자체 테두리·그림자를 가지므로 래퍼 장식을 제거 */
 .sol-detail__media--mock {
@@ -1832,7 +1956,8 @@ button.gem-copy__text:focus-visible,
 .sol-detail__body {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  /* 간격은 각 요소 margin-top으로 제어(gap와 중복 방지) */
+  gap: 0;
 }
 .sol-detail__code {
   align-self: flex-start;
@@ -1844,18 +1969,25 @@ button.gem-copy__text:focus-visible,
   background: var(--gem-accent);
   padding: 3px 9px;
 }
+/* 한글 제목 + 영문 서브를 가로로 나란히(베이스라인 정렬) */
+.sol-detail__heading {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
 .sol-detail__title {
   font-size: 23px;
   font-weight: 500;
   line-height: 1.3;
   color: var(--gem-fg);
-  margin-top: 4px;
 }
 .sol-detail__sub {
   font-family: var(--gem-font-display);
   font-size: 12px;
   letter-spacing: 0.04em;
-  color: var(--gem-subtle);
+  color: var(--gem-accent);
 }
 .sol-detail__desc {
   font-size: 15px;
@@ -1867,25 +1999,36 @@ button.gem-copy__text:focus-visible,
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 6px;
+  margin-top: 24px;
   padding-left: 0;
   list-style: none;
 }
 .sol-detail__points li {
-  position: relative;
-  padding-left: 20px;
   font-size: 14px;
   line-height: 1.6;
   color: var(--gem-muted);
 }
-.sol-detail__points li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 9px;
-  width: 10px;
-  height: 2px;
-  background: var(--gem-accent);
+/* 번호 마커 + 내용 2열 */
+.sol-detail__point {
+  display: flex;
+  gap: 12px;
+}
+.sol-detail__point-num {
+  flex: none;
+  font-family: var(--gem-font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gem-accent);
+  /* 첫 줄(소제목)과 baseline 정렬 */
+  line-height: 1.6;
+}
+.sol-detail__point-body {
+  min-width: 0;
+}
+/* 포인트 소제목 — 진한 그레이스케일 */
+.sol-detail__point-label {
+  font-weight: 400;
+  color: var(--gem-fg);
 }
 @media (max-width: 860px) {
   .sol-detail {
@@ -2093,8 +2236,8 @@ button.gem-copy__text:focus-visible,
   padding-block: clamp(44px, 6vw, 80px) clamp(32px, 4vw, 44px);
 }
 .news-hero__title {
-  font-size: clamp(40px, 6vw, 64px);
-  font-weight: 300;
+  font-size: clamp(40px, 6vw, 56px);
+  font-weight: 500;
   line-height: 1.3;
   letter-spacing: -0.02em;
   color: var(--gem-fg);
@@ -2125,7 +2268,6 @@ button.gem-copy__text:focus-visible,
 }
 .news-featured__img {
   position: relative;
-  aspect-ratio: 16 / 10;
   background: repeating-linear-gradient(
     135deg,
     #eef1f6 0 8px,
@@ -2170,6 +2312,7 @@ button.gem-copy__text:focus-visible,
     grid-template-columns: 1fr;
   }
   .news-featured__img {
+    aspect-ratio: 16 / 10;
     border-right: none;
     border-bottom: 1px solid var(--gem-border);
   }
@@ -2577,11 +2720,16 @@ button.gem-copy__text:focus-visible,
 }
 .hist-hero__title {
   margin-top: 20px;
-  font-size: clamp(40px, 6vw, 64px);
-  font-weight: 400;
+  font-size: clamp(40px, 6vw, 56px);
+  font-weight: 500;
   line-height: 1.3;
   letter-spacing: -0.02em;
   color: var(--gem-fg);
+}
+/* 미션 페이지 히어로 제목만 크게(60/600) */
+.mission-hero__inner .hist-hero__title {
+  font-size: clamp(40px, 6vw, 60px);
+  font-weight: 600;
 }
 .hist-hero__desc {
   margin-top: 22px;
@@ -3585,8 +3733,8 @@ a.sup-contact__cell:hover {
 
 /* 히어로 제목 강조 (People / Time / Places) */
 .mission-hero__hl {
-  font-weight: 500;
-  color: var(--gem-accent);
+  font-weight: 600;
+  color: var(--gem-fg);
 }
 
 /* 히어로 하단 커넥터 (사람 · 시간 · 장소) */

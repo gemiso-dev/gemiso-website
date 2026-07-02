@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
 import SolutionMock from "@/components/SolutionMock";
+import ZoomableImage from "@/components/ZoomableImage";
 import { asset } from "@/components/site-config";
 import { SOLUTIONS, getSolution } from "@/components/solutions-data";
 import { pageMetadata } from "@/components/seo";
@@ -106,11 +107,9 @@ export default async function SolutionPage({
           <Reveal>
             {active.image ? (
               <div className="sol-shot">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <ZoomableImage
                   src={asset(active.image)}
                   alt={`${active.name} ${active.ko} 화면`}
-                  loading="lazy"
                 />
               </div>
             ) : (
@@ -181,8 +180,7 @@ export default async function SolutionPage({
                     }`}
                   >
                     {d.image ? (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img src={asset(d.image)} alt={`${d.code} ${d.title} 화면`} loading="lazy" />
+                      <ZoomableImage src={asset(d.image)} alt={`${d.code} ${d.title} 화면`} />
                     ) : (
                       <SolutionMock
                         type={d.mock ?? active.mock}
@@ -192,14 +190,35 @@ export default async function SolutionPage({
                     )}
                   </div>
                   <div className="sol-detail__body">
-                    <span className="sol-detail__code">{d.code}</span>
-                    <h3 className="sol-detail__title">{d.title}</h3>
-                    <span className="sol-detail__sub">{d.sub}</span>
+                    <div className="sol-detail__heading">
+                      <h3 className="sol-detail__title">{d.title}</h3>
+                      <span className="sol-detail__sub">{d.sub}</span>
+                    </div>
                     <p className="sol-detail__desc">{d.desc}</p>
                     <ul className="sol-detail__points">
-                      {d.points.map((p) => (
-                        <li key={p}>{p}</li>
-                      ))}
+                      {d.points.map((p, pi) => {
+                        const i = p.indexOf(" — ");
+                        return (
+                          <li key={p} className="sol-detail__point">
+                            <span className="sol-detail__point-num">
+                              {String(pi + 1).padStart(2, "0")}
+                            </span>
+                            <span className="sol-detail__point-body">
+                              {i === -1 ? (
+                                p
+                              ) : (
+                                <>
+                                  <strong className="sol-detail__point-label">
+                                    {p.slice(0, i)}
+                                  </strong>
+                                  <br />
+                                  {p.slice(i + 3)}
+                                </>
+                              )}
+                            </span>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </Reveal>

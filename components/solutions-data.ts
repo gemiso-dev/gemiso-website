@@ -70,6 +70,7 @@ export const SOLUTIONS: Solution[] = [
     cat: "미디어 자산 관리 · MAM",
     short: "자산 관리",
     mock: "grid",
+    image: "/assets/solutions/proxima/main.png",
     tagline: "수집에서 배포까지, 미디어 자산의 전 과정",
     desc: "미디어가 들어오는 순간 워크플로우가 시작됩니다. 수집 · 변환 · 보관 · 분석 · 배포에 이르는 전 과정을 Proxima 하나로 제어하고 관리합니다. 모든 기능을 자체 연구개발로 구현했습니다.",
     trust: "국내외 다수 방송사 · 관공서에서 운영 중",
@@ -110,6 +111,7 @@ export const SOLUTIONS: Solution[] = [
           "수집 자동화 — 워치 폴더에 들어온 파일을 감지해 수집 워크플로우를 자동으로 실행합니다.",
         ],
         mock: "schedule",
+        image: "/assets/solutions/proxima/ingest.png",
       },
       {
         code: "PROXIMA Transcode",
@@ -122,6 +124,7 @@ export const SOLUTIONS: Solution[] = [
           "포맷 변환 — 다양한 원본 포맷을 방송 · 배포용 포맷으로 변환합니다.",
         ],
         mock: "grid",
+        image: "/assets/solutions/proxima/transcode.png",
       },
       {
         code: "PROXIMA Catalog",
@@ -134,6 +137,7 @@ export const SOLUTIONS: Solution[] = [
           "AI 자동 분석 — Google · Amazon Vision AI로 영상을 분석해 메타데이터를 자동으로 생성합니다.",
         ],
         mock: "ai",
+        image: "/assets/solutions/proxima/catalog.png",
       },
       {
         code: "PROXIMA Search",
@@ -146,6 +150,7 @@ export const SOLUTIONS: Solution[] = [
           "설치 불필요 — Chrome · Firefox · Safari · Edge 등 표준 브라우저에서 Windows · macOS · Linux 구분 없이 사용합니다.",
         ],
         mock: "grid",
+        image: "/assets/solutions/proxima/search.png",
       },
       {
         code: "PROXIMA Edit",
@@ -170,6 +175,7 @@ export const SOLUTIONS: Solution[] = [
           "자동 백업 · 접근 제어 — 워크플로우로 백업을 자동화하고 Active Directory · Open Directory로 접근을 통제합니다.",
         ],
         mock: "rundown",
+        image: "/assets/solutions/proxima/archive.png",
       },
     ],
   },

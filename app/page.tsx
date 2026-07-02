@@ -172,12 +172,6 @@ export default function Home() {
               <br />
               방송의 미래를 켜다
             </h1>
-            <p className="gem-hero__desc">
-              이제 레거시 방송만으로는 경쟁할 수 없습니다. Geminisoft는 AI 기반
-              플랫폼 어웨어(Platform-Aware) 방송을 위한 AX 기술을 제공합니다. 전
-              세계 방송사·글로벌 OTT와 어깨를 나란히 할 새로운 미디어 비즈니스
-              모델을 지금 경험해 보세요.
-            </p>
             <div className="gem-hero__actions">
               <a href="#contact" className="gem-btn gem-btn--primary">
                 AX 전략 상담하기
@@ -189,7 +183,7 @@ export default function Home() {
           </Reveal>
         </div>
         <a
-          href="#solutions"
+          href="#statement"
           className="gem-hero__scroll"
           aria-label="아래로 스크롤"
         >
@@ -203,6 +197,27 @@ export default function Home() {
             />
           </svg>
         </a>
+      </section>
+
+      {/* 브랜드 스테이트먼트 (토스 스타일 대형 문장) */}
+      <section id="statement" className="gem-statement">
+        <div className="gem-container">
+          <Reveal>
+            <p className="gem-statement__text">
+              AI 기반 플랫폼 어웨어(Platform-Aware) AX 기술로 혁신을
+              주도하세요.{" "}
+              <br className="br-pc" />
+              전 세계 방송사·글로벌 OTT와 어깨를 나란히 할 새로운 비즈니스 모델,{" "}
+              <br className="br-pc" />
+              Geminisoft와 함께 시작하세요.
+            </p>
+            <div className="gem-statement__actions">
+              <a href="#solutions" className="gem-btn gem-btn--link">
+                솔루션 살펴보기 →
+              </a>
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       {/* 솔루션 */}
