@@ -190,14 +190,35 @@ export default async function SolutionPage({
                     )}
                   </div>
                   <div className="sol-detail__body">
-                    <span className="sol-detail__code">{d.code}</span>
-                    <h3 className="sol-detail__title">{d.title}</h3>
-                    <span className="sol-detail__sub">{d.sub}</span>
+                    <div className="sol-detail__heading">
+                      <h3 className="sol-detail__title">{d.title}</h3>
+                      <span className="sol-detail__sub">{d.sub}</span>
+                    </div>
                     <p className="sol-detail__desc">{d.desc}</p>
                     <ul className="sol-detail__points">
-                      {d.points.map((p) => (
-                        <li key={p}>{p}</li>
-                      ))}
+                      {d.points.map((p, pi) => {
+                        const i = p.indexOf(" — ");
+                        return (
+                          <li key={p} className="sol-detail__point">
+                            <span className="sol-detail__point-num">
+                              {String(pi + 1).padStart(2, "0")}
+                            </span>
+                            <span className="sol-detail__point-body">
+                              {i === -1 ? (
+                                p
+                              ) : (
+                                <>
+                                  <strong className="sol-detail__point-label">
+                                    {p.slice(0, i)}
+                                  </strong>
+                                  <br />
+                                  {p.slice(i + 3)}
+                                </>
+                              )}
+                            </span>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </Reveal>
