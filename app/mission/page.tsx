@@ -102,7 +102,7 @@ export default function MissionPage() {
           </div>
           <div className="sol-cta__actions">
             <a href={`mailto:${COMPANY.email}`} className="gem-btn gem-btn--invert">
-              데모 신청
+              데모 신청하기
             </a>
             <Link href="/history/" className="gem-btn gem-btn--underline-light">
               연혁 보기 →

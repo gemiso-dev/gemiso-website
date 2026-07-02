@@ -174,7 +174,7 @@ export default function SiteHeader() {
               <a href="https://www.gemiso.com/">EN</a>
             </span>
             <Link href="/#contact" className="gem-header__cta gem-hide-sm">
-              문의
+              문의하기
             </Link>
             <button
               type="button"
