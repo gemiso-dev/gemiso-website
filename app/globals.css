@@ -1159,14 +1159,15 @@ a:hover > .gem-arrow,
   margin-top: 64px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  /* 각 셀의 right/bottom을 box-shadow로 그려 항상 크리스프한 1px 구분선을 만들고,
+     overflow:hidden으로 맨 바깥(우/하) 라인만 잘라낸다. 상단선은 border-top.
+     → 열 수/줄바꿈과 무관하게 '상단 + 안쪽 구분선'만, 바깥 좌·우·하 테두리는 없음. */
   border-top: 1px solid var(--gem-border);
+  overflow: hidden;
 }
 .gem-stat {
-  padding: 28px 24px 8px;
-  border-right: 1px solid var(--gem-border);
-}
-.gem-stat:last-child {
-  border-right: none;
+  padding: 28px 24px;
+  box-shadow: 1px 0 0 0 var(--gem-border), 0 1px 0 0 var(--gem-border);
 }
 .gem-stat__num {
   font-size: clamp(34px, 4vw, 52px);
@@ -1783,10 +1784,8 @@ button.gem-copy__text:focus-visible,
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  /* 투명 PNG가 어두운 오버레이 위에서 깨져 보이지 않도록 흰 배경 매트를 깐다 */
+  /* 투명 PNG가 어두운 오버레이 위에서 깨져 보이지 않도록 흰 배경만 깐다(여백 없이) */
   background: #fff;
-  padding: clamp(12px, 2vw, 24px);
-  box-sizing: border-box;
   border-radius: 8px;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
 }
@@ -2779,13 +2778,14 @@ button.gem-copy__text:focus-visible,
   margin-top: clamp(36px, 4.5vw, 56px);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* box-shadow로 셀 right/bottom 1px을 그리고 overflow:hidden으로 바깥 라인만 클립.
+     → 상단선 + 안쪽 구분선만, 바깥 좌·우·하 없음(열 수/줄바꿈 무관, 항상 크리스프). */
   border-top: 1px solid var(--gem-border);
-  border-left: 1px solid var(--gem-border);
+  overflow: hidden;
 }
 .hist-stat {
   padding: 26px 24px 22px;
-  border-right: 1px solid var(--gem-border);
-  border-bottom: 1px solid var(--gem-border);
+  box-shadow: 1px 0 0 0 var(--gem-border), 0 1px 0 0 var(--gem-border);
 }
 .hist-stat__num {
   font-size: clamp(30px, 3.6vw, 46px);
@@ -2836,7 +2836,7 @@ button.gem-copy__text:focus-visible,
 }
 .hist-era__title {
   font-size: clamp(25px, 3vw, 38px);
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1.16;
   letter-spacing: -0.01em;
   color: var(--gem-fg);
@@ -3650,8 +3650,7 @@ a.sup-contact__cell:hover {
 
 /* --------------------------------------------------------------- 오피스 */
 .sup-offices {
-  background: var(--gem-surface);
-  border-top: 1px solid var(--gem-border);
+  background: #fcfcfc;
   padding-block: var(--gem-sec-pad);
 }
 .sup-offices__head {
@@ -3668,7 +3667,7 @@ a.sup-contact__cell:hover {
 .sup-offices__title {
   margin-top: 16px;
   font-size: clamp(26px, 3.2vw, 40px);
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1.18;
   letter-spacing: -0.01em;
   color: var(--gem-fg);
@@ -3679,11 +3678,6 @@ a.sup-contact__cell:hover {
   line-height: 1.6;
   color: var(--gem-muted);
   max-width: 54ch;
-}
-.sup-offices__count {
-  font-family: var(--gem-font-display);
-  font-size: 12px;
-  color: #c6c6c6;
 }
 
 /* 오피스 카드 그리드 (1px 라인 + 상단 accent) */
@@ -3737,8 +3731,8 @@ a.sup-contact__cell:hover {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-family: var(--gem-font-mono);
-  font-size: 12px;
+  font-family: var(--gem-font-sans);
+  font-size: 13px;
   color: var(--gem-accent);
   transition: gap 0.2s ease;
 }

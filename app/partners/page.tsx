@@ -123,7 +123,7 @@ export default function PartnersPage() {
           </div>
           <div className="sol-cta__actions">
             <a href={`mailto:${COMPANY.email}`} className="gem-btn gem-btn--invert">
-              파트너십 문의하기
+              문의하기
             </a>
             <Link href="/#solutions" className="gem-btn gem-btn--underline-light">
               솔루션 살펴보기 →

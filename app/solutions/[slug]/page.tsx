@@ -47,6 +47,14 @@ export default async function SolutionPage({
     label: w,
     notLast: i < arr.length - 1,
   }));
+  // 목적격 조사(을/를) — ko의 마지막 글자 받침 여부로 결정
+  const lastCode = active.ko.charCodeAt(active.ko.length - 1);
+  const koParticle =
+    lastCode >= 0xac00 &&
+    lastCode <= 0xd7a3 &&
+    (lastCode - 0xac00) % 28 !== 0
+      ? "을"
+      : "를";
 
   return (
     <>
@@ -329,8 +337,8 @@ export default async function SolutionPage({
           <div>
             <h2 className="sol-cta__title">{active.name} 도입을 검토 중이신가요?</h2>
             <p className="sol-cta__desc">
-              방송 워크플로우를 알려주시면, 저희 팀이 {active.ko}을(를) 어떻게
-              적용할지 함께 설계해 드립니다.
+              방송 워크플로우를 알려주시면, 저희 팀이 {active.ko}
+              {koParticle} 어떻게 적용할지 함께 설계해 드립니다.
             </p>
           </div>
           <div className="sol-cta__actions">
@@ -338,7 +346,7 @@ export default async function SolutionPage({
               href="/support/"
               className="gem-btn gem-btn--invert"
             >
-              영업팀에 문의하기
+              문의하기
             </Link>
           </div>
         </Reveal>

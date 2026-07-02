@@ -780,7 +780,7 @@ export const SOLUTIONS: Solution[] = [
     cat: "SNS 플랫폼 콘텐츠 배포",
     short: "콘텐츠 배포",
     mock: "schedule",
-    image: "/assets/solutions/g-sam/overview.png",
+    image: "/assets/solutions/g-sam/main.png",
     tagline: "하나의 콘텐츠를 모든 채널로",
     desc: "G-SAM은 YouTube · Facebook · Instagram · X(Twitter) · TikTok까지, 하나의 콘텐츠를 여러 SNS 플랫폼에 배포하고 관리하는 분산형 배포 솔루션입니다. 예약 배포부터 재생목록 · 자막 관리, 통계 분석, 아카이브까지 멀티 채널 운영 전 과정을 하나로 잇습니다.",
     trust: "1 Source Multi-Use — 한 번의 등록으로 모든 채널에 배포",

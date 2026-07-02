@@ -101,7 +101,6 @@ export default function SupportPage() {
                 가까이에서 지원합니다.
               </p>
             </div>
-            <span className="sup-offices__count">03 LOCATIONS</span>
           </div>
 
           <div className="sup-office-grid">
@@ -141,7 +140,7 @@ export default function SupportPage() {
           </div>
           <div className="sol-cta__actions">
             <a href={`mailto:${COMPANY.email}`} className="gem-btn gem-btn--invert">
-              영업팀에 이메일
+              문의하기
             </a>
             <Link href="/#solutions" className="gem-btn gem-btn--underline-light">
               솔루션 살펴보기 →

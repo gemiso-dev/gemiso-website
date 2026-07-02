@@ -60,7 +60,7 @@ export const TECHNOLOGIES: Technology[] = [
           "유연한 연동 — 제머나이소프트 MAM에는 RESTful + MXF로, 타사 MAM에는 XML + MXF로 수집 결과를 전달합니다.",
           "독립형 인제스트 — 인제스트 관리 기능만 도입해 기존 MAM·스토리지 위에 얹어 운영할 수 있습니다.",
         ],
-        image: "/assets/technology/ingest/ariel-ingest-manager.png",
+        image: "/assets/technology/ingest/ariel-ingest-manager.jpg",
       },
       {
         code: "Proxima Open Encoder",
@@ -169,7 +169,7 @@ export const TECHNOLOGIES: Technology[] = [
           "폭넓은 지원 — Adobe Premiere · Apple Final Cut Pro X · GrassValley EDIUS · Avid Media Composer를 지원합니다.",
           "차별화된 호환성 — 1~2종만 지원하는 경쟁사와 달리 주요 NLE 장비를 폭넓게 연동합니다.",
         ],
-        image: "/assets/technology/nle/nle-plugin.png",
+        image: "/assets/technology/nle/nle-plugin.jpg",
       },
       {
         code: "Web NLE",

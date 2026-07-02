@@ -176,7 +176,7 @@ export default function Home() {
             </h1>
             <div className="gem-hero__actions">
               <a href="#contact" className="gem-btn gem-btn--primary">
-                AX 전략 상담하기
+                문의하기
               </a>
             </div>
             <p className="gem-hero__note">
@@ -377,7 +377,7 @@ export default function Home() {
                 href="/support/"
                 className="gem-btn gem-btn--invert"
               >
-                영업팀에 문의하기
+                문의하기
               </Link>
               <a
                 href="#solutions"
