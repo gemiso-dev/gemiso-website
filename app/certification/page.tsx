@@ -151,7 +151,7 @@ export default function CertificationPage() {
           </div>
           <div className="sol-cta__actions">
             <Link href="/support/" className="gem-btn gem-btn--invert">
-              영업팀에 문의하기
+              문의하기
             </Link>
             <Link
               href="/#solutions"
