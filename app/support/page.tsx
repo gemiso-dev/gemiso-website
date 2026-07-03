@@ -1,4 +1,5 @@
 import Link from "next/link";
+import InquiryForm from "@/components/InquiryForm";
 import Reveal from "@/components/Reveal";
 import { COMPANY } from "@/components/site-config";
 import {
@@ -84,6 +85,33 @@ export default function SupportPage() {
         </div>
       </section>
 
+      {/* 문의 폼 */}
+      <section id="inquiry" className="inq-section">
+        <div className="gem-container inq-grid">
+          <Reveal className="inq-intro">
+            <div className="hist-eyebrow">
+              <span className="hist-eyebrow__tick" />
+              <span className="hist-eyebrow__label hist-eyebrow__label--muted">
+                문의 · INQUIRY
+              </span>
+            </div>
+            <h2 className="inq-title">솔루션 도입 문의</h2>
+            <p className="inq-desc">
+              문의 내용을 남겨주시면 담당자가 영업일 기준 24시간 이내에
+              연락드립니다. 도입 상담·견적·기술 문의 모두 환영합니다.
+            </p>
+            <p className="inq-side-note">
+              급하신 경우 <a href={COMPANY.telHref}>02-857-1101</a> 또는{" "}
+              <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>으로 바로
+              연락 주세요.
+            </p>
+          </Reveal>
+          <Reveal>
+            <InquiryForm />
+          </Reveal>
+        </div>
+      </section>
+
       {/* 오피스 */}
       <section className="sup-offices">
         <div className="gem-container">
@@ -139,7 +167,7 @@ export default function SupportPage() {
             </p>
           </div>
           <div className="sol-cta__actions">
-            <a href={`mailto:${COMPANY.email}`} className="gem-btn gem-btn--invert">
+            <a href="#inquiry" className="gem-btn gem-btn--invert">
               문의하기
             </a>
             <Link href="/#solutions" className="gem-btn gem-btn--underline-light">

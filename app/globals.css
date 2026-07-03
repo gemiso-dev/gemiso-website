@@ -3756,6 +3756,246 @@ a.sup-contact__cell:hover {
   }
 }
 
+/* ------------------------------------------------------------- 문의 폼 */
+.inq-section {
+  background: #fff;
+  border-top: 1px solid var(--gem-border);
+  padding-block: var(--gem-sec-pad);
+}
+.inq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+  gap: clamp(36px, 5vw, 80px);
+  align-items: start;
+}
+.inq-title {
+  margin-top: 16px;
+  font-size: clamp(26px, 3.2vw, 40px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--gem-fg);
+}
+.inq-desc {
+  margin-top: 14px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--gem-muted);
+  max-width: 44ch;
+}
+.inq-side-note {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--gem-border);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gem-subtle);
+}
+.inq-side-note a {
+  color: var(--gem-accent);
+}
+.inq-side-note a:hover {
+  text-decoration: underline;
+}
+
+/* 폼 그리드 — 2열 기본, 긴 항목은 전체 폭 */
+.inq-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 20px;
+}
+.inq-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.inq-field--full {
+  grid-column: 1 / -1;
+}
+.inq-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.inq-fieldset legend {
+  padding: 0;
+  margin-bottom: 9px;
+}
+.inq-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gem-fg);
+}
+.inq-req {
+  color: var(--gem-accent);
+}
+
+/* 입력 요소 */
+.inq-input,
+.inq-select,
+.inq-textarea {
+  width: 100%;
+  border: 1px solid var(--gem-border);
+  border-radius: 0;
+  background: #fff;
+  padding: 13px 14px;
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--gem-fg);
+}
+.inq-input::placeholder,
+.inq-textarea::placeholder {
+  color: var(--gem-subtle);
+}
+.inq-input:focus,
+.inq-select:focus,
+.inq-textarea:focus {
+  outline: none;
+  border-color: var(--gem-accent);
+  box-shadow: inset 0 0 0 1px var(--gem-accent);
+}
+.inq-textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+.inq-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23525252' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+/* 선택 칩 (체크박스/라디오) */
+.inq-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.inq-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--gem-border);
+  background: #fff;
+  padding: 9px 14px;
+  font-size: 13.5px;
+  color: var(--gem-muted);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.15s ease, color 0.15s ease,
+    background 0.15s ease;
+}
+.inq-chip:hover {
+  border-color: var(--gem-subtle);
+}
+.inq-chip.is-on {
+  border-color: var(--gem-accent);
+  color: var(--gem-accent);
+  background: #f2f6ff;
+}
+.inq-chip__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.inq-chip__dot {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  background: var(--gem-border);
+  transition: background 0.15s ease;
+}
+.inq-chip.is-on .inq-chip__dot {
+  background: var(--gem-accent);
+}
+.inq-chip:has(.inq-chip__input:focus-visible) {
+  outline: 2px solid var(--gem-accent);
+  outline-offset: 1px;
+}
+
+/* 허니팟 — 화면·스크린리더 모두에서 숨긴다 */
+.inq-hp {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* 제출 행 + 상태 메시지 */
+.inq-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.inq-actions .gem-btn[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
+.inq-privacy {
+  font-size: 13px;
+  color: var(--gem-subtle);
+}
+.inq-error {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #da1e28;
+}
+.inq-error a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* 접수 완료 패널 */
+.inq-done {
+  border: 1px solid var(--gem-border);
+  border-top: 3px solid var(--gem-accent);
+  background: #fff;
+  padding: clamp(32px, 4vw, 48px);
+}
+.inq-done__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--gem-accent);
+  color: var(--gem-on-accent);
+  font-size: 18px;
+}
+.inq-done__title {
+  margin-top: 18px;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--gem-fg);
+}
+.inq-done__desc {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--gem-muted);
+  max-width: 48ch;
+}
+
+/* 반응형 */
+@media (max-width: 860px) {
+  .inq-grid {
+    grid-template-columns: 1fr;
+  }
+  .inq-form {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* =========================================================================
    미션 (/mission)
    ========================================================================= */
