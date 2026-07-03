@@ -58,6 +58,8 @@ export type Solution = {
     imageNarrow?: boolean;
     /** 스크린샷이 없을 때 표시할 목업 종류(없으면 솔루션 기본 mock 사용). */
     mock?: SolutionMockType;
+    /** 헤더 → 번호 기능 리스트 사이 간격을 넓게(항목별 예외). */
+    wideGap?: boolean;
   }[];
 };
 
@@ -847,10 +849,10 @@ export const SOLUTIONS: Solution[] = [
         desc: "배포한 콘텐츠의 이력을 추적하고 체계적으로 보관하여 자산을 안정적으로 관리합니다.",
         points: [
           "배포 이력 조회 — 언제 어느 플랫폼에 배포했는지 이력을 추적합니다.",
-          "콘텐츠 보관 — 내부에 등록한 콘텐츠를 체계적으로 보관하고 관리합니다.",
-          "콘텐츠 소유권 관리 — 자신의 콘텐츠를 자체적으로 보관하고 통제합니다.",
+          "콘텐츠 보관 및 소유권 관리 — 내부에 등록한 콘텐츠를 체계적으로 보관하고 관리합니다.",
         ],
         image: "/assets/solutions/g-sam/archive.png",
+        wideGap: true,
       },
     ],
   },

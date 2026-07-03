@@ -2033,6 +2033,10 @@ button.gem-copy__text:focus-visible,
   padding-left: 0;
   list-style: none;
 }
+/* 항목별 예외 — 헤더와의 간격을 넓게 */
+.sol-detail__points--wide {
+  margin-top: 40px;
+}
 .sol-detail__points li {
   font-size: 14px;
   line-height: 1.6;

@@ -181,7 +181,11 @@ export default async function SolutionPage({
                       <span className="sol-detail__sub">{d.sub}</span>
                     </div>
                     <p className="sol-detail__desc">{d.desc}</p>
-                    <ul className="sol-detail__points">
+                    <ul
+                      className={`sol-detail__points${
+                        d.wideGap ? " sol-detail__points--wide" : ""
+                      }`}
+                    >
                       {d.points.map((p, pi) => {
                         const i = p.indexOf(" — ");
                         return (
