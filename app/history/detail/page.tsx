@@ -115,7 +115,7 @@ export default function HistoryDetailPage() {
             </p>
           </div>
           <div className="sol-cta__actions">
-            <Link href="/#contact" className="gem-btn gem-btn--invert">
+            <Link href="/support/#inquiry" className="gem-btn gem-btn--invert">
               문의하기
             </Link>
             <Link

@@ -2,7 +2,6 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import MissionDiagram from "@/components/MissionDiagram";
 import MissionNetwork from "@/components/MissionNetwork";
-import { COMPANY } from "@/components/site-config";
 import { MISSION_PILLARS } from "@/components/mission-data";
 import { pageMetadata } from "@/components/seo";
 
@@ -101,9 +100,9 @@ export default function MissionPage() {
             </p>
           </div>
           <div className="sol-cta__actions">
-            <a href={`mailto:${COMPANY.email}`} className="gem-btn gem-btn--invert">
+            <Link href="/support/#inquiry" className="gem-btn gem-btn--invert">
               문의하기
-            </a>
+            </Link>
             <Link href="/history/" className="gem-btn gem-btn--underline-light">
               연혁 보기 →
             </Link>

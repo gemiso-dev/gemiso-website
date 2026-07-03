@@ -172,12 +172,12 @@ export default function Home() {
             <h1 className="gem-hero__title">
               레거시를 넘어 <span className="gem-hero__hl">AX</span>로,
               <br />
-              방송의 미래를 켜다
+              방송의 미래를 설계하다
             </h1>
             <div className="gem-hero__actions">
-              <a href="#contact" className="gem-btn gem-btn--primary">
+              <Link href="/support/#inquiry" className="gem-btn gem-btn--primary">
                 AX 전략 상담하기
-              </a>
+              </Link>
             </div>
             <p className="gem-hero__note">
               MBC, YTN, SBS, EBS, KTV, TBS, 아리랑 TV가 신뢰합니다.
@@ -194,9 +194,9 @@ export default function Home() {
             <ScrollHighlightText
               className="gem-statement__text"
               lines={[
-                "AI 기반 플랫폼 어웨어(Platform-Aware) AX 기술로 미디어 혁신을 주도합니다.",
-                "전 세계 방송사·글로벌 OTT와 어깨를 나란히 할 새로운 비즈니스 모델,",
-                "Geminisoft와 함께 시작하세요.",
+                "누구나 AX를 말하지만, Geminisoft는 현장에서 증명합니다.",
+                "국내 주요 방송사가 선택한 기술 위에 AI를 더해,",
+                "방송의 다음 단계를 함께 만들어갑니다.",
               ]}
             />
             <div className="gem-statement__actions">
@@ -374,7 +374,7 @@ export default function Home() {
             </p>
             <div className="gem-contact__actions">
               <Link
-                href="/support/"
+                href="/support/#inquiry"
                 className="gem-btn gem-btn--invert"
               >
                 문의하기

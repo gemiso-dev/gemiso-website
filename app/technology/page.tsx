@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ZoomableImage from "@/components/ZoomableImage";
-import { COMPANY, asset } from "@/components/site-config";
+import { asset } from "@/components/site-config";
 import { TECHNOLOGIES } from "@/components/technology-data";
 import { pageMetadata } from "@/components/seo";
 
@@ -165,9 +165,9 @@ export default function TechnologyPage() {
             </p>
           </div>
           <div className="sol-cta__actions">
-            <a href={`mailto:${COMPANY.email}`} className="gem-btn gem-btn--invert">
+            <Link href="/support/#inquiry" className="gem-btn gem-btn--invert">
               문의하기
-            </a>
+            </Link>
             <Link
               href="/solutions/proxima/"
               className="gem-btn gem-btn--underline-light"

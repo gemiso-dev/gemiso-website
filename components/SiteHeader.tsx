@@ -173,7 +173,7 @@ export default function SiteHeader() {
               <span className="gem-sep">|</span>
               <a href="https://www.gemiso.com/">EN</a>
             </span>
-            <Link href="/#contact" className="gem-header__cta gem-hide-sm">
+            <Link href="/support/#inquiry" className="gem-header__cta gem-hide-sm">
               문의하기
             </Link>
             <button
@@ -216,7 +216,7 @@ export default function SiteHeader() {
               </div>
             ))}
             <Link
-              href="/#contact"
+              href="/support/#inquiry"
               className="gem-mobile-menu__cta"
               onClick={closeMenu}
             >

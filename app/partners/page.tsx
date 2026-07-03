@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import { COMPANY, asset } from "@/components/site-config";
+import { asset } from "@/components/site-config";
 import { PARTNER_STATS, PARTNER_GROUPS } from "@/components/partners-data";
 import { pageMetadata } from "@/components/seo";
 
@@ -122,9 +122,9 @@ export default function PartnersPage() {
             </p>
           </div>
           <div className="sol-cta__actions">
-            <a href={`mailto:${COMPANY.email}`} className="gem-btn gem-btn--invert">
+            <Link href="/support/#inquiry" className="gem-btn gem-btn--invert">
               문의하기
-            </a>
+            </Link>
             <Link href="/#solutions" className="gem-btn gem-btn--underline-light">
               솔루션 살펴보기 →
             </Link>
