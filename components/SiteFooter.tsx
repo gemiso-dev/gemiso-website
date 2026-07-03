@@ -57,7 +57,7 @@ export default function SiteFooter() {
               <a href="#" className="gem-lang__current">
                 KR
               </a>
-              <span className="gem-sep">/</span>
+              <span className="gem-sep">|</span>
               <a href="https://www.gemiso.com/">EN</a>
             </span>
           </div>
