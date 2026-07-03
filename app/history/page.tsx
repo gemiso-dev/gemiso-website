@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import HistoryTimeline from "@/components/HistoryTimeline";
 import { HISTORY_ERAS, HISTORY_STATS } from "@/components/history-data";
 import { pageMetadata } from "@/components/seo";
 
@@ -13,12 +14,6 @@ export const metadata = pageMetadata({
 export default function HistoryPage() {
   // 데이터는 연대순(오래된 → 최신). 화면에는 최신순으로 뒤집어 보여준다.
   const count = String(HISTORY_ERAS.length).padStart(2, "0");
-  // 발자취 연도 범위는 데이터에서 직접 뽑아 라벨이 낡지 않게 한다.
-  const allYears = HISTORY_ERAS.flatMap((e) =>
-    e.items.map((it) => parseInt(it.year, 10)),
-  );
-  const latestYear = Math.max(...allYears);
-  const earliestYear = Math.min(...allYears);
   const eras = HISTORY_ERAS.slice()
     .reverse()
     .map((era, ei) => {
@@ -81,51 +76,11 @@ export default function HistoryPage() {
           <Reveal className="hist-eyebrow">
             <span className="hist-eyebrow__tick" />
             <span className="hist-eyebrow__label hist-eyebrow__label--muted">
-              주요 발자취 · {latestYear}–{earliestYear}
+              주요 발자취
             </span>
           </Reveal>
 
-          {eras.map((era) => (
-            <Reveal as="div" key={era.range} className="hist-era">
-              <div className="hist-era-head">
-                <div className="hist-era-head__main">
-                  <div className="hist-era__range">{era.range}</div>
-                  <h2 className="hist-era__title">{era.title}</h2>
-                  <p className="hist-era__desc">{era.desc}</p>
-                </div>
-                <span className="hist-era__idx">
-                  {era.idx} / {era.count}
-                </span>
-              </div>
-
-              <div className="hist-rows">
-                {era.items.map((it, i) => (
-                  <div className="tl-row" key={`${it.year}-${i}`}>
-                    <div className="tl-year">{it.year}</div>
-                    <div className="tl-rail">
-                      <span
-                        className={`tl-rail__line${
-                          it.last ? " tl-rail__line--stub" : ""
-                        }`}
-                      />
-                      <span
-                        className={`tl-dot${
-                          it.major ? " tl-dot--major" : " tl-dot--minor"
-                        }`}
-                      />
-                    </div>
-                    <div className="tl-body">
-                      <div className="tl-body__head">
-                        <h3 className="tl-title">{it.title}</h3>
-                        {it.tag && <span className="tl-tag">{it.tag}</span>}
-                      </div>
-                      <p className="tl-desc">{it.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          ))}
+          <HistoryTimeline eras={eras} />
 
           <Reveal className="hist-foot">
             <span className="hist-foot__mark">↳</span>

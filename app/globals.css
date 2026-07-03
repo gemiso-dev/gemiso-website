@@ -2805,16 +2805,96 @@ button.gem-copy__text:focus-visible,
 .hist-timeline {
   background: #fff;
   padding-block: var(--gem-sec-pad) clamp(48px, 6vw, 72px);
+  /* 탭 밑줄을 화면 끝까지(100vw) 빼도 가로 스크롤이 생기지 않게 가둔다 */
+  overflow-x: clip;
 }
 .hist-timeline__inner {
-  max-width: 1080px;
+  max-width: var(--gem-maxw);
   margin-inline: auto;
   padding-inline: var(--gem-gutter);
+}
+
+/* 시대(연도 구간) 탭 — 세로로 길게 쌓지 않고 한 구간씩 골라 본다 */
+.hist-tabbar {
+  position: relative;
+  margin-top: clamp(22px, 3vw, 34px);
+}
+/* 탭 위·아래 구분선은 좌우 패딩을 무시하고 화면 끝까지 쭉 그린다 */
+.hist-tabbar::before,
+.hist-tabbar::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  border-bottom: 1px solid var(--gem-border);
+}
+.hist-tabbar::before {
+  top: 0;
+}
+.hist-tabbar::after {
+  bottom: 0;
+}
+.hist-tabs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+.hist-tabs::-webkit-scrollbar {
+  height: 0;
+}
+.hist-tab {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 11px 18px 12px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.hist-tab:hover {
+  background: var(--gem-surface);
+}
+.hist-tab__range {
+  font-family: var(--gem-font-display);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--gem-subtle);
+}
+.hist-tab__name {
+  font-size: 14px;
+  color: var(--gem-muted);
+}
+.hist-tab.is-active {
+  background: var(--gem-surface);
+  border-bottom-color: var(--gem-accent);
+}
+.hist-tab.is-active .hist-tab__range {
+  color: var(--gem-accent);
+}
+.hist-tab.is-active .hist-tab__name {
+  color: var(--gem-fg);
+  font-weight: 500;
 }
 
 /* 시대(era) 블록 */
 .hist-era {
   margin-top: clamp(48px, 6vw, 80px);
+}
+/* 탭으로 고른 구간 패널 — 위 탭바와의 간격은 줄인다 */
+.hist-era--panel {
+  margin-top: clamp(28px, 4vw, 44px);
+}
+.hist-era--panel .hist-era-head {
+  border-top: 0;
+  padding-top: 0;
 }
 .hist-era-head {
   border-top: 2px solid var(--gem-border-strong);
@@ -2846,7 +2926,8 @@ button.gem-copy__text:focus-visible,
   font-size: 16px;
   line-height: 1.62;
   color: var(--gem-muted);
-  max-width: 62ch;
+  /* 62ch는 한글에서 지나치게 좁아 한 줄 문장도 접힌다. 데스크톱 한 줄 확보 */
+  max-width: 48em;
 }
 .hist-era__idx {
   flex: none;
@@ -2910,15 +2991,15 @@ button.gem-copy__text:focus-visible,
   border: 1.5px solid #c6c6c6;
 }
 
-/* 이정표 본문 */
+/* 이정표 본문 — 배지는 왼쪽 열, 제목·설명은 같은 시작선에서 한 열로 묶는다 */
 .tl-body {
   padding: 0 0 30px 18px;
-}
-.tl-body__head {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
+}
+.tl-body__text {
+  min-width: 0;
 }
 .tl-title {
   font-size: 18px;
@@ -2927,6 +3008,13 @@ button.gem-copy__text:focus-visible,
   color: var(--gem-fg);
 }
 .tl-tag {
+  flex: none;
+  box-sizing: border-box;
+  width: 64px;
+  /* 제목 첫 줄에 세로 중앙으로 맞춘다 (line-height 1.4 기준) */
+  margin-top: 3px;
+  text-align: center;
+  white-space: nowrap;
   font-family: var(--gem-font-display);
   font-size: 10px;
   letter-spacing: 0.06em;
