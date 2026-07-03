@@ -786,12 +786,12 @@ export const SOLUTIONS: Solution[] = [
     trust: "1 Source Multi-Use — 한 번의 등록으로 모든 채널에 배포",
     stats: [
       { v: "1 Source", k: "Multi-Use 멀티 플랫폼 배포" },
-      { v: "멀티 채널", k: "YouTube · TikTok · Instagram · Facebook · X" },
+      { v: "멀티 채널", k: "YouTube · Facebook · Instagram · X · TikTok" },
     ],
     features: [
       { t: "SNS 플랫폼 통합 배포", d: "YouTube · Facebook · Instagram · X(Twitter) · TikTok까지, 하나의 콘텐츠를 여러 SNS 플랫폼에 한 번에 배포합니다." },
       { t: "예약 배포 · 현황 모니터링", d: "콘텐츠를 예약해 자동으로 배포하고, 배포 현황을 실시간으로 모니터링하며 메타 정보를 일괄 수정합니다." },
-      { t: "배포 일정 관리", d: "일간 · 주간 · 월간 단위로 배포 일정을 조회해 규칙적으로 콘텐츠를 내보냅니다." },
+      { t: "배포 일정 관리", d: "예약한 시점에 콘텐츠를 자동 배포하고, 일간 · 주간 · 월간 일정과 진행 상태를 한눈에 확인합니다." },
       { t: "유튜브 재생목록 · 자막 관리", d: "재생목록을 조회 · 생성 · 수정하고, 제목 · 설명 등 메타정보와 자막을 다국어로 서비스합니다." },
       { t: "통계 분석 대시보드", d: "채널 · 비디오 · 수익 통계를 대시보드로 모아 운영 현황과 실적을 한눈에 봅니다." },
     ],
@@ -811,7 +811,7 @@ export const SOLUTIONS: Solution[] = [
         desc: "하나의 콘텐츠를 여러 SNS 플랫폼에 한 번에 배포하는 1 Source Multi-Use 방식입니다. 플랫폼마다 다른 규격과 기능을 G-SAM이 알아서 맞춥니다.",
         points: [
           "SNS 플랫폼 연계 — YouTube · Facebook · Instagram · X(Twitter) · TikTok에 콘텐츠를 배포합니다.",
-          "플랫폼별 특화 기능 — YouTube 자막 · 재생목록 관리, Instagram · X · TikTok 영상 분할 배포를 지원합니다.",
+          "플랫폼별 특화 기능 — YouTube 자막 · 재생목록 관리, Instagram · X 영상 분할 배포를 지원합니다.",
           "메타 정보 일괄 수정 — 여러 콘텐츠의 제목 · 설명 등 메타 정보를 한 번에 수정합니다.",
         ],
         image: "/assets/solutions/g-sam/deploy.png",
@@ -844,10 +844,10 @@ export const SOLUTIONS: Solution[] = [
         code: "G-SAM Archive",
         title: "아카이브 관리",
         sub: "Archive Management",
-        desc: "배포한 콘텐츠의 이력을 관리하고 내부에 보관해, 외부 플랫폼에 올린 콘텐츠까지 자체적으로 통제합니다.",
+        desc: "배포한 콘텐츠의 이력을 추적하고 체계적으로 보관하여 자산을 안정적으로 관리합니다.",
         points: [
           "배포 이력 조회 — 언제 어느 플랫폼에 배포했는지 이력을 추적합니다.",
-          "콘텐츠 보관 — 내부에 등록한 콘텐츠와 외부 배포 콘텐츠를 함께 관리합니다.",
+          "콘텐츠 보관 — 내부에 등록한 콘텐츠를 체계적으로 보관하고 관리합니다.",
           "콘텐츠 소유권 관리 — 자신의 콘텐츠를 자체적으로 보관하고 통제합니다.",
         ],
         image: "/assets/solutions/g-sam/archive.png",
