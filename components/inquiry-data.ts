@@ -45,7 +45,7 @@ export type InquiryOption = {
 /** 관심 있는 솔루션 분야 (복수 선택). */
 export const INQUIRY_SOLUTIONS: InquiryOption[] = [
   { label: "미디어 자산 관리 Proxima", value: "미디어 자산 관리 Proxima" },
-  { label: "뉴스룸 Zodiac (조디악)", value: "뉴스룸 Zodiac (조디악)" },
+  { label: "뉴스룸 Zodiac", value: "뉴스룸 Zodiac" },
   { label: "자동 송출 Talos", value: "자동 송출 Talos" },
   { label: "라디오 Emotion", value: "라디오 Emotion" },
   { label: "오디오 파일 시스템 Winner S", value: "오디오 파일 시스템 Winner S" },
