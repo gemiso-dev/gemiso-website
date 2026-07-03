@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   CUSTOMER_CATEGORIES,
   CUSTOMERS,
@@ -46,6 +46,20 @@ function CustomerCell({ customer }: { customer: Customer }) {
  */
 export default function CustomersExplorer() {
   const [filter, setFilter] = useState("all");
+  const tabsRef = useRef<HTMLDivElement>(null);
+
+  // 모바일에서 탭이 좌우로 잘리면 선택한 분야가 안 보일 수 있어,
+  // 활성 탭을 스크롤 컨테이너 가운데로 옮겨 항상 고를 수 있게 한다.
+  useEffect(() => {
+    const container = tabsRef.current;
+    if (!container) return;
+    const btn = container.querySelector<HTMLElement>(".cust-tab.is-active");
+    if (!btn) return;
+    const cRect = container.getBoundingClientRect();
+    const bRect = btn.getBoundingClientRect();
+    const delta = bRect.left - cRect.left - (cRect.width - bRect.width) / 2;
+    container.scrollTo({ left: container.scrollLeft + delta, behavior: "smooth" });
+  }, [filter]);
 
   const tabs = useMemo(
     () =>
@@ -70,7 +84,12 @@ export default function CustomersExplorer() {
     <>
       {/* sticky 분야 탭 */}
       <div className="cust-tabbar">
-        <div className="cust-tabs" role="tablist" aria-label="고객사 분야">
+        <div
+          className="cust-tabs"
+          role="tablist"
+          aria-label="고객사 분야"
+          ref={tabsRef}
+        >
           {tabs.map((tb) => {
             const on = tb.id === filter;
             return (

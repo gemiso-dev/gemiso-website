@@ -833,10 +833,10 @@ a:hover > .gem-arrow,
    ========================================================================= */
 .gem-statement {
   background: var(--gem-bg);
-  min-height: 80vh;
+  min-height: 56vh;
   display: flex;
   align-items: center;
-  padding-block: clamp(96px, 16vh, 200px);
+  padding-block: clamp(56px, 9vh, 112px);
 }
 .gem-statement__text {
   margin: 0;
@@ -1529,6 +1529,7 @@ button.gem-copy__text:focus-visible,
   display: flex;
   overflow-x: auto;
   scrollbar-width: none;
+  scroll-behavior: smooth;
 }
 .sol-tabs::-webkit-scrollbar {
   height: 0;
@@ -2849,8 +2850,8 @@ button.gem-copy__text:focus-visible,
   flex: none;
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  padding: 11px 18px 12px;
+  gap: 4px;
+  padding: 18px 18px 19px;
   border: 0;
   border-bottom: 2px solid transparent;
   background: transparent;
@@ -2864,7 +2865,7 @@ button.gem-copy__text:focus-visible,
 }
 .hist-tab__range {
   font-family: var(--gem-font-display);
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   color: var(--gem-subtle);
 }
@@ -2938,15 +2939,15 @@ button.gem-copy__text:focus-visible,
 
 /* 이정표 줄 */
 .hist-rows {
-  margin-top: 30px;
+  margin-top: 48px;
 }
 .tl-row {
   display: grid;
-  grid-template-columns: 104px 44px 1fr;
+  grid-template-columns: 92px 44px 1fr;
 }
 .tl-year {
   padding: 1px 16px 30px 0;
-  text-align: right;
+  text-align: left;
   font-family: var(--gem-font-display);
   font-size: 13px;
   letter-spacing: 0.03em;
@@ -3058,6 +3059,14 @@ button.gem-copy__text:focus-visible,
   .hist-era-head {
     flex-direction: column;
     align-items: flex-start;
+  }
+  /* 모바일: 배지를 텍스트 위로 쌓는다 */
+  .tl-body {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .tl-tag {
+    margin-top: 0;
   }
 }
 
@@ -3414,6 +3423,7 @@ button.gem-copy__text:focus-visible,
   margin-inline: auto;
   padding-inline: var(--gem-gutter);
   overflow-x: auto;
+  scroll-behavior: smooth;
 }
 .cust-tabs::-webkit-scrollbar {
   height: 0;

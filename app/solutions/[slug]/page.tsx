@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
 import SolutionClientsMarquee from "@/components/SolutionClientsMarquee";
 import SolutionMock from "@/components/SolutionMock";
+import SolutionTabs from "@/components/SolutionTabs";
 import ZoomableImage from "@/components/ZoomableImage";
 import { asset } from "@/components/site-config";
 import { SOLUTIONS, getSolution } from "@/components/solutions-data";
@@ -70,29 +71,7 @@ export default async function SolutionPage({
       </nav>
 
       {/* 솔루션 탭 (sticky) */}
-      <div className="sol-tabbar">
-        <div className="gem-container sol-tabs" role="tablist" aria-label="솔루션">
-          {SOLUTIONS.map((s) => {
-            const on = s.id === active.id;
-            return (
-              <Link
-                key={s.id}
-                href={`/solutions/${s.id}/`}
-                className={`sol-tab${on ? " is-active" : ""}${
-                  s.badge ? " sol-tab--featured" : ""
-                }`}
-                aria-current={on ? "page" : undefined}
-              >
-                <span className="sol-tab__code">
-                  {s.code}
-                  {s.badge && <span className="sol-tab__badge">{s.badge}</span>}
-                </span>
-                <span className="sol-tab__name">{s.ko}</span>
-              </Link>
-            );
-          })}
-        </div>
-      </div>
+      <SolutionTabs activeId={active.id} />
 
       {/* 히어로 */}
       <section className="sol-hero">
@@ -106,7 +85,7 @@ export default async function SolutionPage({
             <h1 className="sol-hero__title">{active.tagline}</h1>
             <p className="sol-hero__desc">{active.desc}</p>
             <div className="sol-hero__actions">
-              <Link href="/#contact" className="gem-btn gem-btn--primary">
+              <Link href="/support/#inquiry" className="gem-btn gem-btn--primary">
                 문의하기
               </Link>
               <p className="sol-hero__trust">{active.trust}</p>
@@ -343,7 +322,7 @@ export default async function SolutionPage({
           </div>
           <div className="sol-cta__actions">
             <Link
-              href="/support/"
+              href="/support/#inquiry"
               className="gem-btn gem-btn--invert"
             >
               문의하기
