@@ -2,24 +2,22 @@
 
 /**
  * 히어로 하단 스크롤 화살표.
- * 클릭 시 스테이트먼트 하이라이트 애니메이션이 "막 완료되는" 지점(p=1)으로 스크롤한다.
- * (ScrollHighlightText의 완료 조건: 문장 top이 뷰포트 25% 지점에 도달)
+ * 클릭 시 스테이트먼트 섹션의 최상단이 sticky 헤더 바로 아래(화면 최상단)에
+ * 정확히 맞도록 스크롤한다.
  */
 export default function HeroScrollButton() {
   const onClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const vh = window.innerHeight || 1;
-    const textEl = document.querySelector<HTMLElement>(".gem-statement__text");
-    let target: number;
-    if (textEl) {
-      // 하이라이트 완료 지점: 문장 top === vh*0.25
-      target = textEl.getBoundingClientRect().top + window.scrollY - vh * 0.25;
-    } else {
-      const sec = document.getElementById("statement");
-      target = sec
-        ? sec.getBoundingClientRect().top + window.scrollY
-        : window.scrollY + vh;
-    }
+    const sec = document.getElementById("statement");
+    if (!sec) return;
+    const headerH =
+      parseInt(
+        getComputedStyle(document.documentElement).getPropertyValue(
+          "--gem-header-h",
+        ),
+        10,
+      ) || 0;
+    const target = sec.getBoundingClientRect().top + window.scrollY - headerH;
     window.scrollTo({ top: Math.max(0, Math.round(target)), behavior: "smooth" });
   };
 
