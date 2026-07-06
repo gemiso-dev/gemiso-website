@@ -123,7 +123,7 @@ export const HISTORY_ERAS: HistoryEra[] = [
         year: "2010.06",
         tag: "CLIENT",
         title: "EBS 디지털 아카이브 · NPS 시스템 구축",
-        desc: "지상파 공영방송 EBS에 아카이브와 뉴스 제작 시스템을 구축했습니다.",
+        desc: "지상파 공영방송 EBS에 아카이브와 네트워크 제작 시스템을 구축했습니다.",
       },
       {
         year: "2010",
