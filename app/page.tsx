@@ -9,7 +9,7 @@ import { NEWS_ARTICLES } from "@/components/news-data";
 import { pageMetadata } from "@/components/seo";
 
 export const metadata = pageMetadata({
-  title: "레거시를 넘어 AX로, 방송의 미래를 여는 AI 미디어 플랫폼",
+  title: "레거시를 넘어 AX로, 방송의 미래를 설계하는 AI 미디어 플랫폼",
   description:
     "Geminisoft는 AI 기반 플랫폼 어웨어(Platform-Aware) 방송을 위한 AX 기술을 제공합니다. 전 세계 방송사·글로벌 OTT와 어깨를 나란히 할 새로운 미디어 비즈니스 모델을 만듭니다.",
   path: "/",

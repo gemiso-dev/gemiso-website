@@ -634,8 +634,8 @@ export const SOLUTIONS: Solution[] = [
     badge: "AI",
     mock: "ai",
     image: "/assets/solutions/maia/video.png",
-    tagline: "방송을 위한 AI 엔진 스위트",
-    desc: "MAIA(Media AI Agent)는 영상 · 음성 · 얼굴 · 문자 · 프롬프터를 AI로 분석하는 통합 엔진입니다. 방대한 미디어 라이브러리를 검색 가능한 자산으로 바꿉니다.",
+    tagline: "방송에 필요한 모든 AI, 하나의 엔진으로",
+    desc: "MAIA(Media AI Agent)는 영상 · 음성 · 얼굴 · 문자 · 프롬프터를 AI로 분석하는 통합 엔진입니다. 방대한 미디어 라이브러리를 검색 가능한 자산으로 전환합니다.",
     trust: "온프레미스 배포 — 콘텐츠가 시설 밖으로 나가지 않습니다",
     stats: [
       { v: "116종+", k: "객체 자동 감지 분류" },
