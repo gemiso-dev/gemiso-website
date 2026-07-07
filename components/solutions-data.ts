@@ -74,7 +74,7 @@ export const SOLUTIONS: Solution[] = [
     mock: "grid",
     image: "/assets/solutions/proxima/main.png",
     tagline: "수집에서 배포까지, 미디어 자산의 전 과정",
-    desc: "미디어가 들어오는 순간 워크플로우가 시작됩니다. 수집 · 변환 · 보관 · 분석 · 배포에 이르는 전 과정을 Proxima 하나로 제어하고 관리합니다. 모든 기능을 자체 연구개발로 구현했습니다.",
+    desc: "Proxima는 콘텐츠가 들어오는 순간부터 인제스트·변환·보관·분석·배포까지, 미디어 자산의 전 과정을 Geminisoft의 자체 연구개발로 구현한 하나의 시스템으로 통합 관리합니다.",
     trust: "국내외 다수 방송사 · 관공서에서 운영 중",
     stats: [
       { v: "10분 이내", k: "1시간 영상 프록시 생성" },
@@ -192,7 +192,7 @@ export const SOLUTIONS: Solution[] = [
     mock: "rundown",
     image: "/assets/solutions/zodiac/main.png",
     tagline: "기획에서 송출까지, 하나의 뉴스룸",
-    desc: "Zodiac은 TV 뉴스를 만드는 보도 정보 시스템입니다. 기사의 배정 · 작성 · 송고 같은 기사 관리부터 뉴스 큐시트, 큐시트 기반 송출 자동화까지 — 기획에서 온에어로 이어지는 뉴스룸 전 과정을 PC와 모바일에서 하나로 잇습니다.",
+    desc: "Zodiac은 뉴스 기획부터 취재·기사 작성·큐시트 구성·송출 자동화까지, 뉴스 제작 전 과정을 하나의 시스템에서 관리합니다. PC와 모바일 어디서든, 기획부터 온에어까지 이어지는 뉴스룸 업무를 끊김 없이 지원합니다.",
     trust: "MBC · YTN · KTV · TBS · cpbc · 아리랑국제방송 등 도입",
     stats: [
       { v: "PC·모바일", k: "동일한 작업 환경" },
