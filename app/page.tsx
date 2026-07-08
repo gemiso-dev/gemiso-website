@@ -20,7 +20,14 @@ const LATEST_NEWS = NEWS_ARTICLES.slice(0, 3);
 
 /* ----------------------------------------------------------------- 데이터 */
 
-const SOLUTIONS = [
+const SOLUTIONS: {
+  num: string;
+  tag: string;
+  title: string;
+  desc: string;
+  /** 사이트에서 숨김(카드 미노출). 코드는 보존 — 복구 시 플래그 제거. */
+  hidden?: boolean;
+}[] = [
   {
     num: "01",
     tag: "PROXIMA",
@@ -40,16 +47,18 @@ const SOLUTIONS = [
     desc: "편성표를 수신하거나 직접 구성하고 비디오 서버를 제어해 완전 이중화된 무중단 송출을 구현합니다.",
   },
   {
+    // [숨김] 현재 미사용 솔루션 — 복구 시 hidden 플래그 제거.
     num: "04",
     tag: "EMOTION",
     title: "라디오",
     desc: "하드웨어에 종속되지 않는 라디오 제작과 송출 — 멀티트랙 편집과 큐시트를 지원합니다.",
+    hidden: true,
   },
   {
     num: "05",
     tag: "WINNER-S",
-    title: "오디오 파일 시스템",
-    desc: "제작·편성·광고·생방송·자동 송출·관제까지 — 아홉 개의 단말로 잇는 디지털 오디오 파일 시스템.",
+    title: "라디오",
+    desc: "제작·편성·광고·생방송·자동 송출·관제까지 — 아홉 개의 단말로 잇는 디지털 라디오.",
   },
   {
     num: "06",
@@ -225,14 +234,16 @@ export default function Home() {
           </Reveal>
 
           <div className="gem-grid-cards">
-            {SOLUTIONS.map((s) => (
+            {SOLUTIONS.filter((s) => !s.hidden).map((s, i) => (
               <Link
-                key={s.num}
+                key={s.tag}
                 href={`/solutions/${s.tag.toLowerCase()}/`}
                 className="gem-card"
               >
                 <div className="gem-card__meta">
-                  <span className="gem-card__num">{s.num}</span>
+                  <span className="gem-card__num">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   <span className="gem-card__tag">{s.tag}</span>
                 </div>
                 <h3 className="gem-card__title">{s.title}</h3>

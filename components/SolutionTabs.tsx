@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { SOLUTIONS } from "@/components/solutions-data";
+import { VISIBLE_SOLUTIONS } from "@/components/solutions-data";
 
 /**
  * 솔루션 sticky 탭바 — 페이지(route)별로 이동한다.
@@ -31,7 +31,7 @@ export default function SolutionTabs({ activeId }: { activeId: string }) {
         aria-label="솔루션"
         ref={tabsRef}
       >
-        {SOLUTIONS.map((s) => {
+        {VISIBLE_SOLUTIONS.map((s) => {
           const on = s.id === activeId;
           return (
             <Link

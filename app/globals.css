@@ -1647,6 +1647,15 @@ button.gem-copy__text:focus-visible,
   /* 줄을 고르게 나눠 어색한 3줄 방지 */
   text-wrap: balance;
 }
+/* 개행 세그먼트: 기본(모바일·PC)은 줄바꿈, 태블릿(601~1024px)만 한 줄로 */
+.sol-hero__title-seg {
+  display: block;
+}
+@media (min-width: 601px) and (max-width: 1024px) {
+  .sol-hero__title-seg {
+    display: inline;
+  }
+}
 .sol-hero__desc {
   margin-top: 22px;
   font-size: clamp(16px, 1.6vw, 18px);

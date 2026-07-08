@@ -7,14 +7,14 @@ import SolutionMock from "@/components/SolutionMock";
 import SolutionTabs from "@/components/SolutionTabs";
 import ZoomableImage from "@/components/ZoomableImage";
 import { asset } from "@/components/site-config";
-import { SOLUTIONS, getSolution } from "@/components/solutions-data";
+import { VISIBLE_SOLUTIONS, getSolution } from "@/components/solutions-data";
 import { pageMetadata } from "@/components/seo";
 
 type Params = { slug: string };
 
-/** 모든 솔루션을 정적 페이지로 생성(output: export). */
+/** 노출 솔루션만 정적 페이지로 생성(output: export). 숨김 솔루션은 빌드 제외. */
 export function generateStaticParams(): Params[] {
-  return SOLUTIONS.map((s) => ({ slug: s.id }));
+  return VISIBLE_SOLUTIONS.map((s) => ({ slug: s.id }));
 }
 
 export async function generateMetadata({
@@ -42,7 +42,7 @@ export default async function SolutionPage({
   const active = getSolution(slug);
   if (!active) notFound();
 
-  const others = SOLUTIONS.filter((s) => s.id !== active.id);
+  const others = VISIBLE_SOLUTIONS.filter((s) => s.id !== active.id);
   const steps = active.workflow.map((w, i, arr) => ({
     n: String(i + 1).padStart(2, "0"),
     label: w,
@@ -82,7 +82,26 @@ export default async function SolutionPage({
               <span className="sol-hero__code">{active.code}</span>
               <span className="sol-hero__cat">{active.cat}</span>
             </div>
-            <h1 className="sol-hero__title">{active.tagline}</h1>
+            <h1 className="sol-hero__title">
+              {active.tagline.includes("\n")
+                ? active.tagline
+                    .split("\n")
+                    .flatMap((seg, i) =>
+                      i === 0
+                        ? [
+                            <span key={i} className="sol-hero__title-seg">
+                              {seg}
+                            </span>,
+                          ]
+                        : [
+                            " ",
+                            <span key={i} className="sol-hero__title-seg">
+                              {seg}
+                            </span>,
+                          ],
+                    )
+                : active.tagline}
+            </h1>
             <p className="sol-hero__desc">{active.desc}</p>
             <div className="sol-hero__actions">
               <Link href="/support/#inquiry" className="gem-btn gem-btn--primary">

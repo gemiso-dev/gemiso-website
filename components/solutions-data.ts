@@ -26,6 +26,11 @@ export type Solution = {
   short: string;
   /** 솔루션 탭에서 강조할 때 코드 옆에 붙는 배지(예: "AI"). 있으면 탭이 강조 스타일이 된다. */
   badge?: string;
+  /**
+   * 사이트 전반에서 숨김 처리(목록·내비·탭·정적 페이지 생성 제외). 코드는 보존한다.
+   * 복구하려면 이 플래그만 제거하면 된다.
+   */
+  hidden?: boolean;
   mock: SolutionMockType;
   /** 히어로에 쓸 실제 제품 스크린샷 경로(있으면 mock 대신 표시). asset()로 감싼다. */
   image?: string;
@@ -289,7 +294,7 @@ export const SOLUTIONS: Solution[] = [
     short: "송출",
     mock: "schedule",
     image: "/assets/solutions/talos/sec.png",
-    tagline: "멈추지 않는 자동 송출",
+    tagline: "편성표대로,\n멈추지 않는 자동 송출",
     desc: "TALOS는 편성 스케줄 수신·구성부터 비디오 서버 등 송출 장비 제어까지, 콘텐츠 송출 전 과정을 하나의 APC 시스템에서 자동화합니다. 방송 채널, 송출 대행, 사내 방송, 유튜브 라이브까지 안정적인 온에어 운영을 지원합니다.",
     trust: "국내 주요 채널 온에어 운영",
     stats: [
@@ -367,6 +372,8 @@ export const SOLUTIONS: Solution[] = [
   },
   {
     id: "emotion",
+    // [숨김] 현재 미사용 솔루션 — 사이트 전반에서 노출 제외(복구 시 이 줄 제거).
+    hidden: true,
     code: "EMOTION",
     name: "Emotion",
     ko: "라디오",
@@ -480,20 +487,20 @@ export const SOLUTIONS: Solution[] = [
     id: "winner-s",
     code: "WINNER S",
     name: "Winner S",
-    ko: "오디오 파일 시스템",
-    cat: "오디오 파일 시스템 · Audio File System",
-    short: "오디오 파일 시스템",
+    ko: "라디오",
+    cat: "라디오 · Radio Broadcast System",
+    short: "라디오",
     mock: "waveform",
     image: "/assets/solutions/winner-s/chain.png",
-    tagline: "디지털 환경 최적화 오디오 파일 시스템",
-    desc: "Winner S는 네트워크와 대용량 데이터베이스를 기반으로 디지털 환경에 최적화한 오디오 파일 시스템입니다. 일반 프로그램과 방송 소재 · 광고 · 음원을 데이터베이스로 체계화하고, 제작부터 편성 · 광고 · 생방송 · 자동 송출 · 관제까지 오디오 방송의 전 과정을 아홉 개의 단말로 하나로 잇습니다.",
-    trust: "네트워크 · 대용량 데이터베이스 기반 디지털 오디오 파일 시스템",
+    tagline: "라디오 운영을 위한 오디오 파일 시스템",
+    desc: "Winner S는 네트워크와 대용량 데이터베이스 기반의 디지털 오디오 파일 시스템입니다. 녹음·제작부터 편성·광고·생방송·자동 송출·관제까지 라디오 방송 운영 전 과정을 9개 단말 기반의 연동 환경에서 지원하고, 프로그램·방송 소재·음원을 체계적으로 관리합니다.",
+    trust: "네트워크 · 대용량 데이터베이스 기반 디지털 라디오",
     stats: [
       { v: "최대 32채널", k: "멀티채널 오디오 편집" },
       { v: "주 · 예비", k: "이중화 무중단 송출" },
     ],
     features: [
-      { t: "Launcher — 통합 단말", d: "오디오 파일 시스템을 빠르게 실행하는 통합 단말입니다. 권한 기반 사용자 로그인과 접근 제어, 공지 기능을 제공합니다." },
+      { t: "Launcher — 통합 단말", d: "라디오를 빠르게 실행하는 통합 단말입니다. 권한 기반 사용자 로그인과 접근 제어, 공지 기능을 제공합니다." },
       { t: "Winner Chain — 자동 송출(APC)", d: "일일 편성표를 받아 방송을 자동으로 송출합니다. 오디오 라우터 연동으로 채널을 자동 절체하고, 주 · 예비 이중화로 안정성을 높입니다." },
       { t: "Winner Live — 생방송 진행", d: "큐시트 기반 생방송 진행 단말입니다. 예약 광고 자동 로딩과 비상 방송, 소재 · 음원 빠른 검색, 드래그 앤 드롭을 지원합니다." },
       { t: "Winner Recording — 제작", d: "녹음과 편집을 통합한 제작 단말입니다. 최대 32채널 멀티채널과 무제한 Undo, 듀얼 모니터, 방송 편집 잔여 시간 자동 계산을 지원합니다." },
@@ -518,9 +525,9 @@ export const SOLUTIONS: Solution[] = [
         code: "WINNER S Launcher",
         title: "통합 단말",
         sub: "Integrated Terminal",
-        desc: "오디오 파일 시스템의 모든 단말을 한곳에서 실행하는 통합 진입점입니다. 권한에 따라 접근을 통제하고 공지를 전달합니다.",
+        desc: "라디오의 모든 단말을 한곳에서 실행하는 통합 진입점입니다. 권한에 따라 접근을 통제하고 공지를 전달합니다.",
         points: [
-          "빠른 실행 — 오디오 파일 시스템 프로그램을 쉽고 빠르게 실행합니다.",
+          "빠른 실행 — 라디오 프로그램을 쉽고 빠르게 실행합니다.",
           "권한 기반 로그인 — 사용자 로그인과 권한 레벨에 따른 접근 제어를 제공합니다.",
           "공지 기능 — 운영 공지를 단말에 전달합니다.",
         ],
@@ -552,13 +559,13 @@ export const SOLUTIONS: Solution[] = [
       },
       {
         code: "WINNER S Recording",
-        title: "제작",
-        sub: "Recording & Production",
-        desc: "녹음과 편집을 통합한 제작 단말입니다. 멀티채널 오디오를 다루며, 강력한 복구 기능으로 안정적으로 제작합니다.",
+        title: "제작 · 편집",
+        sub: "Recording & Editing",
+        desc: "녹음 단말과 편집 단말로 구성된 제작 환경입니다. 멀티채널 오디오를 다루고 다양한 포맷을 처리하며, 생방송 연동과 강력한 복구 기능으로 안정적인 제작을 지원합니다.",
         points: [
-          "멀티채널 제작 — 오디오 에디터로 녹음 · 편집하고 편성 소재로 저장합니다(최대 32채널, 권장 6채널).",
-          "생방송 연동 · 듀얼 모니터 — 생방송 프로그램과 연동하고, 듀얼 모니터 환경을 지원합니다.",
-          "잔여 시간 자동 계산 · 무제한 Undo — 방송 편집 중 잔여 시간을 자동으로 계산하고, 무제한 Undo로 강력하게 복구합니다.",
+          "멀티채널 녹음 · 편집 — 최대 32채널(권장 6채널)까지 녹음 · 편집하고, 편성 소재로 저장합니다.",
+          "다양한 포맷 · 사운드카드 비종속 — WAV · MP3 · MP2 · WMA · ASF · FLAC 등을 편집하고 영상에서 음원을 추출합니다. 특정 사운드카드에 종속되지 않습니다.",
+          "생방송 연동 · 무제한 Undo — 생방송과 연동하고, 방송 편집 중 잔여 시간을 자동 계산합니다. 무제한 Undo 기능으로 편집 내용을 안정적으로 복구할 수 있습니다.",
         ],
         image: "/assets/solutions/winner-s/recording.png",
       },
@@ -573,18 +580,6 @@ export const SOLUTIONS: Solution[] = [
           "편성 오류 표시 · 권한 — 편성 오류를 표시하고, 사용자별 편집 권한을 설정합니다.",
         ],
         image: "/assets/solutions/winner-s/manager.png",
-      },
-      {
-        code: "WINNER S Winnerwave",
-        title: "오디오 편집 (NLE)",
-        sub: "Non-Linear Editor",
-        desc: "오디오 제작을 위한 비선형 편집기입니다. 다양한 포맷을 다루고 멀티채널을 편집하며, 사운드카드에 종속되지 않습니다.",
-        points: [
-          "다양한 포맷 — WAV · MP3 · MP2 · WMA · ASF · FLAC 등을 지원하고, 영상에서 음원을 추출합니다.",
-          "멀티채널 편집 · 공유 — 32채널 이상을 편집하고 편집 내용을 공유합니다.",
-          "사운드카드 비종속 · 복구 — 사운드카드와 무관하게 동작하고, 예기치 못한 오류에도 강력하게 복구합니다.",
-        ],
-        image: "/assets/solutions/winner-s/recording.png",
       },
       {
         code: "WINNER S CF",
@@ -858,11 +853,14 @@ export const SOLUTIONS: Solution[] = [
   },
 ];
 
-/** generateStaticParams / 링크에서 쓰는 슬러그 목록. */
-export const SOLUTION_SLUGS = SOLUTIONS.map((s) => s.id);
+/** 화면에 노출할 솔루션(hidden 제외). 목록·내비·탭·정적 페이지 생성은 이걸 쓴다. */
+export const VISIBLE_SOLUTIONS = SOLUTIONS.filter((s) => !s.hidden);
 
-/** 헤더/푸터 내비게이션에서 쓰는 솔루션 드롭다운 링크 목록(순서는 SOLUTIONS 기준). */
-export const SOLUTION_NAV = SOLUTIONS.map((s) => ({
+/** generateStaticParams / 링크에서 쓰는 슬러그 목록(숨김 제외). */
+export const SOLUTION_SLUGS = VISIBLE_SOLUTIONS.map((s) => s.id);
+
+/** 헤더/푸터 내비게이션에서 쓰는 솔루션 드롭다운 링크 목록(순서는 SOLUTIONS 기준, 숨김 제외). */
+export const SOLUTION_NAV = VISIBLE_SOLUTIONS.map((s) => ({
   label: `${s.name} · ${s.short}`,
   href: `/solutions/${s.id}/`,
 }));

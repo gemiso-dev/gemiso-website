@@ -47,8 +47,9 @@ export const INQUIRY_SOLUTIONS: InquiryOption[] = [
   { label: "미디어 자산 관리 Proxima", value: "미디어 자산 관리 Proxima" },
   { label: "뉴스룸 Zodiac", value: "뉴스룸 Zodiac" },
   { label: "자동 송출 Talos", value: "자동 송출 Talos" },
-  { label: "라디오 Emotion", value: "라디오 Emotion" },
-  { label: "오디오 파일 시스템 Winner S", value: "오디오 파일 시스템 Winner S" },
+  // [숨김] 현재 미사용 솔루션 — 복구 시 주석 해제.
+  // { label: "라디오 Emotion", value: "라디오 Emotion" },
+  { label: "라디오 Winner S", value: "라디오 Winner S" },
   { label: "AI 기술 MAIA", value: "AI 기술  MAIA" },
   { label: "콘텐츠 아카이브 MYMY", value: "콘텐츠 아카이브 MYMY" },
   { label: "콘텐츠 배포 G-SAM", value: "콘텐츠 배포  G-SAM" },
