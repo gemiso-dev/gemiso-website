@@ -559,8 +559,8 @@ export const SOLUTIONS: Solution[] = [
       },
       {
         code: "WINNER S Recording",
-        title: "제작 · 편집",
-        sub: "Recording & Editing",
+        title: "제작 & 편집 (NLE)",
+        sub: "Non-Linear Editing",
         desc: "녹음 단말과 편집 단말로 구성된 제작 환경입니다. 멀티채널 오디오를 다루고 다양한 포맷을 처리하며, 생방송 연동과 강력한 복구 기능으로 안정적인 제작을 지원합니다.",
         points: [
           "멀티채널 녹음 · 편집 — 최대 32채널(권장 6채널)까지 녹음 · 편집하고, 편성 소재로 저장합니다.",
