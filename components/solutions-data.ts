@@ -375,7 +375,7 @@ export const SOLUTIONS: Solution[] = [
     mock: "waveform",
     image: "/assets/solutions/emotion/track.png",
     tagline: "하드웨어에 종속되지 않는 라디오",
-    desc: "Emotion은 현장 라디오 PD와 기술감독의 요구를 충족하는 통합 라디오 방송 솔루션입니다. 녹음 · 제작부터 생방송, 자동 송출, 관제, 품질 관리까지 여섯 개의 모듈로 하나로 잇습니다.",
+    desc: "Emotion은 녹음·제작부터 생방송, 자동 송출, 관제, 품질 관리까지 라디오 방송 운영에 필요한 6개의 모듈을 하나로 통합한 솔루션입니다. 현장 라디오 PD와 기술감독의 요구를 반영해, 안정적인 제작·송출 환경을 지원합니다.",
     trust: "40년 이상의 라디오 운영 노하우를 담은 통합 솔루션",
     stats: [
       { v: "30%+", k: "편집 시간 단축" },
