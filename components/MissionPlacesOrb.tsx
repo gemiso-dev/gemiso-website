@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
+import { useInView } from "@/components/useInView";
 
 /**
  * 미션 '장소를 연결하다' 다이어그램(애니메이션).
@@ -89,12 +90,16 @@ export default function MissionPlacesOrb() {
   const [beams, setBeams] = useState<Beam[]>([]);
   const timers = useRef<number[]>([]);
   const keyRef = useRef(0);
+  const [viewRef, inView] = useInView<SVGGElement>();
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setActive(nodes.map((_, i) => i));
       return;
     }
+    // 화면에 들어오기 전에는 시작하지 않는다
+    if (!inView) return;
+
     const after = (ms: number, fn: () => void) => {
       timers.current.push(window.setTimeout(fn, ms));
     };
@@ -159,12 +164,12 @@ export default function MissionPlacesOrb() {
       ids.forEach((id) => clearTimeout(id));
       timers.current = [];
     };
-  }, []);
+  }, [inView]);
 
   const on = (i: number) => active.includes(i);
 
   return (
-    <>
+    <g ref={viewRef}>
       {/* 삼각 메시(선) — 양 끝이 켜지면 이어진다 */}
       <g>
         {edges.map(([a, b], e) => {
@@ -215,6 +220,6 @@ export default function MissionPlacesOrb() {
           />
         );
       })}
-    </>
+    </g>
   );
 }

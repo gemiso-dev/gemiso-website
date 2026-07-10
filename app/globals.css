@@ -4475,15 +4475,26 @@ a.sup-contact__cell:hover {
 .mission-diagram__cursor {
   fill: var(--gem-accent);
   animation: missionTimeCursor 8s ease-in-out infinite;
+  animation-play-state: paused; /* 화면에 들어오기 전엔 정지 */
 }
 .mission-diagram__label--t0 {
   animation: missionTimeLabel0 8s ease-in-out infinite;
+  animation-play-state: paused;
 }
 .mission-diagram__label--t1 {
   animation: missionTimeLabel1 8s ease-in-out infinite;
+  animation-play-state: paused;
 }
 .mission-diagram__label--t2 {
   animation: missionTimeLabel2 8s ease-in-out infinite;
+  animation-play-state: paused;
+}
+/* 화면에 들어오면 재생 */
+.is-inview .mission-diagram__cursor,
+.is-inview .mission-diagram__label--t0,
+.is-inview .mission-diagram__label--t1,
+.is-inview .mission-diagram__label--t2 {
+  animation-play-state: running;
 }
 
 @keyframes missionPulse {

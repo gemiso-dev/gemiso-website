@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
+import { useInView } from "@/components/useInView";
 
 /**
  * 미션 '사람을 연결하다' 다이어그램(애니메이션).
@@ -40,6 +41,7 @@ export default function MissionPeopleFlow() {
   const [flow, setFlow] = useState<Flow | null>(null);
   const timers = useRef<number[]>([]);
   const keyRef = useRef(0);
+  const [viewRef, inView] = useInView<SVGGElement>();
 
   useEffect(() => {
     // 모션 최소화: 애니메이션 없이 전부 활성 상태로 고정
@@ -48,6 +50,8 @@ export default function MissionPeopleFlow() {
       setLitEdges(EDGES.map((_, i) => i));
       return;
     }
+    // 화면에 들어오기 전에는 시작하지 않는다
+    if (!inView) return;
 
     const after = (ms: number, fn: () => void) => {
       timers.current.push(window.setTimeout(fn, ms));
@@ -113,10 +117,10 @@ export default function MissionPeopleFlow() {
       ids.forEach((id) => clearTimeout(id));
       timers.current = [];
     };
-  }, []);
+  }, [inView]);
 
   return (
-    <>
+    <g ref={viewRef}>
       {/* 간선 — 점등/소등이 강조색 트랜지션으로 부드럽게 전환된다 */}
       {EDGES.map(([a, b], i) => (
         <line
@@ -157,6 +161,6 @@ export default function MissionPeopleFlow() {
           className={`mission-people__node${active.includes(i) ? " is-on" : ""}`}
         />
       ))}
-    </>
+    </g>
   );
 }
