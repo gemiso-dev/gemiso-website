@@ -2781,6 +2781,15 @@ button.gem-copy__text:focus-visible,
   letter-spacing: -0.02em;
   color: var(--gem-fg);
 }
+/* 히어로 제목 개행 세그먼트: 모바일·태블릿은 한 줄, PC(≥1025px)에서만 줄바꿈 */
+.hist-hero__title-seg {
+  display: inline;
+}
+@media (min-width: 1025px) {
+  .hist-hero__title-seg {
+    display: block;
+  }
+}
 /* 미션 페이지 히어로 제목만 크게(60/600) */
 .mission-hero__inner .hist-hero__title {
   font-size: clamp(40px, 6vw, 60px);
@@ -4194,8 +4203,10 @@ a.sup-contact__cell:hover {
 .mission-net {
   position: relative;
   width: 100%;
-  max-width: 480px;
+  max-width: 580px;
   margin-inline: auto;
+  /* 히어로에서 위로 (Reveal이 transform을 쓰므로 margin으로 이동) */
+  margin-top: -40px;
 }
 .mission-net__svg {
   width: 100%;
@@ -4284,7 +4295,7 @@ a.sup-contact__cell:hover {
     grid-template-columns: 1fr;
   }
   .mission-net {
-    max-width: 420px;
+    max-width: 500px;
   }
 }
 
@@ -4408,16 +4419,36 @@ a.sup-contact__cell:hover {
 .mission-diagram__tick {
   stroke: #e3e3e3 !important;
 }
-.mission-diagram__arrow {
-  fill: #c6c6c6;
-}
-.mission-diagram__path {
-  stroke: var(--gem-accent);
-  stroke-width: 1.5;
-  stroke-dasharray: 5 4;
-}
 .mission-diagram__dot {
   fill: #c6c6c6;
+}
+/* 장소 — 폴리곤 오브: 중앙→바깥으로 빔이 뻗어나가 노드를 활성화 */
+.mission-orb__edge {
+  stroke: #d6dae1;
+  stroke-width: 1;
+  opacity: 1;
+  /* 소등(리셋): 서서히 */
+  transition: stroke 0.6s ease, stroke-width 0.6s ease, opacity 0.6s ease;
+}
+.mission-orb__edge.is-on {
+  stroke: var(--gem-accent);
+  stroke-width: 1.3;
+  opacity: 0.5;
+  /* 점등: 빔이 그린 상태와 이어지도록 즉시 */
+  transition: none;
+}
+/* 빔이 지나지 않는 간선은 점등도 부드럽게(번쩍임 방지) */
+.mission-orb__edge--soft.is-on {
+  transition: stroke 0.55s ease, stroke-width 0.55s ease, opacity 0.55s ease;
+}
+.mission-orb__beam {
+  stroke: var(--gem-accent);
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+  opacity: 0.5;
+  animation: missionPeopleFlow 1.8s ease-in-out forwards;
 }
 .mission-diagram__node {
   fill: var(--gem-bg);
@@ -4440,6 +4471,21 @@ a.sup-contact__cell:hover {
   fill: var(--gem-accent);
 }
 
+/* 시간 다이어그램: 선택 커서가 과거 → 현재 → 미래로 이동, 라벨 강조가 따라간다. */
+.mission-diagram__cursor {
+  fill: var(--gem-accent);
+  animation: missionTimeCursor 8s ease-in-out infinite;
+}
+.mission-diagram__label--t0 {
+  animation: missionTimeLabel0 8s ease-in-out infinite;
+}
+.mission-diagram__label--t1 {
+  animation: missionTimeLabel1 8s ease-in-out infinite;
+}
+.mission-diagram__label--t2 {
+  animation: missionTimeLabel2 8s ease-in-out infinite;
+}
+
 @keyframes missionPulse {
   0%,
   100% {
@@ -4449,9 +4495,170 @@ a.sup-contact__cell:hover {
     transform: scale(1.32);
   }
 }
+/* 커서 순환(기준 위치 현재 x=160): 과거(-83)에서 페이드인 → 현재(0) → 미래(+83) 머묾
+   → 페이드아웃 → 보이지 않게 과거로 리셋 후 새 커서가 다시 페이드인. */
+@keyframes missionTimeCursor {
+  0% {
+    transform: translateX(-83px);
+    opacity: 0;
+  }
+  8% {
+    transform: translateX(-83px);
+    opacity: 0;
+  }
+  14% {
+    transform: translateX(-83px);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(-83px);
+    opacity: 1;
+  }
+  40% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  56% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  66% {
+    transform: translateX(83px);
+    opacity: 1;
+  }
+  84% {
+    transform: translateX(83px);
+    opacity: 1;
+  }
+  90% {
+    transform: translateX(83px);
+    opacity: 0;
+  }
+  91% {
+    transform: translateX(-83px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-83px);
+    opacity: 0;
+  }
+}
+/* 라벨 강조는 커서 위치를 따라간다(왕복이라 정·역방향 모두 동기화). */
+@keyframes missionTimeLabel0 {
+  0%,
+  8% {
+    fill: var(--gem-subtle);
+    font-weight: 400;
+  }
+  16%,
+  30% {
+    fill: var(--gem-accent);
+    font-weight: 500;
+  }
+  38%,
+  100% {
+    fill: var(--gem-subtle);
+    font-weight: 400;
+  }
+}
+@keyframes missionTimeLabel1 {
+  0%,
+  32% {
+    fill: var(--gem-subtle);
+    font-weight: 400;
+  }
+  42%,
+  56% {
+    fill: var(--gem-accent);
+    font-weight: 500;
+  }
+  64%,
+  100% {
+    fill: var(--gem-subtle);
+    font-weight: 400;
+  }
+}
+@keyframes missionTimeLabel2 {
+  0%,
+  58% {
+    fill: var(--gem-subtle);
+    font-weight: 400;
+  }
+  66%,
+  86% {
+    fill: var(--gem-accent);
+    font-weight: 500;
+  }
+  92%,
+  100% {
+    fill: var(--gem-subtle);
+    font-weight: 400;
+  }
+}
+
+/* 사람 네트워크: 간선을 따라 흐름이 이동하며 도착 노드를 활성화(랜덤 순서 반복). */
+.mission-people__edge {
+  stroke: #d6dae1;
+  stroke-width: 1;
+  opacity: 1;
+  /* 소등(리셋): 서서히 페이드아웃 */
+  transition: stroke 0.8s ease, stroke-width 0.8s ease, opacity 0.8s ease;
+}
+.mission-people__edge.is-on {
+  stroke: var(--gem-accent);
+  stroke-width: 1.5;
+  opacity: 0.55;
+  /* 점등: 빔이 그린 상태와 이어지도록 즉시 전환(깜빡임 방지) */
+  transition: none;
+}
+.mission-people__beam {
+  stroke: var(--gem-accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+  opacity: 0.55;
+  animation: missionPeopleFlow 1.1s ease-in-out forwards;
+}
+.mission-people__node {
+  fill: var(--gem-bg);
+  stroke: var(--gem-border-strong);
+  stroke-width: 1.5;
+  transition: fill 0.8s ease, stroke 0.8s ease;
+}
+/* 활성: 채움색이 배경 → 강조색으로 부드럽게 스며든다 */
+.mission-people__node.is-on {
+  fill: var(--gem-accent);
+  stroke: var(--gem-accent);
+}
+@keyframes missionPeopleFlow {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mission-diagram__hub {
     animation: none;
+  }
+  /* 모션 최소화: 애니메이션 정지, 현재 선택 상태로 고정 */
+  .mission-diagram__cursor {
+    animation: none;
+  }
+  .mission-diagram__label--t0,
+  .mission-diagram__label--t1,
+  .mission-diagram__label--t2 {
+    animation: none;
+    fill: var(--gem-subtle);
+  }
+  .mission-diagram__label--t1 {
+    fill: var(--gem-accent);
+    font-weight: 600;
+  }
+  .mission-people__node,
+  .mission-people__edge,
+  .mission-orb__edge {
+    transition: none;
   }
 }
 
