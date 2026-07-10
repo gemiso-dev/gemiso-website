@@ -4448,7 +4448,7 @@ a.sup-contact__cell:hover {
   stroke-dasharray: var(--len);
   stroke-dashoffset: var(--len);
   opacity: 0.5;
-  animation: missionPeopleFlow 1.8s ease-in-out forwards;
+  animation: missionPeopleFlow 1s ease-in-out forwards;
 }
 .mission-diagram__node {
   fill: var(--gem-bg);

@@ -79,24 +79,8 @@ const PARENT: number[] = nodes.map((_, i) => {
   return best;
 });
 
-// 중심 제외, 등장 순서를 2·3개씩 배치로 나눔
-const BATCHES: number[][] = (() => {
-  const rest = ORDER.slice(1);
-  const out: number[][] = [];
-  const sizes = [2, 3];
-  let idx = 0;
-  let k = 0;
-  while (idx < rest.length) {
-    const sz = sizes[k % 2];
-    out.push(rest.slice(idx, idx + sz));
-    idx += sz;
-    k++;
-  }
-  return out;
-})();
-
 const CENTER = ORDER[0];
-const BEAM_MS = 1800;
+const BEAM_MS = 1000;
 
 type Beam = { from: number; to: number; key: number };
 
@@ -116,26 +100,41 @@ export default function MissionPlacesOrb() {
     };
 
     let activeSet = new Set<number>();
-    let bi = 0;
 
-    const runBatch = () => {
-      if (bi >= BATCHES.length) {
-        after(3200, reset); // 전부 등장 — 잠시 멈춘 뒤 리셋
+    const step = () => {
+      if (activeSet.size >= nodes.length) {
+        after(2600, reset); // 전부 등장 — 잠시 멈춘 뒤 리셋
         return;
       }
-      const batch = BATCHES[bi];
-      bi += 1;
-      // 활성 부모에서 각 노드로 빔을 뻗는다
-      const bs = batch.map((n) => {
+      // 경계 후보: 아직 안 켜졌고, 부모(안쪽 이웃)가 켜진 노드
+      const frontier: number[] = [];
+      for (let n = 0; n < nodes.length; n++) {
+        if (!activeSet.has(n) && PARENT[n] >= 0 && activeSet.has(PARENT[n])) {
+          frontier.push(n);
+        }
+      }
+      if (frontier.length === 0) {
+        after(2600, reset);
+        return;
+      }
+      // 무작위로 2~3개 선택
+      const want = Math.min(frontier.length, 2 + Math.floor(Math.random() * 2));
+      const pool = frontier.slice();
+      const chosen: number[] = [];
+      for (let i = 0; i < want; i++) {
+        const idx = Math.floor(Math.random() * pool.length);
+        chosen.push(pool.splice(idx, 1)[0]);
+      }
+      const bs = chosen.map((n) => {
         keyRef.current += 1;
         return { from: PARENT[n], to: n, key: keyRef.current };
       });
       setBeams(bs);
       after(BEAM_MS, () => {
-        batch.forEach((n) => activeSet.add(n)); // 빔 도착 → 노드 활성
+        chosen.forEach((n) => activeSet.add(n)); // 빔 도착 → 노드 활성
         setActive([...activeSet]);
         setBeams([]);
-        after(850, runBatch);
+        after(420, step);
       });
     };
 
@@ -150,8 +149,7 @@ export default function MissionPlacesOrb() {
       activeSet = new Set([CENTER]);
       setActive([CENTER]);
       setBeams([]);
-      bi = 0;
-      after(1200, runBatch); // 중심이 먼저 켜지고 잠시 후 뻗어나감
+      after(700, step); // 중심이 먼저 켜지고 잠시 후 뻗어나감
     };
 
     after(600, start);
