@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ScrollHighlightText from "@/components/ScrollHighlightText";
@@ -167,11 +168,13 @@ export default function Home() {
       {/* 히어로 */}
       <section
         className="gem-hero gem-hero--center"
-        style={{
-          backgroundImage: `radial-gradient(ellipse 72% 85% at 50% 50%, rgba(255,255,255,0.8) 16%, rgba(255,255,255,0.85) 52%, rgba(255,255,255,0.94) 84%), url(${asset(
-            "/assets/hero/hero-bg5.webp",
-          )})`,
-        }}
+        style={
+          {
+            // 데스크탑/모바일 배경을 CSS 변수로 넘겨 globals.css에서 미디어쿼리로 갈아끼운다.
+            "--hero-bg": `url(${asset("/assets/hero/hero-bg5.webp")})`,
+            "--hero-bg-sm": `url(${asset("/assets/hero/hero-bg5-mobile.webp")})`,
+          } as CSSProperties
+        }
       >
         <div className="gem-container gem-hero__grid gem-hero__grid--center">
           <Reveal>
@@ -181,7 +184,7 @@ export default function Home() {
             <h1 className="gem-hero__title">
               레거시를 넘어 <span className="gem-hero__hl">AX</span>로,
               <br />
-              방송의 미래를 설계하다
+              방송의 미래를<br className="br-sm" /> 설계하다
             </h1>
             <div className="gem-hero__actions">
               <Link href="/support/#inquiry" className="gem-btn gem-btn--primary">
@@ -206,6 +209,13 @@ export default function Home() {
                 "누구나 AX를 말하지만, Geminisoft는 현장에서 증명합니다.",
                 "국내 주요 방송사가 선택한 기술 위에 AI를 더해,",
                 "방송의 다음 단계를 함께 만들어갑니다.",
+              ]}
+              mobileLines={[
+                "누구나 AX를 말하지만,",
+                "Geminisoft는 현장에서 증명합니다.",
+                "국내 주요 방송사가 선택한 기술 위에",
+                "AI를 더해, 방송의 다음 단계를",
+                "함께 만들어갑니다.",
               ]}
             />
             <div className="gem-statement__actions">
@@ -262,7 +272,7 @@ export default function Home() {
             <span>고객사</span>
           </div>
           <h2 className="gem-title gem-title--sm">
-            많은 고객이 보내준 신뢰, 흔들림 없는 기술 지원으로 답합니다
+            많은 고객이 보내준 신뢰,<br className="br-sm" /> 흔들림 없는 기술 지원으로 답합니다
           </h2>
         </Reveal>
         <CustomerMarquee />

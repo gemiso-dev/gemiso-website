@@ -5,6 +5,11 @@ import { useEffect, useRef } from "react";
 type Props = {
   /** 줄 단위 문장 배열 — 줄 사이에는 PC 전용 개행(br-pc)이 들어간다. */
   lines: string[];
+  /**
+   * 모바일 전용 줄바꿈 기준(br-sm). 생략 시 모바일은 자연 줄바꿈.
+   * 반드시 `lines`와 "같은 단어 순서"여야 한다(줄 나누는 위치만 다름).
+   */
+  mobileLines?: string[];
   className?: string;
 };
 
@@ -12,12 +17,25 @@ type Props = {
 const DIM = 0.16; // 미하이라이트 단어의 알파
 const SOFT = 7; // 동시에 전환되는 단어 수(클수록 부드러운 그라데이션)
 
-export default function ScrollHighlightText({ lines, className }: Props) {
+/** 줄 배열 → "각 줄 첫 단어의 전역 인덱스" 집합(첫 줄 제외). 개행 위치로 쓴다. */
+function breakIndexSet(lines: string[]): Set<number> {
+  const set = new Set<number>();
+  let count = 0;
+  lines.forEach((line, i) => {
+    if (i > 0) set.add(count);
+    count += line.split(" ").length;
+  });
+  return set;
+}
+
+export default function ScrollHighlightText({ lines, mobileLines, className }: Props) {
   const ref = useRef<HTMLParagraphElement>(null);
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
-  const linesWords = lines.map((l) => l.split(" "));
-  const total = linesWords.reduce((n, w) => n + w.length, 0);
+  const words = lines.flatMap((l) => l.split(" "));
+  const total = words.length;
+  const pcBreaks = breakIndexSet(lines);
+  const smBreaks = mobileLines ? breakIndexSet(mobileLines) : new Set<number>();
 
   useEffect(() => {
     const el = ref.current;
@@ -68,25 +86,23 @@ export default function ScrollHighlightText({ lines, className }: Props) {
     };
   }, [total]);
 
-  let idx = 0;
   const nodes: React.ReactNode[] = [];
-  linesWords.forEach((words, li) => {
-    if (li > 0) nodes.push(<br className="br-pc" key={`br-${li}`} />);
-    words.forEach((w, wi) => {
-      const myIndex = idx++;
-      const isLast = li === linesWords.length - 1 && wi === words.length - 1;
-      nodes.push(
-        <span
-          key={`w-${li}-${wi}`}
-          ref={(elm) => {
-            wordRefs.current[myIndex] = elm;
-          }}
-        >
-          {w}
-          {isLast ? "" : " "}
-        </span>,
-      );
-    });
+  words.forEach((w, i) => {
+    // 같은 위치에 PC/모바일 개행이 모두 올 수 있다(브레이크포인트로 하나만 보임).
+    if (pcBreaks.has(i)) nodes.push(<br className="br-pc" key={`brpc-${i}`} />);
+    if (smBreaks.has(i)) nodes.push(<br className="br-sm" key={`brsm-${i}`} />);
+    const isLast = i === total - 1;
+    nodes.push(
+      <span
+        key={`w-${i}`}
+        ref={(elm) => {
+          wordRefs.current[i] = elm;
+        }}
+      >
+        {w}
+        {isLast ? "" : " "}
+      </span>,
+    );
   });
 
   return (

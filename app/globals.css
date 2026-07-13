@@ -129,7 +129,7 @@ img {
 }
 
 .gem-eyebrow > span {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--gem-accent);
@@ -252,6 +252,16 @@ a:hover > .gem-arrow,
 }
 @media (min-width: 861px) {
   .br-pc {
+    display: inline;
+  }
+}
+
+/* 모바일(<=860px)에서만 강제 개행하는 <br>. PC에선 무시되어 한 줄 유지. */
+.br-sm {
+  display: none;
+}
+@media (max-width: 860px) {
+  .br-sm {
     display: inline;
   }
 }
@@ -666,6 +676,33 @@ a:hover > .gem-arrow,
     justify-content: flex-start;
   }
 }
+
+/* 중앙 히어로 배경: 흰 그라데이션 + 이미지(--hero-bg). 이미지는 page.tsx에서 asset()로 주입. */
+.gem-hero--center {
+  background-image:
+    radial-gradient(
+      ellipse 72% 85% at 50% 50%,
+      rgba(255, 255, 255, 0.8) 16%,
+      rgba(255, 255, 255, 0.85) 52%,
+      rgba(255, 255, 255, 0.94) 84%
+    ),
+    var(--hero-bg);
+}
+/* 모바일: 세로 화면을 꽉 채우도록 cover, 모바일 전용 이미지(--hero-bg-sm) 사용 */
+@media (max-width: 860px) {
+  .gem-hero--center {
+    background-image:
+      radial-gradient(
+        ellipse 90% 72% at 50% 44%,
+        rgba(255, 255, 255, 0.72) 20%,
+        rgba(255, 255, 255, 0.82) 58%,
+        rgba(255, 255, 255, 0.92) 90%
+      ),
+      var(--hero-bg-sm);
+    background-size: 100% 100%, cover;
+    background-position: center, center;
+  }
+}
 /* 스크롤 다운 유도 화살표 (히어로 하단 중앙) */
 .gem-hero__scroll {
   position: absolute;
@@ -722,7 +759,7 @@ a:hover > .gem-arrow,
   gap: clamp(36px, 5vw, 64px);
   align-items: center;
   /* 헤더 겹침 보정: 헤더 높이 + 여백 */
-  padding-top: calc(48px + var(--gem-header-h));
+  padding-top: calc(46px + var(--gem-header-h));
   padding-bottom: clamp(48px, 7vw, 84px);
 }
 @media (min-width: 861px) {
@@ -734,7 +771,7 @@ a:hover > .gem-arrow,
 .gem-eyebrow--badge {
   display: inline-flex;
   gap: 0;
-  margin-bottom: 28px;
+  margin-bottom: 36px;
 }
 .gem-eyebrow--badge::before {
   display: none;
@@ -744,6 +781,11 @@ a:hover > .gem-arrow,
   font-size: 18px;
   letter-spacing: 0.01em;
   color: var(--gem-accent);
+}
+@media (max-width: 860px) {
+  .gem-eyebrow--badge > span {
+    font-size: 16px;
+  }
 }
 
 .gem-hero__title {
@@ -767,7 +809,7 @@ a:hover > .gem-arrow,
   max-width: 44ch;
 }
 .gem-hero__actions {
-  margin-top: 48px;
+  margin-top: 44px;
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -781,7 +823,7 @@ a:hover > .gem-arrow,
 }
 .gem-hero__note {
   margin: 32px 0 0;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--gem-subtle);
   letter-spacing: 0.16px;
 }
@@ -826,6 +868,11 @@ a:hover > .gem-arrow,
   .gem-hero__grid {
     grid-template-columns: 1fr;
   }
+  .gem-hero__actions .gem-btn {
+    min-height: 58px;
+    padding: 0 24px;
+    font-size: 16px;
+  }
 }
 
 /* =========================================================================
@@ -841,7 +888,7 @@ a:hover > .gem-arrow,
 .gem-statement__text {
   margin: 0;
   text-align: center;
-  font-size: clamp(26px, 3.6vw, 32px);
+  font-size: clamp(24px, 3.6vw, 32px);
   font-weight: 600;
   line-height: 1.6;
   letter-spacing: -0.02em;
@@ -1353,6 +1400,10 @@ a:hover > .gem-arrow,
   .gem-contact__grid {
     grid-template-columns: 1fr;
   }
+  /* 좁은 화면에서 전화번호·이메일이 안 쪼개져 2열이 넘치므로 1열로 쌓는다 */
+  .gem-contact__info {
+    grid-template-columns: 1fr;
+  }
 }
 .gem-contact__title {
   font-size: clamp(30px, 3.8vw, 48px);
@@ -1384,6 +1435,7 @@ a:hover > .gem-arrow,
 .gem-info-cell {
   background: var(--gem-accent);
   padding: 22px;
+  min-width: 0;
 }
 .gem-info-cell__label {
   font-size: 11px;
