@@ -28,9 +28,9 @@ export default function HeroScrollButton() {
       aria-label="아래로 스크롤"
       onClick={onClick}
     >
-      <svg width="28" height="15" viewBox="0 0 28 15" fill="none" aria-hidden="true">
+      <svg width="24" height="13" viewBox="0 0 28 15" fill="none" aria-hidden="true">
         <path
-          d="M2 2 14 13 26 2"
+          d="M3 2 14 13 25 2"
           stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"

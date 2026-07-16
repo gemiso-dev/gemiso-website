@@ -778,7 +778,7 @@ a:hover .gem-arrow-slide > span:nth-child(2) {
 }
 /* 스크롤 다운 유도 화살표 (히어로 하단 중앙) */
 .gem-hero__scroll {
-  display: none; /* 히어로 스크롤 화살표 숨김 */
+  display: inline-flex;
   position: absolute;
   left: 50%;
   bottom: 54px;
@@ -844,7 +844,7 @@ a:hover .gem-arrow-slide > span:nth-child(2) {
 .gem-eyebrow--badge {
   display: inline-flex;
   gap: 0;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 .gem-eyebrow--badge::before {
   display: none;
@@ -857,6 +857,9 @@ a:hover .gem-arrow-slide > span:nth-child(2) {
   color: var(--gem-subtle);
 }
 @media (max-width: 860px) {
+  .gem-eyebrow--badge {
+    margin-bottom: 44px;
+  }
   .gem-eyebrow--badge > span {
     font-size: 16px;
   }
@@ -942,6 +945,8 @@ a:hover .gem-arrow-slide > span:nth-child(2) {
   grid-template-columns: 1fr;
   justify-items: center;
   text-align: center;
+  /* 라벨·카피·버튼 그룹을 중앙에서 위로 올림 (값 조절로 위치 튜닝) */
+  transform: translateY(-24px);
 }
 .gem-hero__grid--center > .gem-reveal {
   max-width: 820px;
