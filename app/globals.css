@@ -837,7 +837,7 @@ a:hover .gem-arrow-slide > span:nth-child(2) {
 }
 @media (min-width: 861px) {
   .gem-hero__grid {
-    padding-top: calc(40px + var(--gem-header-h));
+    padding-top: calc(32px + var(--gem-header-h));
   }
 }
 /* 히어로 라벨 강조 배지 — 옅은 파란 알약 위 진한 파란 볼드 텍스트 */
@@ -850,10 +850,11 @@ a:hover .gem-arrow-slide > span:nth-child(2) {
   display: none;
 }
 .gem-eyebrow--badge > span {
-  font-weight: 600;
+  font-family: "Plus Jakarta Sans", var(--gem-font-sans);
+  font-weight: 500;
   font-size: 18px;
   letter-spacing: 0.01em;
-  color: var(--gem-accent);
+  color: var(--gem-subtle);
 }
 @media (max-width: 860px) {
   .gem-eyebrow--badge > span {
@@ -887,7 +888,7 @@ a:hover .gem-arrow-slide > span:nth-child(2) {
   max-width: 44ch;
 }
 .gem-hero__actions {
-  margin-top: 56px;
+  margin-top: 64px;
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -991,7 +992,7 @@ a:hover .gem-arrow-slide > span:nth-child(2) {
   min-height: 56vh;
   display: flex;
   align-items: center;
-  padding-block: 100px 128px;
+  padding-block: 92px 128px;
 }
 .gem-statement__text {
   margin: 0;
