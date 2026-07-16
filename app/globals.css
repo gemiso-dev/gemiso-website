@@ -601,7 +601,9 @@ a:hover .gem-arrow-slide > span:nth-child(2) {
 .gem-mobile-menu__cta {
   margin-top: 14px;
   display: inline-flex;
+  align-items: center;
   justify-content: center;
+  gap: 8px;
   background: var(--gem-accent);
   color: #fff;
   font-size: 15px;
@@ -865,6 +867,11 @@ a:hover .gem-arrow-slide > span:nth-child(2) {
   line-height: 1.4;
   letter-spacing: -0.01em;
   color: var(--gem-fg);
+}
+@media (max-width: 860px) {
+  .gem-hero__title {
+    font-size: 42px;
+  }
 }
 /* 히어로 제목 내 핵심어(AX) 강조 — 그레이스케일 볼드 */
 .gem-hero__hl {

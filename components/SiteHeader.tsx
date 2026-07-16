@@ -220,7 +220,11 @@ export default function SiteHeader() {
               className="gem-mobile-menu__cta"
               onClick={closeMenu}
             >
-              문의
+              문의하기
+              <span className="gem-arrow-slide" aria-hidden="true">
+                <span>→</span>
+                <span>→</span>
+              </span>
             </Link>
           </div>
         )}
