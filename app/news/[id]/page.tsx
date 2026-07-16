@@ -147,7 +147,13 @@ export default async function NewsDetailPage({
                     <span className="news-card__date">{rel.date}</span>
                   </div>
                   <h3 className="news-card__title">{rel.title}</h3>
-                  <span className="gem-arrow">자세히 →</span>
+                  <span className="gem-arrow">
+                    자세히
+                    <span className="gem-arrow-slide" aria-hidden="true">
+                      <span>→</span>
+                      <span>→</span>
+                    </span>
+                  </span>
                 </div>
               </Link>
             ))}

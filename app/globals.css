@@ -19,6 +19,10 @@
   --gem-accent-strong: #0043ce;
   --gem-on-accent: #ffffff;
 
+  /* 인터랙션 모션 — 대칭형 ease-in-out (천천히 → 빨라짐 → 다시 감속) */
+  --gem-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --gem-btn-dur: 0.42s;
+
   --gem-ink: #161616; /* 다크 영역 배경(푸터) */
 
   /* 타이포 */
@@ -34,7 +38,7 @@
   --gem-maxw: 1320px;
   --gem-gutter: clamp(20px, 4vw, 32px);
   --gem-sec-pad: 96px; /* 섹션 세로 여백(데스크탑) */
-  --gem-header-h: 60px;
+  --gem-header-h: 80px;
 
   /* 반응형 분기점 */
   --gem-bp: 860px;
@@ -67,6 +71,9 @@ body {
   word-break: keep-all; /* 한글 단어 단위 줄바꿈 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* 풀블리드(100vw) 요소가 세로 스크롤바 폭만큼 넘쳐 가로 스크롤 생기는 것 방지.
+     clip은 스크롤 컨테이너를 만들지 않아 sticky 헤더에 영향 없음. */
+  overflow-x: clip;
 }
 
 a {
@@ -186,15 +193,17 @@ img {
   line-height: 1;
   border: none;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background var(--gem-btn-dur) var(--gem-ease),
+    color var(--gem-btn-dur) var(--gem-ease),
+    border-color var(--gem-btn-dur) var(--gem-ease);
 }
 
 .gem-btn--primary {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
   background: var(--gem-accent);
   color: var(--gem-on-accent);
-}
-.gem-btn--primary:hover {
-  background: var(--gem-accent-strong);
 }
 
 /* 텍스트 링크형 버튼 */
@@ -206,25 +215,48 @@ img {
 }
 .gem-btn--link:hover {
   color: var(--gem-accent-strong);
-  text-decoration: underline;
 }
 
 /* accent 배경 위에서 쓰는 반전 버튼 */
 .gem-btn--invert {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
   background: #fff;
   color: var(--gem-accent);
 }
 .gem-btn--invert:hover {
-  background: var(--gem-surface);
+  color: #fff; /* 어두운 필이 차오르므로 글자는 흰색으로 */
 }
 
 .gem-btn--underline-light {
   padding: 0 8px;
   color: #fff;
 }
-.gem-btn--underline-light:hover {
-  text-decoration: underline;
+
+/* 필 스윕 오버레이 — primary·invert 공통.
+   hover 시 짙은 색(accent-strong)이 오른쪽 → 왼쪽으로 차오른다 */
+.gem-btn--primary::before,
+.gem-btn--invert::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gem-accent-strong);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--gem-btn-dur) var(--gem-ease);
 }
+.gem-btn--primary:hover::before,
+.gem-btn--invert:hover::before {
+  transform: scaleX(1);
+}
+.gem-btn[disabled]::before {
+  display: none; /* 비활성(전송 중) 버튼은 필 스윕 없음 */
+}
+
+/* 텍스트 버튼(link·underline-light)의 화살표도 슬라이드 스루 span(.gem-arrow-slide)을
+   JSX에서 삽입해 다른 버튼과 동일하게 동작시킨다. 밑줄 hover는 제거된 상태. */
 
 /* 인라인 "자세히 →" 류 링크 */
 .gem-arrow {
@@ -234,9 +266,13 @@ img {
   color: var(--gem-accent);
   font-size: 14px;
 }
-a:hover > .gem-arrow,
-.gem-arrow:hover {
-  text-decoration: underline;
+/* .gem-arrow(카드 "자세히 보기 →" 류)의 화살표도 슬라이드 스루로 통일.
+   링크 카드 hover 시 내부 화살표가 관통한다. 밑줄 hover는 제거. */
+a:hover .gem-arrow-slide > span:nth-child(1) {
+  transform: translateX(100%);
+}
+a:hover .gem-arrow-slide > span:nth-child(2) {
+  transform: translateX(0);
 }
 
 /* =========================================================================
@@ -341,11 +377,13 @@ a:hover > .gem-arrow,
   top: 0;
   z-index: 50;
   background: transparent;
-  transition: background 0.25s ease;
+  transition: background 0.25s ease, backdrop-filter 0.25s ease;
 }
 .gem-header.is-scrolled {
-  /* 스크롤 시엔 순백 고정 */
-  background: var(--gem-bg);
+  /* 스크롤 시 반투명 흰색 + 배경 블러 (프로스티드 글래스) */
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .gem-header__inner {
@@ -373,23 +411,39 @@ a:hover > .gem-arrow,
 .gem-nav {
   display: flex;
   align-items: center;
-  gap: 30px;
-  font-size: 14px;
+  gap: 40px;
+  font-size: 16px;
 }
 
 .gem-nav__link {
   padding: 6px 0;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.2s ease;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
+/* hover 시 살짝 연한 그레이로 (선택 상태 구분 없이 모든 탭 동일) */
 .gem-nav__link:hover {
-  border-bottom-color: var(--gem-fg);
+  color: var(--gem-subtle);
 }
-/* 현재 조회 중인 탭 — primary 색 밑줄로 선택 상태 표시 (hover보다 우선) */
-.gem-nav__link.is-active {
-  color: var(--gem-accent);
-  border-bottom-color: var(--gem-accent);
-  font-weight: 600;
+/* 드롭다운(하위 메뉴)이 있는 탭에는 아래 화살표(∨). 열리면 위로 회전 */
+.gem-nav__link[aria-haspopup="true"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+/* 꼭짓점·선 끝 라운드 처리를 위해 SVG stroke(round cap/join)로 그린다.
+   mask + background:currentColor 조합이라 hover 색 동기화는 그대로 유지된다. */
+.gem-nav__link[aria-haspopup="true"]::after {
+  content: "";
+  width: 13.3px;
+  height: 8px;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 10'%3E%3Cpath d='M2.5 3 7 7.5 11.5 3' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 10'%3E%3Cpath d='M2.5 3 7 7.5 11.5 3' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+/* 드롭다운 열리면 ∨→∧ 회전 */
+.gem-nav__link[aria-expanded="true"]::after {
+  transform: rotate(180deg);
 }
 
 /* 드롭다운 메뉴 */
@@ -460,16 +514,29 @@ a:hover > .gem-arrow,
 }
 
 .gem-header__cta {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
   display: inline-flex;
   align-items: center;
   background: var(--gem-accent);
   color: #fff;
   font-size: 14px;
   padding: 9px 16px;
-  transition: background 0.2s ease;
 }
-.gem-header__cta:hover {
+/* 화살표 없는 버튼도 동일한 필 스윕 — 오른쪽 → 왼쪽으로 차오른다 */
+.gem-header__cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background: var(--gem-accent-strong);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--gem-btn-dur) var(--gem-ease);
+}
+.gem-header__cta:hover::before {
+  transform: scaleX(1);
 }
 
 /* 햄버거 버튼 */
@@ -680,6 +747,8 @@ a:hover > .gem-arrow,
 /* 중앙 히어로 배경: 흰 그라데이션 + 이미지(--hero-bg). 이미지는 page.tsx에서 asset()로 주입. */
 .gem-hero--center {
   background-image:
+    /* 하단을 흰색으로 페이드 → 아래 고객사(흰 배경) 섹션과 자연스럽게 연결 */
+    linear-gradient(to bottom, rgba(255, 255, 255, 0) 68%, #fff 100%),
     radial-gradient(
       ellipse 72% 85% at 50% 50%,
       rgba(255, 255, 255, 0.8) 16%,
@@ -687,11 +756,13 @@ a:hover > .gem-arrow,
       rgba(255, 255, 255, 0.94) 84%
     ),
     var(--hero-bg);
+  background-size: 100% 100%, 100% 100%, auto 115%;
 }
 /* 모바일: 세로 화면을 꽉 채우도록 cover, 모바일 전용 이미지(--hero-bg-sm) 사용 */
 @media (max-width: 860px) {
   .gem-hero--center {
     background-image:
+      linear-gradient(to bottom, rgba(255, 255, 255, 0) 72%, #fff 100%),
       radial-gradient(
         ellipse 90% 72% at 50% 44%,
         rgba(255, 255, 255, 0.72) 20%,
@@ -699,17 +770,17 @@ a:hover > .gem-arrow,
         rgba(255, 255, 255, 0.92) 90%
       ),
       var(--hero-bg-sm);
-    background-size: 100% 100%, cover;
-    background-position: center, center;
+    background-size: 100% 100%, 100% 100%, cover;
+    background-position: center, center, center;
   }
 }
 /* 스크롤 다운 유도 화살표 (히어로 하단 중앙) */
 .gem-hero__scroll {
+  display: none; /* 히어로 스크롤 화살표 숨김 */
   position: absolute;
   left: 50%;
   bottom: 54px;
   transform: translateX(-50%);
-  display: inline-flex;
   color: var(--gem-subtle);
   animation: heroScrollHint 1.8s ease-in-out infinite;
 }
@@ -764,14 +835,14 @@ a:hover > .gem-arrow,
 }
 @media (min-width: 861px) {
   .gem-hero__grid {
-    padding-top: calc(56px + var(--gem-header-h));
+    padding-top: calc(40px + var(--gem-header-h));
   }
 }
 /* 히어로 라벨 강조 배지 — 옅은 파란 알약 위 진한 파란 볼드 텍스트 */
 .gem-eyebrow--badge {
   display: inline-flex;
   gap: 0;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
 }
 .gem-eyebrow--badge::before {
   display: none;
@@ -789,9 +860,9 @@ a:hover > .gem-arrow,
 }
 
 .gem-hero__title {
-  font-size: clamp(40px, 6vw, 60px);
+  font-size: clamp(40px, 6vw, 56px);
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 1.4;
   letter-spacing: -0.01em;
   color: var(--gem-fg);
 }
@@ -809,7 +880,7 @@ a:hover > .gem-arrow,
   max-width: 44ch;
 }
 .gem-hero__actions {
-  margin-top: 44px;
+  margin-top: 56px;
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -820,6 +891,36 @@ a:hover > .gem-arrow,
   min-height: 60px;
   padding: 0 34px;
   font-size: 18px;
+}
+/* 화살표 슬라이드 스루 — hover 시 오른쪽으로 빠져나가고 왼쪽에서 새 화살표가 들어온다.
+   AX 히어로 CTA와 하단 문의 섹션의 "문의하기" 버튼에만 span으로 삽입한다. */
+.gem-arrow-slide {
+  position: relative;
+  display: inline-block;
+  width: 0.9em;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: -0.08em; /* 텍스트 베이스라인에 맞춤 */
+}
+.gem-arrow-slide > span {
+  position: absolute;
+  inset: 0;
+  /* 리터럴 → 글자를 숨기고, 라운드 캡/조인 SVG 화살표로 대체 (currentColor 유지) */
+  font-size: 0;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M4 12H20M13 5.5L20 12L13 18.5' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M4 12H20M13 5.5L20 12L13 18.5' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+  transition: transform var(--gem-btn-dur) var(--gem-ease),
+    background-color var(--gem-btn-dur) var(--gem-ease);
+}
+.gem-arrow-slide > span:nth-child(2) {
+  transform: translateX(-100%); /* 대기 중인 두 번째 화살표는 왼쪽 밖에 */
+}
+.gem-btn:hover .gem-arrow-slide > span:nth-child(1) {
+  transform: translateX(100%); /* 첫 화살표는 오른쪽 밖으로 */
+}
+.gem-btn:hover .gem-arrow-slide > span:nth-child(2) {
+  transform: translateX(0); /* 두 번째 화살표가 제자리로 */
 }
 .gem-hero__note {
   margin: 32px 0 0;
@@ -883,7 +984,7 @@ a:hover > .gem-arrow,
   min-height: 56vh;
   display: flex;
   align-items: center;
-  padding-block: clamp(56px, 9vh, 112px);
+  padding-block: 100px 128px;
 }
 .gem-statement__text {
   margin: 0;
@@ -896,7 +997,7 @@ a:hover > .gem-arrow,
   text-wrap: balance;
 }
 .gem-statement__actions {
-  margin-top: 44px;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
 }
@@ -1121,10 +1222,25 @@ a:hover > .gem-arrow,
   background: #fff;
   overflow: hidden;
 }
+/* statement 안에 넣는 인라인 배너 — 컨테이너를 뚫고 화면 끝까지(풀블리드),
+   큰 섹션 패딩 대신 버튼 바로 아래 여백만 */
+.gem-marquee.gem-marquee--inline {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding-block: 0;
+  margin-top: 64px;
+  background: transparent;
+}
 .gem-marquee__head {
   max-width: var(--gem-maxw);
   margin: 0 auto 54px;
   padding-inline: var(--gem-gutter);
+  text-align: center;
+}
+/* 마키 헤드 카피 (전역 .gem-title--sm엔 영향 없음) */
+.gem-marquee__head .gem-title--sm {
+  font-size: 24px;
+  font-weight: 600;
 }
 .gem-marquee__track {
   display: flex;

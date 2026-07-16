@@ -79,7 +79,13 @@ export default function CustomersPage() {
                 </div>
                 <h3 className="case-card__outcome">{c.outcome}</h3>
                 <p className="case-card__desc">{c.desc}</p>
-                <span className="gem-arrow case-card__more">구축 사례 →</span>
+                <span className="gem-arrow case-card__more">
+                  구축 사례
+                  <span className="gem-arrow-slide" aria-hidden="true">
+                    <span>→</span>
+                    <span>→</span>
+                  </span>
+                </span>
               </a>
             ))}
           </Reveal>
@@ -118,12 +124,20 @@ export default function CustomersPage() {
           <div className="sol-cta__actions">
             <Link href="/support/#inquiry" className="gem-btn gem-btn--invert">
               문의하기
+              <span className="gem-arrow-slide" aria-hidden="true">
+                <span>→</span>
+                <span>→</span>
+              </span>
             </Link>
             <Link
               href="/#solutions"
               className="gem-btn gem-btn--underline-light"
             >
-              솔루션 살펴보기 →
+              솔루션 살펴보기
+              <span className="gem-arrow-slide" aria-hidden="true">
+                <span>→</span>
+                <span>→</span>
+              </span>
             </Link>
           </div>
         </Reveal>

@@ -167,12 +167,20 @@ export default function TechnologyPage() {
           <div className="sol-cta__actions">
             <Link href="/support/#inquiry" className="gem-btn gem-btn--invert">
               문의하기
+              <span className="gem-arrow-slide" aria-hidden="true">
+                <span>→</span>
+                <span>→</span>
+              </span>
             </Link>
             <Link
               href="/solutions/proxima/"
               className="gem-btn gem-btn--underline-light"
             >
-              솔루션 보기 →
+              솔루션 보기
+              <span className="gem-arrow-slide" aria-hidden="true">
+                <span>→</span>
+                <span>→</span>
+              </span>
             </Link>
           </div>
         </Reveal>

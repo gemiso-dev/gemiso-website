@@ -69,7 +69,13 @@ export default function NewsListPage() {
                 </div>
                 <h2 className="news-featured__title">{featured.title}</h2>
                 <p className="news-featured__excerpt">{featured.summary}</p>
-                <span className="gem-arrow">자세히 보기 →</span>
+                <span className="gem-arrow">
+                  자세히 보기
+                  <span className="gem-arrow-slide" aria-hidden="true">
+                    <span>→</span>
+                    <span>→</span>
+                  </span>
+                </span>
               </div>
             </Link>
           </Reveal>

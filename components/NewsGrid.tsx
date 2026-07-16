@@ -51,7 +51,13 @@ export default function NewsGrid({
               </div>
               <h3 className="news-card__title">{art.title}</h3>
               <p className="news-card__desc">{art.summary}</p>
-              <span className="gem-arrow">자세히 →</span>
+              <span className="gem-arrow">
+                자세히
+                <span className="gem-arrow-slide" aria-hidden="true">
+                  <span>→</span>
+                  <span>→</span>
+                </span>
+              </span>
             </div>
           </Link>
         ))}

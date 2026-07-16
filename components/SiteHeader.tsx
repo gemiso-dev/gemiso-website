@@ -168,10 +168,10 @@ export default function SiteHeader() {
           <div className="gem-header__actions">
             <span className="gem-lang gem-hide-sm">
               <a href="#" className="gem-lang__current">
-                KR
+                KOR
               </a>
               <span className="gem-sep">|</span>
-              <a href="https://www.gemiso.com/">EN</a>
+              <a href="https://www.gemiso.com/">ENG</a>
             </span>
             <Link href="/support/#inquiry" className="gem-header__cta gem-hide-sm">
               문의하기

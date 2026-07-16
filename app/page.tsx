@@ -189,11 +189,17 @@ export default function Home() {
             <div className="gem-hero__actions">
               <Link href="/support/#inquiry" className="gem-btn gem-btn--primary">
                 AX 전략 상담하기
+                <span className="gem-arrow-slide" aria-hidden="true">
+                  <span>→</span>
+                  <span>→</span>
+                </span>
               </Link>
             </div>
+            {/* 신뢰 문구 임시 숨김
             <p className="gem-hero__note">
               MBC, YTN, SBS, EBS, KTV, TBS, 아리랑 TV가 신뢰합니다.
             </p>
+            */}
           </Reveal>
         </div>
         <HeroScrollButton />
@@ -220,8 +226,16 @@ export default function Home() {
             />
             <div className="gem-statement__actions">
               <a href="#solutions" className="gem-btn gem-btn--link">
-                솔루션 살펴보기 →
+                솔루션 살펴보기
+                <span className="gem-arrow-slide" aria-hidden="true">
+                  <span>→</span>
+                  <span>→</span>
+                </span>
               </a>
+            </div>
+            {/* 고객사 롤링 배너 — 솔루션 살펴보기 버튼 아래 */}
+            <div className="gem-marquee gem-marquee--inline" aria-label="고객사">
+              <CustomerMarquee />
             </div>
           </Reveal>
         </div>
@@ -258,24 +272,17 @@ export default function Home() {
                 </div>
                 <h3 className="gem-card__title">{s.title}</h3>
                 <p className="gem-card__desc">{s.desc}</p>
-                <span className="gem-arrow">자세히 보기 →</span>
+                <span className="gem-arrow">
+                  자세히 보기
+                  <span className="gem-arrow-slide" aria-hidden="true">
+                    <span>→</span>
+                    <span>→</span>
+                  </span>
+                </span>
               </Link>
             ))}
           </div>
         </div>
-      </section>
-
-      {/* 고객사 마키 */}
-      <section className="gem-marquee" aria-label="고객사">
-        <Reveal className="gem-marquee__head">
-          <div className="gem-eyebrow">
-            <span>고객사</span>
-          </div>
-          <h2 className="gem-title gem-title--sm">
-            많은 고객이 보내준 신뢰,<br className="br-sm" /> 흔들림 없는 기술 지원으로 답합니다
-          </h2>
-        </Reveal>
-        <CustomerMarquee />
       </section>
 
       {/* 선택 이유 + 통계 */}
@@ -376,7 +383,13 @@ export default function Home() {
                   </div>
                   <h3 className="gem-news-card__title">{n.title}</h3>
                   <p className="gem-news-card__desc">{n.summary}</p>
-                  <span className="gem-arrow">자세히 →</span>
+                  <span className="gem-arrow">
+                    자세히
+                    <span className="gem-arrow-slide" aria-hidden="true">
+                      <span>→</span>
+                      <span>→</span>
+                    </span>
+                  </span>
                 </div>
               </Link>
             ))}
@@ -404,7 +417,11 @@ export default function Home() {
                 href="#solutions"
                 className="gem-btn gem-btn--underline-light"
               >
-                솔루션 살펴보기 →
+                솔루션 살펴보기
+                <span className="gem-arrow-slide" aria-hidden="true">
+                  <span>→</span>
+                  <span>→</span>
+                </span>
               </a>
             </div>
           </div>

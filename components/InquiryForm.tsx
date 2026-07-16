@@ -242,6 +242,10 @@ export default function InquiryForm() {
           disabled={status === "sending"}
         >
           {status === "sending" ? "전송 중…" : "문의 보내기"}
+          <span className="gem-arrow-slide" aria-hidden="true">
+            <span>→</span>
+            <span>→</span>
+          </span>
         </button>
         <p className="inq-privacy">
           입력하신 정보는 문의 응대 목적으로만 사용됩니다.

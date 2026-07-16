@@ -171,7 +171,11 @@ export default function SupportPage() {
               문의하기
             </a>
             <Link href="/#solutions" className="gem-btn gem-btn--underline-light">
-              솔루션 살펴보기 →
+              솔루션 살펴보기
+              <span className="gem-arrow-slide" aria-hidden="true">
+                <span>→</span>
+                <span>→</span>
+              </span>
             </Link>
           </div>
         </Reveal>
