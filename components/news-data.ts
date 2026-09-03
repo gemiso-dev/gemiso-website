@@ -45,7 +45,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
     title: "제머나이소프트, 'NAB Show 2026' 참가 — 방송 콘텐츠 기반 AI 학습 데이터 선봬",
     summary:
       "제머나이소프트가 미국 라스베이거스에서 열리는 세계 최대 방송·미디어 전시회 'NAB Show 2026'(Central Hall, Futures Park C4449-G)에 참가한다. 'Better Data. Better AI.'를 슬로건으로, 방송 영상 콘텐츠에서 고품질 AI 학습 데이터셋을 구축하는 엔드-투-엔드 서비스를 선보인다. 데이터 전략 컨설팅부터 3단계 CoT 라벨링·품질보증, text-to-image·text-to-video 샘플 모델 개발까지 전 과정을 아우른다.",
-    href: "https://www.gemiso.com/ai-dataset",
+    href: "",
     image: null,
   },
   {
