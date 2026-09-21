@@ -8,7 +8,7 @@
 
 /** 히어로 상단 요약 지표. */
 export const PARTNER_STATS: { v: string; k: string }[] = [
-  { v: "13", k: "협력 파트너" },
+  { v: "14", k: "협력 파트너" },
   { v: "7개국+", k: "글로벌 협업" },
   { v: "SRT", k: "국제 표준 얼라이언스" },
   { v: "산학", k: "가족 대학 협력" },
@@ -107,6 +107,13 @@ export const PARTNER_GROUPS: PartnerGroup[] = [
         desc: "방송·미디어 기술 솔루션 파트너",
         disp: "www.advancedigitaltech.com",
         logo: "/assets/partners/advance-digital-tech.png",
+      },
+      {
+        name: "Youngtech Sistemas Ltda.",
+        kind: "방송 자동화",
+        desc: "라디오·TV 방송 자동화·송출 소프트웨어",
+        disp: "www.youngtech.com.br",
+        logo: "/assets/partners/youngtech.png",
       },
     ],
   },
