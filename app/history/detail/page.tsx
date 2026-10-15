@@ -82,8 +82,11 @@ export default function HistoryDetailPage() {
                     <ul className="hist-detail__list">
                       {items.map((it, i) => (
                         <li className="hist-detail__item" key={`${it.month ?? ""}-${i}`}>
+                          {/* 같은 달이 이어지면 맨 위 항목에만 월을 표시한다 */}
                           <span className="hist-detail__month">
-                            {it.month ? `${it.month}월` : ""}
+                            {it.month && it.month !== items[i - 1]?.month
+                              ? `${it.month}월`
+                              : ""}
                           </span>
                           <span className="hist-detail__text">{it.text}</span>
                         </li>

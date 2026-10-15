@@ -3251,7 +3251,7 @@ button.gem-copy__text:focus-visible,
   font-size: 15px;
   line-height: 1.6;
   color: var(--gem-muted);
-  max-width: 62ch;
+  max-width: 66ch;
 }
 
 /* 닫는 메모 */

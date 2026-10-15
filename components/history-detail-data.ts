@@ -228,6 +228,10 @@ export const HISTORY_DETAIL: DetailYear[] = [
         text: "TBS 교통방송 이미지 아카이브 및 기사 전송, 재난방송 시스템 구축 계약",
       },
       { month: "03", text: "TBS 교통방송 보도정보 속보자막 송출기능 업그레이드 계약" },
+      {
+        month: "03",
+        text: "녹화 중 편집 등 특정 기능을 제공하는 서버를 구현하는 데이터 처리 장치 및 방법 특허 출원",
+      },
       { month: "04", text: "SBS미디어넷 CMS/NDS 고도화 구축 계약" },
       { month: "05", text: "신한은행 신한방송국 디지털 UHD 인프라 구축 계약" },
       { month: "06", text: "국제방송교류재단 방송정보화시스템 구매설치 계약" },
@@ -244,6 +248,10 @@ export const HISTORY_DETAIL: DetailYear[] = [
       { month: "04", text: "국회방송 보도정보시스템 구축 계약" },
       { month: "05", text: "백남준아트센터 디지털 서비스 플랫폼(MAM) 구축 계약" },
       { month: "09", text: "SBS미디어넷 인제스트 매니저 구매 계약" },
+      {
+        month: "09",
+        text: "녹화 중 편집 등 특정 기능을 제공하는 서버를 구현하는 데이터 처리 장치 및 방법 특허 등록",
+      },
       { month: "12", text: "현대중공업 울산 Ariel MAM 시스템 구축 계약" },
     ],
   },
@@ -278,22 +286,44 @@ export const HISTORY_DETAIL: DetailYear[] = [
     year: "2025",
     items: [
       { month: "01", text: "전주방송 보도정보·MAM 소프트웨어 공급" },
+      { month: "06", text: "SBS 차세대 PDS 개발" },
       { month: "06", text: "KTV MYMY 콘텐츠 관리 솔루션 구축" },
       { month: "07", text: "KBN(KT 사내방송) MAM 고도화 사업" },
       { month: "08", text: "라디오코리아 방송시스템 소프트웨어 고도화" },
       { month: "10", text: "SKB 25년 CATV 지역채널 DR 송출시스템 구축" },
+      { month: "10", text: "서울시의회 의회영상자료시스템 MAM 고도화" },
       { month: "11", text: "KBS 멀티플랫폼 통합주조 MAM 소프트웨어 공급" },
+      {
+        month: "11",
+        text: "법무부 서울보호관찰소 푸르미 방송국 콘텐츠관리 소프트웨어 공급",
+      },
+      { month: "12", text: "한국장학재단 사료관리 솔루션 교체" },
+      { month: "12", text: "경찰청 25년 영상녹화 및 진술녹음 시스템 개선 사업" },
     ],
   },
   {
     year: "2026",
     items: [
       { month: "01", text: "NAVER Cloud MSP 파트너십 체결" },
+      { month: "01", text: "삼성서울병원 콘텐츠 관리 시스템 구축" },
+      {
+        month: "02",
+        text: "양주시청 기록관 시청각 기록물 관리 체계 구축 사업 물품 조달 구입-소프트웨어",
+      },
       {
         month: "04",
         text: "방송미디어 R&D '마이미디어 플랫폼 핵심기술개발' 총괄 (KETI·ETRI 공동)",
       },
+      { month: "04", text: "영락교회 역사자료실 시청각자료 디지털 변환사업" },
+      { month: "06", text: "SBS UHD 채널(영상) 녹화 시스템" },
+      { month: "07", text: "포스코 AI 기반 전사 사진영상 디지털 아카이브 시스템 구축" },
+      { month: "08", text: "한국언론진흥재단 2026년 방송자료 디지털화 지원 사업" },
+      {
+        month: "08",
+        text: "한국방송통신전파진흥원 K-글로벌 오디오 플랫폼 구축 및 시범 운영",
+      },
       { month: "09", text: "크로스 플랫폼 기반 AI 프롬프팅 장치 및 방법 특허 등록" },
+      { month: "09", text: "국립중앙도서관 시청각 디지털자원 관리 솔루션 구매사업" },
     ],
   },
 ];

@@ -240,6 +240,13 @@ export const HISTORY_ERAS: HistoryEra[] = [
         title: "SBS 프리미어 NLE AI 플러그인 · SAM 자막 기술 개발",
         desc: "편집·자막 워크플로우에 AI 기술을 본격 적용했습니다.",
       },
+      {
+        year: "2022.09",
+        tag: "PATENT",
+        major: true,
+        title: "녹화 중 편집 서버 데이터 처리 특허 등록",
+        desc: "녹화가 끝나기 전에도 영상을 바로 편집할 수 있게 하는 서버 기술을 특허로 확보했습니다.",
+      },
     ],
   },
   {
@@ -298,6 +305,13 @@ export const HISTORY_ERAS: HistoryEra[] = [
         major: true,
         title: "방송미디어 R&D '마이미디어 플랫폼 핵심기술개발' 총괄",
         desc: "KETI·ETRI와 함께 페르소나 AI 기반 개인 맞춤형 미디어 기술을 개발하는 국책과제를 이끕니다.",
+      },
+      {
+        year: "2026.08",
+        tag: "CLIENT",
+        major: true,
+        title: "한국방송통신전파진흥원 K-글로벌 오디오 플랫폼 구축",
+        desc: "KBS·MBC·SBS·EBS·CBS 라디오를 하나로 모으는 통합 오디오 플랫폼을 구축하고 시범 운영합니다.",
       },
       {
         year: "2026.09",
