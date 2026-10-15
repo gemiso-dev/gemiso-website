@@ -293,6 +293,7 @@ export const HISTORY_DETAIL: DetailYear[] = [
         month: "04",
         text: "방송미디어 R&D '마이미디어 플랫폼 핵심기술개발' 총괄 (KETI·ETRI 공동)",
       },
+      { month: "09", text: "크로스 플랫폼 기반 AI 프롬프팅 장치 및 방법 특허 등록" },
     ],
   },
 ];

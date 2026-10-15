@@ -9,7 +9,7 @@
 /** 히어로 상단 요약 지표. */
 export const CERT_STATS: { v: string; k: string }[] = [
   { v: "5", k: "GS 인증 1등급" },
-  { v: "2", k: "보유 특허" },
+  { v: "3", k: "보유 특허" },
   { v: "1등급", k: "GS 인증 최고 등급" },
   { v: "TTA", k: "국가 공인 (한국정보통신기술협회)" },
 ];
@@ -86,7 +86,14 @@ export const PATENTS: Patent[] = [
     status: "등록",
     title:
       "녹화 중 편집 등 특정 기능을 제공하는 서버를 구현하는 데이터 처리 장치 및 방법",
-    desc: "녹화와 동시에 편집 등 기능을 제공하는 서버를 구현하기 위한 데이터 처리 장치 및 방법입니다.",
+    desc: "녹화가 끝나기를 기다리지 않고, 녹화 중인 영상을 바로 편집할 수 있게 하는 서버 데이터 처리 기술입니다.",
     img: "/assets/certification/patent-02.jpg",
+  },
+  {
+    no: "PATENT 03",
+    status: "등록",
+    title: "크로스 플랫폼 기반 AI 프롬프팅 장치 및 방법",
+    desc: "여러 플랫폼에서 AI 프롬프트를 일관되게 구성·실행하기 위한 장치 및 방법입니다.",
+    img: "/assets/certification/patent-03.jpg",
   },
 ];

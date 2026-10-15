@@ -299,6 +299,13 @@ export const HISTORY_ERAS: HistoryEra[] = [
         title: "방송미디어 R&D '마이미디어 플랫폼 핵심기술개발' 총괄",
         desc: "KETI·ETRI와 함께 페르소나 AI 기반 개인 맞춤형 미디어 기술을 개발하는 국책과제를 이끕니다.",
       },
+      {
+        year: "2026.09",
+        tag: "PATENT",
+        major: true,
+        title: "크로스 플랫폼 기반 AI 프롬프팅 특허 등록",
+        desc: "여러 플랫폼에서 AI 프롬프트를 일관되게 구성·실행하는 기술을 특허로 확보했습니다.",
+      },
     ],
   },
 ];
