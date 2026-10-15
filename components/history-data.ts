@@ -42,7 +42,7 @@ export type HistoryEra = {
 export const HISTORY_STATS: { v: string; k: string }[] = [
   { v: "2002", k: "제머나이소프트 설립" },
   { v: "20년+", k: "미디어 엔지니어링" },
-  { v: "1등급 ×3", k: "GS 인증 획득" },
+  { v: "1등급 ×5", k: "GS 인증 획득" },
   { v: "8개국+", k: "해외 시스템 구축" },
   { v: "100명+", k: "미디어 핵심 엔지니어" },
 ];
