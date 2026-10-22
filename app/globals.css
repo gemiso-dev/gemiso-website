@@ -5004,3 +5004,184 @@ a.sup-contact__cell:hover {
 .sol-hero__code {
   font-family: var(--gem-font-display);
 }
+
+/* =========================================================================
+   홈 진입 팝업 (행사 안내) — EventPopup
+   ========================================================================= */
+.gem-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.6);
+  animation: gemLightboxIn 0.2s ease;
+}
+.gem-popup__dialog {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 520px;
+  max-height: calc(100dvh - 32px);
+  background: var(--gem-bg);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+  outline: none;
+  animation: gemPopupIn 0.42s var(--gem-ease);
+}
+.gem-popup__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* 헤더 밴드 — accent 배경(컨택트 섹션과 동일 톤) */
+.gem-popup__head {
+  padding: 32px 32px 28px;
+  background: var(--gem-accent);
+  color: var(--gem-on-accent);
+}
+.gem-popup__eyebrow {
+  display: block;
+  margin-bottom: 14px;
+  font-family: var(--gem-font-display);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.78);
+}
+.gem-popup__title {
+  font-size: clamp(22px, 5.4vw, 28px);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+.gem-popup__name {
+  font-weight: 700;
+}
+
+.gem-popup__body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 28px 32px 32px;
+}
+.gem-popup__text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--gem-muted);
+}
+.gem-popup__text + .gem-popup__text {
+  margin-top: -12px; /* 본문 단락끼리는 블록 간격보다 촘촘하게 */
+}
+
+.gem-popup__block {
+  padding-top: 20px;
+  border-top: 1px solid var(--gem-border);
+}
+.gem-popup__block-title {
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gem-fg);
+}
+.gem-popup__info {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+.gem-popup__row {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+.gem-popup__row dt {
+  color: var(--gem-subtle);
+}
+.gem-popup__row dd {
+  margin: 0;
+  font-weight: 500;
+  color: var(--gem-fg);
+}
+
+.gem-popup__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.gem-popup__chips li {
+  padding: 7px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--gem-fg);
+  background: var(--gem-surface);
+}
+
+.gem-popup__cta {
+  width: 100%;
+}
+
+/* 하단 바 — 오늘 하루 보지 않기 / 닫기 */
+.gem-popup__foot {
+  display: flex;
+  flex: 0 0 auto;
+  background: var(--gem-ink);
+}
+.gem-popup__foot-btn {
+  flex: 1 1 0;
+  min-height: 48px;
+  padding: 0 16px;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.gem-popup__foot-btn:hover,
+.gem-popup__foot-btn:focus-visible {
+  color: #fff;
+}
+.gem-popup__foot-btn:focus-visible {
+  outline: 2px solid var(--gem-accent);
+  outline-offset: -2px;
+}
+.gem-popup__foot-btn--close {
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+  font-weight: 600;
+  color: #fff;
+}
+
+@keyframes gemPopupIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gem-popup,
+  .gem-popup__dialog {
+    animation: none;
+  }
+}
+@media (max-width: 520px) {
+  .gem-popup__head {
+    padding: 26px 22px 22px;
+  }
+  .gem-popup__body {
+    padding: 22px 22px 24px;
+  }
+}
