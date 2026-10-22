@@ -40,7 +40,7 @@ export const EVENT_POPUP: EventPopup = {
     "제머나이소프트는 플랫폼 구축에 참여하여 실시간 AI 자막 등 차세대 라디오 서비스를 위한 기술을 선보입니다.",
   ],
   launch: {
-    heading: "통합 라디오 애플리케이션 론칭쇼",
+    heading: "통합 라디오 애플리케이션 <모디오> 론칭쇼",
     rows: [
       { label: "일시", value: "2026년 11월 11일(수) 11:10~11:20" },
       { label: "장소", value: "서울드래곤시티 한라홀 1·2" },
