@@ -5,6 +5,7 @@ import ScrollHighlightText from "@/components/ScrollHighlightText";
 import HeroScrollButton from "@/components/HeroScrollButton";
 import CustomerMarquee from "@/components/CustomerMarquee";
 import CopyField from "@/components/CopyField";
+import EventPopup from "@/components/EventPopup";
 import { COMPANY, asset } from "@/components/site-config";
 import { NEWS_ARTICLES } from "@/components/news-data";
 import { pageMetadata } from "@/components/seo";
@@ -165,6 +166,9 @@ const TECH_ITEMS = [
 export default function Home() {
   return (
     <>
+      {/* 홈 진입 팝업 — 행사 안내(노출 기간·오늘 하루 보지 않기는 컴포넌트에서 처리) */}
+      <EventPopup />
+
       {/* 히어로 */}
       <section
         className="gem-hero gem-hero--center"
