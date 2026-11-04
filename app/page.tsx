@@ -3,6 +3,7 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ScrollHighlightText from "@/components/ScrollHighlightText";
 import HeroScrollButton from "@/components/HeroScrollButton";
+import HeroCopy from "@/components/HeroCopy";
 import CustomerMarquee from "@/components/CustomerMarquee";
 import CopyField from "@/components/CopyField";
 import EventPopup from "@/components/EventPopup";
@@ -185,11 +186,8 @@ export default function Home() {
             <div className="gem-eyebrow gem-eyebrow--badge">
               <span>Broadcast AX Technology Partner</span>
             </div>
-            <h1 className="gem-hero__title">
-              레거시를 넘어 <span className="gem-hero__hl">AX</span>로,
-              <br />
-              방송의 미래를<br className="br-sm" /> 설계하다
-            </h1>
+            {/* 제목·설명 — 새로고침마다 무작위 문구(components/home-hero-data.ts) */}
+            <HeroCopy />
             <div className="gem-hero__actions">
               <Link href="/support/#inquiry" className="gem-btn gem-btn--primary">
                 AX 전략 상담하기
