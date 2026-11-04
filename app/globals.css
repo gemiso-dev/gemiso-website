@@ -968,6 +968,15 @@ a:hover .gem-arrow-slide > span:nth-child(2) {
 }
 .gem-hero__grid--center .gem-hero__desc {
   margin-inline: auto;
+  /* 설명 2줄을 줄바꿈 그대로 보이도록 폭 제한 해제(컨테이너 820px 안) */
+  max-width: none;
+}
+/* 무작위 히어로 문구(HeroCopy) — 문구가 정해지기 전엔 숨겨 첫 문구가 비치지 않게 한다 */
+.gem-hero__copy {
+  visibility: hidden;
+}
+.gem-hero__copy.is-ready {
+  visibility: visible;
 }
 .gem-hero__grid--center .gem-hero__actions {
   justify-content: center;
