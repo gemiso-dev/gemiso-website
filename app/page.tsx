@@ -12,9 +12,10 @@ import { NEWS_ARTICLES } from "@/components/news-data";
 import { pageMetadata } from "@/components/seo";
 
 export const metadata = pageMetadata({
-  title: "레거시를 넘어 AX로, 방송의 미래를 설계하는 AI 미디어 플랫폼",
+  // 검색 결과용 제목 — 화면의 브랜드 슬로건("레거시를 넘어 AX로…")은 히어로에서 그대로 유지한다.
+  title: "제머나이소프트 — 방송 MAM·NRCS·APC·AI 미디어 솔루션",
   description:
-    "Geminisoft는 AI 기반 플랫폼 어웨어(Platform-Aware) 방송을 위한 AX 기술을 제공합니다. 전 세계 방송사·글로벌 OTT와 어깨를 나란히 할 새로운 미디어 비즈니스 모델을 만듭니다.",
+    "제머나이소프트(GEMISO·제미소)는 방송·미디어 전문 소프트웨어 기업입니다. 미디어 자산 관리(MAM), 뉴스룸(NRCS), 자동 송출(APC), 라디오, AI 영상 분석, 콘텐츠 아카이브·배포 솔루션을 직접 개발합니다.",
   path: "/",
 });
 
