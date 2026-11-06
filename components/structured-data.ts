@@ -1,5 +1,5 @@
 /**
- * 구조화 데이터(JSON-LD, schema.org) 빌더 — 단일 소스.
+ * 구조화 데이터(JSON-LD, schema.org) 빌더(단일 소스).
  *
  * - 페이지에 실제로 표시되는 정보만 넣는다(구조화 데이터는 화면 내용과 일치해야 한다).
  * - URL은 운영 절대 URL(SITE_URL) 기준. basePath(asset())는 붙이지 않는다.
@@ -54,7 +54,7 @@ export function siteJsonLd(): JsonLd {
   };
 }
 
-/** 솔루션 상세 — 소프트웨어 제품. */
+/** 솔루션 상세: 소프트웨어 제품. */
 export function softwareJsonLd(s: Solution): JsonLd {
   const seo = SOLUTION_SEO[s.id];
   const url = abs(`/solutions/${s.id}/`);
@@ -73,7 +73,7 @@ export function softwareJsonLd(s: Solution): JsonLd {
   };
 }
 
-/** 브레드크럼 — 마지막 항목 외에는 URL이 있어야 한다. */
+/** 브레드크럼: 마지막 항목 외에는 URL이 있어야 한다. */
 export function breadcrumbJsonLd(items: { name: string; path: string }[]): JsonLd {
   return {
     "@context": "https://schema.org",
