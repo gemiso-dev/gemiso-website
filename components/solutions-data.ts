@@ -865,6 +865,59 @@ export const SOLUTION_NAV = VISIBLE_SOLUTIONS.map((s) => ({
   href: `/solutions/${s.id}/`,
 }));
 
+/**
+ * 솔루션별 검색 메타데이터: <title>·description·JSON-LD에 쓴다.
+ * 화면 문구(tagline·desc)는 브랜드 톤을 유지하고, 검색용 문구는 사용자가 실제로 찾는
+ * 분야명(MAM·NRCS·APC 등)을 앞세워 별도로 관리한다.
+ */
+export const SOLUTION_SEO: Record<
+  string,
+  { title: string; description: string; category: string }
+> = {
+  proxima: {
+    title: "Proxima | 방송 미디어 자산 관리(MAM) 솔루션",
+    description:
+      "Proxima는 제머나이소프트(GEMISO)의 방송용 미디어 자산 관리(MAM) 솔루션입니다. 인제스트·트랜스코딩·아카이브·AI 분석·배포까지 미디어 자산의 전 과정을 하나의 시스템으로 통합 관리합니다.",
+    category: "미디어 자산 관리(MAM)",
+  },
+  zodiac: {
+    title: "Zodiac | 방송 뉴스룸 제작·보도정보 시스템(NRCS)",
+    description:
+      "Zodiac은 제머나이소프트(GEMISO)의 뉴스룸 컴퓨터 시스템(NRCS)입니다. 뉴스 기획·취재·기사 작성·큐시트 구성·송출 자동화까지 보도 제작 전 과정을 PC와 모바일에서 관리합니다.",
+    category: "뉴스룸 컴퓨터 시스템(NRCS)",
+  },
+  talos: {
+    title: "TALOS | 방송 자동 송출(APC) 시스템",
+    description:
+      "TALOS는 제머나이소프트(GEMISO)의 방송 자동 송출(APC) 시스템입니다. 편성 스케줄 수신부터 비디오 서버 등 송출 장비 제어까지 자동화해 방송 채널·송출 대행·사내 방송의 안정적인 온에어를 지원합니다.",
+    category: "자동 송출(APC)",
+  },
+  "winner-s": {
+    title: "Winner S | 라디오 방송 자동화·디지털 오디오 시스템",
+    description:
+      "Winner S는 제머나이소프트(GEMISO)의 라디오 방송용 디지털 오디오 파일 시스템입니다. 녹음·제작·편성·광고·생방송·자동 송출·관제까지 라디오 운영 전 과정을 지원합니다.",
+    category: "라디오 방송 자동화",
+  },
+  maia: {
+    title: "MAIA | 방송 영상 AI 분석·자동 메타데이터 엔진",
+    description:
+      "MAIA(Media AI Agent)는 제머나이소프트(GEMISO)의 미디어 AI 분석 엔진입니다. 영상·음성(STT)·얼굴·문자·프롬프터를 AI로 분석해 메타데이터를 자동 생성하고, 온프레미스로 배포됩니다.",
+    category: "미디어 AI 분석",
+  },
+  mymy: {
+    title: "MYMY | AI 영상 검색·콘텐츠 아카이브 시스템",
+    description:
+      "MYMY는 제머나이소프트(GEMISO)의 콘텐츠 아카이브 시스템입니다. 영상·이미지·문서를 보관하고 메타데이터·AI 의미 검색·STT 자막 검색으로 필요한 콘텐츠를 즉시 찾으며, REST API·MCP 연동을 지원합니다.",
+    category: "콘텐츠 아카이브",
+  },
+  "g-sam": {
+    title: "G-SAM | 방송 콘텐츠 멀티 SNS 배포 솔루션",
+    description:
+      "G-SAM은 제머나이소프트(GEMISO)의 멀티 채널 콘텐츠 배포 솔루션입니다. YouTube·Facebook·Instagram·X·TikTok에 하나의 콘텐츠를 예약 배포하고 자막·재생목록·통계·아카이브를 관리합니다.",
+    category: "콘텐츠 배포",
+  },
+};
+
 /** 슬러그로 솔루션 하나를 찾는다(없으면 undefined). */
 export function getSolution(id: string): Solution | undefined {
   return SOLUTIONS.find((s) => s.id === id);

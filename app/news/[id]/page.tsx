@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/components/structured-data";
 import {
   NEWS_ARTICLES,
   getArticle,
@@ -47,6 +49,13 @@ export default async function NewsDetailPage({
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "홈", path: "/" },
+          { name: "뉴스룸", path: "/news/" },
+          { name: active.title, path: `/news/${active.id}/` },
+        ])}
+      />
       {/* 돌아가기 */}
       <div className="news-back">
         <div className="news-back__inner">

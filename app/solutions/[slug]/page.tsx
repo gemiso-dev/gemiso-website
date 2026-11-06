@@ -6,8 +6,14 @@ import SolutionClientsMarquee from "@/components/SolutionClientsMarquee";
 import SolutionMock from "@/components/SolutionMock";
 import SolutionTabs from "@/components/SolutionTabs";
 import ZoomableImage from "@/components/ZoomableImage";
+import JsonLd from "@/components/JsonLd";
 import { asset } from "@/components/site-config";
-import { VISIBLE_SOLUTIONS, getSolution } from "@/components/solutions-data";
+import {
+  SOLUTION_SEO,
+  VISIBLE_SOLUTIONS,
+  getSolution,
+} from "@/components/solutions-data";
+import { breadcrumbJsonLd, softwareJsonLd } from "@/components/structured-data";
 import { pageMetadata } from "@/components/seo";
 
 type Params = { slug: string };
@@ -25,9 +31,10 @@ export async function generateMetadata({
   const { slug } = await params;
   const s = getSolution(slug);
   if (!s) return {};
+  const seo = SOLUTION_SEO[s.id];
   return pageMetadata({
-    title: `${s.name} · ${s.ko}`,
-    description: s.desc,
+    title: seo?.title ?? `${s.name} · ${s.ko}`,
+    description: seo?.description ?? s.desc,
     path: `/solutions/${s.id}/`,
     image: s.image,
   });
@@ -59,6 +66,13 @@ export default async function SolutionPage({
 
   return (
     <>
+      <JsonLd data={softwareJsonLd(active)} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "홈", path: "/" },
+          { name: `${active.name} · ${active.ko}`, path: `/solutions/${active.id}/` },
+        ])}
+      />
       {/* 브레드크럼 */}
       <nav className="sol-breadcrumb" aria-label="위치">
         <div className="gem-container sol-breadcrumb__inner">

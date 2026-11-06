@@ -2,16 +2,18 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import JsonLd from "@/components/JsonLd";
 import { SITE_URL } from "@/components/site-config";
+import { siteJsonLd } from "@/components/structured-data";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "제미소 | GEMISO — 방송을 위한 디지털 미디어 관리 플랫폼",
+    default: "제머나이소프트(GEMISO) | 방송 MAM·NRCS·APC·AI 미디어 솔루션",
     template: "%s | GEMISO",
   },
   description:
-    "Geminisoft는 인제스트, 아카이브, 뉴스룸, 자동 송출까지 방송을 위한 미디어 솔루션을 직접 개발하고 보유합니다.",
+    "제머나이소프트(GEMISO)는 방송·미디어 전문 소프트웨어 기업입니다. 미디어 자산 관리(MAM), 뉴스룸(NRCS), 자동 송출(APC), AI 영상 분석, 콘텐츠 아카이브·배포 솔루션을 직접 개발합니다.",
   openGraph: {
     type: "website",
     siteName: "GEMISO",
@@ -46,6 +48,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <JsonLd data={siteJsonLd()} />
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
