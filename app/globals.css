@@ -5032,23 +5032,56 @@ a.sup-contact__cell:hover {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 520px;
+  max-width: 528px; /* 칩 목록(4개)이 한 줄에 들어가는 폭 */
   max-height: calc(100dvh - 32px);
   background: var(--gem-bg);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
   outline: none;
   animation: gemPopupIn 0.42s var(--gem-ease);
 }
-.gem-popup__scroll {
+/* 슬라이드 트랙 — 가로 스크롤 스냅(터치 스와이프는 브라우저 기본 동작으로) */
+.gem-popup__track {
+  display: flex;
   flex: 1 1 auto;
   min-height: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.gem-popup__track::-webkit-scrollbar {
+  display: none;
+}
+/* 마우스로 끌어 넘기기(2장 이상) — 드래그 중엔 스냅을 끄고 글자 선택을 막는다 */
+@media (hover: hover) and (pointer: fine) {
+  .gem-popup__track--multi {
+    cursor: grab;
+  }
+}
+.gem-popup__track.is-dragging {
+  scroll-snap-type: none;
+  cursor: grabbing;
+  user-select: none;
+}
+/* 슬라이드마다 세로 스크롤(내용이 길면 슬라이드 안에서 스크롤) */
+.gem-popup__slide {
+  flex: 0 0 100%;
+  min-width: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
+  /* 스크롤바가 폭을 먹어 칩 줄이 밀리지 않도록 숨긴다(휠·터치 스크롤은 그대로) */
+  scrollbar-width: none;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+.gem-popup__slide::-webkit-scrollbar {
+  display: none;
 }
 
 /* 헤더 밴드 — accent 배경(컨택트 섹션과 동일 톤) */
 .gem-popup__head {
-  padding: 32px 32px 28px;
+  padding: 28px 32px 24px;
   background: var(--gem-accent);
   color: var(--gem-on-accent);
 }
@@ -5067,15 +5100,11 @@ a.sup-contact__cell:hover {
   line-height: 1.4;
   letter-spacing: -0.01em;
 }
-.gem-popup__name {
-  font-weight: 700;
-}
-
 .gem-popup__body {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 28px 32px 32px;
+  gap: 20px;
+  padding: 24px 32px 28px;
 }
 .gem-popup__text {
   font-size: 15px;
@@ -5083,12 +5112,21 @@ a.sup-contact__cell:hover {
   color: var(--gem-muted);
 }
 .gem-popup__text + .gem-popup__text {
-  margin-top: -12px; /* 본문 단락끼리는 블록 간격보다 촘촘하게 */
+  margin-top: -8px; /* 본문 단락끼리는 블록 간격보다 촘촘하게 */
+}
+/* 꺾쇠 이름("<모디오>가")이 줄 끝에서 갈라지지 않게 */
+.gem-popup__nowrap {
+  white-space: nowrap;
 }
 
 .gem-popup__block {
   padding-top: 20px;
   border-top: 1px solid var(--gem-border);
+}
+/* 제목 없는 블록 — 구분선 없이 앞 블록에 이어 붙인다 */
+.gem-popup__block.gem-popup__block--plain {
+  padding-top: 0;
+  border-top: none;
 }
 .gem-popup__block-title {
   margin-bottom: 12px;
@@ -5130,12 +5168,153 @@ a.sup-contact__cell:hover {
   font-size: 14px;
   font-weight: 500;
   line-height: 1.2;
+  white-space: nowrap;
   color: var(--gem-fg);
   background: var(--gem-surface);
+}
+/* 데스크톱에서는 칩을 항상 한 줄로(모바일은 폭이 모자라 줄바꿈 허용) */
+@media (min-width: 561px) {
+  .gem-popup__chips {
+    flex-wrap: nowrap;
+  }
+}
+
+/* 이름 + 설명 목록(전시 솔루션 소개) */
+.gem-popup__features {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gem-popup__features li {
+  display: grid;
+  gap: 2px;
+  padding: 12px 16px;
+  background: var(--gem-surface);
+}
+.gem-popup__features strong {
+  font-family: var(--gem-font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gem-fg);
+}
+.gem-popup__features span {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gem-muted);
 }
 
 .gem-popup__cta {
   width: 100%;
+}
+
+/* 페이지 바 — 진행 표시 · 번호 · 이전/정지/다음 (슬라이드 2장 이상일 때만) */
+.gem-popup__pager {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 14px;
+  padding: 0 12px 0 32px;
+  min-height: 48px;
+  border-top: 1px solid var(--gem-border);
+  background: var(--gem-bg);
+}
+.gem-popup__dots {
+  display: flex;
+  gap: 6px;
+}
+.gem-popup__dot {
+  display: flex;
+  align-items: center;
+  width: 28px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.gem-popup__dot-fill {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 3px;
+  overflow: hidden;
+  background: var(--gem-border);
+}
+.gem-popup__dot-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gem-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+/* 현재 슬라이드: 정지 중이면 꽉 찬 바, 재생 중이면 간격만큼 차오른다 */
+.gem-popup__dot[aria-current] .gem-popup__dot-fill::after {
+  transform: scaleX(1);
+}
+.gem-popup__dot-fill.is-running::after {
+  animation: gemPopupProgress linear forwards;
+  animation-duration: inherit;
+}
+.gem-popup__dot:focus-visible {
+  outline: 2px solid var(--gem-accent);
+  outline-offset: 2px;
+}
+.gem-popup__count {
+  font-family: var(--gem-font-display);
+  font-size: 13px;
+  color: var(--gem-subtle);
+}
+.gem-popup__count b {
+  font-weight: 600;
+  color: var(--gem-fg);
+}
+.gem-popup__nav {
+  display: flex;
+  margin-left: auto;
+}
+.gem-popup__nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--gem-muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.gem-popup__nav-btn:hover {
+  color: var(--gem-accent);
+}
+.gem-popup__nav-btn:focus-visible {
+  outline: 2px solid var(--gem-accent);
+  outline-offset: -2px;
+}
+.gem-popup__nav-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.gem-popup__nav-btn svg .is-fill {
+  fill: currentColor;
+  stroke: none;
+}
+@keyframes gemPopupProgress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 /* 하단 바 — 오늘 하루 보지 않기 / 닫기 */
@@ -5186,11 +5365,61 @@ a.sup-contact__cell:hover {
     animation: none;
   }
 }
-@media (max-width: 520px) {
+/* 모바일 — 한 화면에 [행사 안내 보기]까지 들어오도록 글자·여백을 한 단계 줄인다 */
+@media (max-width: 560px) {
   .gem-popup__head {
-    padding: 26px 22px 22px;
+    padding: 22px 22px 18px;
+  }
+  .gem-popup__eyebrow {
+    margin-bottom: 10px;
   }
   .gem-popup__body {
-    padding: 22px 22px 24px;
+    gap: 16px;
+    padding: 18px 22px 20px;
+  }
+  .gem-popup__text {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .gem-popup__text + .gem-popup__text {
+    margin-top: -6px;
+  }
+  .gem-popup__block {
+    padding-top: 16px;
+  }
+  .gem-popup__block-title {
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+  .gem-popup__info {
+    gap: 4px;
+  }
+  .gem-popup__row {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .gem-popup__chips {
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .gem-popup__chips li {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+  .gem-popup__features li {
+    padding: 12px 14px;
+  }
+  .gem-popup__features span {
+    font-size: 13px;
+  }
+  .gem-popup__cta {
+    min-height: 48px;
+  }
+  .gem-popup__pager {
+    min-height: 44px;
+    padding-left: 22px;
+  }
+  .gem-popup__foot-btn {
+    min-height: 46px;
   }
 }
