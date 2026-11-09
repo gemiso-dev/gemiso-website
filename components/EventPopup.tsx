@@ -122,6 +122,62 @@ export default function EventPopup() {
     setIndex(Math.round(track.scrollLeft / track.clientWidth));
   };
 
+  /* 마우스 드래그로 넘기기 — 터치·펜은 브라우저 기본 스와이프(스크롤 스냅)를 그대로 쓴다. */
+  const drag = useRef<{ x: number; left: number; moved: boolean } | null>(null);
+  /** 드래그로 끝난 클릭이 링크·버튼·바깥 닫기로 이어지지 않게 막는다. */
+  const dragged = useRef(false);
+
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    setTouch((t) => t + 1);
+    dragged.current = false;
+    const track = trackRef.current;
+    if (!multi || !track || e.pointerType !== "mouse" || e.button !== 0) return;
+    drag.current = { x: e.clientX, left: track.scrollLeft, moved: false };
+  };
+
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const d = drag.current;
+    const track = trackRef.current;
+    if (!d || !track) return;
+    const dx = e.clientX - d.x;
+    if (!d.moved) {
+      if (Math.abs(dx) < 6) return; // 살짝 움직인 클릭은 드래그로 보지 않는다
+      d.moved = true;
+      try {
+        track.setPointerCapture(e.pointerId); // 팝업 밖으로 끌고 나가도 계속 따라오게
+      } catch {
+        /* 캡처 불가 환경 — 팝업 안에서만 따라온다 */
+      }
+      track.classList.add("is-dragging"); // 드래그 중엔 스냅·부드러운 스크롤 해제
+      window.getSelection()?.removeAllRanges();
+    }
+    track.scrollLeft = d.left - dx;
+  };
+
+  const onPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    const d = drag.current;
+    const track = trackRef.current;
+    drag.current = null;
+    if (!d?.moved || !track) return;
+    dragged.current = true;
+    // 폭의 15% 넘게 끌었으면 그 방향으로 한 장, 아니면 제자리(끝에서는 더 넘기지 않음)
+    const w = track.clientWidth;
+    const dx = e.clientX - d.x;
+    const from = Math.round(d.left / w);
+    const step = Math.abs(dx) > w * 0.15 ? (dx < 0 ? 1 : -1) : 0;
+    const target = Math.max(0, Math.min(track.children.length - 1, from + step));
+    track.scrollTo({
+      left: target * w,
+      behavior: prefersReducedMotion() ? "auto" : "smooth",
+    });
+    // 이동이 끝난 뒤 스냅을 다시 켠다(먼저 켜면 가까운 장으로 튀었다가 다시 움직임)
+    window.setTimeout(() => track.classList.remove("is-dragging"), 450);
+    // 뒤따르는 click 이벤트까지 막은 다음 해제
+    window.setTimeout(() => {
+      dragged.current = false;
+    }, 0);
+  };
+
   // 자동 회전 — 슬라이드가 바뀌거나 사용자가 건드리면 타이머를 처음부터 다시 건다.
   useEffect(() => {
     if (!multi || paused) return;
@@ -134,7 +190,13 @@ export default function EventPopup() {
   const current = slides[Math.min(index, slides.length - 1)];
 
   return (
-    <div className="gem-popup" onClick={close}>
+    <div
+      className="gem-popup"
+      onClick={(e) => {
+        // 팝업 밖을 눌렀을 때만 닫는다(팝업 안에서 끌다가 밖에서 놓은 경우는 제외)
+        if (e.target === e.currentTarget && !dragged.current) close();
+      }}
+    >
       <div
         ref={dialogRef}
         className="gem-popup__dialog"
@@ -146,9 +208,19 @@ export default function EventPopup() {
       >
         <div
           ref={trackRef}
-          className="gem-popup__track"
+          className={`gem-popup__track${multi ? " gem-popup__track--multi" : ""}`}
           onScroll={onScroll}
-          onPointerDown={() => setTouch((t) => t + 1)}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerUp}
+          onClickCapture={(e) => {
+            if (dragged.current) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+          }}
+          onDragStart={(e) => e.preventDefault()}
           aria-roledescription={multi ? "carousel" : undefined}
         >
           {slides.map((s, i) => (

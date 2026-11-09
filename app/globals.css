@@ -5053,6 +5053,17 @@ a.sup-contact__cell:hover {
 .gem-popup__track::-webkit-scrollbar {
   display: none;
 }
+/* 마우스로 끌어 넘기기(2장 이상) — 드래그 중엔 스냅을 끄고 글자 선택을 막는다 */
+@media (hover: hover) and (pointer: fine) {
+  .gem-popup__track--multi {
+    cursor: grab;
+  }
+}
+.gem-popup__track.is-dragging {
+  scroll-snap-type: none;
+  cursor: grabbing;
+  user-select: none;
+}
 /* 슬라이드마다 세로 스크롤(내용이 길면 슬라이드 안에서 스크롤) */
 .gem-popup__slide {
   flex: 0 0 100%;
