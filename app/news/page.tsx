@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import NewsGrid from "@/components/NewsGrid";
+import NewsNewBadge from "@/components/NewsNewBadge";
 import { NEWS_ARTICLES } from "@/components/news-data";
 import { asset } from "@/components/site-config";
 import { pageMetadata } from "@/components/seo";
@@ -52,7 +53,10 @@ export default function NewsListPage() {
           <Reveal as="div">
             <Link href={`/news/${featured.id}/`} className="news-featured">
               <div className="news-featured__img">
-                <span className="news-featured__badge">FEATURED</span>
+                <span className="news-featured__badges">
+                  <span className="news-featured__badge">FEATURED</span>
+                  <NewsNewBadge date={featured.date} />
+                </span>
                 {featured.image ? (
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img src={asset(featured.image)} alt={featured.title} />

@@ -2516,10 +2516,21 @@ button.gem-copy__text:focus-visible,
   border-right: 1px solid var(--gem-border);
   overflow: hidden;
 }
-.news-featured__badge {
+/* FEATURED·NEW 표시 묶음 — 좌상단에 나란히, 이미지 위로 올림 */
+.news-featured__badges {
   position: absolute;
   top: 14px;
   left: 14px;
+  z-index: 1;
+  display: flex;
+  gap: 6px;
+}
+.news-featured__badges .news-new-badge {
+  position: static;
+  padding: 5px 10px;
+}
+.news-featured__badge {
+  line-height: 1;
   background: var(--gem-accent);
   color: #fff;
   font-family: var(--gem-font-display);
@@ -2599,6 +2610,21 @@ button.gem-copy__text:focus-visible,
   height: 100%;
   object-fit: cover;
   display: block;
+}
+/* 최근 기사 NEW 표시 — 썸네일 좌상단(이미지 위로 올림) */
+.news-new-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  background: var(--gem-accent);
+  color: #fff;
+  font-family: var(--gem-font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  padding: 5px 9px;
 }
 /* 이미지가 없을 때 표시하는 자리표시 라벨 */
 .news-thumb__ph {

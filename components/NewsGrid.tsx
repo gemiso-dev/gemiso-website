@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { NewsArticle } from "@/components/news-data";
 import { asset } from "@/components/site-config";
+import NewsNewBadge from "@/components/NewsNewBadge";
 
 type NewsGridProps = {
   /** 주요 소식을 제외한 그리드 기사 목록 */
@@ -43,6 +44,7 @@ export default function NewsGrid({
               ) : (
                 <span className="news-thumb__ph">GEMISO NEWS</span>
               )}
+              <NewsNewBadge date={art.date} />
             </div>
             <div className="news-card__body">
               <div className="news-card__meta">
