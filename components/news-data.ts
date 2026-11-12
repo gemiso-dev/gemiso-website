@@ -26,6 +26,18 @@ export type NewsArticle = {
   image: string | null;
 };
 
+/** 게재 후 이 일수 이내인 기사에 NEW 표시를 붙인다. */
+export const NEWS_NEW_DAYS = 14;
+
+/** 발행일(YYYY.MM.DD)이 기준 시각으로부터 NEWS_NEW_DAYS 이내인지. */
+export function isNewArticle(date: string, now: Date = new Date()): boolean {
+  const [y, m, d] = date.split(".").map(Number);
+  if (!y || !m || !d) return false;
+  const published = new Date(y, m - 1, d);
+  const elapsedDays = (now.getTime() - published.getTime()) / 86_400_000;
+  return elapsedDays >= 0 && elapsedDays < NEWS_NEW_DAYS;
+}
+
 /** 최신순으로 정렬된 보도 클리핑 목록. */
 export const NEWS_ARTICLES: NewsArticle[] = [
   {

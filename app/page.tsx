@@ -7,6 +7,7 @@ import HeroCopy from "@/components/HeroCopy";
 import CustomerMarquee from "@/components/CustomerMarquee";
 import CopyField from "@/components/CopyField";
 import EventPopup from "@/components/EventPopup";
+import NewsNewBadge from "@/components/NewsNewBadge";
 import { COMPANY, asset } from "@/components/site-config";
 import { NEWS_ARTICLES } from "@/components/news-data";
 import { pageMetadata } from "@/components/seo";
@@ -374,6 +375,7 @@ export default function Home() {
                   ) : (
                     <span className="news-thumb__ph">GEMISO NEWS</span>
                   )}
+                  <NewsNewBadge date={n.date} />
                 </div>
                 <div className="gem-news-card__body">
                   <div className="gem-news-card__meta">
