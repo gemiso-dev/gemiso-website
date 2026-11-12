@@ -53,10 +53,7 @@ export default function NewsListPage() {
           <Reveal as="div">
             <Link href={`/news/${featured.id}/`} className="news-featured">
               <div className="news-featured__img">
-                <span className="news-featured__badges">
-                  <span className="news-featured__badge">FEATURED</span>
-                  <NewsNewBadge date={featured.date} />
-                </span>
+                <NewsNewBadge date={featured.date} />
                 {featured.image ? (
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img src={asset(featured.image)} alt={featured.title} />

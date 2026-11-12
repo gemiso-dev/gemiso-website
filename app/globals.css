@@ -2516,28 +2516,6 @@ button.gem-copy__text:focus-visible,
   border-right: 1px solid var(--gem-border);
   overflow: hidden;
 }
-/* FEATURED·NEW 표시 묶음 — 좌상단에 나란히, 이미지 위로 올림 */
-.news-featured__badges {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  z-index: 1;
-  display: flex;
-  gap: 6px;
-}
-.news-featured__badges .news-new-badge {
-  position: static;
-  padding: 5px 10px;
-}
-.news-featured__badge {
-  line-height: 1;
-  background: var(--gem-accent);
-  color: #fff;
-  font-family: var(--gem-font-display);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  padding: 5px 10px;
-}
 .news-featured__body {
   padding: clamp(22px, 2.4vw, 38px);
   display: flex;
